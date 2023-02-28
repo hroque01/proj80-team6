@@ -1,12 +1,16 @@
 <script>
+
 export default {
-  name: 'AppNavbar',
+  name: 'AppMain',
 }
 
 </script>
 
 <template>
-  <nav>Ciao da Navbar</nav>
+    <!-- main section  -->
+    <main>
+        Ciao da main
+    </main>
 </template>
 
 <style lang="scss" scoped>
