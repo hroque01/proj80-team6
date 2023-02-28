@@ -1,5 +1,5 @@
 <script>
-import AppNavbar from './components/AppNavbar.vue';
+import AppNavbar from './AppNavbar.vue';
 
 export default {
   name: 'AppHeader',
@@ -10,13 +10,11 @@ export default {
 </script>
 
 <template>
-
-  <AppNavbar/>
+  <AppNavbar />
 
   <h1>
     Ciao da APpHeader
   </h1>
-
 </template>
 
 <style lang="scss" scoped>
