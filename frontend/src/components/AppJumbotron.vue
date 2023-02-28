@@ -3,9 +3,6 @@ import AppJumbotron from './AppJumbotron.vue';
 
 export default {
     name: 'AppJumbotron',
-    components: {
-        AppJumbotron,
-    }
 }
 </script>
 
