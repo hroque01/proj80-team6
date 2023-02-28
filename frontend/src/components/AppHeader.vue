@@ -1,13 +1,22 @@
 <script>
+import AppNavbar from './components/AppNavbar.vue';
+
 export default {
   name: 'AppHeader',
+  components: {
+    AppNavbar,
+  }
 }
 </script>
 
 <template>
+
+  <AppNavbar/>
+
   <h1>
     Ciao da APpHeader
   </h1>
+
 </template>
 
 <style lang="scss" scoped>

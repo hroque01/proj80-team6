@@ -1,18 +1,14 @@
 <script>
-import AppHeader from './components/AppHeader.vue';
-
 export default {
-  components: {
-    AppHeader,
-  }
+  name: 'AppNavbar',
 }
 </script>
 
 <template>
-  <AppHeader />
+  <nav>Ciao da Navbar</nav>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use '../src/styles/general.scss' as *;
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
