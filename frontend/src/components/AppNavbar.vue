@@ -51,7 +51,7 @@ export default {
 
 <template>
   <div class="container-fluid">
-    <div class="container">
+    <div class="my_container">
       <div class="logo">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <a class="navbar-brand" href="#">
