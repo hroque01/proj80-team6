@@ -5,6 +5,7 @@ export default {
     data(){
         return{
             img: "img/map-home.webp",
+            // array bottoni:
             buttons: [
                 {
                     icon: "fa-brands fa-apple",
