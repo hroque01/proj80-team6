@@ -1,5 +1,6 @@
-//REGOLE FLEX
+@use './variables' as*;
 
+//REGOLE FLEX
 @mixin flex ($type) {
     display: flex;
 
@@ -18,5 +19,21 @@
     @else if $type == 'both-center'{
         justify-content: center;
         align-items: center;
+    }
+}
+
+// mixin bottone:
+@mixin button {
+    border-radius: 10px;
+    padding: 0.15rem;
+    margin: 0 1rem;
+    background-color: white;
+
+    a {
+        color: black;
+
+        svg {
+            color: $btn_red;
+        }
     }
 }
