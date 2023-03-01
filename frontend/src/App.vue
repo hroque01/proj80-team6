@@ -4,6 +4,8 @@ import AppFooter from './components/AppFooter.vue';
 import AppMain from './components/AppMain.vue';
 // APP RESTAURANT
 import AppRestaurant from './components/AppRestaurant.vue';
+// APP RESTAURANT (MAIN RESTAURANT PAGE)
+import AppRestaurantMainPage from './components/AppRestaurantMainPage.vue';
 // APP CHECKOUT
 import AppCheckout from './components/AppCheckout.vue';
 
@@ -12,8 +14,9 @@ export default {
     AppHeader,
     AppFooter,
     AppMain,
-    // APP RESTAURANT
     AppRestaurant,
+    // APP RESTAURANT (MAIN RESTAURANT PAGE)
+    AppRestaurantMainPage,
     // APP CHECKOUT
     AppCheckout,
   }
@@ -23,11 +26,14 @@ export default {
 <template>
   <AppHeader />
   <AppMain />
-  <AppFooter />
   <!-- APP RESTAURANT TEMPORANEO -->
+  <!-- APP RESTAURANT LIST TEMPORANEO -->
   <AppRestaurant />
+  <!-- APP RESTAURANT MAIN PAGE TEMPORANEO -->
+  <AppRestaurantMainPage />
   <!-- APP CHECKOUT TEMPORANEO -->
   <AppCheckout />
+  <AppFooter />
 </template>
 
 <style lang="scss">

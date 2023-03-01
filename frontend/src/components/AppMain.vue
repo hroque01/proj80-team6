@@ -1,23 +1,26 @@
 <script>
 import AppTrack from './AppTrack.vue';
 import AppBannerMain from './AppBannerMain.vue';
+import AppCategory from './AppCategory.vue';
 
 export default {
-      name: 'AppMain',
-      components:{
-        AppTrack,
-        AppBannerMain 
-      }
+  name: 'AppMain',
+  components:{
+      AppTrack,
+      AppBannerMain,
+      AppCategory
+    }
 }
 
 </script>
 
 <template>
-      <!-- main section  -->
-      <main>
-        <AppTrack/>
-        <AppBannerMain/>
-      </main>
+    <!-- main section  -->
+    <main>
+      <AppTrack/>
+      <AppBannerMain/>
+      <AppCategory/>
+    </main>
 </template>
 
 <style lang="scss" scoped>
