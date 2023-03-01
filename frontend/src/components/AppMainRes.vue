@@ -308,7 +308,7 @@ export default {
                 height: 30%;
                 padding-left: 5px;
                 font-size: 12px;
-                background-color: #7c7c7c33;
+                background-color: $restaurant_card_bg;
             }
         }
     
@@ -337,7 +337,7 @@ export default {
                 width: 100%;
                 height: 35%;
                 padding: 10px;
-                background-color: #7c7c7c33;
+                background-color: $restaurant_card_bg;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
