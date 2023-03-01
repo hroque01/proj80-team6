@@ -15,4 +15,8 @@
         justify-content: space-between;
         align-items: center;
     }
+    @else if $type == 'both-center'{
+        justify-content: center;
+        align-items: center;
+    }
 }
