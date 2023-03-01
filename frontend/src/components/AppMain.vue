@@ -1,7 +1,11 @@
 <script>
+import AppTrack from './AppTrack.vue'
 
 export default {
       name: 'AppMain',
+      components:{
+        AppTrack
+      }
 }
 
 </script>
@@ -9,7 +13,7 @@ export default {
 <template>
       <!-- main section  -->
       <main>
-            Ciao da main
+        <AppTrack/>
       </main>
 </template>
 
