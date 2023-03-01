@@ -10,7 +10,7 @@ export default {
         <div class="ms_content">
             <h1>Restaurant, food, takeaway, grocery. <span>Delivered</span>.</h1>
             <label for="" >Enter your address to see what we deliver</label>
-            <input type="text" placeholder="es. Via di Boolean classe 80">
+            <input type="text" placeholder="es. Via di Boolean classe 80" name="">
             <input type="submit" value="Search" class="search">
         </div>
 
