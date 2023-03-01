@@ -246,6 +246,8 @@ export default {
 
 .restaurants_box{
 
+
+
     //general
         //Boxes title
         .my_boxesTitle-container{
@@ -268,13 +270,14 @@ export default {
         .my_Boxes-wrapper{
 
             display: flex;
-            overflow-x: auto;
+            flex-wrap: wrap;
 
             .box-properties{
                 display: flex;
                 flex-direction: column;
                 overflow: hidden;
                 margin-right: 10px;
+                margin-bottom: 10px;
                 user-select: none;
             }
 
