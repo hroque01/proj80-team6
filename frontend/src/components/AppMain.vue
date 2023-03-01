@@ -8,6 +8,7 @@ export default {
   components:{
       AppTrack,
       AppBannerMain,
+      AppCategory
     }
 }
 
@@ -18,6 +19,7 @@ export default {
     <main>
       <AppTrack/>
       <AppBannerMain/>
+      <AppCategory/>
     </main>
 </template>
 
