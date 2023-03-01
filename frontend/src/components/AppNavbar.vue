@@ -136,4 +136,8 @@ export default {
   z-index: 100;
 
 }
+
+.general-btn{
+  @include button;
+}
 </style>
