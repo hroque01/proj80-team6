@@ -1,12 +1,14 @@
 <script>
 import AppTrack from './AppTrack.vue';
 import AppBannerMain from './AppBannerMain.vue';
+import AppCategory from './AppCategory.vue';
 
 export default {
   name: 'AppMain',
   components:{
       AppTrack,
-      AppBannerMain
+      AppBannerMain,
+      AppCategory
     }
 }
 
@@ -17,6 +19,7 @@ export default {
     <main>
       <AppTrack/>
       <AppBannerMain/>
+      <AppCategory/>
     </main>
 </template>
 
