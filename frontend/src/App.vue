@@ -26,11 +26,11 @@ export default {
   <AppHeader />
   <AppJumbotron />
   <AppMain />
-  <AppFooter />
   <!-- APP RESTAURANT TEMPORANEO -->
   <AppRestaurant />
   <!-- APP CHECKOUT TEMPORANEO -->
   <AppCheckout />
+  <AppFooter />
 </template>
 
 <style lang="scss">
