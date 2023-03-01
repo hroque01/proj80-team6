@@ -5,6 +5,8 @@ import AppMain from './components/AppMain.vue';
 import AppJumbotron from './components/AppJumbotron.vue';
 // APP RESTAURANT
 import AppRestaurant from './components/AppRestaurant.vue';
+// APP RESTAURANT (MAIN RESTAURANT PAGE)
+import AppRestaurantMainPage from './components/AppRestaurantMainPage.vue';
 // APP CHECKOUT
 import AppCheckout from './components/AppCheckout.vue';
 
@@ -14,8 +16,10 @@ export default {
     AppFooter,
     AppMain,
     AppJumbotron,
-    // APP RESTAURANT
+    // APP RESTAURANT (LIST OF ALL RESTAURANTS)
     AppRestaurant,
+    // APP RESTAURANT (MAIN RESTAURANT PAGE)
+    AppRestaurantMainPage,
     // APP CHECKOUT
     AppCheckout,
   }
@@ -27,7 +31,10 @@ export default {
   <AppJumbotron />
   <AppMain />
   <!-- APP RESTAURANT TEMPORANEO -->
+  <!-- APP RESTAURANT LIST TEMPORANEO -->
   <AppRestaurant />
+  <!-- APP RESTAURANT MAIN PAGE TEMPORANEO -->
+  <AppRestaurantMainPage />
   <!-- APP CHECKOUT TEMPORANEO -->
   <AppCheckout />
   <AppFooter />
