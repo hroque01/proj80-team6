@@ -2,7 +2,6 @@
 import AppHeader from './components/AppHeader.vue';
 import AppFooter from './components/AppFooter.vue';
 import AppMain from './components/AppMain.vue';
-import AppJumbotron from './components/AppJumbotron.vue';
 // APP RESTAURANT
 import AppRestaurant from './components/AppRestaurant.vue';
 // APP CHECKOUT
@@ -13,7 +12,6 @@ export default {
     AppHeader,
     AppFooter,
     AppMain,
-    AppJumbotron,
     // APP RESTAURANT
     AppRestaurant,
     // APP CHECKOUT
@@ -24,7 +22,6 @@ export default {
 
 <template>
   <AppHeader />
-  <AppJumbotron />
   <AppMain />
   <AppFooter />
   <!-- APP RESTAURANT TEMPORANEO -->
