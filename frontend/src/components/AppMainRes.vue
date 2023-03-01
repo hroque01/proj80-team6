@@ -152,6 +152,7 @@ export default {
                 <span class="my_boxesTitle">I più votati</span>
             </div>
             <div class="my_Boxes-wrapper">
+                
                 <div class="my_bigBox box-properties">
                     <div class="my_likeBtn">
                         <a href="">❤️</a> 
@@ -274,6 +275,11 @@ export default {
                 flex-direction: column;
                 overflow: hidden;
                 margin-right: 10px;
+                user-select: none;
+            }
+
+            .box-properties:hover{
+                cursor: pointer;
             }
 
         }
