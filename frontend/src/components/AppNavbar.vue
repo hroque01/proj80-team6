@@ -72,7 +72,6 @@ export default {
               <!-- v-for array print in DOM -->
               <li class="nav-item" v-for="link in links" :key="link.text" @click="toggleDropdown(link)">
                 <a class="nav-link" aria-current="page" :href="link.url">
-
                   <!-- V-bind and v-for for icons -->
                   <i :class="link.icon"></i>
                   <!-- v-for for text -->
@@ -80,23 +79,23 @@ export default {
 
                   <!-- toggle menu -->
                   <ul v-if="link.toggle && link.dropdown" class="dropdown">
-                    <li v-for="item in link.dropdown" :key="item.title">
+                    <!-- Bootstrap margin class -->
+                    <li class="m-2" v-for="item in link.dropdown" :key="item.title">
                       <a href="item.url" class="mx-3">
-                        <i :class="item.iconDrop"></i>
+                        <i class="mx-2" :class="item.iconDrop"></i>
                         <span>{{ item.title }}</span>
                       </a>
                     </li>
-                    <div class="mx-3">
-                      <i class="fa-solid fa-right-from-bracket"></i>
+                    <a class="m-4" href="#">
+                      <i class="fa-solid fa-right-from-bracket mx-2"></i>
                       <span>LOGOUT</span>
-                    </div>
+                    </a>
                   </ul>
                 </a>
               </li>
             </ul>
           </div>
         </nav>
-
       </div>
     </div>
   </div>
@@ -107,7 +106,19 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+}
+
 .dropdown {
+  width: 200px;
   border: 1px solid black;
+  padding: 10%;
+  position: absolute;
+  top: 50px;
+  right: 5px;
 }
 </style>
