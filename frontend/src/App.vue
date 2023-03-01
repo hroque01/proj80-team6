@@ -3,6 +3,7 @@ import AppHeader from './components/AppHeader.vue';
 import AppFooter from './components/AppFooter.vue';
 import AppMain from './components/AppMain.vue';
 import AppJumbotron from './components/AppJumbotron.vue';
+import AppRestaurant from './components/AppRestaurant.vue';
 
 export default {
   components: {
@@ -10,6 +11,7 @@ export default {
     AppFooter,
     AppMain,
     AppJumbotron,
+    AppRestaurant
   }
 }
 </script>
@@ -20,6 +22,7 @@ export default {
   <AppMain />
   <AppFooter />
   <!-- APP RESTAURANT TEMPORANEO -->
+  <AppRestaurant />
 </template>
 
 <style lang="scss">

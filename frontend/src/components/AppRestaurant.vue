@@ -1,5 +1,5 @@
 <script>
-import AppNavRes from './components/AppNavRes.vue';
+import AppNavRes from './AppNavRes.vue';
 
 export default {
   components: {
