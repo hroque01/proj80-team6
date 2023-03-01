@@ -29,7 +29,10 @@ export default {
     <!-- classe da togliere quando avremo il vero jumbotron, o forse no -->
     <div class="jumbotron">
         <div class="ms_content">
-            <h1>Restaurant, food, takeaway, grocery. <span>Delivered</span>.</h1>
+            <h1>Restaurant, food, takeaway, grocery.
+                <br>
+                <span>Delivered</span>.
+            </h1>
             <label for="">Enter your address to see what we deliver</label>
             <input type="text" placeholder="es. Via di Boolean classe 80" name="">
             <input type="submit" value="Search" class="search">
