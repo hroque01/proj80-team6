@@ -7,9 +7,11 @@ export default {
 <template>
     <!-- classe da togliere quando avremo il vero jumbotron -->
     <div class="jumbotron">
-        <div class="ms_title">
+        <div class="ms_content">
             <h1>Restaurant, food, takeaway, grocery. <span>Delivered</span>.</h1>
-            <span>Enter your address to see what we deliver</span>
+            <label for="" >Enter your address to see what we deliver</label>
+            <input type="text" placeholder="es. Via di Boolean classe 80">
+            <input type="submit" value="Search" class="search">
         </div>
 
         
@@ -27,7 +29,7 @@ export default {
     height: 440px;
     background-color: #000;
     position: relative;
-    .ms_title{
+    .ms_content{
         text-align: center;
         position: absolute;
         left: 50%;
@@ -42,6 +44,25 @@ export default {
             span{
                 color: $btn-red;
             }
+        }
+
+        label{
+            display: block;
+        }
+
+        input{
+            margin-top: 10px;
+            width: 400px;
+            padding: 10px;
+            border-radius: 20px;
+        }
+
+        .search{
+            width: 100px;
+            margin-left: 10px;
+            background-color: $btn-red;
+            border: 1px solid $btn-red;
+            color: #fff;
         }
     }
     
