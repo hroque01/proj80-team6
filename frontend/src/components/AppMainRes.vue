@@ -144,12 +144,9 @@ export default {
                 </div>
             </div>
         </div>
+
         
-
-
-
         <!-- MostVoted -->
-
         <div class="my_mvBoxes">
             <div class="my_boxesTitle-container">
                 <span class="my_boxesTitle">I più votati</span>
@@ -238,10 +235,6 @@ export default {
             
         </div>
         
-
-
-
-
     </div>
 </template>
 
@@ -300,11 +293,13 @@ export default {
             }
 
             .tagBox-name{
+                display: flex;
+                align-items: center;
                 width: 100%;
                 height: 30%;
                 padding-left: 5px;
                 font-size: 12px;
-                background-color: aquamarine;
+                background-color: #7c7c7c33;
             }
         }
     
@@ -332,8 +327,8 @@ export default {
             .my_bigBox-info-wrapper{
                 width: 100%;
                 height: 35%;
-                padding: 5px;
-                background-color: aquamarine;
+                padding: 10px;
+                background-color: #7c7c7c33;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
