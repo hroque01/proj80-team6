@@ -89,9 +89,10 @@ export default {
 
                     <!-- LOGOUT DA TOGLIERE OPURE NO CIT ROMINA -->
                     <!-- <a class="m-4" href="#">
-                                      <i class="fa-solid fa-right-from-bracket mx-2"></i>
-                                      <span>LOGOUT</span>
-                                    </a> -->
+                                            <i class="fa-solid fa-right-from-bracket mx-2"></i>
+                                            <span>LOGOUT</span>
+                        </a> -->
+                    <!--  -->
 
                   </ul>
                 </a>
