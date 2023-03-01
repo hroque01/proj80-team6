@@ -51,56 +51,54 @@ export default {
 
 <template>
   <div class="container-fluid">
-    <div class="my_container">
-      <div class="logo">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <a class="navbar-brand" href="#">
-            <h3>
-              deliveboo
-            </h3>
-          </a>
+    <div class="logo">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <a class="navbar-brand deliveboo" href="#">
+          <h3>
+            deliveboo
+          </h3>
+        </a>
 
-          <!-- BUTTON FOR RESPONSIVE -->
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+        <!-- BUTTON FOR RESPONSIVE -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-            <ul class="navbar-nav mb-lg-0">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+          <ul class="navbar-nav mb-lg-0">
 
-              <!-- v-for array print in DOM -->
-              <li class="nav-item general-btn" v-for="link in links" :key="link.text" @click="toggleDropdown(link)">
-                <a class="nav-link" aria-current="page" :href="link.url">
-                  <!-- V-bind and v-for for icons -->
-                  <i :class="link.icon"></i>
-                  <!-- v-for for text -->
-                  <span @click="toggleMenu">{{ link.text }}</span>
+            <!-- v-for array print in DOM -->
+            <li class="nav-item general-btn" v-for="link in links" :key="link.text" @click="toggleDropdown(link)">
+              <a class="nav-link" aria-current="page" :href="link.url">
+                <!-- V-bind and v-for for icons -->
+                <i :class="link.icon"></i>
+                <!-- v-for for text -->
+                <span @click="toggleMenu">{{ link.text }}</span>
 
-                  <!-- toggle menu -->
-                  <ul v-if="link.toggle && link.dropdown" class="dropdown my-2">
-                    <!-- Bootstrap margin class -->
-                    <li class="m-2" v-for="item in link.dropdown" :key="item.title">
-                      <a href="item.url" class="mx-3">
-                        <i class="mx-2" :class="item.iconDrop"></i>
-                        <span>{{ item.title }}</span>
-                      </a>
-                    </li>
+                <!-- toggle menu -->
+                <ul v-if="link.toggle && link.dropdown" class="dropdown my-2">
+                  <!-- Bootstrap margin class -->
+                  <li class="m-2" v-for="item in link.dropdown" :key="item.title">
+                    <a href="item.url" class="mx-3">
+                      <i class="mx-2" :class="item.iconDrop"></i>
+                      <span>{{ item.title }}</span>
+                    </a>
+                  </li>
 
-                    <!-- LOGOUT DA TOGLIERE OPURE NO CIT ROMINA -->
-                    <!-- <a class="m-4" href="#">
-                                                    <i class="fa-solid fa-right-from-bracket mx-2"></i>
-                                                    <span>LOGOUT</span>
-                                </a> -->
-                    <!--  -->
+                  <!-- LOGOUT DA TOGLIERE OPURE NO CIT ROMINA -->
+                  <!-- <a class="m-4" href="#">
+                                                                  <i class="fa-solid fa-right-from-bracket mx-2"></i>
+                                                                  <span>LOGOUT</span>
+                                              </a> -->
+                  <!--  -->
 
-                  </ul>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
+                </ul>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </div>
   </div>
 </template>
@@ -109,6 +107,10 @@ export default {
 @use '../src/styles/general.scss' as *;
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
+
+.deliveboo {
+  margin: 0 200px;
+}
 
 .navbar-brand {
   h3 {
@@ -132,12 +134,12 @@ export default {
   padding: 10%;
   position: absolute;
   top: 40px;
-  left: 5px;
+  left: -115px;
   z-index: 100;
 
 }
 
-.general-btn{
+.general-btn {
   @include button;
 }
 </style>
