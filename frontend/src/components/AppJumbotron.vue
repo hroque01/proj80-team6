@@ -51,7 +51,6 @@ export default {
     color: #fff;
     width: 100%;
     height: 440px;
-    background-color: #000;
     position: relative;
     border-radius: 0;
 

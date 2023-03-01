@@ -1,10 +1,12 @@
 <script>
 import AppNavbar from './AppNavbar.vue';
+import AppJumbotron from './AppJumbotron.vue';
 
 export default {
   name: 'AppHeader',
   components: {
     AppNavbar,
+    AppJumbotron,
   }
 }
 </script>
@@ -12,6 +14,7 @@ export default {
 <template>
   <header>
     <AppNavbar />
+    <AppJumbotron />
   </header>
 </template>
 
@@ -21,6 +24,9 @@ export default {
 @use '../src/styles/partials/variables' as *;
 
 header {
-  background-color: #000000;
+  background-image: url('../../public/img/Jumbotron.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 </style>
