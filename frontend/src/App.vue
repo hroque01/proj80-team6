@@ -19,6 +19,7 @@ export default {
   <AppJumbotron />
   <AppMain />
   <AppFooter />
+  <!-- APP RESTAURANT TEMPORANEO -->
 </template>
 
 <style lang="scss">
