@@ -36,7 +36,7 @@ export default {
         </div>
 
         <!-- slider con img ristoranti: qui poi creerò in data un array di img e userò un v-for -->
-        <div class="ms_slider">
+        <div class="ms_slider resto-carousel">
             <div class="ms_card" v-for="restaurant in restaurants">{{ restaurant }}</div>
         </div>
     </div>
@@ -93,8 +93,11 @@ export default {
     // slider:
     .ms_slider{
         position: absolute;
-        bottom: -90px;
+        bottom: -50px;
         left: 0;
+        display: flex;
+        flex-wrap: nowrap;
+        animation: scroll 30s linear infinite;
         
         .ms_card{
             display: inline-block;
@@ -103,7 +106,20 @@ export default {
             padding: 20px 30px;
             border-radius: 15px;
         }
+
+        // animazione img:
+        @keyframes scroll {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
     }
+
+    
+
     
 }
 </style>
