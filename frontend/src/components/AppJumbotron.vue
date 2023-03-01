@@ -1,11 +1,32 @@
 <script>
 export default {
     name: 'AppJumbotron',
+    data(){
+        return{
+            restaurants: 
+            [
+                "McDonald",
+                "Burger King",
+                "Bakery House",
+                "KFC",
+                "Domino's Pizza",
+                "Starbucks",
+                "Pokè House",
+                "McDonald",
+                "Burger King",
+                "Bakery House",
+                "KFC",
+                "Domino's Pizza",
+                "Starbucks",
+                "Pokè House",
+            ]
+        }
+    }
 }
 </script>
 
 <template>
-    <!-- classe da togliere quando avremo il vero jumbotron -->
+    <!-- classe da togliere quando avremo il vero jumbotron, o forse no -->
     <div class="jumbotron">
         <div class="ms_content">
             <h1>Restaurant, food, takeaway, grocery. <span>Delivered</span>.</h1>
@@ -14,7 +35,10 @@ export default {
             <input type="submit" value="Search" class="search">
         </div>
 
-        
+        <!-- slider con img ristoranti: qui poi creerò in data un array di img e userò un v-for -->
+        <div class="ms_slider resto-carousel">
+            <div class="ms_card" v-for="restaurant in restaurants">{{ restaurant }}</div>
+        </div>
     </div>
 </template>
 
@@ -65,6 +89,35 @@ export default {
             color: #fff;
         }
     }
+    
+    // slider:
+    .ms_slider{
+        position: absolute;
+        bottom: -50px;
+        left: 0;
+        display: flex;
+        flex-wrap: nowrap;
+        animation: scroll 30s linear infinite;
+        
+        .ms_card{
+            display: inline-block;
+            background-color: $btn_red;
+            margin-inline: 10px;
+            padding: 20px 30px;
+            border-radius: 15px;
+        }
+
+        // animazione img:
+        @keyframes scroll {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    }
+
     
 
     
