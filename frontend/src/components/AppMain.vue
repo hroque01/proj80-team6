@@ -1,23 +1,16 @@
 <script>
-import AppTrack from './AppTrack.vue';
-import AppBannerMain from './AppBannerMain.vue';
 
 export default {
-  name: 'AppMain',
-  components:{
-      AppTrack,
-      AppBannerMain
-    }
+      name: 'AppMain',
 }
 
 </script>
 
 <template>
-    <!-- main section  -->
-    <main>
-      <AppTrack/>
-      <AppBannerMain/>
-    </main>
+      <!-- main section  -->
+      <main>
+            Ciao da main
+      </main>
 </template>
 
 <style lang="scss" scoped>
@@ -25,8 +18,8 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
-main{
-  margin-top: 90px;
+main {
+      margin-top: 90px;
 
 }
 </style>
