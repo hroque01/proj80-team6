@@ -1,21 +1,15 @@
 <script>
-import AppNavRes from './AppNavRes.vue';
-import AppMainRes from './AppMainRes.vue';
-
 export default {
-  components: {
-    AppNavRes,
-    AppMainRes
-  }
+    name: 'AppMainRes',
 }
+
 </script>
 
 <template>
-  <AppNavRes />
-  <AppMainRes />
+    <main>Ciao da APPMAINRES</main>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use '../src/styles/general.scss' as *;
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
