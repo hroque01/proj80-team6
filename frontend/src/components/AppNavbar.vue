@@ -56,7 +56,7 @@ export default {
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <a class="navbar-brand" href="#">
             <h3>
-              deliveBoOoOOOoooOO
+              deliveboo
             </h3>
           </a>
 
@@ -70,7 +70,7 @@ export default {
             <ul class="navbar-nav mb-lg-0">
 
               <!-- v-for array print in DOM -->
-              <li class="nav-item" v-for="link in links" :key="link.text" @click="toggleDropdown(link)">
+              <li class="nav-item general-btn" v-for="link in links" :key="link.text" @click="toggleDropdown(link)">
                 <a class="nav-link" aria-current="page" :href="link.url">
                   <!-- V-bind and v-for for icons -->
                   <i :class="link.icon"></i>
@@ -89,9 +89,9 @@ export default {
 
                     <!-- LOGOUT DA TOGLIERE OPURE NO CIT ROMINA -->
                     <!-- <a class="m-4" href="#">
-                                            <i class="fa-solid fa-right-from-bracket mx-2"></i>
-                                            <span>LOGOUT</span>
-                        </a> -->
+                                                    <i class="fa-solid fa-right-from-bracket mx-2"></i>
+                                                    <span>LOGOUT</span>
+                                </a> -->
                     <!--  -->
 
                   </ul>
