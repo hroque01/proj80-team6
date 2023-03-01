@@ -11,11 +11,10 @@ export default {
 </script>
 
 <template>
-  <main>
+  <div class="restaurant">
     <AppNavRes />
     <AppMainRes />
-  </main>
-  
+  </div>
 </template>
 
 <style lang="scss">
@@ -23,7 +22,7 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
-main{
+.restaurant{
   @include flex(flex);
 }
 </style>
