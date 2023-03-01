@@ -10,15 +10,17 @@ export default {
 </script>
 
 <template>
-  <AppNavbar />
-
-  <h1>
-    Ciao da APpHeader
-  </h1>
+  <header>
+    <AppNavbar />
+  </header>
 </template>
 
 <style lang="scss" scoped>
 @use '../src/styles/general.scss' as *;
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
+
+header {
+  background-color: #000000;
+}
 </style>

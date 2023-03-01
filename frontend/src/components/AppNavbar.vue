@@ -56,7 +56,7 @@ export default {
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <a class="navbar-brand" href="#">
             <h3>
-              deliveboo
+              deliveBoOoOOOoooOO
             </h3>
           </a>
 
@@ -78,7 +78,7 @@ export default {
                   <span @click="toggleMenu">{{ link.text }}</span>
 
                   <!-- toggle menu -->
-                  <ul v-if="link.toggle && link.dropdown" class="dropdown">
+                  <ul v-if="link.toggle && link.dropdown" class="dropdown my-2">
                     <!-- Bootstrap margin class -->
                     <li class="m-2" v-for="item in link.dropdown" :key="item.title">
                       <a href="item.url" class="mx-3">
@@ -86,10 +86,13 @@ export default {
                         <span>{{ item.title }}</span>
                       </a>
                     </li>
-                    <a class="m-4" href="#">
-                      <i class="fa-solid fa-right-from-bracket mx-2"></i>
-                      <span>LOGOUT</span>
-                    </a>
+
+                    <!-- LOGOUT DA TOGLIERE OPURE NO CIT ROMINA -->
+                    <!-- <a class="m-4" href="#">
+                                      <i class="fa-solid fa-right-from-bracket mx-2"></i>
+                                      <span>LOGOUT</span>
+                                    </a> -->
+
                   </ul>
                 </a>
               </li>
@@ -106,19 +109,30 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
+.navbar-brand {
+  h3 {
+    color: $btn_red;
+  }
+}
+
 .nav-link {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   position: relative;
+  cursor: pointer;
 }
 
 .dropdown {
   width: 200px;
+  background-color: white;
   border: 1px solid black;
+  border-radius: 5%;
   padding: 10%;
   position: absolute;
-  top: 50px;
-  right: 5px;
+  top: 40px;
+  left: 5px;
+  z-index: 100;
+
 }
 </style>
