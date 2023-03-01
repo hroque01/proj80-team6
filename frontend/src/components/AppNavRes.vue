@@ -1,13 +1,13 @@
 <script>
 export default {
-    name: 'AppJumbotron',
+    name: 'AppNavRes',
 }
 </script>
 
 <template>
-    <h1>
-        Ciao da AppJumbotron
-    </h1>
+    <nav>
+        Ciao da AppNavRes
+    </nav>
 </template>
 
 <style lang="scss" scoped>

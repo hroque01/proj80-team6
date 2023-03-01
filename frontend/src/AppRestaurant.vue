@@ -1,16 +1,18 @@
 <script>
+import AppNavRes from './components/AppNavRes.vue';
+
 export default {
-    name: 'AppJumbotron',
+  components: {
+    AppNavRes,
+  }
 }
 </script>
 
 <template>
-    <h1>
-        Ciao da AppJumbotron
-    </h1>
+  <AppNavRes />
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use '../src/styles/general.scss' as *;
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
