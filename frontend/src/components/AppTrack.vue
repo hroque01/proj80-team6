@@ -1,7 +1,24 @@
 <script>
 
 export default {
-    name: 'AppTrack'
+    name: 'AppTrack',
+    data(){
+        return{
+            img: "img/map-home.webp",
+            buttons: [
+                {
+                    icon: "fa-brands fa-apple",
+                    textSmaller: "Donwload on the ",
+                    textBigger: "App Store"
+                },
+                {
+                    icon: "fa-brands fa-google-play",
+                    textSmaller: "GET IT ON ",
+                    textBigger: "Google Play"
+                },
+            ]
+        }
+    }
 }
 </script>
 
@@ -16,25 +33,22 @@ export default {
 
                 <!-- buttons sx -->
                 <div class="my_buttons">
-                    <div class="my_button">
-                    <div class="apple">
-                        <i class="fa-brands fa-apple"></i>
+                    <div class="my_button" v-for="(button,index) in buttons" :key="index">
+                        <div class="ms_icon">
+                            <i :class="button.icon"></i>
+                        </div>
+                        <div class="smaller">
+                            {{ button.textSmaller }}
+                            <span class="bigger">{{ button.textBigger }}</span>
+                        </div>
                     </div>
-                    <div class="smaller">Donwload on the <span class="bigger">App Store</span></div>
-                </div>
-
-                <div class="my_button">
-                    <div class="apple">
-                        <i class="fa-brands fa-google-play"></i>
-                    </div>
-                    <div class="smaller">GET IT ON <span class="bigger">Google Play</span></div>
-                </div>
                 </div>
                 
             </div>
 
+            <!-- parte dx -->
             <div>
-                <img src="../../public/img/map-home.webp" alt="">
+                <img :src="img" alt="">
             </div>
             
         </div>
@@ -51,7 +65,7 @@ section{
     padding-bottom: 100px ;
 
     .my_container{
-        display: flex;
+        @include flex(flex);
         border: 1px solid #f0f0f0;
         box-shadow: 0px 20px 10px 0px #b7bec2;
 
@@ -68,15 +82,15 @@ section{
             @include flex(flex);
         }
         .my_button{
-            background-color: #000;
             width: 150px;
-            @include flex(flex);
+            background-color: #000;
+            color: #fff;
             line-height: 15px;
             margin-right: 15px;
-            color: #fff;
             padding: 5px;
+            @include flex(flex);
 
-            .apple{
+            .ms_icon{
                 width: 30px;
                 font-size: 30px;
             }
