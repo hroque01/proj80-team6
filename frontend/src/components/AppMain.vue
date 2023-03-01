@@ -1,11 +1,7 @@
 <script>
-import AppTrack from './AppTrack.vue';
 
 export default {
   name: 'AppMain',
-  components:{
-      AppTrack
-    }
 }
 
 </script>
@@ -13,7 +9,7 @@ export default {
 <template>
     <!-- main section  -->
     <main>
-      <AppTrack/>
+        Ciao da main
     </main>
 </template>
 
@@ -21,9 +17,4 @@ export default {
 @use '../src/styles/general.scss' as *;
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
-
-main{
-  margin-top: 90px;
-
-}
 </style>

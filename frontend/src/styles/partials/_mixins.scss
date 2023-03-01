@@ -3,8 +3,6 @@
 @mixin flex ($type) {
     display: flex;
 
-    @if $type =='flex' {}
-    
     @if $type =='between' {
         justify-content: space-between;
     }
