@@ -7,7 +7,9 @@ export default {
 
 <template>
     <section>
-        
+        <div class="my_container">
+            
+        </div>
     </section>
 </template>
 
