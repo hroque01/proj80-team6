@@ -5,20 +5,21 @@ export default {
         return {
             restaurants:
                 [
-                    "McDonald",
-                    "Burger King",
-                    "Bakery House",
-                    "KFC",
-                    "Domino's Pizza",
-                    "Starbucks",
-                    "Pokè House",
-                    "McDonald",
-                    "Burger King",
-                    "Bakery House",
-                    "KFC",
-                    "Domino's Pizza",
-                    "Starbucks",
-                    "Pokè House",
+                    'img/img-carousel/aubergine-pizza.jpg',
+                    'img/img-carousel/avocado-toast.jpg',
+                    'img/img-carousel/cappuccino.jpg',
+                    'img/img-carousel/corona-beer.jpg',
+                    'img/img-carousel/donuts.jpg',
+                    'img/img-carousel/green-sushi.jpg',
+                    'img/img-carousel/hamburger.jpg',
+                    'img/img-carousel/macarons.jpg',
+                    'img/img-carousel/meat-skewer.jpg',
+                    'img/img-carousel/pennette.jpg',
+                    'img/img-carousel/round-vegetables.jpg',
+                    'img/img-carousel/soup.jpg',
+                    'img/img-carousel/spaghetti-chinese.jpg',
+                    'img/img-carousel/sushi.jpg',
+                    'img/img-carousel/vegetables.jpg',
                 ]
         }
     }
@@ -38,7 +39,7 @@ export default {
         <!-- slider con img ristoranti: qui poi creerò in data un array di img e userò un v-for -->
         <div class="ms_slider resto-carousel">
             <div class="ms_card" v-for="restaurant in restaurants">
-            
+                <img :src="restaurant" alt="">
             </div>
         </div>
     </div>
