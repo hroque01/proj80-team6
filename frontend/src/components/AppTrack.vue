@@ -5,6 +5,7 @@ export default {
     data(){
         return{
             img: "img/map-home.webp",
+            // bottoni App Store e Google Play:
             buttons: [
                 {
                     icon: "fa-brands fa-apple",
@@ -25,13 +26,14 @@ export default {
 <template>
     <section>
         <div class="my_container">
+            <!-- parte sx -->
             <div class="txt">
                 <h1>Track orders to your door</h1> 
                 <p>
-                    Get your favourite food delivered in a flash. You’ll see when your rider’s picked up your order, and be able to follow them along the way. You’ll get a notification when they’re nearby, too.
+                    Get your favourite food delivered in a flash. You&#39ll see when your rider&#39s picked up your order, and be able to follow them along the way. You&#39ll get a notification when they&#39re nearby, too.
                 </p>
 
-                <!-- buttons sx -->
+                <!-- bottoni -->
                 <div class="my_buttons">
                     <div class="my_button" v-for="(button,index) in buttons" :key="index">
                         <div class="ms_icon">

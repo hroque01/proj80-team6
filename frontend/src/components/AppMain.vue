@@ -15,7 +15,7 @@ export default {
 </script>
 
 <template>
-    <!-- main section  -->
+    <!-- main section home -->
     <main>
       <AppTrack/>
       <AppBannerMain/>
@@ -29,7 +29,7 @@ export default {
 @use '../src/styles/partials/variables' as *;
 
 main {
-      margin-top: 90px;
+  margin-top: 90px;
 
 }
 </style>

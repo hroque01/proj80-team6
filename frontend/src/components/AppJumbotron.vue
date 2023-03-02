@@ -3,6 +3,7 @@ export default {
     name: 'AppJumbotron',
     data() {
         return {
+            // array di immagini per slider
             restaurants:
                 [
                     'img/img-carousel/aubergine-pizza.jpg',
@@ -27,7 +28,7 @@ export default {
 </script>
 
 <template>
-    <!-- classe da togliere quando avremo il vero jumbotron, o forse no -->
+    <!-- jumbotron-->
     <div class="jumbotron">
         <div class="ms_content">
             <h1>Restaurant, food, takeaway, grocery.
@@ -39,7 +40,7 @@ export default {
             <input type="submit" value="Search" class="search">
         </div>
 
-        <!-- slider con img ristoranti: qui poi creerò in data un array di img e userò un v-for -->
+        <!-- slider con v-for con immagini -->
         <div class="ms_slider resto-carousel">
             <div class="ms_card" v-for="restaurant in restaurants">
                 <img :src="restaurant" alt="image food">

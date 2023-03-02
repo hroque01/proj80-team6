@@ -9,7 +9,7 @@ export default {
     <section>
         <img src="/img/banner.jpeg" alt="">
         <div class="ms_txt">
-            <h1>Up to 25% off - Meal Deals</h1>
+            <h1>Up to 25&percnt; off - Meal Deals</h1>
             <p>
                 Need a midweek pick-me-up, a break from cooking for the family or just fancy your favourite restaurant?
             </p>
