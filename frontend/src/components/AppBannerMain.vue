@@ -7,7 +7,7 @@ export default {
 
 <template>
     <section>
-        <img src="public/img/banner.jpeg" alt="">
+        <img src="/img/banner.jpeg" alt="">
         <div class="ms_txt">
             <h1>Up to 25% off - Meal Deals</h1>
             <p>

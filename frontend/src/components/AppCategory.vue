@@ -1,13 +1,38 @@
 <script>
 
 export default {
-    name: 'AppCategory'
+    name: 'AppCategory',
+    data(){
+        return{
+            categories: [
+                'img/hambuger.jpg',
+                'img/chinese.jpg',
+                'img/greek.jpg',
+                'img/indian.jpg',
+                'img/italian.jpg',
+                'img/kebab.jpg',
+                'img/mexican.jpg',
+                'img/pizza.jpg',
+                'img/sushi.jpg',
+                'img/sweet.jpg',
+                'img/vegetarian.jpg',
+                'img/breakfast.jpg'
+            ]
+        }
+    }
 }
 </script>
 
 <template>
     <section>
-        
+
+        <!-- da fare carosello carino caruccio -->
+        <div class="my_container">
+            <div class="category" v-for="category in categories">
+                <img :src="category" alt="">
+            </div>
+            
+        </div>
     </section>
 </template>
 
@@ -16,5 +41,12 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
+.my_container{
+    display: flex;
+    flex-wrap: wrap;
 
+    .category{
+        width: calc(100% / 4);
+    }
+}
 </style>
