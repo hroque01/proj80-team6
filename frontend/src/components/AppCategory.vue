@@ -5,7 +5,7 @@ export default {
     data(){
         return{
             categories: [
-                'img/hambuger.jpg',
+                'img/hamburger.jpg',
                 'img/chinese.jpg',
                 'img/greek.jpg',
                 'img/indian.jpg',
@@ -41,6 +41,9 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
+section{
+    margin: 100px 0;
+}
 .my_container{
     display: flex;
     flex-wrap: wrap;
