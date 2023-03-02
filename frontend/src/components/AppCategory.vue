@@ -67,7 +67,7 @@ export default {
         <div class="my_container">
             <div class="category" v-for="(category, index) in categories" :key="index">
                 <img :src="category.img" :alt="category.typeName">
-                <span>{{ category.typeName }}</span>
+                <a href="">{{ category.typeName }}</a>
             </div>
             
         </div>
@@ -90,7 +90,7 @@ section{
         width: calc(100% / 4);
         position: relative;
 
-        span{
+        a{
             color: #fff;
             font-weight: bolder;
             position: absolute;
