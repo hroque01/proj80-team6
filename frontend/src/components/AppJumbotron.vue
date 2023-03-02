@@ -37,7 +37,9 @@ export default {
 
         <!-- slider con img ristoranti: qui poi creerò in data un array di img e userò un v-for -->
         <div class="ms_slider resto-carousel">
-            <div class="ms_card" v-for="restaurant in restaurants">{{ restaurant }}</div>
+            <div class="ms_card" v-for="restaurant in restaurants">
+            
+            </div>
         </div>
     </div>
 </template>
@@ -105,8 +107,9 @@ export default {
             display: inline-block;
             background-color: $btn_red;
             margin-inline: 10px;
-            padding: 20px 30px;
             border-radius: 15px;
+            width: 200px;
+            height: 100px;
         }
 
         // animazione img:
