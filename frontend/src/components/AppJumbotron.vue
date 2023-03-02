@@ -5,20 +5,21 @@ export default {
         return {
             restaurants:
                 [
-                    "McDonald",
-                    "Burger King",
-                    "Bakery House",
-                    "KFC",
-                    "Domino's Pizza",
-                    "Starbucks",
-                    "Pokè House",
-                    "McDonald",
-                    "Burger King",
-                    "Bakery House",
-                    "KFC",
-                    "Domino's Pizza",
-                    "Starbucks",
-                    "Pokè House",
+                    'img/img-carousel/aubergine-pizza.jpg',
+                    'img/img-carousel/avocado-toast.jpg',
+                    'img/img-carousel/cappuccino.jpg',
+                    'img/img-carousel/corona-beer.jpg',
+                    'img/img-carousel/donuts.jpg',
+                    'img/img-carousel/green-sushi.jpg',
+                    'img/img-carousel/hamburger.jpg',
+                    'img/img-carousel/macarons.jpg',
+                    'img/img-carousel/meat-skewer.jpg',
+                    'img/img-carousel/pennette.jpg',
+                    'img/img-carousel/round-vegetables.jpg',
+                    'img/img-carousel/soup.jpg',
+                    'img/img-carousel/spaghetti-chinese.jpg',
+                    'img/img-carousel/sushi.jpg',
+                    'img/img-carousel/vegetables.jpg',
                 ]
         }
     }
@@ -40,7 +41,9 @@ export default {
 
         <!-- slider con img ristoranti: qui poi creerò in data un array di img e userò un v-for -->
         <div class="ms_slider resto-carousel">
-            <div class="ms_card" v-for="restaurant in restaurants">{{ restaurant }}</div>
+            <div class="ms_card" v-for="restaurant in restaurants">
+                <img :src="restaurant" alt="image food">
+            </div>
         </div>
     </div>
 </template>
@@ -97,18 +100,22 @@ export default {
     // slider:
     .ms_slider {
         position: absolute;
-        bottom: -50px;
+        bottom: -25px;
         left: 0;
         display: flex;
         flex-wrap: nowrap;
-        animation: scroll 30s linear infinite;
+        animation: scroll 40s linear infinite;
 
         .ms_card {
             display: inline-block;
-            background-color: $btn_red;
-            margin-inline: 10px;
-            padding: 20px 30px;
+            margin-inline: 5px;
             border-radius: 15px;
+            width: 200px;
+            height: 100px;
+
+            img{
+                border-radius: 15px;
+            }
         }
 
         // animazione img:
@@ -122,9 +129,5 @@ export default {
             }
         }
     }
-
-
-
-
 }
 </style>
