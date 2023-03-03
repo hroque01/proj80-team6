@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('delivery');
             $table->decimal('delivery_price') -> unsigned();
             $table->time('delivery_time');
-            $table->url('image');
+            $table->string('image');
 
             $table->timestamps();
         });
