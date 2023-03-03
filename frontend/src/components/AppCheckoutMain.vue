@@ -22,7 +22,7 @@ export default {
 <template>
     <!-- main section  -->
     <main class="pt-5 pb-3">
-        <div class="container">
+        <div class="my_container">
             <div class="row">
                 <h3 class="col">
                   <b>Controlla il tuo ordine da U Sushi 8</b> 
