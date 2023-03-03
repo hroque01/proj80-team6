@@ -37,7 +37,7 @@ class Restaurant extends Model
 
     // 1 to 1 relations
     public function user() {
-        return $this -> belongsTo(User::class);
+        return $this -> hasOne(RestaurantUser::class);
     }
 
 }
