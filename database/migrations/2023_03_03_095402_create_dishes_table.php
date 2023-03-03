@@ -19,9 +19,9 @@ return new class extends Migration
             $table -> string('name', 24);
             $table->text('description');
             $table->text('ingredients');
-            $table->decimal('price');
+            $table->decimal('price') -> unsigned();
             $table->string('image');
-            $table->boolean('visible');
+            $table->boolean('visible') -> default(true);
 
             $table->timestamps();
         });

@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
 
-            $table->text('description');
+            $table->text('description') -> nullable();
             $table->time('opening_time');
             $table->time('closure_time');
-            $table->boolean('delivery');
+            $table->boolean('delivery') -> default(true);
             $table->decimal('delivery_price') -> unsigned();
             $table->time('delivery_time');
             $table->string('image');

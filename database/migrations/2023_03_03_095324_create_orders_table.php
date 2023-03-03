@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
 
             $table->time('create_time');
-            $table->string('order_number');
-            $table->decimal('total');
+            $table->string('order_number') -> unique();
+            $table->decimal('total') -> unsigned();
             $table->string('customer_name', 32);
             $table->string('customer_surname', 32);
             $table->string('address', 64);
