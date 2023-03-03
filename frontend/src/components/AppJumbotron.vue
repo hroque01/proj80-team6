@@ -57,8 +57,9 @@ export default {
 .jumbotron {
     color: #fff;
     width: 100%;
-    height: 440px;
+    height: 650px;
     border-radius: 0;
+    position: relative;
     overflow: hidden;
 
     .ms_content {
@@ -101,12 +102,11 @@ export default {
     // slider:
     .ms_slider {
         position: absolute;
-        bottom: -25px;
+        bottom: 45px;
         left: 0;
         display: flex;
         flex-wrap: nowrap;
         animation: scroll 40s linear infinite;
-        z-index: 999;
 
         .ms_card {
             display: inline-block;
