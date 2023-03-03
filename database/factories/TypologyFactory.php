@@ -17,7 +17,9 @@ class TypologyFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => fake() -> words(rand(1, 3), true),
+            'description' => fake() -> text(rand(10,20)),
+            'image' => fake() -> imageUrl(360, 360, 'animals', true, 'dogs', true, 'jpg'),
         ];
     }
 }
