@@ -19,7 +19,25 @@ class Restaurant extends Model
         'delivery_time',
         'image',
 
-
     ];
+
+    // M to M relations
+    public function typologies() {
+        return $this -> belongsToMany(Typology::class);
+    }
+
+    // 1 to M relations
+    public function dishes() {
+        return $this -> hasMany(Dish::class);
+    }
+
+    public function orders() {
+        return $this -> hasMany(Order::class);
+    }
+
+    // 1 to 1 relations
+    public function user() {
+        return $this -> belongsTo(User::class);
+    }
 
 }
