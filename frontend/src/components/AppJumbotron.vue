@@ -60,6 +60,7 @@ export default {
     height: 440px;
     position: relative;
     border-radius: 0;
+    overflow: hidden;
 
     .ms_content {
         text-align: center;
@@ -114,7 +115,7 @@ export default {
             width: 200px;
             height: 100px;
 
-            img{
+            img {
                 border-radius: 15px;
             }
         }
@@ -126,8 +127,10 @@ export default {
             }
 
             100% {
-                transform: translateX(-100%);
+                transform: translateX(calc(-200px * 4));
+                /* multiply the card width by the number of cards */
             }
+
         }
     }
 }
