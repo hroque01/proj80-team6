@@ -57,7 +57,7 @@ export default {
 .jumbotron {
     color: #fff;
     width: 100%;
-    height: 650px;
+    height: 500px;
     border-radius: 0;
     position: relative;
     overflow: hidden;
@@ -66,7 +66,7 @@ export default {
         text-align: center;
         position: absolute;
         left: 50%;
-        top: 50%;
+        top: 33%;
         transform: translate(-50%, -50%);
 
         h1 {
