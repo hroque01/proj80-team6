@@ -58,7 +58,6 @@ export default {
     color: #fff;
     width: 100%;
     height: 440px;
-    position: relative;
     border-radius: 0;
     overflow: hidden;
 
@@ -107,6 +106,7 @@ export default {
         display: flex;
         flex-wrap: nowrap;
         animation: scroll 40s linear infinite;
+        z-index: 999;
 
         .ms_card {
             display: inline-block;
