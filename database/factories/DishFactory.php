@@ -17,7 +17,14 @@ class DishFactory extends Factory
     public function definition()
     {
         return [
-            //
+
+            'name' => fake() -> words(rand(1, 5), true),
+            'description' => fake() -> text(rand(10,20)),
+            'ingredients' => fake() -> words(rand(1, 30), true),
+            'price' => fake() -> randomNumber(3, false),
+            'image' => fake() -> imageUrl(360, 360, 'animals', true, 'dogs', true, 'jpg'),
+            'visible' => fake() -> boolean(),
+
         ];
     }
 }
