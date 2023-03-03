@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 
 use App\Models\Restaurant;
 use App\Models\Typology;
-use App\Models\User;
+use App\Models\RestaurantUser;
 use App\Models\Dish;
 use App\Models\Order;
 
