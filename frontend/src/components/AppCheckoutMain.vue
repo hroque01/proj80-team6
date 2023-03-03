@@ -7,7 +7,6 @@ export default {
     };
   },
   methods: {
-    // Metodo
     deselezionaAltre(index) {
       for (let i = 0; i < this.opzioni.length; i++) {
         if (i !== index) {
@@ -23,7 +22,7 @@ export default {
 <template>
     <!-- main section  -->
     <main class="pt-5 pb-3">
-        <div class="my_container">
+        <div class="container">
             <div class="row">
                 <h3 class="col">
                   <b>Controlla il tuo ordine da U Sushi 8</b> 
@@ -53,7 +52,6 @@ export default {
                         <hr class="border-top border-dark">
                         <div class="card-body d-flex justify-content-between align-items-center px-0">
                             <div class="form-check d-flex align-items-center">
-                                <!-- checkbox -->
                                 <input class="form-check-input" type="checkbox" value="" v-model="opzioni[1]" @change="deselezionaAltre(1)">
                                 <label class="form-check-label m-2">
                                   <b>Contanti</b> <br>
