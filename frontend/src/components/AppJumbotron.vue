@@ -60,6 +60,7 @@ export default {
     height: 440px;
     position: relative;
     border-radius: 0;
+    overflow: hidden;
 
     .ms_content {
         text-align: center;
@@ -106,7 +107,6 @@ export default {
         display: flex;
         flex-wrap: nowrap;
         animation: scroll 40s linear infinite;
-        overflow: hidden; //hidden scrollbar
 
         .ms_card {
             display: inline-block;
