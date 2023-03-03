@@ -18,9 +18,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'business_name',
         'password',
+        'email',
+        'address',
+        'vat_number',
     ];
 
     /**
@@ -41,4 +43,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // 1 to 1 relation
+    public function restaurant() {
+        return $this -> hasOne(Restaurant::class);
+    }
 }
