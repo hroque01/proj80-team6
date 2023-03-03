@@ -41,6 +41,12 @@ return new class extends Migration
                 -> constrained();
         });
 
+        Schema::table('restaurant_users', function (Blueprint $table) {
+            $table->foreignId('restaurant_id')
+                -> constrained();
+
+            $table->primary('restaurant_id');
+        });
 
     }
 
@@ -78,5 +84,10 @@ return new class extends Migration
             $table->dropForeign('dish_order_order_id_foreign');
             $table->dropColumn('order_id');
         });
+
+        // Schema::table('restaurants', function (Blueprint $table) {
+        //     $table->dropForeign('user_restaurant_id_foreign');
+        //     $table->dropColumn('restaurant_id');
+        // });
     }
 };
