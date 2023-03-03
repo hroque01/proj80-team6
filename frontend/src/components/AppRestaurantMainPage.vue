@@ -9,7 +9,21 @@ export default {
 </script>
 
 <template>
-  
+
+  <div class="restaurant_header">
+
+    
+
+  </div>
+
+  <div class="menu_list">
+
+  </div>
+
+  <div class="cart">
+
+  </div>
+
 </template>
 
 <style lang="scss">
