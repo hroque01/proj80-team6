@@ -13,17 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('restaurants', function (Blueprint $table) {
+        Schema::create('restaurant_typology', function (Blueprint $table) {
             $table->id();
-            
-            $table->text('description') -> nullable();
-            $table->time('opening_time');
-            $table->time('closure_time');
-            $table->boolean('delivery') -> default(true);
-            $table->decimal('delivery_price') -> unsigned();
-            $table->time('delivery_time');
-            $table->string('image');
-
             $table->timestamps();
         });
     }
@@ -35,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restaurants');
+        Schema::dropIfExists('restaurant_typology');
     }
 };
