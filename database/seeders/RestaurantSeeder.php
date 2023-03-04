@@ -19,15 +19,17 @@ class RestaurantSeeder extends Seeder
      */
     public function run()
     {
-        Restaurant::factory() -> count(100) -> make() -> each(function($r) {
+        // Restaurant::factory() -> count(100) -> make() -> each(function($r) {
 
-            $user = User::inRandomOrder() -> first();
-            $r -> user() -> associate($user);
+        //     $user = User::inRandomOrder() -> first();
+        //     $r -> user() -> associate($user);
 
-            $r -> save();
+        //     $r -> save();
 
-            // $categories = Category::inRandomOrder() -> limit(rand(1, 5)) -> get();
-            // $p -> categories() -> attach($categories);
-        });
+        //     // $categories = Category::inRandomOrder() -> limit(rand(1, 5)) -> get();
+        //     // $p -> categories() -> attach($categories);
+        // });
+
+        Restaurant::factory() -> count(10) -> create();
     }
 }

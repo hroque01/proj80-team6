@@ -17,7 +17,13 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory() -> count(1) -> create();
+        // Restaurant::all() -> each(function($r) {
+
+        //     $u = User::factory() -> make();
+        //     $u -> restaurant() -> attach($r);
+
+        //     $u -> save();
+        // });
         
     }
 }

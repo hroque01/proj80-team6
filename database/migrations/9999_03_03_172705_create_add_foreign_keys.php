@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        //Relation 1 to M
-        Schema::table('restaurants', function (Blueprint $table) {
+        //Relation 1 to 1
+        Schema::table('users', function (Blueprint $table) {
 
-            $table -> foreignId('user_id')
+            $table -> primary('restaurant_id');
+
+            $table -> foreignId('restaurant_id')
                    -> constrained();
         });
 
@@ -63,10 +65,10 @@ return new class extends Migration
     {
 
         //DROP FK restaurants
-        Schema::table('restaurants', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
 
-            $table->dropForeign('restaurants_user_id_foreign');
-            $table->dropColumn('user_id');
+            $table->dropForeign('users_restaurant_id_foreign');
+            $table->dropColumn('restaurant_id');
         });
 
         //DROP FK restaurant_typology
