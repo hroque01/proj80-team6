@@ -17,13 +17,11 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // Restaurant::all() -> each(function($r) {
+        Restaurant::all()->each(function ($r) {
+            $u = User::factory()->make();
+            $u->restaurant()->associate($r);
+            $u->save();
+        });
 
-        //     $u = User::factory() -> make();
-        //     $u -> restaurant() -> attach($r);
-
-        //     $u -> save();
-        // });
-        
     }
 }
