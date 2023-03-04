@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -15,12 +14,12 @@ return new class extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
-            
-            $table->text('description') -> nullable();
+
+            $table->text('description')->nullable();
             $table->time('opening_time');
             $table->time('closure_time');
-            $table->boolean('delivery') -> default(true);
-            $table->decimal('delivery_price') -> unsigned();
+            $table->boolean('delivery')->default(true);
+            $table->decimal('delivery_price')->unsigned();
             $table->time('delivery_time');
             $table->string('image');
 

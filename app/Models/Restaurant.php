@@ -22,22 +22,26 @@ class Restaurant extends Model
     ];
 
     // M to M relations
-    public function typologies() {
-        return $this -> belongsToMany(Typology::class);
+    public function typologies()
+    {
+        return $this->belongsToMany(Typology::class);
     }
 
     // 1 to M relations
-    public function dishes() {
-        return $this -> hasMany(Dish::class);
+    public function dishes()
+    {
+        return $this->hasMany(Dish::class);
     }
 
-    public function orders() {
-        return $this -> hasMany(Order::class);
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 
     // 1 to 1 relations
-    public function user() {
-        return $this -> belongsTo(User::class);
+    public function user()
+    {
+        return $this->hasOne(User::class);
     }
 
 }

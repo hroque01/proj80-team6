@@ -30,6 +30,6 @@ class RestaurantSeeder extends Seeder
         //     // $p -> categories() -> attach($categories);
         // });
 
-        Restaurant::factory() -> count(10) -> create();
+        Restaurant::factory()->count(10)->create();
     }
 }
