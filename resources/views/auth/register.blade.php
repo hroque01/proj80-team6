@@ -107,7 +107,7 @@
                             Typologies
                         </h2>
                         @foreach ($typologies as $typology)
-                            <input type="checkbox" name="typologies[]" id="{{$typology->id}}">
+                            <input type="checkbox" name="typologies[]" id="{{$typology->id}}" value="{{$typology -> id}}">
                             <label for="typologies">{{$typology->name}} </label>
                             <br>
                         @endforeach
