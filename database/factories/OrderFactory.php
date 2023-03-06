@@ -18,13 +18,13 @@ class OrderFactory extends Factory
     {
         return [
             'create_time' => fake() -> time(),
-            'order_number' => fake() -> unique() -> randomNumber(rand(1, 6), true),
+            'order_number' => fake() -> unique() -> randomNumber(5),
             'total' => fake() -> randomNumber(6, false),  
             'customer_name' => fake() -> name(),
-            'customer_surname' => fake() -> surname(),
+            'customer_surname' => fake() -> name(),
             'address' => fake() -> streetAddress(),
             'email' => fake() -> email(), 
-            'phone_number' => fake() -> randomNumber(10, true),
+            'phone_number' => fake() -> phoneNumber(),
         ];
     }
 }
