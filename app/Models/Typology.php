@@ -17,6 +17,7 @@ class Typology extends Model
 
     ];
 
+    // M to M relations
     public function restaurants() {
         return $this -> belongsToMany(Restaurant::class);
     }
