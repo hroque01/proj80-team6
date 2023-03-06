@@ -2,21 +2,6 @@
 @section('content')
 
 <div class="container">
-    <ul>
-        @foreach ($typologies as $typology)
-            <h1>
-                {{$typology->name}}
-            </h1>
-
-            <ul>
-                @foreach ($typology -> restaurants as $restaurant)
-                    <li>
-                        {{ $restaurant -> user -> business_name}}
-                    </li>
-                @endforeach
-            </ul>
-        @endforeach
-    </ul>
 
     <h2 class="fs-4 text-secondary my-4">
         {{ __('Profile') }}
