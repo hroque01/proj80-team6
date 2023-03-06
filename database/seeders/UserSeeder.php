@@ -17,8 +17,10 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        Restaurant::all()->each(function ($r) {
-            $u = User::factory()->make();
+        // Relazione 1 to 1
+        // Associazione tra user a ristorante
+        User::all()->each(function ($r) {
+            $u = Restaurant::factory()->make();
             $u->restaurant()->associate($r);
             $u->save();
         });
