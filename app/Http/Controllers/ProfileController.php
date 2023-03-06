@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
-use App\Models\Typology;
-use App\Models\Restaurant;
-use App\Models\User;
-
-
 class ProfileController extends Controller
 {
     /**
@@ -22,13 +17,9 @@ class ProfileController extends Controller
     public function edit(Request $request): View
     {
 
-        $users = User::all();
-        $restaurants = Restaurant::all();
-        $typologies = Typology::all();
-
         return view('profile.edit', [
             'user' => $request->user(),
-        ], compact('typologies', 'restaurants', 'users'));
+        ]);
     }
 
     /**
