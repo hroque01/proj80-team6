@@ -46,7 +46,7 @@ export default {
 main{
 
   .restaurant_header{
-    width: 100vw;
+    width: 100%;
     height: 50vh;
     background-color: $text_black;
     border-bottom-right-radius: 25px;
