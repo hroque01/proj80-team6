@@ -18,12 +18,12 @@ return new class extends Migration {
             $table->text('description')->nullable();
             $table->unsignedBigInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->time('opening_time');
-            $table->time('closure_time');
+            $table->time('opening_time')->default('1');
+            $table->time('closure_time')->default('5');
             $table->boolean('delivery')->default(true);
-            $table->decimal('delivery_price')->unsigned();
-            $table->time('delivery_time');
-            $table->string('image');
+            $table->decimal('delivery_price')->unsigned()->default('1');
+            $table->time('delivery_time')->default('1');
+            $table->string('image')->nullable();
 
             $table->timestamps();
         });
