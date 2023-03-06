@@ -40,7 +40,6 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'address' => ['string'],
             'vat_number' => ['string'],
-            'restaurant_description' => ['nullable', 'string', 'max:255'],
             'typologies' => ['required', 'array']
         ]);
 
@@ -53,7 +52,6 @@ class RegisteredUserController extends Controller
         ]);
         
         $restaurant = $user->restaurant()->create([
-            'description' => $request->restaurant_description,
         ]);
 
         $typologies = Typology::find($data['typologies']);
