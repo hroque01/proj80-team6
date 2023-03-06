@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Typology;
+use App\Models\Restaurant;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -33,12 +34,14 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+        $data = $request->validate([
             'business_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'address' => ['string'],
-            'vat_number' => ['string']
+            'vat_number' => ['string'],
+            'restaurant_description' => ['nullable', 'string', 'max:255'],
+            'typologies' => ['required', 'array']
         ]);
 
         $user = User::create([
@@ -48,6 +51,13 @@ class RegisteredUserController extends Controller
             'address' => $request->address,
             'vat_number' => $request->vat_number,
         ]);
+        
+        $restaurant = $user->restaurant()->create([
+            'description' => $request->restaurant_description,
+        ]);
+
+        $typologies = Typology::find($data['typologies']);
+        $restaurant -> typologies() -> attach($typologies);
 
         event(new Registered($user));
 
