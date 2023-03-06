@@ -52,8 +52,11 @@ export default {
                 {
                     img: 'img/breakfast.jpg',
                     typeName: 'Breakfast'
+                },
+                {
+                    img: 'img/fish.jpg',
+                    typeName: 'Fish'
                 }
-                
             ]
         }
     }

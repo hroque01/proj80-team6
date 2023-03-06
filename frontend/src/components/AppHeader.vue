@@ -24,7 +24,7 @@ export default {
 @use '../src/styles/partials/variables' as *;
 
 header {
-  background-image: url('../../public/img/Jumbotron.png');
+  background-image: url('/img/Jumbotron.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
