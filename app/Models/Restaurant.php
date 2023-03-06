@@ -12,6 +12,7 @@ class Restaurant extends Model
     protected $fillable = [
 
         'description',
+        'user_id',
         'opening_time',
         'closure_time',
         'delivery',
@@ -33,6 +34,7 @@ class Restaurant extends Model
         return $this->hasMany(Dish::class);
     }
 
+    // 1 to M relations
     public function orders()
     {
         return $this->hasMany(Order::class);
@@ -41,7 +43,7 @@ class Restaurant extends Model
     // 1 to 1 relations
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
 }
