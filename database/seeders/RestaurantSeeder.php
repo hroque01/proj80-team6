@@ -6,9 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 use App\Models\Restaurant;
-use App\Models\User;
-use App\Models\Dish;
-use App\Models\Order;
+use App\Models\Typology;
 
 class RestaurantSeeder extends Seeder
 {
@@ -19,17 +17,14 @@ class RestaurantSeeder extends Seeder
      */
     public function run()
     {
-        // Restaurant::factory() -> count(100) -> make() -> each(function($r) {
+        // Relazione M to M
+        // Creazione ristoranti e associazione da 1 a 5 tipologie random
+        Restaurant::factory() -> count(10) -> create() -> each(function($res) {
 
-        //     $user = User::inRandomOrder() -> first();
-        //     $r -> user() -> associate($user);
+            $typologies = Typology::inRandomOrder() -> limit(rand(1,5)) -> get();
 
-        //     $r -> save();
+            $res -> typologies() -> attach($typologies);
 
-        //     // $categories = Category::inRandomOrder() -> limit(rand(1, 5)) -> get();
-        //     // $p -> categories() -> attach($categories);
-        // });
-
-        Restaurant::factory()->count(10)->create();
+        });
     }
 }

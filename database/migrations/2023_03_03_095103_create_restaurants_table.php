@@ -16,6 +16,8 @@ return new class extends Migration {
             $table->id();
 
             $table->text('description')->nullable();
+            $table->unsignedBigInteger('user_id')->unique();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->time('opening_time');
             $table->time('closure_time');
             $table->boolean('delivery')->default(true);

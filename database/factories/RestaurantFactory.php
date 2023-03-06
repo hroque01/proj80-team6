@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+use App\Models\User;
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
@@ -19,6 +21,9 @@ class RestaurantFactory extends Factory
         return [
             
             'description' => fake() -> text(rand(10,20)),
+            'user_id' => function () {
+                return User::factory()->create()->id;
+            },
             'opening_time' => fake() -> time(),
             'closure_time' => fake() -> time(),
             'delivery' => fake() -> boolean(),

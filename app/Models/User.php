@@ -18,9 +18,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'business_name',
         'email',
         'password',
+        'address',
+        'vat_number'
     ];
 
     /**
@@ -42,8 +44,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    //1 to 1 relations
     public function restaurant()
     {
-        return $this->belongsTo(Restaurant::class);
+        return $this->hasOne(Restaurant::class);
     }
 }

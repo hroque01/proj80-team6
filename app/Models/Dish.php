@@ -21,9 +21,10 @@ class Dish extends Model
     ];
 
     //1 to M relation
-    public function restaurants() {
+    public function restaurant() {
         return $this -> belongsTo(Restaurant::class);
     }
+    
     //M to M relation
     public function orders() {
         return $this -> belongsToMany(Order::class);

@@ -12,21 +12,6 @@ return new class extends Migration {
      */
     public function up()
     {
-        //Relation 1 to 1
-        Schema::table('users', function (Blueprint $table) {
-
-            $table->primary('restaurant_id');
-
-            $table->foreignId('restaurant_id')
-                ->constrained();
-        });
-
-
-        //  si elimina un utente dalla tabella "users", tutti i ristoranti associati a quell'utente vengono eliminati automaticamente dalla tabella "restaurants". Questo significa che non ci saranno ristoranti "orfani" nella tabella "restaurants" senza proprietario.
-        // Schema::table('restaurants', function (Blueprint $table) {
-        //     $table->foreignId('user_id')->constrained()->onDelete('cascade');
-        // });
-
         // Relation M to M
         Schema::table('restaurant_typology', function (Blueprint $table) {
             $table->foreignId('restaurant_id')
@@ -67,14 +52,7 @@ return new class extends Migration {
      * @return void
      */
     public function down()
-    {
-
-        //DROP FK restaurants
-        Schema::table('users', function (Blueprint $table) {
-
-            $table->dropForeign('users_restaurant_id_foreign');
-            $table->dropColumn('restaurant_id');
-        });
+    {        
 
         //DROP FK restaurant_typology
         Schema::table('restaurant_typology', function (Blueprint $table) {

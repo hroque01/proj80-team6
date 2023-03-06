@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('dish_order', function (Blueprint $table) {
             $table->id();
 
-            $table -> tinyInteger('quantity_purchased');
+            $table -> tinyInteger('quantity_purchased')->default('1');
 
             $table->timestamps();
         });
