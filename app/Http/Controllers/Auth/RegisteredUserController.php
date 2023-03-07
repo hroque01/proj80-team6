@@ -46,7 +46,7 @@ class RegisteredUserController extends Controller
             'description' => ['nullable'],
             'opening_time' => ['required', 'string'],
             'closure_time' => ['required', 'string'],
-            'delivery_price' => ['required', 'decimal:2'],
+            'delivery_price' => ['required', 'decimal:1'],
             'typologies' => ['required', 'array'],
             'delivery_time' => ['required', 'string'],
             'image' => ['required','image','mimes:jpg,png,jpeg,gif,svg','max:2048'],
