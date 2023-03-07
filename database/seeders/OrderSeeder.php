@@ -21,7 +21,7 @@ class OrderSeeder extends Seeder
         
         // Associazione di un ordine al primo ristorante random
         // Associazione di un ordine da 1 a 5 piatti random
-        Order :: factory() -> count(10) -> make() -> each(function($order) {
+        Order :: factory() -> count(3) -> make() -> each(function($order) {
             
             $restaurant = Restaurant::inRandomOrder() -> first();
             // Relazione 1 to M 
