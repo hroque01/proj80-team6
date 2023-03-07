@@ -26,7 +26,80 @@ export default {
 
       <!-- restaurant menù list-->
     <div class="menu_list">
+      
+            <div class="my_Boxes-wrapper">
+                <div class="my_bigBox box-properties">
+                    <div class="dishPrice">
+                        <span class="Pricebuble"> Prezzo $ </span> <br>
+                        <span></span>
+                    </div>
+                    <div class="my_bigBox-img">
+                        <img src="https://picsum.photos/400/300" alt="">
+                    </div>
+                    <div class="my_bigBox-info-wrapper">
+                        <div class="my_bigBox-info-DishName">[DishName Placeholder]</div>
+                        <div class="my_bigBox-info-OtherDishInfo">
+                            <div class="addToCart_btn">Ordina</div>
+                        </div>
+                    </div>
+                </div>
 
+
+
+                <div class="my_bigBox box-properties">
+                    <div class="dishPrice">
+                        <span class="Pricebuble"> Prezzo $ </span> <br>
+                        <span></span>
+                    </div>
+                    <div class="my_bigBox-img">
+                        <img src="https://picsum.photos/400/300" alt="">
+                    </div>
+                    <div class="my_bigBox-info-wrapper">
+                        <div class="my_bigBox-info-DishName">[DishName Placeholder]</div>
+                        <div class="my_bigBox-info-OtherDishInfo">
+                            <div class="addToCart_btn">Ordina</div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="my_bigBox box-properties">
+                    <div class="dishPrice">
+                        <span class="Pricebuble"> Prezzo $ </span> <br>
+                        <span></span>
+                    </div>
+                    <div class="my_bigBox-img">
+                        <img src="https://picsum.photos/400/300" alt="">
+                    </div>
+                    <div class="my_bigBox-info-wrapper">
+                        <div class="my_bigBox-info-DishName">[DishName Placeholder]</div>
+                        <div class="my_bigBox-info-OtherDishInfo">
+                            <div class="addToCart_btn">Ordina</div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="my_bigBox box-properties">
+                    <div class="dishPrice">
+                        <span class="Pricebuble"> Prezzo $ </span> <br>
+                        <span></span>
+                    </div>
+                    <div class="my_bigBox-img">
+                        <img src="https://picsum.photos/400/300" alt="">
+                    </div>
+                    <div class="my_bigBox-info-wrapper">
+                        <div class="my_bigBox-info-DishName">[DishName Placeholder]</div>
+                        <div class="my_bigBox-info-OtherDishInfo">
+                            <div class="addToCart_btn">Ordina</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
     </div>
 
       <!-- cart right side-->
@@ -49,13 +122,13 @@ main{
 
   .restaurant_header{
     width: 100%;
-    height: 450px;
+    height: auto;
     background-color: $restaurant_card_bg;
     border-bottom-right-radius: 25px;
     border-bottom-left-radius: 25px;
     display: flex;
     align-items: center;
-    padding: 0 200px;
+    padding: 50px 200px;
 
     .restaurant_image{
       width: 500px;
@@ -66,6 +139,22 @@ main{
     }
   }
 
+    .my_boxesTitle-container{
+
+    line-height: 20px;
+    margin: 25px 0;
+    .my_boxesTitle{
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .my_boxesTitle-descr{
+        font-size: 15px;
+        font-weight: 300;
+    }
+
+    }
+
   .dish_cart{
     display: flex;
     justify-content: space-around;
@@ -73,9 +162,106 @@ main{
 
     .menu_list{
       width: 65%;
-      height: 600px;
+      height: auto;
       background-color: $restaurant_card_bg;
       border-radius: 25px;
+      display: flex;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+
+      .my_Boxes-wrapper{
+
+        display: flex;
+        flex-wrap: wrap;
+
+
+        .box-properties{
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            user-select: none;
+        }
+
+        .box-properties:hover{
+            cursor: pointer;
+        }
+
+        }
+
+        .my_bigBox{
+            width: 270px;
+            height: 230px;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+
+            .my_bigBox-img{
+                width: 100%;
+                height: 65%;
+                overflow: hidden;
+            }
+
+            .my_bigBox-info-wrapper{
+                width: 100%;
+                height: 25%;
+                padding: 10px;
+                background-color: #fff;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                .my_bigBox-info-DishName{
+
+                    font-size: 14px;
+                    font-weight: 600;
+
+                }
+
+                .my_bigBox-info-restaurantRating{
+
+                    font-size: 12px;
+
+                }
+
+                .my_bigBox-info-OtherDishInfo{
+
+                    display: flex;
+                    align-items: center;
+
+                    .addToCart_btn{
+                      position: absolute;
+                      bottom: 5px;
+                      right: 5px;
+                      background-color: aqua;
+                      padding: 5px;
+                      border-radius: 8px;
+                      overflow: hidden;
+                    }
+
+                }
+            }
+
+            .dishPrice{
+                position: absolute;
+                text-align: center;
+                font-size: 12px;
+                width: 80px;
+                right: 10px;
+                bottom: 65px;
+                background-color: white;
+                padding: 5px 10px;
+                border-radius: 50px;
+            }
+
+            .my_likeBtn{
+                position: absolute;
+                right: 15px;
+                top: 10px;
+            }
+        }
 
     }
 
