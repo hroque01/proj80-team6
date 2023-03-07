@@ -19,7 +19,7 @@ class DishSeeder extends Seeder
     {
         // Relazione 1 to M
         // Associazione di un piatto al primo ristorante random
-        Dish :: factory() -> count(10) -> make() -> each(function($dish) {
+        Dish :: factory() -> count(3) -> make() -> each(function($dish) {
             
             $restaurant = Restaurant::inRandomOrder() -> first();
 
