@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="mb-4 row">
-                            <label for="business_name" class="col-md-4 col-form-label text-md-right">{{ __('Business Name') }}</label>
+                            <label for="business_name" class="col-md-4 col-form-label text-md-right">{{ __('Business Name*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="business_name" type="text" class="form-control @error('business_name') is-invalid @enderror" name="business_name" value="{{ old('business_name') }}" required autocomplete="business_name" autofocus>
@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="mb-4 row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="mb-4 row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="mb-4 row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="mb-4 row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" autofocus>
@@ -76,7 +76,7 @@
                         </div>
 
                         <div class="mb-4 row">
-                            <label for="vat_number" class="col-md-4 col-form-label text-md-right">{{ __('Vat Number') }}</label>
+                            <label for="vat_number" class="col-md-4 col-form-label text-md-right">{{ __('Vat Number*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="vat_number" type="text" class="form-control @error('vat_number') is-invalid @enderror" name="vat_number" value="{{ old('vat_number') }}" autofocus >
@@ -104,7 +104,7 @@
                         </div>
 
                         <div class="mb-4 row">
-                            <label for="opening_time" class="col-md-4 col-form-label text-md-right">{{ __('Opening time') }}</label>
+                            <label for="opening_time" class="col-md-4 col-form-label text-md-right">{{ __('Opening time*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="opening_time" type="time" class="form-control @error('opening_time') is-invalid @enderror" name="opening_time" value="{{ old('opening_time') }}" autofocus >
@@ -118,7 +118,7 @@
                         </div>
 
                         <div class="mb-4 row">
-                            <label for="closure_time" class="col-md-4 col-form-label text-md-right">{{ __('Closure time') }}</label>
+                            <label for="closure_time" class="col-md-4 col-form-label text-md-right">{{ __('Closure time*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="closure_time" type="time" class="form-control @error('opening_time') is-invalid @enderror" name="closure_time" value="{{ old('closure_time') }}" autofocus >
@@ -132,7 +132,7 @@
                         </div>
 
                         <div class="mb-4 row">
-                            <label for="delivery_price" class="col-md-4 col-form-label text-md-right">{{ __('Delivery price') }}</label>
+                            <label for="delivery_price" class="col-md-4 col-form-label text-md-right">{{ __('Delivery price*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="delivery_price" step=".01" type="number" class="form-control @error('delivery_price') is-invalid @enderror" name="delivery_price" value="{{ old('delivery_price') }}" autofocus >
@@ -146,7 +146,7 @@
                         </div>
 
                         <div class="mb-4 row">
-                            <label for="delivery_time" class="col-md-4 col-form-label text-md-right">{{ __('Delivery time') }}</label>
+                            <label for="delivery_time" class="col-md-4 col-form-label text-md-right">{{ __('Delivery time*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="delivery_time" type="time" class="form-control @error('delivery_time') is-invalid @enderror" name="delivery_time" value="{{ old('delivery_time') }}" autofocus >
@@ -160,7 +160,7 @@
                         </div>
 
                         <div class="mb-4 row">
-                            <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
+                            <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image*') }}</label>
 
                             <div class="col-md-6">
                                 <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}" autofocus >
@@ -174,7 +174,7 @@
                         </div>
 
                         <h2>
-                            Typologies
+                            Typologies*
                         </h2>
                         @foreach ($typologies as $typology)
                             <input type="checkbox" name="typologies[]" id="{{$typology->id}}" value="{{$typology -> id}}">
