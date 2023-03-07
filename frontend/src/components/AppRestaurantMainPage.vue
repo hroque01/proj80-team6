@@ -156,32 +156,26 @@ main{
     }
 
   .dish_cart{
-    display: flex;
-    justify-content: space-around;
     margin: 40px 0;
 
     .menu_list{
       width: 65%;
-      height: auto;
-      background-color: $restaurant_card_bg;
+      background-color: $text_black;
       border-radius: 25px;
       display: flex;
-      padding: 20px;
-      display: flex;
       justify-content: center;
+      align-items: center;
+      padding: 20px 0;
 
       .my_Boxes-wrapper{
 
         display: flex;
         flex-wrap: wrap;
+        gap: 10px;
 
 
         .box-properties{
-            display: flex;
-            flex-direction: column;
             overflow: hidden;
-            margin-right: 10px;
-            margin-bottom: 10px;
             user-select: none;
         }
 
@@ -212,6 +206,8 @@ main{
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+                border-bottom-right-radius: 8px;
+                border-bottom-left-radius: 8px;
 
                 .my_bigBox-info-DishName{
 
@@ -251,7 +247,7 @@ main{
                 width: 80px;
                 right: 10px;
                 bottom: 65px;
-                background-color: white;
+                background-color: aqua;
                 padding: 5px 10px;
                 border-radius: 50px;
             }
