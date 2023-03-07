@@ -21,7 +21,7 @@ Route::get('/', [MainController::class, 'home'])->middleware(['auth', 'verified'
 
 Route :: get('/dish/create', [MainController :: class, 'dishCreate']) -> name('dishCreate');
 
-Route :: post('/dish/store', [MainController :: class, 'dishStore']) -> name('dishStore');
+Route :: post('store', [MainController :: class, 'dishStore']) -> name('dishStore');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
