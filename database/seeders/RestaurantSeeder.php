@@ -19,7 +19,7 @@ class RestaurantSeeder extends Seeder
     {
         // Relazione M to M
         // Creazione ristoranti e associazione da 1 a 5 tipologie random
-        Restaurant::factory() -> count(10) -> create() -> each(function($res) {
+        Restaurant::factory() -> count(3) -> create() -> each(function($res) {
 
             $typologies = Typology::inRandomOrder() -> limit(rand(1,5)) -> get();
 
