@@ -11,13 +11,5 @@
             <a href="{{ route('dishCreate') }}">Create new dish</a>
         </h2>
 
-        <ul>
-            @foreach ($dishes as $dish)
-                <li>
-                    Dish name: {{$dish->name }}
-                </li>
-            @endforeach
-        </ul>
-
     </div>
 @endsection
