@@ -14,7 +14,9 @@ export default {
   <!-- restaurant header with image and info-->
   <div class="restaurant_header">
 
-    <div class="restaurant_image"></div>
+    <div class="restaurant_image">
+
+    </div>
 
     <div class="restaurant_informations"></div>
 
@@ -47,11 +49,21 @@ main{
 
   .restaurant_header{
     width: 100%;
-    height: 50vh;
-    background-color: $text_black;
+    height: 450px;
+    background-color: $restaurant_card_bg;
     border-bottom-right-radius: 25px;
     border-bottom-left-radius: 25px;
+    display: flex;
+    align-items: center;
+    padding: 0 200px;
 
+    .restaurant_image{
+      width: 500px;
+      height: 300px;
+      background-color: #fff;
+      border-radius: 25px;
+      overflow: hidden;
+    }
   }
 
   .dish_cart{
@@ -62,7 +74,7 @@ main{
     .menu_list{
       width: 65%;
       height: 600px;
-      background-color: $text_black;
+      background-color: $restaurant_card_bg;
       border-radius: 25px;
 
     }
@@ -70,7 +82,7 @@ main{
     .cart{
       width: 30%;
       height: 600px;
-      background-color: $text_black;
+      background-color: $restaurant_card_bg;
       border-radius: 25px;
 
     }
