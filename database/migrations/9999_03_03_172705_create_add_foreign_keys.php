@@ -12,6 +12,17 @@ return new class extends Migration {
      */
     public function up()
     {
+        // Relation 1 to 1
+        Schema::table('restaurants', function (Blueprint $table) {
+            
+            $table->unsignedBigInteger('user_id')->unique();
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade');
+        });
+
+
         // Relation M to M
         Schema::table('restaurant_typology', function (Blueprint $table) {
             $table->foreignId('restaurant_id')
@@ -52,8 +63,7 @@ return new class extends Migration {
      * @return void
      */
     public function down()
-    {        
-
+    {       
         //DROP FK restaurant_typology
         Schema::table('restaurant_typology', function (Blueprint $table) {
             $table->dropForeign('restaurant_typology_restaurant_id_foreign');
