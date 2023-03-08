@@ -38,34 +38,32 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $data = $request->validate([
-            'business_name' => ['required', 'string', 'max:64'],
             'email' => ['required', 'string', 'email', 'max:64', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'address' => ['required', 'string', 'max:64'],
             'vat_number' => ['required', 'string', 'min:11', 'numeric', 'unique:users,vat_number'],
+            'business_name' => ['required', 'string', 'max:64'],
             'description' => ['nullable'],
             'opening_time' => ['required', 'string'],
             'closure_time' => ['required', 'string'],
             'delivery_price' => ['required', 'decimal:1,2'],
             'typologies' => ['required', 'array'],
-            'delivery_time' => ['required', 'string'],
             'image' => ['required','image','mimes:jpg,png,jpeg,gif,svg','max:2048'],
         ]);
 
         $user = User::create([
-            'business_name' => $request->business_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'address' => $request->address,
             'vat_number' => $request->vat_number,
         ]);
         
         $restaurant = $user->restaurant()->create([
+            'business_name' => $request->business_name,
             'description' => $request->description,
+            'address' => $request->address,
             'opening_time' => $request->opening_time,
             'closure_time' => $request->closure_time,
             'delivery_price' => $request->delivery_price,
-            'delivery_time' => $request->delivery_time,
             'image' => $request->image
         ]);
 
