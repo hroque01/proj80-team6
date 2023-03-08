@@ -40,16 +40,24 @@
                 </div>
 
                 <div class="mb-5 row">
-                    <label for="photo" class="col-md-2 col-form-label text-md-right">Photo</label>
+                    <label for="image" class="col-md-2 col-form-label text-md-right">Photo</label>
                     <div class="col-md-5">
-                        <input type="file" step=".01" name="photo" class="form-control">
+                        <input type="file" name="image" class="form-control">
                     </div>
+                </div>
+
+                <div class="col-md-3">
+                    <select name="restaurant_id">
+                        @foreach ($restaurants as $restaurant)
+                            <option value="{{ $restaurant -> id }}">{{ $restaurant->user -> business_name }}</option>    
+                        @endforeach
+                    </select>
                 </div>
 
                 
                 <div class="mb-5 row mb-0">
                     <div class="col-md-5 offset-md-4">
-                        <input type="submit" value="CREATE" class="btn btn-primary">
+                        <input type="submit" value="Create" class="btn btn-primary">
                     </div>
                 </div>
             </form>
