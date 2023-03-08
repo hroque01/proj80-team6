@@ -15,13 +15,26 @@ use App\Http\Controllers\MainController;
 |
 */
 
-//Route::get('/', [MainController::class, 'home']);
 
 Route::get('/', [MainController::class, 'home'])->middleware(['auth', 'verified'])->name('home');
 
-Route :: get('/dish/create', [MainController :: class, 'dishCreate']) -> name('dish.create');
+// Route create (per form):
+Route :: get('/dish/create', [MainController :: class, 'dishCreate']) 
+    -> name('dishCreate');
+// Route create (per ricevere dati da form):
+Route :: post('/dish/store', [MainController :: class, 'dishStore']) 
+    -> name('dishStore');
 
-Route :: post('/dish/store', [MainController :: class, 'dishStore']) -> name('dish.store');
+// Route delete:
+Route :: get('/dish/delete/{dish}', [MainController :: class, 'dishDelete'])
+    -> name('dish.delete');
+
+// Route edit (per form):
+Route :: get('/dish/edit/{dish}', [MainController :: class, 'dishEdit']) 
+    -> name('dishEdit');
+// Route update (per ricevere dati da form):
+Route :: post('/dish/edit/{dish}', [MainController :: class, 'dishUpdate']) 
+    -> name('dishUpdate');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

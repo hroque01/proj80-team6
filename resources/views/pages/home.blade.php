@@ -20,7 +20,7 @@
 
           <div class="card">
 
-            {{-- img caricamento: --}}
+            {{-- img caricamento --}}
             <img class="card-img-top" src="{{ asset($dish->image) }}" alt="{{ $dish->name }}">
             <img src="{{ Vite::asset('storage/app/public/' . $dish -> image) }}" alt="{{ $dish -> name }}">
 
@@ -28,6 +28,12 @@
               <h5 class="card-title">{{ $dish->name }}</h5>
               <p class="card-text">{{ $dish->description }}</p>
               <p class="card-text">{{ $dish->price }} €</p>
+            </div>
+
+            {{-- delete --}}
+            <div>
+              <a href="{{ route('dish.delete', $dish) }}">ELIMINA</a>
+              <a href="{{ route('dishEdit', $dish) }}">EDIT</a>
             </div>
           </div>
 
