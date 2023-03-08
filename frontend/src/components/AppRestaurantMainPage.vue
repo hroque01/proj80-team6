@@ -2,6 +2,59 @@
 
 export default {
   name: 'AppRestaurantMainPage',
+  data() {
+    return {
+        dishes: [
+        {
+            name: 'DishnamePlaceholder',
+            description: 'DishDescriptionPlaceholder',
+            price: "prezzo $",
+            image: '',
+            ingredients: 'IngredientPlaceholder',
+            cart:'Ordina',
+        },
+        {
+            name: 'DishnamePlaceholder',
+            description: 'DishDescriptionPlaceholder',
+            price: "prezzo $",
+            image: '',
+            ingredients: 'IngredientPlaceholder',
+            cart:'Ordina',
+        },
+        {
+            name: 'DishnamePlaceholder',
+            description: 'DishDescriptionPlaceholder',
+            price: "prezzo $",
+            image: '',
+            ingredients: 'IngredientPlaceholder',
+            cart:'Ordina',
+        },
+        {
+            name: 'DishnamePlaceholder',
+            description: 'DishDescriptionPlaceholder',
+            price: "prezzo $",
+            image: '',
+            ingredients: 'IngredientPlaceholder',
+            cart:'Ordina',
+        },
+        {
+            name: 'DishnamePlaceholder',
+            description: 'DishDescriptionPlaceholder',
+            price: "prezzo $",
+            image: '',
+            ingredients: 'IngredientPlaceholder',
+            cart:'Ordina',
+        },
+        {
+            name: 'DishnamePlaceholder',
+            description: 'DishDescriptionPlaceholder',
+            price: "prezzo $",
+            image: '',
+            ingredients: 'IngredientPlaceholder',
+            cart:'Ordina',
+        }],
+    }
+  },
   components: {
     
   }
@@ -28,73 +81,25 @@ export default {
     <div class="menu_list">
       
             <div class="my_Boxes-wrapper">
-                <div class="my_bigBox box-properties">
+
+                <div class="my_bigBox box-properties" v-for="(dish, index) in dishes" :key="index">
                     <div class="dishPrice">
-                        <span class="Pricebuble"> Prezzo $ </span> <br>
+                        <span class="Pricebuble"> {{dish.price}} </span> <br>
                         <span></span>
                     </div>
                     <div class="my_bigBox-img">
                         <img src="https://picsum.photos/400/300" alt="">
                     </div>
                     <div class="my_bigBox-info-wrapper">
-                        <div class="my_bigBox-info-DishName">[DishName Placeholder]</div>
+                        <div class="my_bigBox-info-DishName">{{dish.name}}</div>
                         <div class="my_bigBox-info-OtherDishInfo">
-                            <div class="addToCart_btn">Ordina</div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="my_bigBox box-properties">
-                    <div class="dishPrice">
-                        <span class="Pricebuble"> Prezzo $ </span> <br>
-                        <span></span>
-                    </div>
-                    <div class="my_bigBox-img">
-                        <img src="https://picsum.photos/400/300" alt="">
-                    </div>
-                    <div class="my_bigBox-info-wrapper">
-                        <div class="my_bigBox-info-DishName">[DishName Placeholder]</div>
-                        <div class="my_bigBox-info-OtherDishInfo">
-                            <div class="addToCart_btn">Ordina</div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="my_bigBox box-properties">
-                    <div class="dishPrice">
-                        <span class="Pricebuble"> Prezzo $ </span> <br>
-                        <span></span>
-                    </div>
-                    <div class="my_bigBox-img">
-                        <img src="https://picsum.photos/400/300" alt="">
-                    </div>
-                    <div class="my_bigBox-info-wrapper">
-                        <div class="my_bigBox-info-DishName">[DishName Placeholder]</div>
-                        <div class="my_bigBox-info-OtherDishInfo">
-                            <div class="addToCart_btn">Ordina</div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-                <div class="my_bigBox box-properties">
-                    <div class="dishPrice">
-                        <span class="Pricebuble"> Prezzo $ </span> <br>
-                        <span></span>
-                    </div>
-                    <div class="my_bigBox-img">
-                        <img src="https://picsum.photos/400/300" alt="">
-                    </div>
-                    <div class="my_bigBox-info-wrapper">
-                        <div class="my_bigBox-info-DishName">[DishName Placeholder]</div>
-                        <div class="my_bigBox-info-OtherDishInfo">
-                            <div class="addToCart_btn">Ordina</div>
+                            <div class="DishDescr">
+                                {{ dish.description }}
+                            </div>
+                            <div class="DishIngredients">
+                                {{ dish.ingredients }}
+                            </div>
+                            <div class="addToCart_btn">{{ dish.cart }}</div>
                         </div>
                     </div>
                 </div>
@@ -156,22 +161,25 @@ main{
     }
 
   .dish_cart{
-    margin: 40px 0;
+    margin-left: 50px;
+    margin-right: 50px;
+    display: flex;
+    gap: 50px;
+    justify-content: space-around;
 
     .menu_list{
-      width: 65%;
-      background-color: $text_black;
+      background-color: $restaurant_card_bg;
       border-radius: 25px;
       display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 20px 0;
+      padding: 20px 10px;
 
       .my_Boxes-wrapper{
 
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 15px;
 
 
         .box-properties{
@@ -186,8 +194,8 @@ main{
         }
 
         .my_bigBox{
-            width: 270px;
-            height: 230px;
+            width: 300px;
+            height: 260px;
             border-radius: 5px;
             overflow: hidden;
             position: relative;
@@ -225,16 +233,18 @@ main{
                 .my_bigBox-info-OtherDishInfo{
 
                     display: flex;
-                    align-items: center;
-
+                    flex-direction: column;
+                    font-size: 12px;
+                    
                     .addToCart_btn{
                       position: absolute;
-                      bottom: 5px;
+                      top: 220px;
                       right: 5px;
                       background-color: aqua;
                       padding: 5px;
                       border-radius: 8px;
                       overflow: hidden;
+                      z-index: 9999;
                     }
 
                 }
@@ -246,7 +256,7 @@ main{
                 font-size: 12px;
                 width: 80px;
                 right: 10px;
-                bottom: 65px;
+                top: 155px;
                 background-color: aqua;
                 padding: 5px 10px;
                 border-radius: 50px;
