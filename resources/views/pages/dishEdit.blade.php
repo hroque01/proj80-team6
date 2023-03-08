@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+            {{-- <div class="col-md-3">
                 <select name="restaurant_id">
                     @foreach ($restaurants as $restaurant)
                         <option value="{{ $restaurant -> id }}"
@@ -55,7 +55,20 @@
                             >{{ $restaurant->user -> business_name }}</option>    
                     @endforeach
                 </select>
-            </div>
+            </div> --}}
+
+            {{-- <div class="mb-5 row">
+                <div class="col-md-5">
+                    <h2>
+                        Visible
+                    </h2>
+                    <input type="radio" id="scelta1" name="visible" value="1" checked>
+                    <label for="1">Si</label>
+
+                    <input type="radio" id="scelta2" name="visible" value="0">
+                    <label for="0">No</label>
+                </div>
+            </div> --}}
 
             
             <div class="mb-5 row mb-0">
