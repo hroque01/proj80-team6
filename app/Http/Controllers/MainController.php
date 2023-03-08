@@ -45,7 +45,7 @@ class MainController extends Controller
 
         $restaurants = Restaurant::all();
 
-        return view('pages.dish.create', compact('restaurants'));
+        return view('pages.dishCreate', compact('restaurants'));
     }
 
     // Metodo create (per ricevere dati da form):
@@ -69,7 +69,7 @@ class MainController extends Controller
         $dish -> restaurant() -> associate($restaurant);
         $dish -> save();
 
-        return redirect() -> route('pages.home');
+        return redirect() -> route('home');
     }
 
     // Metodo delete dish:
