@@ -25,7 +25,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '10:00:00',
                 'closure_time' => '01:00:00',
                 'delivery_price' => 5,
-                'image' => 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.themediterraneandish.com%2Fdoner-kebab-recipe%2F&psig=AOvVaw22IOH9cvWKJj1s7iKk8255&ust=1678282075628000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCMCGuIn2yf0CFQAAAAAdAAAAABAI',
+                'image' => 'https://gnammydelivery.it/wp-content/uploads/2021/01/piadina.jpg',
                 'user_id' => 1,
             ],
             [
@@ -35,7 +35,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '12:00:00',
                 'closure_time' => '00:00:00',
                 'delivery_price' => 5,
-                'image' => 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.themediterraneandish.com%2Fdoner-kebab-recipe%2F&psig=AOvVaw22IOH9cvWKJj1s7iKk8255&ust=1678282075628000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCMCGuIn2yf0CFQAAAAAdAAAAABAI',
+                'image' => 'https://giallozafferano.it/images/249-24919/Pizza-napoletana_650x433_wm.jpg',
                 'user_id' => 2,
             ],
         ];

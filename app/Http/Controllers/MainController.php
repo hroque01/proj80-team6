@@ -15,30 +15,17 @@ use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
-    public function home(Request $request) {
+    public function home(Request $request, Restaurant $restaurant) {
         $restaurants = Restaurant::all();
 
         $dishes = Dish::all();
 
-        return view('pages.home', compact('restaurants', 'dishes'));
+        $user = Auth::user();
+
+        $restaurant = Restaurant::find($user->id); 
+
+        return view('pages.home', compact('restaurants', 'dishes', 'restaurant'));
     }
-
-//     public function home()
-// {
-//     // Recupera l'id dello user loggato (forse è inutile)
-//     $user_id = Auth::user()->id();
-
-//     // Recupera l'id del ristorante associato allo user loggato
-//     $restaurant_id = Auth::user()->restaurant_id;
-
-//     // Recupera tutti i piatti che hanno l'id del ristorante dell'utente loggato
-//     $dishes = Dish::where('restaurant_id', $restaurant_id)->get();
-
-//     // Recupera il nome del ristorante dell'utente loggato
-//     $restaurant_name = User::find($user_id)->business_name;
-
-//     return view('dashboard', compact('dishes', 'restaurant_name'));
-// }
 
     // Metodo create (per form):
     public function dishCreate() {
@@ -49,7 +36,7 @@ class MainController extends Controller
     }
 
     // Metodo create (per ricevere dati da form):
-    public function dishStore(Request $request) {
+    public function dishStore(Request $request, Restaurant $restaurant) {
 
         $data = $request -> validate([
             'name' => 'required|string|max:64',
@@ -57,19 +44,21 @@ class MainController extends Controller
             'ingredients' => 'required',
             'price' => 'required|decimal:1,2',
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'restaurant_id' => 'required|integer',
         ]);
 
         $img_path  = Storage::put('uploads', $data['image']);
         $data['image'] = $img_path;
 
         $dish = Dish::make($data);
-        $restaurant = Restaurant::find($data['restaurant_id']);
+
+        $user = Auth::user();
+
+        $restaurant = Restaurant::find($user->id); 
 
         $dish -> restaurant() -> associate($restaurant);
         $dish -> save();
 
-        return redirect() -> route('home');
+        return redirect() -> route('home', compact('restaurant'));
     }
 
     // Metodo delete dish:
@@ -98,16 +87,18 @@ class MainController extends Controller
             'ingredients' => 'required',
             'price' => 'required|decimal:1,2',
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'restaurant_id' => 'required|integer',
+            //'visible' => 'required|boolean',
         ]);
 
         $img_path  = Storage::put('uploads', $data['image']);
         $data['image'] = $img_path;
 
         $dish->update($data);
+
         $dish = Dish::find($dish->id);
 
-        $restaurant = Restaurant::find($data['restaurant_id']);
+        $restaurant = Restaurant::find($dish->restaurant_id);
+
         $dish->restaurant()->associate($restaurant);
 
         $dish->save();
