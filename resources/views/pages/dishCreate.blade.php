@@ -9,6 +9,7 @@
 
         <div class="col-md-8">
 
+            {{-- form --}}
             <form method="POST" action="{{ route('dishStore') }}" enctype="multipart/form-data">
 
                 @csrf
