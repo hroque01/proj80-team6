@@ -88,6 +88,32 @@ class MainController extends Controller
 
         return view('pages.dishEdit', compact('dish', 'restaurants'));
     }
+
+    // Metodo update (per ricevere dati modificati da form):
+    public function dishUpdate(Request $request, Dish $dish) {
+
+        $data = $request -> validate([
+            'name' => 'required|string|max:64',
+            'description' => 'nullable',
+            'ingredients' => 'required',
+            'price' => 'required|decimal:1,2',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'restaurant_id' => 'required|integer',
+        ]);
+
+        $img_path  = Storage::put('uploads', $data['image']);
+        $data['image'] = $img_path;
+
+        $dish->update($data);
+        $dish = Dish::find($dish->id);
+
+        $restaurant = Restaurant::find($data['restaurant_id']);
+        $dish->restaurant()->associate($restaurant);
+
+        $dish->save();
+        
+        return redirect() -> route('home');
+    }
 }
 
 

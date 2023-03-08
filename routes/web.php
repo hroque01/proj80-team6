@@ -32,7 +32,9 @@ Route :: get('/dish/delete/{dish}', [MainController :: class, 'dishDelete'])
 // Route edit (per form):
 Route :: get('/dish/edit/{dish}', [MainController :: class, 'dishEdit']) 
     -> name('dishEdit');
-
+// Route update (per ricevere dati da form):
+Route :: post('/dish/edit/{dish}', [MainController :: class, 'dishUpdate']) 
+    -> name('dishUpdate');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

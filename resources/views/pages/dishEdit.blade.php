@@ -7,7 +7,7 @@
             Update dish
         </h1>
 
-        <form method="POST" action="" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('dishUpdate', $dish) }}" enctype="multipart/form-data">
         @csrf
 
             <div class="mb-5 row">
