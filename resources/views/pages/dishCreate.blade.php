@@ -48,15 +48,6 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <select name="restaurant_id">
-                        @foreach ($restaurants as $restaurant)
-                            <option value="{{ $restaurant -> id }}">{{ $restaurant->user -> business_name }}</option>    
-                        @endforeach
-                    </select>
-                </div>
-
-                
                 <div class="mb-5 row mb-0">
                     <div class="col-md-5 offset-md-4">
                         <input type="submit" value="Create" class="btn btn-primary">
