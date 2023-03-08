@@ -22,19 +22,15 @@ class UserSeeder extends Seeder
 {
     $users = [
         [
-            'business_name' => 'Kebab not bad',
             'email' => 'kebab.not.bad@gmail.com',
             'email_verified_at' => '19:00',
             'password' => Hash::make('kekbabnotbad123'),
-            'address' => 'Via Cristoforo Colombo, 24F',
             'vat_number' => '45892346810'
         ],
         [
-            'business_name' => 'Pizza Place',
             'email' => 'pizza.place@gmail.com',
             'email_verified_at' => '19:00',
             'password' => Hash::make('pizzaplace123'),
-            'address' => 'Via Garibaldi, 12',
             'vat_number' => '45892346811'
         ],
     ];

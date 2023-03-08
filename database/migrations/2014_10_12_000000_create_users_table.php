@@ -14,11 +14,9 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('business_name', 64);
             $table->string('email', 64);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('address', 64);
             $table->string('vat_number', 11);
             $table->rememberToken();
             $table->timestamps();
