@@ -40,13 +40,15 @@ class MainController extends Controller
 //     return view('dashboard', compact('dishes', 'restaurant_name'));
 // }
 
+    // Metodo create (per form):
     public function dishCreate() {
 
         $restaurants = Restaurant::all();
 
-        return view('pages.dish.create', compact('restaurants'));
+        return view('pages.dishCreate', compact('restaurants'));
     }
 
+    // Metodo create (per ricevere dati da form):
     public function dishStore(Request $request) {
 
         $data = $request -> validate([
@@ -67,6 +69,51 @@ class MainController extends Controller
         $dish -> restaurant() -> associate($restaurant);
         $dish -> save();
 
-        return redirect() -> route('pages.home');
+        return redirect() -> route('home');
+    }
+
+    // Metodo delete dish:
+    public function dishDelete(Dish $dish){
+
+        $dish ->orders()->sync([]);
+        $dish-> delete();
+
+        return redirect()-> route('home');
+    }
+
+    // Metodo edit (per form):
+    public function dishEdit(Dish $dish) {
+        
+        $restaurants = Restaurant::all();
+
+        return view('pages.dishEdit', compact('dish', 'restaurants'));
+    }
+
+    // Metodo update (per ricevere dati modificati da form):
+    public function dishUpdate(Request $request, Dish $dish) {
+
+        $data = $request -> validate([
+            'name' => 'required|string|max:64',
+            'description' => 'nullable',
+            'ingredients' => 'required',
+            'price' => 'required|decimal:1,2',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'restaurant_id' => 'required|integer',
+        ]);
+
+        $img_path  = Storage::put('uploads', $data['image']);
+        $data['image'] = $img_path;
+
+        $dish->update($data);
+        $dish = Dish::find($dish->id);
+
+        $restaurant = Restaurant::find($data['restaurant_id']);
+        $dish->restaurant()->associate($restaurant);
+
+        $dish->save();
+        
+        return redirect() -> route('home');
     }
 }
+
+
