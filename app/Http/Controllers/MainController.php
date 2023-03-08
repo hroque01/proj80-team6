@@ -82,11 +82,11 @@ class MainController extends Controller
     }
 
     // Metodo edit (per form):
-    public function dishEdit() {
-
+    public function dishEdit(Dish $dish) {
+        
         $restaurants = Restaurant::all();
 
-        return view('pages.dishCreate', compact('restaurants'));
+        return view('pages.dishEdit', compact('dish', 'restaurants'));
     }
 }
 

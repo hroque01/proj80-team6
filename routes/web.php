@@ -30,7 +30,7 @@ Route :: get('/dish/delete/{dish}', [MainController :: class, 'dishDelete'])
     -> name('dish.delete');
 
 // Route edit (per form):
-Route :: get('/dish/edit', [MainController :: class, 'dishEdit']) 
+Route :: get('/dish/edit/{dish}', [MainController :: class, 'dishEdit']) 
     -> name('dishEdit');
 
 
