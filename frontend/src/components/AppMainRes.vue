@@ -246,14 +246,12 @@ export default {
 
 .restaurants_box{
 
-
-
     //general
         //Boxes title
         .my_boxesTitle-container{
 
             line-height: 20px;
-            margin: 25px 0;
+            margin: 25px 50px;
             .my_boxesTitle{
                 font-size: 20px;
                 font-weight: 600;
@@ -271,6 +269,8 @@ export default {
 
             display: flex;
             flex-wrap: wrap;
+            margin-left: 50px;
+            margin-right: 50px;
 
             .box-properties{
                 display: flex;
