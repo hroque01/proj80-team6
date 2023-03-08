@@ -1,6 +1,76 @@
 <script>
 export default {
     name: 'AppMainRes',
+    data() {
+    return {
+        tags: [ 
+        {
+            name: '[tagname]',
+            img: '',
+        },
+        {
+            name: '[tagname]',
+            img: '',
+        },
+        {
+            name: '[tagname]',
+            img: '',
+        },
+        {
+            name: '[tagname]',
+            img: '',
+        },
+        {
+            name: '[tagname]',
+            img: '',
+        },
+        {
+            name: '[tagname]',
+            img: '',
+        },
+        {
+            name: '[tagname]',
+            img: '',
+        }],
+        restaurants: [
+        {
+            name: 'DishnamePlaceholder',
+            address: 'AddressPlaceholder',
+            delivery_price: "DPH $",
+            image: '',
+        },
+        {
+            name: 'DishnamePlaceholder',
+            address: 'AddressPlaceholder',
+            delivery_price: "DPH $",
+            image: '',
+        },
+        {
+            name: 'DishnamePlaceholder',
+            address: 'AddressPlaceholder',
+            delivery_price: "DPH $",
+            image: '',
+        },
+        {
+            name: 'DishnamePlaceholder',
+            address: 'AddressPlaceholder',
+            delivery_price: "DPH $",
+            image: '',
+        },
+        {
+            name: 'DishnamePlaceholder',
+            address: 'AddressPlaceholder',
+            delivery_price: "DPH $",
+            image: '',
+        },
+        {
+            name: 'DishnamePlaceholder',
+            address: 'AddressPlaceholder',
+            delivery_price: "DPH $",
+            image: '',
+        }],
+    }
+  },
 }
 
 </script>
@@ -9,231 +79,45 @@ export default {
     <div class="my_container restaurants_box">
 
         <!-- TagBoxes -->
-        <div class="my_tagBoxes">
-            <div class="my_boxesTitle-container">
-                <span class="my_boxesTitle">Ristoranti che consegnano a [placeholder]</span>
+        <div class="tagsContainer">
+            <div class="mainTitle-container">
+                <span class="mainTitle">Tipi di ristoranti</span>
             </div>
-            <div class="my_Boxes-wrapper">
+            <div class="tagWrapper">
             
-            <div class="my_tagBox box-properties">
-                <div class="tagBox-img">
-                    <img src="https://picsum.photos/100/100" alt="">
+                <div class="tag wrapperProperties" v-for="(tag, index) in tags" :key="index">
+                    <div class="tagBox-img">
+                        <img src="https://picsum.photos/100/100" alt="">
+                    </div>
+                    <div class="tagBox-name">{{ tag.name }}</div>
                 </div>
-                <div class="tagBox-name">[Tagname]</div>
-            </div>
-            <div class="my_tagBox box-properties">
-                <div class="tagBox-img">
-                    <img src="https://picsum.photos/100/100" alt="">
-                </div>
-                <div class="tagBox-name">[Tagname]</div>
-            </div>
-            <div class="my_tagBox box-properties">
-                <div class="tagBox-img">
-                    <img src="https://picsum.photos/100/100" alt="">
-                </div>
-                <div class="tagBox-name">[Tagname]</div>
-            </div>
-            <div class="my_tagBox box-properties">
-                <div class="tagBox-img">
-                    <img src="https://picsum.photos/100/100" alt="">
-                </div>
-                <div class="tagBox-name">[Tagname]</div>
-            </div>
-            <div class="my_tagBox box-properties">
-                <div class="tagBox-img">
-                    <img src="https://picsum.photos/100/100" alt="">
-                </div>
-                <div class="tagBox-name">[Tagname]</div>
-            </div>
-            <div class="my_tagBox box-properties">
-                <div class="tagBox-img">
-                    <img src="https://picsum.photos/100/100" alt="">
-                </div>
-                <div class="tagBox-name">[Tagname]</div>
-            </div>
 
             </div>
         </div>
         
 
-        <!-- Partners -->
-        <div class="my_lpBoxes">
-            <div class="my_boxesTitle-container">
-                <span class="my_boxesTitle">I partner più amati</span> <br>
-                <span class="my_boxesTitle-descr">Aggiunti ai preferiti da altri clienti ❤️</span>
+        <!-- Restaurant List -->
+        <div class="restaurantsContainer">
+
+            <div class="mainTitle-container">
+                <span class="mainTitle">Lista dei ristoranti</span> <br>
+                <span class="mainTitle-descr">Dai un'occhiata alla nostra selezione</span>
             </div>
-            <div class="my_Boxes-wrapper">
-                <div class="my_bigBox box-properties">
-                    <div class="my_likeBtn">
-                        <a href="">❤️</a> 
-                    </div>
-                    <div class="my_deliveryBuble">
-                        <span class="deliveryTime"> [] - [] </span> <br>
-                        <span>min</span>
-                    </div>
-                    <div class="my_bigBox-img">
-                        <img src="https://picsum.photos/400/300" alt="">
-                    </div>
-                    <div class="my_bigBox-info-wrapper">
-                        <div class="my_bigBox-info-restaurantName">[Restaurant Placeholder]</div>
-                        <div class="my_bigBox-info-restaurantRating">[⭐ Rating Placeholder (---)]</div>
-                        <div class="my_bigBox-info-restaurantOtherInfo">
-                            <div class="my_distance my_otherInfo">Distanza: --- km</div> · <div class="my_deliveryPrice my_otherInfo">Consegna: --- $</div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="my_bigBox box-properties">
-                    <div class="my_likeBtn">
-                        <a href="">❤️</a> 
-                    </div>
-                    <div class="my_deliveryBuble">
-                        <span class="deliveryTime"> [] - [] </span> <br>
-                        <span>min</span>
-                    </div>
-                    <div class="my_bigBox-img">
-                        <img src="https://picsum.photos/400/300" alt="">
-                    </div>
-                    <div class="my_bigBox-info-wrapper">
-                        <div class="my_bigBox-info-restaurantName">[Restaurant Placeholder]</div>
-                        <div class="my_bigBox-info-restaurantRating">[⭐ Rating Placeholder (---)]</div>
-                        <div class="my_bigBox-info-restaurantOtherInfo">
-                            <div class="my_distance my_otherInfo">Distanza: --- km</div> · <div class="my_deliveryPrice my_otherInfo">Consegna: --- $</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="my_bigBox box-properties">
-                    <div class="my_likeBtn">
-                        <a href="">❤️</a> 
-                    </div>
-                    <div class="my_deliveryBuble">
-                        <span class="deliveryTime"> [] - [] </span> <br>
-                        <span>min</span>
-                    </div>
-                    <div class="my_bigBox-img">
-                        <img src="https://picsum.photos/400/300" alt="">
-                    </div>
-                    <div class="my_bigBox-info-wrapper">
-                        <div class="my_bigBox-info-restaurantName">[Restaurant Placeholder]</div>
-                        <div class="my_bigBox-info-restaurantRating">[⭐ Rating Placeholder (---)]</div>
-                        <div class="my_bigBox-info-restaurantOtherInfo">
-                            <div class="my_distance my_otherInfo">Distanza: --- km</div> · <div class="my_deliveryPrice my_otherInfo">Consegna: --- $</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="my_bigBox box-properties">
-                    <div class="my_likeBtn">
-                        <a href="">❤️</a> 
-                    </div>
-                    <div class="my_deliveryBuble">
-                        <span class="deliveryTime"> [] - [] </span> <br>
-                        <span>min</span>
-                    </div>
-                    <div class="my_bigBox-img">
-                        <img src="https://picsum.photos/400/300" alt="">
-                    </div>
-                    <div class="my_bigBox-info-wrapper">
-                        <div class="my_bigBox-info-restaurantName">[Restaurant Placeholder]</div>
-                        <div class="my_bigBox-info-restaurantRating">[⭐ Rating Placeholder (---)]</div>
-                        <div class="my_bigBox-info-restaurantOtherInfo">
-                            <div class="my_distance my_otherInfo">Distanza: --- km</div> · <div class="my_deliveryPrice my_otherInfo">Consegna: --- $</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        
-        <!-- MostVoted -->
-        <div class="my_mvBoxes">
-            <div class="my_boxesTitle-container">
-                <span class="my_boxesTitle">I più votati</span>
-            </div>
-            <div class="my_Boxes-wrapper">
+            <div class="restaurantWrapper">
                 
-                <div class="my_bigBox box-properties">
-                    <div class="my_likeBtn">
-                        <a href="">❤️</a> 
-                    </div>
-                    <div class="my_deliveryBuble">
-                        <span class="deliveryTime"> [] - [] </span> <br>
-                        <span>min</span>
-                    </div>
-                    <div class="my_bigBox-img">
+                <div class="restaurant wrapperProperties" v-for="(restaurant, index) in restaurants" :key="index">
+                    <div class="deliveryPrice"> {{ restaurant.delivery_price }} </div>
+                    <div class="restaurant-img">
                         <img src="https://picsum.photos/400/300" alt="">
                     </div>
-                    <div class="my_bigBox-info-wrapper">
-                        <div class="my_bigBox-info-restaurantName">[Restaurant Placeholder]</div>
-                        <div class="my_bigBox-info-restaurantRating">[⭐ Rating Placeholder (---)]</div>
-                        <div class="my_bigBox-info-restaurantOtherInfo">
-                            <div class="my_distance my_otherInfo">Distanza: --- km</div> · <div class="my_deliveryPrice my_otherInfo">Consegna: --- $</div>
-                        </div>
+                    <div class="restaurant-info-wrapper">
+                        <div class="restaurant-info-restaurantName">{{ restaurant.name }}</div>
+                        <div class="restaurant-info-address">{{ restaurant.address }}</div>
                     </div>
                 </div>
 
-                <div class="my_bigBox box-properties">
-                    <div class="my_likeBtn">
-                        <a href="">❤️</a> 
-                    </div>
-                    <div class="my_deliveryBuble">
-                        <span class="deliveryTime"> [] - [] </span> <br>
-                        <span>min</span>
-                    </div>
-                    <div class="my_bigBox-img">
-                        <img src="https://picsum.photos/400/300" alt="">
-                    </div>
-                    <div class="my_bigBox-info-wrapper">
-                        <div class="my_bigBox-info-restaurantName">[Restaurant Placeholder]</div>
-                        <div class="my_bigBox-info-restaurantRating">[⭐ Rating Placeholder (---)]</div>
-                        <div class="my_bigBox-info-restaurantOtherInfo">
-                            <div class="my_distance my_otherInfo">Distanza: --- km</div> · <div class="my_deliveryPrice my_otherInfo">Consegna: --- $</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="my_bigBox box-properties">
-                    <div class="my_likeBtn">
-                        <a href="">❤️</a> 
-                    </div>
-                    <div class="my_deliveryBuble">
-                        <span class="deliveryTime"> [] - [] </span> <br>
-                        <span>min</span>
-                    </div>
-                    <div class="my_bigBox-img">
-                        <img src="https://picsum.photos/400/300" alt="">
-                    </div>
-                    <div class="my_bigBox-info-wrapper">
-                        <div class="my_bigBox-info-restaurantName">[Restaurant Placeholder]</div>
-                        <div class="my_bigBox-info-restaurantRating">[⭐ Rating Placeholder (---)]</div>
-                        <div class="my_bigBox-info-restaurantOtherInfo">
-                            <div class="my_distance my_otherInfo">Distanza: --- km</div> · <div class="my_deliveryPrice my_otherInfo">Consegna: --- $</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="my_bigBox box-properties">
-                    <div class="my_likeBtn">
-                        <a href="">❤️</a> 
-                    </div>
-                    <div class="my_deliveryBuble">
-                        <span class="deliveryTime"> [] - [] </span> <br>
-                        <span>min</span>
-                    </div>
-                    <div class="my_bigBox-img">
-                        <img src="https://picsum.photos/400/300" alt="">
-                    </div>
-                    <div class="my_bigBox-info-wrapper">
-                        <div class="my_bigBox-info-restaurantName">[Restaurant Placeholder]</div>
-                        <div class="my_bigBox-info-restaurantRating">[⭐ Rating Placeholder (---)]</div>
-                        <div class="my_bigBox-info-restaurantOtherInfo">
-                            <div class="my_distance my_otherInfo">Distanza: --- km</div> · <div class="my_deliveryPrice my_otherInfo">Consegna: --- $</div>
-                        </div>
-                    </div>
-                </div>
             </div>
-            
         </div>
         
     </div>
@@ -248,16 +132,16 @@ export default {
 
     //general
         //Boxes title
-        .my_boxesTitle-container{
+        .mainTitle-container{
 
             line-height: 20px;
             margin: 25px 50px;
-            .my_boxesTitle{
+            .mainTitle{
                 font-size: 20px;
                 font-weight: 600;
             }
 
-            .my_boxesTitle-descr{
+            .mainTitle-descr{
                 font-size: 15px;
                 font-weight: 300;
             }
@@ -265,14 +149,14 @@ export default {
         }
 
         //Boxes wrapper and box properties
-        .my_Boxes-wrapper{
+        .restaurantWrapper{
 
             display: flex;
             flex-wrap: wrap;
             margin-left: 50px;
             margin-right: 50px;
 
-            .box-properties{
+            .wrapperProperties{
                 display: flex;
                 flex-direction: column;
                 overflow: hidden;
@@ -281,7 +165,7 @@ export default {
                 user-select: none;
             }
 
-            .box-properties:hover{
+            .wrapperProperties:hover{
                 cursor: pointer;
             }
 
@@ -290,7 +174,16 @@ export default {
   
 
     // tagBoxes
-        .my_tagBox{
+
+    .tagWrapper{
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 50px;
+        margin-right: 50px;
+        gap: 15px;
+    }
+
+        .tag{
             width: 100px;
             height: 80px;
             border-radius: 5px;
@@ -311,29 +204,30 @@ export default {
                 background-color: $restaurant_card_bg;
             }
         }
-    
 
+    }
+        
     // lpBoxes
 
-    .my_lpBoxes{
+    .restaurantsContainer{
         flex-direction: row;
 
     }
 
-    .my_bigBox{
+    .restaurant{
             width: 270px;
             height: 230px;
             border-radius: 5px;
             overflow: hidden;
             position: relative;
 
-            .my_bigBox-img{
+            .restaurant-img{
                 width: 100%;
                 height: 65%;
                 overflow: hidden;
             }
 
-            .my_bigBox-info-wrapper{
+            .restaurant-info-wrapper{
                 width: 100%;
                 height: 35%;
                 padding: 10px;
@@ -342,20 +236,14 @@ export default {
                 flex-direction: column;
                 justify-content: center;
 
-                .my_bigBox-info-restaurantName{
+                .restaurant-info-restaurantName{
 
                     font-size: 14px;
                     font-weight: 600;
 
                 }
 
-                .my_bigBox-info-restaurantRating{
-
-                    font-size: 12px;
-
-                }
-
-                .my_bigBox-info-restaurantOtherInfo{
+                .restaurant-info-address{
 
                     display: flex;
                     align-items: center;
@@ -367,7 +255,7 @@ export default {
                 }
             }
 
-            .my_deliveryBuble{
+            .deliveryPrice{
                 position: absolute;
                 text-align: center;
                 font-size: 12px;
@@ -378,16 +266,5 @@ export default {
                 padding: 5px 10px;
                 border-radius: 50px;
             }
-
-            .my_likeBtn{
-                position: absolute;
-                right: 15px;
-                top: 10px;
-            }
         }
-    
-
-    // mvBoxes
-
-}
 </style>
