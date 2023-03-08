@@ -22,7 +22,7 @@
 
             {{-- img caricamento: --}}
             <img class="card-img-top" src="{{ asset($dish->image) }}" alt="{{ $dish->name }}">
-            <img src="{{ asset('storage/' . $dish -> image) }}" alt="">
+            <img src="{{ Vite::asset('storage/app/public/' . $dish -> image) }}" alt="{{ $dish -> name }}">
 
             <div class="card-body">
               <h5 class="card-title">{{ $dish->name }}</h5>
