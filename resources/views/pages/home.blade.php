@@ -8,7 +8,7 @@
     </h1>
 
     <h2>
-        <a href="{{ route('dishCreate') }}">Create new dish</a>
+        <a href="{{ route('dish.create') }}">Create new dish</a>
     </h2>
 
     <h3>
