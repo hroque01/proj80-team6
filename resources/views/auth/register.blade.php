@@ -8,6 +8,16 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
@@ -17,11 +27,11 @@
                             <div class="col-md-6">
                                 <input id="business_name" type="text" class="form-control @error('business_name') is-invalid @enderror" name="business_name" value="{{ old('business_name') }}" required autocomplete="business_name" autofocus>
 
-                                @error('business_name')
+                                {{-- @error('business_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
+                                @enderror --}}
                             </div>
                         </div>
 
@@ -31,11 +41,11 @@
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
-                                @error('email')
+                                {{-- @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
+                                @enderror --}}
                             </div>
                         </div>
 
@@ -45,11 +55,11 @@
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-                                @error('password')
+                                {{-- @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
+                                @enderror --}}
                             </div>
                         </div>
 
@@ -67,11 +77,11 @@
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" autofocus>
 
-                                @error('address')
+                                {{-- @error('address')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
+                                @enderror --}}
                             </div>
                         </div>
 
@@ -81,11 +91,11 @@
                             <div class="col-md-6">
                                 <input id="vat_number" type="text" class="form-control @error('vat_number') is-invalid @enderror" name="vat_number" value="{{ old('vat_number') }}" autofocus >
 
-                                @error('vat_number')
+                                {{-- @error('vat_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
+                                @enderror --}}
                             </div>
                         </div>
 
@@ -95,11 +105,11 @@
                             <div class="col-md-6">
                                 <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" autofocus></textarea>
 
-                                @error('description')
+                                {{-- @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
+                                @enderror --}}
                             </div>
                         </div>
 
@@ -109,11 +119,11 @@
                             <div class="col-md-6">
                                 <input id="opening_time" type="time" class="form-control @error('opening_time') is-invalid @enderror" name="opening_time" value="{{ old('opening_time') }}" autofocus >
 
-                                @error('opening_time')
+                                {{-- @error('opening_time')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
+                                @enderror --}}
                             </div>
                         </div>
 
@@ -123,11 +133,11 @@
                             <div class="col-md-6">
                                 <input id="closure_time" type="time" class="form-control @error('opening_time') is-invalid @enderror" name="closure_time" value="{{ old('closure_time') }}" autofocus >
 
-                                @error('closure_time')
+                                {{-- @error('closure_time')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
+                                @enderror --}}
                             </div>
                         </div>
 
@@ -137,11 +147,11 @@
                             <div class="col-md-6">
                                 <input id="delivery_price" step=".01" type="number" class="form-control @error('delivery_price') is-invalid @enderror" name="delivery_price" value="{{ old('delivery_price') }}" autofocus >
 
-                                @error('delivery_price')
+                                {{-- @error('delivery_price')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
+                                @enderror --}}
                             </div>
                         </div>
 
@@ -151,11 +161,11 @@
                             <div class="col-md-6">
                                 <input id="delivery_time" type="time" class="form-control @error('delivery_time') is-invalid @enderror" name="delivery_time" value="{{ old('delivery_time') }}" autofocus >
 
-                                @error('delivery_time')
+                                {{-- @error('delivery_time')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
+                                @enderror --}}
                             </div>
                         </div>
 
@@ -165,11 +175,11 @@
                             <div class="col-md-6">
                                 <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}" autofocus >
 
-                                @error('image')
+                                {{-- @error('image')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
+                                @enderror --}}
                             </div>
                         </div>
 
