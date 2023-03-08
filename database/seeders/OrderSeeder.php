@@ -18,21 +18,42 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        
-        // Associazione di un ordine al primo ristorante random
-        // Associazione di un ordine da 1 a 5 piatti random
-        Order :: factory() -> count(3) -> make() -> each(function($order) {
-            
-            $restaurant = Restaurant::inRandomOrder() -> first();
-            // Relazione 1 to M 
-            $order -> restaurant() -> associate($restaurant);
-            $order -> save();
+        $orders = [
+            [
+                'create_time' => '19:00',
+                'order_number' => '324562',
+                'total' => '15.00',
+                'customer_name' => 'Mario',
+                'customer_surname' => 'Rossi',
+                'address' => 'Via Mario Rossi, 69',
+                'email' => 'mariorossi@gmail.com',
+                'phone_number' => '3334445557',
+                'restaurant_id'=> 2,
+            ],
+            [
+                'create_time' => '19:00',
+                'order_number' => '46132',
+                'total' => '24.35',
+                'customer_name' => 'Luigi',
+                'customer_surname' => 'Verdi',
+                'address' => 'Via Luigi Verdi, 65',
+                'email' => 'luigiverdi@gmail.com',
+                'phone_number' => '3234565784',
+                'restaurant_id'=> 1,
+            ],
+        ];
 
-            // Relazione M to M
-            $dishes = Dish::inRandomOrder() -> limit(rand(1,5)) -> get();
+        foreach ($orders as $order) {
+            $order = Order::create($order);
+        }
 
-            $order -> dishes() -> attach($dishes);
+        $order_1 = Order::find(1);
+        $dish_1 = Dish::find([2]);
+        $order_1->dishes()->attach($dish_1);
 
-        });
+        $order_2 = Order::find(2);
+        $dish_2 = Dish::find([1]);
+        $order_2->dishes()->attach($dish_2);
+       
     }
 }

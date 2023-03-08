@@ -18,9 +18,7 @@ return new class extends Migration {
             $table->text('description')->nullable();
             $table->time('opening_time')->required();
             $table->time('closure_time')->required();
-            $table->boolean('delivery')->default(true);
             $table->decimal('delivery_price')->unsigned()->required();
-            $table->time('delivery_time')->required();
             $table->string('image')->required();
 
             $table->timestamps();
