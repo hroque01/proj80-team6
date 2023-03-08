@@ -12,15 +12,18 @@ class Restaurant extends Model
     protected $fillable = [
 
         'description',
-        'user_id',
         'opening_time',
         'closure_time',
-        'delivery',
         'delivery_price',
-        'delivery_time',
         'image',
 
     ];
+
+     // 1 to 1 relations
+     public function user()
+     {
+         return $this->belongsTo(User::class);
+     }
 
     // M to M relations
     public function typologies()
@@ -38,12 +41,6 @@ class Restaurant extends Model
     public function orders()
     {
         return $this->hasMany(Order::class);
-    }
-
-    // 1 to 1 relations
-    public function user()
-    {
-        return $this->belongsTo(User::class);
     }
 
 }
