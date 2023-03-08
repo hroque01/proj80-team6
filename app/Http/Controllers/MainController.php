@@ -40,6 +40,7 @@ class MainController extends Controller
 //     return view('dashboard', compact('dishes', 'restaurant_name'));
 // }
 
+    // METODO CREATE DISH:
     public function dishCreate() {
 
         $restaurants = Restaurant::all();
@@ -69,4 +70,15 @@ class MainController extends Controller
 
         return redirect() -> route('dishCreate');
     }
+
+    // METODO DELETE DISH:
+    public function dishDelete(Dish $dish){
+
+        $dish ->orders()->sync([]);
+        $dish-> delete();
+
+        return redirect()-> route('home');
+    }
 }
+
+

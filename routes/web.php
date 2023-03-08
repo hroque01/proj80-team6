@@ -15,13 +15,18 @@ use App\Http\Controllers\MainController;
 |
 */
 
-//Route::get('/', [MainController::class, 'home']);
 
 Route::get('/', [MainController::class, 'home'])->middleware(['auth', 'verified'])->name('home');
 
-Route :: get('/dish/create', [MainController :: class, 'dishCreate']) -> name('dishCreate');
+// Route create:
+Route :: get('/dish/create', [MainController :: class, 'dishCreate']) 
+    -> name('dishCreate');
+Route :: post('/dish/store', [MainController :: class, 'dishStore']) 
+    -> name('dishStore');
 
-Route :: post('store', [MainController :: class, 'dishStore']) -> name('dishStore');
+// Route delete:
+Route :: get('/dish/delete/{dish}', [MainController :: class, 'dishDelete'])
+    -> name('dish.delete');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

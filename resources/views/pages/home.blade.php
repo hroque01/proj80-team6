@@ -20,7 +20,7 @@
 
           <div class="card">
 
-            {{-- img caricamento: --}}
+            {{-- img caricamento --}}
             <img class="card-img-top" src="{{ asset($dish->image) }}" alt="{{ $dish->name }}">
             <img src="{{ asset('storage/' . $dish -> image) }}" alt="">
 
@@ -28,6 +28,11 @@
               <h5 class="card-title">{{ $dish->name }}</h5>
               <p class="card-text">{{ $dish->description }}</p>
               <p class="card-text">{{ $dish->price }} €</p>
+            </div>
+
+            {{-- delete --}}
+            <div>
+              <a href="{{ route('dish.delete', $dish) }}">ELIMINA</a>
             </div>
           </div>
 
