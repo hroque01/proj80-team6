@@ -15,12 +15,16 @@ use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
-    public function home(Request $request) {
+    public function home(Request $request, Restaurant $restaurant) {
         $restaurants = Restaurant::all();
 
         $dishes = Dish::all();
 
-        return view('pages.home', compact('restaurants', 'dishes'));
+        $user = Auth::user();
+
+        $restaurant = Restaurant::find($user->id); 
+
+        return view('pages.home', compact('restaurants', 'dishes', 'restaurant'));
     }
 
 //     public function home()
@@ -49,7 +53,7 @@ class MainController extends Controller
     }
 
     // Metodo create (per ricevere dati da form):
-    public function dishStore(Request $request) {
+    public function dishStore(Request $request, Restaurant $restaurant) {
 
         $data = $request -> validate([
             'name' => 'required|string|max:64',
@@ -57,19 +61,22 @@ class MainController extends Controller
             'ingredients' => 'required',
             'price' => 'required|decimal:1,2',
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'restaurant_id' => 'required|integer',
+            //'restaurant_id' => 'required|integer',
         ]);
 
         $img_path  = Storage::put('uploads', $data['image']);
         $data['image'] = $img_path;
 
         $dish = Dish::make($data);
-        $restaurant = Restaurant::find($data['restaurant_id']);
+
+        $user = Auth::user();
+
+        $restaurant = Restaurant::find($user->id); 
 
         $dish -> restaurant() -> associate($restaurant);
         $dish -> save();
 
-        return redirect() -> route('home');
+        return redirect() -> route('home', compact('restaurant'));
     }
 
     // Metodo delete dish:
