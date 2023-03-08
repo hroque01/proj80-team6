@@ -19,9 +19,9 @@ use App\Http\Controllers\MainController;
 
 Route::get('/', [MainController::class, 'home'])->middleware(['auth', 'verified'])->name('home');
 
-Route :: get('/dish/create', [MainController :: class, 'dishCreate']) -> name('dishCreate');
+Route :: get('/dish/create', [MainController :: class, 'dishCreate']) -> name('dish.create');
 
-Route :: post('store', [MainController :: class, 'dishStore']) -> name('dishStore');
+Route :: post('/dish/store', [MainController :: class, 'dishStore']) -> name('dish.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
