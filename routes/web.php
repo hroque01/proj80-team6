@@ -18,9 +18,10 @@ use App\Http\Controllers\MainController;
 
 Route::get('/', [MainController::class, 'home'])->middleware(['auth', 'verified'])->name('home');
 
-// Route create:
+// Route create (per form):
 Route :: get('/dish/create', [MainController :: class, 'dishCreate']) 
     -> name('dishCreate');
+// Route create (per ricevere dati da form):
 Route :: post('/dish/store', [MainController :: class, 'dishStore']) 
     -> name('dishStore');
 
