@@ -33,6 +33,7 @@
             {{-- delete --}}
             <div>
               <a href="{{ route('dish.delete', $dish) }}">ELIMINA</a>
+              <a href="{{ route('dishEdit', $dish) }}">UPDATE</a>
             </div>
           </div>
 

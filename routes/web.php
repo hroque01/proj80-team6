@@ -29,6 +29,11 @@ Route :: post('/dish/store', [MainController :: class, 'dishStore'])
 Route :: get('/dish/delete/{dish}', [MainController :: class, 'dishDelete'])
     -> name('dish.delete');
 
+// Route edit (per form):
+Route :: get('/dish/edit', [MainController :: class, 'dishEdit']) 
+    -> name('dishEdit');
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

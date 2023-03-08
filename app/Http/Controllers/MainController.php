@@ -40,7 +40,7 @@ class MainController extends Controller
 //     return view('dashboard', compact('dishes', 'restaurant_name'));
 // }
 
-    // METODO CREATE DISH:
+    // Metodo create (per form):
     public function dishCreate() {
 
         $restaurants = Restaurant::all();
@@ -48,6 +48,7 @@ class MainController extends Controller
         return view('pages.dishCreate', compact('restaurants'));
     }
 
+    // Metodo create (per ricevere dati da form):
     public function dishStore(Request $request) {
 
         $data = $request -> validate([
@@ -71,13 +72,21 @@ class MainController extends Controller
         return redirect() -> route('dishCreate');
     }
 
-    // METODO DELETE DISH:
+    // Metodo delete dish:
     public function dishDelete(Dish $dish){
 
         $dish ->orders()->sync([]);
         $dish-> delete();
 
         return redirect()-> route('home');
+    }
+
+    // Metodo edit (per form):
+    public function dishEdit() {
+
+        $restaurants = Restaurant::all();
+
+        return view('pages.dishCreate', compact('restaurants'));
     }
 }
 
