@@ -19,7 +19,9 @@ class RestaurantSeeder extends Seeder
     {
         $restaurants = [
             [
+                'business_name' => 'Kebab not bad',
                 'description' => 'Kebab is lovely',
+                'address' => 'Via Cristoforo Colombo, 24F',
                 'opening_time' => '10:00:00',
                 'closure_time' => '01:00:00',
                 'delivery_price' => 5,
@@ -27,7 +29,9 @@ class RestaurantSeeder extends Seeder
                 'user_id' => 1,
             ],
             [
+                'business_name' => 'Pizza Place',
                 'description' => 'Pizza is all you want',
+                'address' => 'Via Garibaldi, 12',
                 'opening_time' => '12:00:00',
                 'closure_time' => '00:00:00',
                 'delivery_price' => 5,
