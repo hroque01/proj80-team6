@@ -10,6 +10,7 @@
         <div class="col-md-8">
 
             <form method="POST" action="{{ route('dishStore') }}" enctype="multipart/form-data">
+
                 @csrf
                 <div class="mb-5 row">
                     <label for="name" class="col-md-2 col-form-label text-md-right">Name</label>
