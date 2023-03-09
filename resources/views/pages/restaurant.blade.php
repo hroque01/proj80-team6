@@ -30,7 +30,7 @@
                 <p class="card-text">{{ $dish->price }} &euro;</p>
               </div>
 
-              {{-- delete --}}
+              {{-- delete / edit --}}
               <div>
                 <a href="{{ route('dish.delete', $dish) }}">ELIMINA</a>
                 <a href="{{ route('dishEdit', $dish) }}">EDIT</a>
