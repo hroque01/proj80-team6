@@ -1,11 +1,15 @@
 <script>
 
+import axios from 'axios';
+
+const API_URL = 'http://localhost:8000/api/v1/';
+
 export default {
     name: 'AppCategory',
     data(){
         return{
-            categories: [
-                {
+            typologies: [
+                /* {
                     img: 'img/hamburger.jpg',
                     typeName: 'Hamburgers'
                 },
@@ -56,10 +60,37 @@ export default {
                 {
                     img: 'img/fish.jpg',
                     typeName: 'Fish'
-                }
+                } */
             ]
         }
-    }
+    },
+
+methods: {
+
+  updateTypologies() {
+    axios.get(API_URL + 'typology/all')
+      .then(res => {
+
+        const data = res.data;
+        const success = data.success;
+        const response = data.response;
+
+        const typologies = response.typologies;
+
+        /* const dishes = response.dishes; */
+
+        if (success) {
+          this.typologies = typologies;
+        }
+      })
+      .catch(err => console.error(err));
+  }, 
+
+},
+
+mounted() {
+  this.updateTypologies();
+},
 }
 </script>
 
@@ -68,9 +99,9 @@ export default {
 
         <!-- da fare carosello carino caruccio -->
         <div class="my_container">
-            <div class="category" v-for="(category, index) in categories" :key="index">
-                <img :src="category.img" :alt="category.typeName">
-                <a href="">{{ category.typeName }}</a>
+            <div class="typology" v-for="(typology, index) in typologies" :key="index">
+                <img :src="typology.image" :alt="typology.name">
+                <a href="">{{ typology.name }}</a>
             </div>
             
         </div>
@@ -89,7 +120,7 @@ section{
     display: flex;
     flex-wrap: wrap;
 
-    .category{
+    .typology{
         width: calc(100% / 4);
         position: relative;
 

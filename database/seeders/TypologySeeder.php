@@ -22,67 +22,67 @@ class TypologySeeder extends Seeder
             //1 HAMBURGER
             [
                 'name'  => 'Hamburgers',
-                'image' => 'resources/img/hamburger.jpg',
+                'image' => 'img/hamburger.jpg',
             ],
             //2 CINESE
             [
                 'name'  => 'Chinese',
-                'image' => 'resources/img/chinese.jpg',
+                'image' => 'img/chinese.jpg',
             ],
             //3 GRECO
             [
                 'name'  => 'Greek',
-                'image' => 'resources/img/greek.jpg',
+                'image' => 'img/greek.jpg',
             ],
             //4 INDIANO
             [
                 'name'  => 'Indian',
-                'image' => 'resources/img/indian.jpg',
+                'image' => 'img/indian.jpg',
             ],
             //5 ITALIANO
             [
                 'name'  => 'Italian',
-                'image' => 'resources/img/italian.jpg',
+                'image' => 'img/italian.jpg',
             ],
             //6 MESSICANO
             [
                 'name'  => 'Mexican',
-                'image' => 'resources/img/mexican.jpg',
+                'image' => 'img/mexican.jpg',
             ],
             //7 PIZZA
             [
                 'name'  => 'Pizza',
-                'image' => 'resources/img/pizza.jpg',
+                'image' => 'img/pizza.jpg',
             ],
             //8 SUSHI
             [
                 'name'  => 'Sushi',
-                'image' => 'resources/img/sushi.jpg',
+                'image' => 'img/sushi.jpg',
             ],
             //9 DOLCI
             [
                 'name'  => 'Sweets',
-                'image' => 'resources/img/sweet.jpg',
+                'image' => 'img/sweet.jpg',
             ],
             //10 VEGANO
             [
                 'name'  => 'Vegan',
-                'image' => 'resources/img/vegetarian.jpg',
+                'image' => 'img/vegetarian.jpg',
             ],
             //11 KEBAB
             [
                 'name'  => 'Kebab',
-                'image' => 'resources/img/kebab.jpg',
+                'image' => 'img/kebab.jpg',
             ],
             //12 COLAZIONE
             [
                 'name'  => 'Breakfast',
-                'image' => 'resources/img/breakfast.jpg',
+                'image' => 'img/breakfast.jpg',
             ],
             //13 PESCE
             [
                 'name'  => 'Fish',
-                'image' => 'resources/img/fish.jpg',
+                'image' => 'img/fish.jpg',
             ],
         ];
 
