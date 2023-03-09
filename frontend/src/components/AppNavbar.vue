@@ -54,9 +54,8 @@ export default {
     <div class="logo">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <a class="navbar-brand" href="#">
-          <h3>
-            deliveboo
-          </h3>
+          <img src="/public/img/logo.png" alt="">
+          <span>Deliveboo</span>
         </a>
 
         <!-- BUTTON FOR RESPONSIVE -->
@@ -108,10 +107,21 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
-
+// .navbar{
+//   border: 1px solid white;
+// }
 .navbar-brand {
-  h3 {
-    color: $btn_red;
+  // h3 {
+  //   color: $btn_red;
+  // }
+
+  img{
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    border-radius: 50%;
+    padding: 2px;
+    border: 2px solid $btn_red;
   }
 }
 

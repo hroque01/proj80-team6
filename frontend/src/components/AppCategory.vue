@@ -8,89 +8,30 @@ export default {
     name: 'AppCategory',
     data(){
         return{
-            typologies: [
-                /* {
-                    img: 'img/hamburger.jpg',
-                    typeName: 'Hamburgers'
-                },
-                {
-                    img: 'img/chinese.jpg',
-                    typeName: 'Chinese'
-                },
-                {
-                    img: 'img/greek.jpg',
-                    typeName: 'Greek'
-                },
-                {
-                    img: 'img/indian.jpg',
-                    typeName: 'Indian'
-                },
-                {
-                    img: 'img/italian.jpg',
-                    typeName: 'Italian'
-                },
-                {
-                    img: 'img/mexican.jpg',
-                    typeName: 'Mexican'
-                },
-                {
-                    img: 'img/pizza.jpg',
-                    typeName: 'Pizza'
-                },
-                {
-                    img: 'img/sushi.jpg',
-                    typeName: 'Sushi'
-                },
-                {
-                    img: 'img/sweet.jpg',
-                    typeName: 'Sweets'
-                },
-                {
-                    img: 'img/vegetarian.jpg',
-                    typeName: 'Vegan'
-                },
-                {
-                    img: 'img/kebab.jpg',
-                    typeName: 'Hamburgers'
-                },
-                {
-                    img: 'img/breakfast.jpg',
-                    typeName: 'Breakfast'
-                },
-                {
-                    img: 'img/fish.jpg',
-                    typeName: 'Fish'
-                } */
-            ]
+            typologies: []
         }
     },
+    methods: {
+        updateTypologies() {
+            axios.get(API_URL + 'typology/all')
+            .then(res => {
 
-methods: {
+                const data = res.data;
+                const success = data.success;
+                const response = data.response;
 
-  updateTypologies() {
-    axios.get(API_URL + 'typology/all')
-      .then(res => {
+                const typologies = response.typologies;
 
-        const data = res.data;
-        const success = data.success;
-        const response = data.response;
-
-        const typologies = response.typologies;
-
-        /* const dishes = response.dishes; */
-
-        if (success) {
-          this.typologies = typologies;
+                if (success) {
+                this.typologies = typologies;
+                }
+            })
+            .catch(err => console.error(err));
         }
-      })
-      .catch(err => console.error(err));
-  }, 
-
-},
-
-mounted() {
-  this.updateTypologies();
-},
+    },
+    mounted() {
+        this.updateTypologies();
+    }
 }
 </script>
 
@@ -99,10 +40,14 @@ mounted() {
 
         <!-- da fare carosello carino caruccio -->
         <div class="my_container">
-            <div class="typology" v-for="(typology, index) in typologies" :key="index">
+
+            <div class="typologies">
+                <div class="typology" v-for="(typology, index) in typologies" :key="index">
                 <img :src="typology.image" :alt="typology.name">
                 <a href="">{{ typology.name }}</a>
             </div>
+            </div>
+            
             
         </div>
     </section>
@@ -115,8 +60,8 @@ mounted() {
 
 section{
     margin: 100px 0;
-}
-.my_container{
+
+    .typologies{
     display: flex;
     flex-wrap: wrap;
 
@@ -134,4 +79,6 @@ section{
         }
     }
 }
+}
+
 </style>
