@@ -31,13 +31,10 @@ export default {
     <!-- jumbotron-->
     <div class="jumbotron">
         <div class="ms_content">
-            <h1>Restaurant, food, takeaway, grocery.
+            <h1>Ristoranti, cibo, takeaway, spesa.
                 <br>
-                <span>Delivered</span>.
+                <span>DELIVEBOO</span>
             </h1>
-            <label for="">Enter your address to see what we deliver</label>
-            <input type="text" placeholder="es. Via di Boolean classe 80" name="">
-            <input type="submit" value="Search" class="search">
         </div>
 
         <!-- slider con v-for con immagini -->
@@ -77,25 +74,6 @@ export default {
             span {
                 color: $btn-red;
             }
-        }
-
-        label {
-            display: block;
-        }
-
-        input {
-            margin-top: 10px;
-            width: 400px;
-            padding: 10px;
-            border-radius: 20px;
-        }
-
-        .search {
-            width: 100px;
-            margin-left: 10px;
-            background-color: $btn-red;
-            border: 1px solid $btn-red;
-            color: #fff;
         }
     }
 
