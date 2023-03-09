@@ -64,40 +64,62 @@ export default {
 </script>
 
 <template>
-  
+    
+    <!-- div container -->
     <div class="my_container">
         <div class="restaurantFilter">
-
+            
             <!-- Navbar laterale a sinistra - elenco categorie -->
             <nav>
                 <ul>
-                <li>
+                    <li>
                 
-                    <div v-for="typology in typologies" :key="typology.id">
-                        <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies" :value="typology.id">
-                        <label :for="'typology_' + typology.id">{{ typology.name }}</label>
-                    </div>
-                </li>
+                        <div v-for="typology in typologies" :key="typology.id">
+                            <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies" :value="typology.id">
+                            <label :for="'typology_' + typology.id">{{ typology.name }}</label>
+                        </div>
+                        
+                    </li>
                 </ul>
             </nav>
 
-            <!-- sezione dx con elenco ristoranti -->
+    
             <div class="my_container restaurants_box">
-                <div v-for="restaurant in filteredRestaurants" :key="restaurant.id">
-                    <h2>{{ restaurant.business_name }}</h2>
-                    <p>{{ restaurant.address }}</p>
-                    <p>{{ restaurant.phone }}</p>
-                    <p>Typologies:</p>
-                    <ul>
-                        <li v-for="typology in restaurant.typologies" :key="typology.id" v-if="restaurant.typologies">{{ typology.name }}</li>
-                    </ul>
+    
+                <!-- Restaurant List -->
+                <div class="restaurantsContainer">
+    
+                    <div class="mainTitle-container">
+                        <span class="mainTitle">Lista dei ristoranti</span> <br>
+                        <span class="mainTitle-descr">Dai un'occhiata alla nostra selezione</span>
+                    </div>
+    
+                    <div class="restaurantWrapper">
+    
+                        <div class="restaurant wrapperProperties" v-for="restaurant in filteredRestaurants" :key="restaurant.id">
+
+                            <div class="deliveryPrice"> {{ restaurant.delivery_price }} </div>
+                            <div class="restaurant-img">
+                                <img src="https://picsum.photos/400/300" alt="">
+                            </div>
+                            <div class="restaurant-info-wrapper">
+                                <div class="restaurant-info-restaurantName">{{ restaurant.business_name }}</div>
+                                <div class="restaurant-info-address">{{ restaurant.address }}</div>
+                            </div>
+                            
+                        </div>
+    
+                    </div>
                 </div>
-                <div v-if="filteredRestaurants.length === 0">
-                    <p>No restaurants match the selected criteria.</p>
-                </div>
+                <!-- chiusura restaurant list -->
+    
             </div>
+            <!-- chiusura restaurant box -->
+    
         </div>
     </div>
+    <!-- chiusura div container -->
+    
 </template>
 
 <style lang="scss" scoped>
@@ -149,7 +171,6 @@ nav {
         display: flex;
         flex-wrap: wrap;
         margin-left: 50px;
-        margin-right: 50px;
 
         .wrapperProperties {
             display: flex;
