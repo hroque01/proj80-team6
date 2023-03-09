@@ -1,5 +1,4 @@
 <script>
-
 import axios from 'axios';
 
 const API_URL = 'http://localhost:8000/api/v1/';
@@ -8,136 +7,85 @@ export default {
   name: 'AppRestaurant',
   data() {
     return {
-        typologies: [],
-        restaurants: [],
-
-        // proprietà per tracciare le tipologie selezionate:
-        selectedTypologies: [],
-    }
+      typologies: [],
+      restaurants: [],
+      selectedTypologies: []
+    };
   },
   methods: {
-
-    // metodo per verificare se una tipologia è stata selezionata:
     updateTypologies() {
-      axios.get(API_URL + 'restaurantTypology/all')
-        .then(res => {
-          const data = res.data;
-          const success = data.success;
-          const response = data.response;
-
-          const typologies = response.typologies;
-          const restaurants = response.restaurants;
-
-          if (success) {
-            this.typologies = typologies;
-            this.restaurants = restaurants;
-          }
-        })
-        .catch(err => console.error(err));
-    },
-
-    // metodo filtro ristoranti:
-    filterRestaurants() {
-      const filteredRestaurants = [];
-
-      this.restaurants.forEach((restaurant) => {
-
-        // se nessuna tipologia è stata selezionata, mostra tutti i ristoranti
-        if (this.selectedTypologies.length === 0) {
-          filteredRestaurants.push(restaurant);
-
-        } else {
-          // verifica se la tipologia del ristorante è presente nelle tipologie selezionate
-          const restaurantTypologyIds = restaurant.typologies.map(typology => typology.id);
-          const commonIds = restaurantTypologyIds.filter(id => this.selectedTypologies.includes(id));
-          if (commonIds.length > 0) {
-            filteredRestaurants.push(restaurant);
-          }
+      axios.get(API_URL + 'restaurant/filtered', {
+        params: {
+          typologies: this.selectedTypologies
         }
-      });
+      })
+      .then(res => {
+        const data = res.data;
+        const success = data.success;
+        const response = data.response;
 
+        const typologies = response.typologies;
+        const restaurants = response.restaurants;
+
+        if (success) {
+          this.typologies = typologies;
+          this.restaurants = restaurants;
+        }
+      })
+      .catch(err => console.error(err));
+    }
+  },
+  computed: {
+    filteredRestaurants() {
+      let filteredRestaurants = this.restaurants;
+      if (this.selectedTypologies.length > 0) {
+        filteredRestaurants = filteredRestaurants.filter(restaurant => {
+          return restaurant.typologies.some(typology => {
+            return this.selectedTypologies.includes(typology.id);
+          });
+        });
+      }
       return filteredRestaurants;
-    },
+    }
   },
   mounted() {
     this.updateTypologies();
-  },
-}
+  }
+};
 </script>
 
 <template>
-    
-    <!-- div container -->
-    <div class="my_container">
-        <div class="restaurantFilter">
-            
-            <!-- Navbar laterale a sinistra - elenco categorie -->
-            <nav>
-                <ul>
-                    <li v-for="(typology, index) in typologies" :key="index">
-                    <input type="checkbox" :id="'typology-' + typology.id" v-model="selectedTypologies" 
-                    :value="typology.id">
-                    <label :for="'typology-' + typology.id">{{ typology.name }}</label>
-                    </li>
-                </ul>
-            </nav>
-
-    
-            <div class="my_container restaurants_box">
-    
-                <!-- TagBoxes -->
-                <!-- <div class="tagsContainer">
-                    <div class="mainTitle-container">
-                        <span class="mainTitle">Tipi di ristoranti</span>
-                    </div>
-                    <div class="tagWrapper">
-    
-                        <div class="tag wrapperProperties" v-for="(tag, index) in tags" :key="index">
-                            <div class="tagBox-img">
-                                <img src="https://picsum.photos/100/100" alt="">
-                            </div>
-                            <div class="tagBox-name">{{ tag.name }}</div>
-                        </div>
-    
-                    </div>
-                </div> -->
-    
-    
-                <!-- Restaurant List -->
-                <div class="restaurantsContainer">
-    
-                    <div class="mainTitle-container">
-                        <span class="mainTitle">Lista dei ristoranti</span> <br>
-                        <span class="mainTitle-descr">Dai un'occhiata alla nostra selezione</span>
-                    </div>
-    
-                    <div class="restaurantWrapper">
-    
-                        <div class="restaurant wrapperProperties" v-for="(restaurant, index) in filterRestaurants()" 
-                        :key="index">
-
-                            <div class="deliveryPrice"> {{ restaurant.delivery_price }} </div>
-                            <div class="restaurant-img">
-                                <img src="https://picsum.photos/400/300" alt="">
-                            </div>
-                            <div class="restaurant-info-wrapper">
-                                <div class="restaurant-info-restaurantName">{{ restaurant.business_name }}</div>
-                                <div class="restaurant-info-address">{{ restaurant.address }}</div>
-                            </div>
-                            
-                        </div>
-    
-                    </div>
-                </div>
-                <!-- chiusura restaurant list -->
-    
-            </div>
-            <!-- chiusura restaurant box -->
-    
+  <!-- Navbar laterale a sinistra - elenco categorie -->
+  <div class="my_container">
+    <div class="restaurantFilter">
+      <nav>
+        <ul>
+          <li>
+            <form>
+              <div v-for="typology in typologies" :key="typology.id">
+                <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies" :value="typology.id">
+                <label :for="'typology_' + typology.id">{{ typology.name }}</label>
+              </div>
+            </form>
+          </li>
+        </ul>
+      </nav>
+      <div class="my_container restaurants_box">
+        <div v-for="restaurant in filteredRestaurants" :key="restaurant.id">
+          <h2>{{ restaurant.business_name }}</h2>
+          <p>{{ restaurant.address }}</p>
+          <p>{{ restaurant.phone }}</p>
+          <p>Typologies:</p>
+          <ul>
+            <li v-for="typology in restaurant.typologies" :key="typology.id" v-if="restaurant.typologies">{{ typology.name }}</li>
+          </ul>
         </div>
+        <div v-if="filteredRestaurants.length === 0">
+          <p>No restaurants match the selected criteria.</p>
+        </div>
+      </div>
     </div>
-    <!-- chiusura div container -->
-    
+  </div>
 </template>
 
 <style lang="scss" scoped>
