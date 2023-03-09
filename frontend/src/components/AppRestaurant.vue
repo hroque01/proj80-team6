@@ -4,88 +4,100 @@ import axios from 'axios';
 const API_URL = 'http://localhost:8000/api/v1/';
 
 export default {
-  name: 'AppRestaurant',
-  data() {
-    return {
-      typologies: [],
-      restaurants: [],
-      selectedTypologies: []
-    };
-  },
-  methods: {
-    updateTypologies() {
-      axios.get(API_URL + 'restaurant/filtered', {
-        params: {
-          typologies: this.selectedTypologies
-        }
-      })
-      .then(res => {
-        const data = res.data;
-        const success = data.success;
-        const response = data.response;
+    name: 'AppRestaurant',
+    data() {
+        return {
+        typologies: [],
+        restaurants: [],
+        // proprietà con array che conterrà le tipologie selezionate dall'utente:
+        selectedTypologies: []
+        };
+    },
 
-        const typologies = response.typologies;
-        const restaurants = response.restaurants;
+    // METODI:
+    methods: {
+        updateTypologies() {
+        axios.get(API_URL + 'restaurant/filtered', {
+            params: {
+            typologies: this.selectedTypologies
+            }
+        })
+        .then(res => {
+            const data = res.data;
+            const success = data.success;
+            const response = data.response;
 
-        if (success) {
-          this.typologies = typologies;
-          this.restaurants = restaurants;
+            const typologies = response.typologies;
+            const restaurants = response.restaurants;
+
+            if (success) {
+            this.typologies = typologies;
+            this.restaurants = restaurants;
+            }
+        })
+        .catch(err => console.error(err));
         }
-      })
-      .catch(err => console.error(err));
+    },
+    computed: {
+        // metodo che filtra i ristoranti in base alle tipologie selezionate dall'utente.
+        filteredRestaurants() {
+        
+        // variabile con lista completa di tutti i ristoranti:
+        let filteredRestaurants = this.restaurants;
+        
+        // condizione: se utente ha selezionato almeno una tipologia, mi restituisce con il filter solo ristoranti    
+        //  che corrispondono ai criteri di selezione:
+        if (this.selectedTypologies.length > 0) {
+            filteredRestaurants = filteredRestaurants.filter(restaurant => {
+            return restaurant.typologies.some(typology => {
+                return this.selectedTypologies.includes(typology.id);
+            });
+            });
+        }
+        return filteredRestaurants;
+        }
+    },
+    mounted() {
+        this.updateTypologies();
     }
-  },
-  computed: {
-    filteredRestaurants() {
-      let filteredRestaurants = this.restaurants;
-      if (this.selectedTypologies.length > 0) {
-        filteredRestaurants = filteredRestaurants.filter(restaurant => {
-          return restaurant.typologies.some(typology => {
-            return this.selectedTypologies.includes(typology.id);
-          });
-        });
-      }
-      return filteredRestaurants;
-    }
-  },
-  mounted() {
-    this.updateTypologies();
-  }
 };
 </script>
 
 <template>
-  <!-- Navbar laterale a sinistra - elenco categorie -->
-  <div class="my_container">
-    <div class="restaurantFilter">
-      <nav>
-        <ul>
-          <li>
-            <form>
-              <div v-for="typology in typologies" :key="typology.id">
-                <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies" :value="typology.id">
-                <label :for="'typology_' + typology.id">{{ typology.name }}</label>
-              </div>
-            </form>
-          </li>
-        </ul>
-      </nav>
-      <div class="my_container restaurants_box">
-        <div v-for="restaurant in filteredRestaurants" :key="restaurant.id">
-          <h2>{{ restaurant.business_name }}</h2>
-          <p>{{ restaurant.address }}</p>
-          <p>{{ restaurant.phone }}</p>
-          <p>Typologies:</p>
-          <ul>
-            <li v-for="typology in restaurant.typologies" :key="typology.id" v-if="restaurant.typologies">{{ typology.name }}</li>
-          </ul>
+  
+    <div class="my_container">
+        <div class="restaurantFilter">
+
+            <!-- Navbar laterale a sinistra - elenco categorie -->
+            <nav>
+                <ul>
+                <li>
+                
+                    <div v-for="typology in typologies" :key="typology.id">
+                        <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies" :value="typology.id">
+                        <label :for="'typology_' + typology.id">{{ typology.name }}</label>
+                    </div>
+                </li>
+                </ul>
+            </nav>
+
+            <!-- sezione dx con elenco ristoranti -->
+            <div class="my_container restaurants_box">
+                <div v-for="restaurant in filteredRestaurants" :key="restaurant.id">
+                    <h2>{{ restaurant.business_name }}</h2>
+                    <p>{{ restaurant.address }}</p>
+                    <p>{{ restaurant.phone }}</p>
+                    <p>Typologies:</p>
+                    <ul>
+                        <li v-for="typology in restaurant.typologies" :key="typology.id" v-if="restaurant.typologies">{{ typology.name }}</li>
+                    </ul>
+                </div>
+                <div v-if="filteredRestaurants.length === 0">
+                    <p>No restaurants match the selected criteria.</p>
+                </div>
+            </div>
         </div>
-        <div v-if="filteredRestaurants.length === 0">
-          <p>No restaurants match the selected criteria.</p>
-        </div>
-      </div>
     </div>
-  </div>
 </template>
 
 <style lang="scss" scoped>
