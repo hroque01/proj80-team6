@@ -4,6 +4,17 @@ export default {
   name: 'AppRestaurantMainPage',
   data() {
     return {
+        restaurantInfo: [
+          {
+            name: 'Burger King',
+            address: '123 Main St',
+            description: 'Burger King is a restaurant located in Burgershire, England',
+            openingTime: '10:00',
+            closingTime: '12:00',
+            deliveryPrice: '10.00',
+            img: '',
+          },
+        ],
         dishes: [
         {
             name: 'DishnamePlaceholder',
@@ -65,13 +76,23 @@ export default {
 
 <main>
   <!-- restaurant header with image and info-->
-  <div class="restaurant_header">
+  <div class="restaurant_header" v-for="(restaurant, index) in restaurantInfo" :key="index">
 
     <div class="restaurant_image">
-
+      <img src="https://picsum.photos/500/400" alt="">
     </div>
 
-    <div class="restaurant_informations"></div>
+    <div class="restaurant_informations">
+
+      <div class="restaurantName">{{ restaurant.name }}</div>
+      <div class="restaurantAdress">Ci puoi trovare a: {{ restaurant.address }}</div>
+      <div class="restaurantDescription">{{ restaurant.description }}</div>
+      <div class="restaurantOpeningTimes">
+        {{ restaurant.openingTime }} - {{ restaurant.closingTime }}
+      </div>
+      <div class="restaurantDeliveryPrice">Consegna al costo di: {{ restaurant.deliveryPrice }} $</div>
+
+    </div>
 
   </div>
 
@@ -128,19 +149,32 @@ main{
   .restaurant_header{
     width: 100%;
     height: auto;
-    background-color: $restaurant_card_bg;
+    background-color: $restaurant_main_bg;
     border-bottom-right-radius: 25px;
     border-bottom-left-radius: 25px;
     display: flex;
-    align-items: center;
     padding: 50px 200px;
+
+    margin-bottom: 50px;
 
     .restaurant_image{
       width: 500px;
       height: 300px;
       background-color: #fff;
-      border-radius: 25px;
+      border-radius: 15px;
       overflow: hidden;
+    }
+
+    .restaurant_informations{
+
+      padding: 50px;
+
+      .restaurantName{
+        font-size: 40px;
+        font-weight: 700;
+        color: $text_black;
+      }
+
     }
   }
 
@@ -168,8 +202,8 @@ main{
     justify-content: space-around;
 
     .menu_list{
-      background-color: $restaurant_card_bg;
-      border-radius: 25px;
+      background-color: $restaurant_main_bg;
+      border-radius: 15px;
       display: flex;
       justify-content: center;
       padding: 20px 10px;
@@ -274,8 +308,8 @@ main{
     .cart{
       width: 30%;
       height: 600px;
-      background-color: $restaurant_card_bg;
-      border-radius: 25px;
+      background-color: $restaurant_main_bg;
+      border-radius: 15px;
 
     }
 
