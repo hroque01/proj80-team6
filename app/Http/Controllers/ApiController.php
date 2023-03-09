@@ -11,32 +11,37 @@ use App\Models\Restaurant;
 class ApiController extends Controller
 {
     public function getAllTypologies() {
+        $typologies = Typology::all();
 
-        $typologies = Typology :: all();
-
-        return response() -> json([
+        return response()->json([
             'success' => true,
             'response' => [
                 'typologies' => $typologies,
             ]
         ]);
-
     }
 
-    public function getAllRestaurantsAllTypologies() {
-
-        $typologies = Typology :: all();
-
-        $restaurants = Restaurant :: all();
-
-
-        return response() -> json([
+    public function getFilteredRestaurants(Request $request) {
+        $selectedTypologies = $request->get('typologies', []);
+        $query = Restaurant::with('typologies');
+    
+        if (count($selectedTypologies) > 0) {
+            $query->whereHas('typologies', function ($q) use ($selectedTypologies) {
+                $q->whereIn('typologies.id', $selectedTypologies);
+            });
+        }
+    
+        $restaurants = $query->get();
+        $typologies = Typology::whereIn('id', $restaurants->flatMap(function ($restaurant) {
+            return $restaurant->typologies->pluck('id');
+        }))->get();
+    
+        return response()->json([
             'success' => true,
             'response' => [
                 'typologies' => $typologies,
                 'restaurants' => $restaurants,
             ]
         ]);
-
     }
 }
