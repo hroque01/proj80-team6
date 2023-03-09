@@ -26,27 +26,27 @@ class TypologySeeder extends Seeder
             ],
             //2 CINESE
             [
-                'name'  => 'Chinese',
+                'name'  => 'Cinese',
                 'image' => 'img/chinese.jpg',
             ],
             //3 GRECO
             [
-                'name'  => 'Greek',
+                'name'  => 'Greco',
                 'image' => 'img/greek.jpg',
             ],
             //4 INDIANO
             [
-                'name'  => 'Indian',
+                'name'  => 'Indiano',
                 'image' => 'img/indian.jpg',
             ],
             //5 ITALIANO
             [
-                'name'  => 'Italian',
+                'name'  => 'Italiano',
                 'image' => 'img/italian.jpg',
             ],
             //6 MESSICANO
             [
-                'name'  => 'Mexican',
+                'name'  => 'Messicano',
                 'image' => 'img/mexican.jpg',
             ],
             //7 PIZZA
@@ -61,12 +61,12 @@ class TypologySeeder extends Seeder
             ],
             //9 DOLCI
             [
-                'name'  => 'Sweets',
+                'name'  => 'Dolci',
                 'image' => 'img/sweet.jpg',
             ],
             //10 VEGANO
             [
-                'name'  => 'Vegan',
+                'name'  => 'Vegano',
                 'image' => 'img/vegetarian.jpg',
             ],
             //11 KEBAB
@@ -76,12 +76,12 @@ class TypologySeeder extends Seeder
             ],
             //12 COLAZIONE
             [
-                'name'  => 'Breakfast',
+                'name'  => 'Colazione',
                 'image' => 'img/breakfast.jpg',
             ],
             //13 PESCE
             [
-                'name'  => 'Fish',
+                'name'  => 'Pesce',
                 'image' => 'img/fish.jpg',
             ],
         ];
