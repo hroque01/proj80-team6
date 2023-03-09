@@ -21,55 +21,55 @@ class TypologySeeder extends Seeder
         $typologies = [
             [
                 'name'  => 'Hamburgers',
-                'image' => 'resources/img/hamburger.jpg',
+                'image' => 'img/hamburger.jpg',
             ],
             [
                 'name'  => 'Chinese',
-                'image' => 'resources/img/chinese.jpg',
+                'image' => 'img/chinese.jpg',
             ],
             [
                 'name'  => 'Greek',
-                'image' => 'resources/img/greek.jpg',
+                'image' => 'img/greek.jpg',
             ],
             [
                 'name'  => 'Indian',
-                'image' => 'resources/img/indian.jpg',
+                'image' => 'img/indian.jpg',
             ],
             [
                 'name'  => 'Italian',
-                'image' => 'resources/img/italian.jpg',
+                'image' => 'img/italian.jpg',
             ],
             [
                 'name'  => 'Mexican',
-                'image' => 'resources/img/mexican.jpg',
+                'image' => 'img/mexican.jpg',
             ],
             [
                 'name'  => 'Pizza',
-                'image' => 'resources/img/pizza.jpg',
+                'image' => 'img/pizza.jpg',
             ],
             [
                 'name'  => 'Sushi',
-                'image' => 'resources/img/sushi.jpg',
+                'image' => 'img/sushi.jpg',
             ],
             [
                 'name'  => 'Sweets',
-                'image' => 'resources/img/sweet.jpg',
+                'image' => 'img/sweet.jpg',
             ],
             [
                 'name'  => 'Vegan',
-                'image' => 'resources/img/vegetarian.jpg',
+                'image' => 'img/vegetarian.jpg',
             ],
             [
                 'name'  => 'Kebab',
-                'image' => 'resources/img/kebab.jpg',
+                'image' => 'img/kebab.jpg',
             ],
             [
                 'name'  => 'Breakfast',
-                'image' => 'resources/img/breakfast.jpg',
+                'image' => 'img/breakfast.jpg',
             ],
             [
                 'name'  => 'Fish',
-                'image' => 'resources/img/fish.jpg',
+                'image' => 'img/fish.jpg',
             ],
         ];
 
