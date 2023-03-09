@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Restaurant;
 use App\Models\Dish;
-
+use App\Models\Typology;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +15,17 @@ use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
-    public function home(Request $request, Restaurant $restaurant) {
+    public function home(Typology $typology) {
+
+        $restaurants = Restaurant::all();
+
+        $typologies = Typology::all();
+
+        return view('pages.home', compact('restaurants', 'typologies', 'typology'));
+
+    }
+
+    public function restaurant(Restaurant $restaurant) {
         $restaurants = Restaurant::all();
 
         $dishes = Dish::all();
@@ -24,7 +34,7 @@ class MainController extends Controller
 
         $restaurant = Restaurant::find($user->id); 
 
-        return view('pages.home', compact('restaurants', 'dishes', 'restaurant'));
+        return view('pages.restaurant', compact('restaurants', 'dishes', 'restaurant'));
     }
 
     // Metodo create (per form):
