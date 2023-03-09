@@ -54,10 +54,9 @@ export default {
         <div class="my_container">
             <!-- parte sx -->
             <div class="txt">
-                <h1>Track orders to your door</h1>
+                <h1>Traccia gli ordini da casa tua</h1>
                 <p>
-                    Get your favourite food delivered in a flash. You&#39ll see when your rider&#39s picked up your order,
-                    and be able to follow them along the way. You&#39ll get a notification when they&#39re nearby, too.
+                    Ricevi il tuo cibo preferito in un lampo. Vedrai quando il tuo rider ha ritirato il tuo ordine e potrai seguirlo lungo il percorso. Riceverai una notifica anche quando sono nelle vicinanze.
                 </p>
 
                 <!-- bottoni -->
