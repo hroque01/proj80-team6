@@ -4,7 +4,7 @@
 
     <div class="container pt-5">
         <h1>
-            Update dish
+            Update dish: {{$dish->name}}
         </h1>
 
         <form method="POST" action="{{ route('dishUpdate', $dish) }}" enctype="multipart/form-data">

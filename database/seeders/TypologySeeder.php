@@ -20,12 +20,56 @@ class TypologySeeder extends Seeder
 
         $typologies = [
             [
+                'name'  => 'Hamburgers',
+                'image' => 'resources/img/hamburger.jpg',
+            ],
+            [
+                'name'  => 'Chinese',
+                'image' => 'resources/img/chinese.jpg',
+            ],
+            [
+                'name'  => 'Greek',
+                'image' => 'resources/img/greek.jpg',
+            ],
+            [
+                'name'  => 'Indian',
+                'image' => 'resources/img/indian.jpg',
+            ],
+            [
+                'name'  => 'Italian',
+                'image' => 'resources/img/italian.jpg',
+            ],
+            [
+                'name'  => 'Mexican',
+                'image' => 'resources/img/mexican.jpg',
+            ],
+            [
                 'name'  => 'Pizza',
-                'image' => 'https://www.google.com/url?sa=i&url=https%3A%2F%2Frecipes.timesofindia.com%2Frecipes%2Fcheese-pizza%2Frs53110049.cms&psig=AOvVaw0REFAwI6tWVeNy3ieyKef1&ust=1678358689841000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLjppL6TzP0CFQAAAAAdAAAAABAE',
+                'image' => 'resources/img/pizza.jpg',
+            ],
+            [
+                'name'  => 'Sushi',
+                'image' => 'resources/img/sushi.jpg',
+            ],
+            [
+                'name'  => 'Sweets',
+                'image' => 'resources/img/sweet.jpg',
+            ],
+            [
+                'name'  => 'Vegan',
+                'image' => 'resources/img/vegetarian.jpg',
             ],
             [
                 'name'  => 'Kebab',
-                'image' => 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.recipetineats.com%2Fhomemade-chicken-doner-kebab%2F&psig=AOvVaw2nLeRVKFfJx09e9aaAe6DY&ust=1678358596301000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCOjLg5OTzP0CFQAAAAAdAAAAABAE',
+                'image' => 'resources/img/kebab.jpg',
+            ],
+            [
+                'name'  => 'Breakfast',
+                'image' => 'resources/img/breakfast.jpg',
+            ],
+            [
+                'name'  => 'Fish',
+                'image' => 'resources/img/fish.jpg',
             ],
         ];
 
