@@ -68,7 +68,7 @@ class MainController extends Controller
         $dish -> restaurant() -> associate($restaurant);
         $dish -> save();
 
-        return redirect() -> route('home', compact('restaurant'));
+        return redirect() -> route('pages.restaurant', compact('restaurant'));
     }
 
     // Metodo delete dish:
@@ -77,7 +77,7 @@ class MainController extends Controller
         $dish ->orders()->sync([]);
         $dish-> delete();
 
-        return redirect()-> route('home');
+        return redirect()-> route('restaurant');
     }
 
     // Metodo edit (per form):
@@ -113,7 +113,7 @@ class MainController extends Controller
 
         $dish->save();
         
-        return redirect() -> route('home');
+        return redirect() -> route('restaurant');
     }
 }
 
