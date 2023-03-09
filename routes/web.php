@@ -15,33 +15,34 @@ use App\Http\Controllers\MainController;
 |
 */
 
+Route::get('/', [MainController::class, 'home'])->name('home');
+
+// Route create (per form):
+Route :: get('/dish/create', [MainController :: class, 'dishCreate']) 
+-> name('dishCreate');
+
+// Route create (per ricevere dati da form):
+Route :: post('/dish/store', [MainController :: class, 'dishStore']) 
+-> name('dishStore');
 
 Route::get('/restaurant', [MainController::class, 'restaurant'])->name('restaurant');
 
-Route::get('/', [MainController::class, 'home'])->name('home');
+// Route delete:
+Route :: get('/dish/delete/{dish}', [MainController :: class, 'dishDelete'])
+    -> name('dish.delete');
 
-Route::middleware(['auth', 'verified'])
-   ->name('admin.')
-   ->prefix('admin')
-   ->group(function () {
-    // Route create (per form):
-    Route :: get('/dish/create', [MainController :: class, 'dishCreate']) 
-        -> name('dishCreate');
-    // Route create (per ricevere dati da form):
-    Route :: post('/dish/store', [MainController :: class, 'dishStore']) 
-        -> name('dishStore');
+// Route edit (per form):
+Route :: get('/dish/edit/{dish}', [MainController :: class, 'dishEdit']) 
+    -> name('dishEdit');
+// Route update (per ricevere dati da form):
+Route :: post('/dish/edit/{dish}', [MainController :: class, 'dishUpdate']) 
+    -> name('dishUpdate');
 
-    // Route delete:
-    Route :: get('/dish/delete/{dish}', [MainController :: class, 'dishDelete'])
-        -> name('dish.delete');
-
-    // Route edit (per form):
-    Route :: get('/dish/edit/{dish}', [MainController :: class, 'dishEdit']) 
-        -> name('dishEdit');
-    // Route update (per ricevere dati da form):
-    Route :: post('/dish/edit/{dish}', [MainController :: class, 'dishUpdate']) 
-        -> name('dishUpdate');
-});
+// Route::middleware(['auth', 'verified'])
+//    ->name('admin.')
+//    ->prefix('admin')
+//    ->group(function () {
+// });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
