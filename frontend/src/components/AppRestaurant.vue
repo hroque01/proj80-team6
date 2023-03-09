@@ -71,14 +71,14 @@ export default {
             
             <!-- Navbar laterale a sinistra - elenco categorie -->
             <nav>
+
+                <h4>Categorie</h4>
                 <ul>
                     <li>
-                
                         <div v-for="typology in typologies" :key="typology.id">
                             <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies" :value="typology.id">
                             <label :for="'typology_' + typology.id">{{ typology.name }}</label>
                         </div>
-                        
                     </li>
                 </ul>
             </nav>
@@ -132,9 +132,13 @@ export default {
 }
 
 nav {
-    border: 1px solid #000;
+    height: 100vh;
+    overflow: auto;
     width: 300px;
     padding: 20px;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    box-shadow: 0px 20px 5px 0px #ececec;
 
     ul {
         li {
@@ -142,14 +146,21 @@ nav {
             line-height: 80px;
         }
     }
+
+    input[type=checkbox] {
+        width:20px; 
+        height:20px;
+        margin-right: 10px;
+        border: 1px solid $btn_red;
+    }
 }
 
 .restaurants_box {
-
+    height: 100vh;
+    overflow-y: auto;
     //general
     //Boxes title
     .mainTitle-container {
-
         line-height: 20px;
         margin: 25px 50px;
 
