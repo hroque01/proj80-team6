@@ -34,7 +34,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/restaurant') }}">{{ __('Home') }}</a>
+                            <a class="nav-link" href="{{url('/restaurant') }}">{{ __('Il tuo ristorante') }}</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{{url('http://localhost:5174/') }}">{{ __('Torna al sito') }}</a>
                         </li>
                     </ul>
 
