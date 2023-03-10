@@ -51,7 +51,7 @@
                             <label for="vat_number" class="col-md-4 col-form-label text-md-right">{{ __('Vat Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="vat_number" type="text" class="form-control @error('vat_number') is-invalid @enderror" name="vat_number" value="{{ old('vat_number') }}" autofocus >
+                                <input id="vat_number" type="text" class="form-control @error('vat_number') is-invalid @enderror" name="vat_number" value="{{ old('vat_number') }}" required>
 
                                 @error('vat_number')
                                 <span class="invalid-feedback" role="alert">
@@ -65,7 +65,7 @@
                             <label for="business_name" class="col-md-4 col-form-label text-md-right">{{ __('Business Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="business_name" type="text" class="form-control @error('business_name') is-invalid @enderror" name="business_name" value="{{ old('business_name') }}" required autocomplete="business_name" autofocus>
+                                <input id="business_name" type="text" class="form-control @error('business_name') is-invalid @enderror" name="business_name" value="{{ old('business_name') }}" required>
 
                                 @error('business_name')
                                 <span class="invalid-feedback" role="alert">
@@ -79,7 +79,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required>
 
                                 @error('address')
                                 <span class="invalid-feedback" role="alert">
@@ -93,7 +93,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" autofocus autocomplete="description" >{{ old('description') }}</textarea>
+                                <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description">{{ old('description') }}</textarea>
 
                                 @error('description')
                                 <span class="invalid-feedback" role="alert">
@@ -107,7 +107,7 @@
                             <label for="opening_time" class="col-md-4 col-form-label text-md-right">{{ __('Opening time') }}</label>
 
                             <div class="col-md-6">
-                                <input id="opening_time" type="time" class="form-control @error('opening_time') is-invalid @enderror" name="opening_time" value="{{ old('opening_time') }}" autofocus required autocomplete="opening_time">
+                                <input id="opening_time" type="time" class="form-control @error('opening_time') is-invalid @enderror" name="opening_time" value="{{ old('opening_time') }}" required>
 
                                 @error('opening_time')
                                 <span class="invalid-feedback" role="alert">
@@ -121,7 +121,7 @@
                             <label for="closure_time" class="col-md-4 col-form-label text-md-right">{{ __('Closure time') }}</label>
 
                             <div class="col-md-6">
-                                <input id="closure_time" type="time" class="form-control @error('opening_time') is-invalid @enderror" name="closure_time" value="{{ old('closure_time') }}" autofocus required autocomplete="closure_time">
+                                <input id="closure_time" type="time" class="form-control @error('opening_time') is-invalid @enderror" name="closure_time" value="{{ old('closure_time') }}" required>
 
                                 @error('closure_time')
                                 <span class="invalid-feedback" role="alert">
@@ -135,7 +135,7 @@
                             <label for="delivery_price" class="col-md-4 col-form-label text-md-right">{{ __('Delivery price') }}</label>
 
                             <div class="col-md-6">
-                                <input id="delivery_price" step=".01" type="number" class="form-control @error('delivery_price') is-invalid @enderror" name="delivery_price" value="{{ old('delivery_price') }}" autofocus required autocomplete="delivery_price" >
+                                <input id="delivery_price" step=".01" type="number" class="form-control @error('delivery_price') is-invalid @enderror" name="delivery_price" value="{{ old('delivery_price') }}" required >
                             </div>
                         </div>
 
@@ -143,7 +143,7 @@
                             <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
 
                             <div class="col-md-6">
-                                <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}" autofocus required autocomplete="image">
+                                <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}" required>
 
                                 @error('image')
                                 <span class="invalid-feedback" role="alert">
@@ -165,7 +165,7 @@
 
                         <div class="mb-4 row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" id="button">
                                     {{ __('Register') }}
                                 </button>
                             </div>
