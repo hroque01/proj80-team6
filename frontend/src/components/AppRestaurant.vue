@@ -46,7 +46,7 @@ export default {
         let filteredRestaurants = this.restaurants;
         
         // condizione: se utente ha selezionato almeno una tipologia, mi restituisce con il filter solo ristoranti    
-        //  che corrispondono ai criteri di selezione:
+        //  che corrispondono ai criteri di selezione: ALMENO una tipologia
         if (this.selectedTypologies.length > 0) {
             filteredRestaurants = filteredRestaurants.filter(restaurant => {
             return restaurant.typologies.some(typology => {
