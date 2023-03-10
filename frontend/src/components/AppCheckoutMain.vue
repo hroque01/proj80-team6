@@ -4,17 +4,62 @@ export default {
     data() {
     return {
       opzioni: [false, false],
+      cardNumber: '',
+      scadenzaCarta: '',
+      cvv: null,
+      cap: null,
     };
   },
   methods: {
-    deselezionaAltre(index) {
-      for (let i = 0; i < this.opzioni.length; i++) {
-        if (i !== index) {
-          this.opzioni[i] = false;
+    selezione(index) {
+        for (let i = 0; i < this.opzioni.length; i++) {
+            if (i !== index) {
+                this.opzioni[i] = false;
+            } else if (this.opzioni[index] === true) {
+                this.opzioni[index] = false;
+            }
         }
-      }
     },
-  },
+    validateCvv(event) {
+      const input = event.target.value;
+      // rimuovi eventuali caratteri non numerici
+      const validatedInput = input.replace(/\D/g, "");
+      // limita la lunghezza massima a 3 cifre
+      this.cvv = validatedInput.slice(0, 3);
+    },
+    validateCap(event) {
+      const input = event.target.value;
+      // rimuovi eventuali caratteri non numerici
+      const validatedInput = input.replace(/\D/g, "");
+      // limita la lunghezza massima a 3 cifre
+      this.cap = validatedInput.slice(0, 5);
+    },
+    validateScadenza() {
+        this.scadenzaCarta = this.scadenzaCarta.replace(/[^0-9]/g, ''); // rimuovi tutti i caratteri non numerici
+        const month = this.scadenzaCarta.slice(0, 2);
+        if (month > 12) {
+            this.scadenzaCarta = '12 / ' + this.scadenzaCarta.slice(2); // se il mese è maggiore di 12, imposta il valore massimo (12)
+        } else if (this.scadenzaCarta.length > 2) {
+            this.scadenzaCarta = month + ' / ' + this.scadenzaCarta.slice(2); // altrimenti, formatta il valore della data come MM / AA
+        }
+    },
+    formatCartNumber(cardNumber) {
+      // Rimuovi eventuali spazi dal numero della carta di credito
+      const cardNumberWithoutSpaces = cardNumber.replace(/\s/g, '');
+      // Dividi il numero della carta di credito in gruppi di 4 cifre
+      const cardNumberGroups = cardNumberWithoutSpaces.match(/.{1,4}/g);
+      // Unisci i gruppi di 4 cifre con gli spazi
+      return cardNumberGroups ? cardNumberGroups.join(' ') : '';
+    },
+    onCardNumberInput(event) {
+      // Ottieni il valore dell'input
+      let cardNumber = event.target.value;
+      // Formatta il numero della carta di credito
+      cardNumber = this.formatCartNumber(cardNumber);
+      // Aggiorna il valore dell'input
+      this.cardNumber = cardNumber;
+    }
+  }
 }
 
 </script>
@@ -38,30 +83,58 @@ export default {
                 <div class="col-8">
                    <div class="card px-3">
                         <div class="card-body d-flex justify-content-between align-items-center px-0">
-                            <div class="form-check d-flex align-items-center">
-                                <input class="form-check-input" type="checkbox" value="" v-model="opzioni[0]" @change="deselezionaAltre(0)">
-                                <label class="form-check-label m-2">
-                                  <b>Paga con carta di debito o credito</b> <br>
-                                    <span>Inserisci i dettagli della carta</span> 
-                                </label>
-                              </div>
-                              <div class="cards">
+                            <label class="col-10 form-check-label pointer" @click="selezione(0)">
+                                <div class="form-check d-flex align-items-center">
+                                  <input class="form-check-input" type="checkbox" value="" v-model="this.opzioni[0]">
+                                    <span class="m-2">
+                                        <b>Paga con carta di debito o credito</b> <br>
+                                        <span>Inserisci i dettagli della carta</span>
+                                    </span>
+                                </div>
+                            </label>
+                            <div class="cards">
 
-                              </div>
+                            </div>
+                            
                         </div>
+                        <div v-if="opzioni[0]" class="mb-3">
+                            <form>
+                                <div class="form-group">
+                                    <label for="numeroCarta">Numero Carta</label>
+                                    <input type="text" class="form-control" id="card-number" v-model="cardNumber" @input="onCardNumberInput" placeholder="Inserisci il numero della tua carta" maxlength="19"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="scadenzaCarta">Scadenza</label>
+                                    <input type="text" class="form-control" :class="{'is-invalid': isExpired}" id="scadenzaCarta" v-model="scadenzaCarta" @input="validateScadenza" placeholder="MM / AA" maxlength="7">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" class="form-control" id="id" placeholder="CVV" v-model="cvv" @input="validateCvv" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="capCarta">CAP di Fatturazione</label>
+                                    <input type="text" class="form-control" id="capCarta" placeholder="Inserisci il tuo CAP" v-model="cap" @input="validateCap" />
+                                </div>
+                            </form>
+                        </div>
+
                         <hr class="border-top border-dark">
-                        <div class="card-body d-flex justify-content-between align-items-center px-0">
-                            <div class="form-check d-flex align-items-center">
-                                <input class="form-check-input" type="checkbox" value="" v-model="opzioni[1]" @change="deselezionaAltre(1)">
-                                <label class="form-check-label m-2">
-                                  <b>Contanti</b> <br>
-                                    <span>Se puoi, prepara l'importo preciso. I Rider non possono accettare banconote sopra i €50.</span> 
-                                </label>
-                              </div>
-                              <div class="cash">
 
-                              </div>
+                        <div class="card-body d-flex justify-content-between align-items-center px-0">
+                            <label class="col-10 form-check-label pointer" @click="selezione(1)">
+                                <div class="form-check d-flex align-items-center">
+                                  <input class="form-check-input" type="checkbox" value="" v-model="this.opzioni[1]">
+                                    <span class="m-2">
+                                        <b>Contanti</b> <br>
+                                        <span>Se puoi, prepara l'importo preciso. I Rider non possono accettare banconote sopra i €50.</span>
+                                    </span>
+                                </div>
+                            </label>
+                            <div class="cash">
+
+                            </div>
                         </div>
+
                    </div>
                     <h5 class="col mt-5 mb-2">
                       <b>Dettagli consegna</b> 
@@ -133,6 +206,14 @@ main {
     background-color: black;
 }
 
+.expired {
+    color: red;
+  }
+
+.is-invalid {
+    border-color: #dc3545;
+}
+
 .cash {
     width: 30px;
     height: 30px;
@@ -147,6 +228,10 @@ main {
 
 .payButton:hover {
     background-color: rgb(0, 194, 179);
+}
+
+.pointer:hover {
+    cursor: pointer;
 }
 
 </style>
