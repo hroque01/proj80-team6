@@ -18,9 +18,6 @@ use App\Http\Controllers\MainController;
 // Route home
 Route::get('/', [MainController::class, 'home'])->name('home');
 
-// Route restaurant
-Route::get('/restaurant', [MainController::class, 'restaurant'])->name('restaurant');
-
 // Route create (per form):
 Route :: get('/dish/create', [MainController :: class, 'dishCreate']) 
 -> name('dishCreate');
@@ -51,6 +48,9 @@ Route::middleware('auth')->group(function () {
     // Route update (per ricevere dati da form):
     Route :: post('/dish/update/{dish}', [MainController :: class, 'dishUpdate']) 
     -> name('dishUpdate');
+    
+    // Route restaurant
+    Route::get('/restaurant', [MainController::class, 'restaurant'])->name('restaurant');
     
 });
 
