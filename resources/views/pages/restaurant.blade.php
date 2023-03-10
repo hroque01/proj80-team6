@@ -4,15 +4,15 @@
 
   <div class="container pt-5">
     <h1>
-      Your restaurant: {{$restaurant->business_name }}
+      Il tuo ristorante: {{$restaurant->business_name }}
     </h1>
 
     <h2>
-        <a href="{{ route('dishCreate') }}">Create new dish</a>
+        <a href="{{ route('dishCreate') }}">Crea un nuovo piatto</a>
     </h2>
 
     <h3>
-        Your dishes: 
+        I tuoi piatti: 
     </h3>
     <div class="row">
       @foreach($dishes as $dish)
