@@ -7,7 +7,7 @@ export default {
         {
           icon: "fa-solid fa-utensils",
           text: "Collabora con noi",
-          url: "#",
+          url: "http://127.0.0.1:8000/register",
         },
         {
           icon: "fa-solid fa-cart-shopping",
@@ -53,8 +53,8 @@ export default {
   <div class="container-fluid">
     <div class="logo">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <a class="navbar-brand" href="#">
-          <img src="/public/img/logo.png" alt="">
+        <a class="navbar-brand" href="/">
+          <img src="/public/img/logo.png" alt="logo deliveboo">
           <span>Deliveboo</span>
         </a>
 
@@ -87,9 +87,9 @@ export default {
 
                   <!-- LOGOUT DA TOGLIERE OPURE NO CIT ROMINA -->
                   <!-- <a class="m-4" href="#">
-                                                                      <i class="fa-solid fa-right-from-bracket mx-2"></i>
-                                                                      <span>LOGOUT</span>
-                                                  </a> -->
+                                                                          <i class="fa-solid fa-right-from-bracket mx-2"></i>
+                                                                          <span>LOGOUT</span>
+                                                      </a> -->
                   <!--  -->
 
                 </ul>
@@ -115,7 +115,7 @@ export default {
   //   color: $btn_red;
   // }
 
-  img{
+  img {
     width: 70px;
     height: 70px;
     object-fit: contain;
