@@ -1,23 +1,14 @@
 <script>
 
+import { store } from '../store';
+
 export default {
     name: 'AppTrack',
     data() {
         return {
             img: "img/map-home.webp",
             // bottoni App Store e Google Play:
-            buttons: [
-                {
-                    icon: "fa-brands fa-apple",
-                    textSmaller: "Donwload on the ",
-                    textBigger: "App Store"
-                },
-                {
-                    icon: "fa-brands fa-google-play",
-                    textSmaller: "GET IT ON ",
-                    textBigger: "Google Play"
-                },
-            ],
+            store,
             // array di immagini per slider
             restaurants:
                 [
@@ -56,12 +47,13 @@ export default {
             <div class="txt">
                 <h1>Traccia gli ordini da casa tua</h1>
                 <p>
-                    Ricevi il tuo cibo preferito in un lampo. Vedrai quando il tuo rider ha ritirato il tuo ordine e potrai seguirlo lungo il percorso. Riceverai una notifica anche quando sono nelle vicinanze.
+                    Ricevi il tuo cibo preferito in un lampo. Vedrai quando il tuo rider ha ritirato il tuo ordine e potrai
+                    seguirlo lungo il percorso. Riceverai una notifica anche quando sono nelle vicinanze.
                 </p>
 
                 <!-- bottoni -->
                 <div class="my_buttons">
-                    <div class="my_button" v-for="(button, index) in buttons" :key="index">
+                    <div class="my_button" v-for="(button, index) in store.buttons" :key="index">
                         <div class="ms_icon">
                             <i :class="button.icon"></i>
                         </div>

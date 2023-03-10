@@ -1,24 +1,24 @@
-@extends('layouts.main-layout')
+@extends('layouts.app')
 
 @section('content')
 
     <div class="container pt-5">
         <h1>
-            Update dish: {{$dish->name}}
+            Modifica piatto: {{$dish->name}}
         </h1>
 
-        <form method="POST" action="{{ route('dishUpdate', $dish) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('admin.dishUpdate', $dish) }}" enctype="multipart/form-data">
         @csrf
 
             <div class="mb-5 row">
-                <label for="name" class="col-md-2 col-form-label text-md-right">Name</label>
+                <label for="name" class="col-md-2 col-form-label text-md-right">Nome</label>
                 <div class="col-md-5">
                     <input type="text" name="name" class="form-control" value="{{$dish -> name}}">
                 </div>
             </div>
 
             <div class="mb-5 row">
-                <label for="description" class="col-md-2 col-form-label text-md-right">Description</label>
+                <label for="description" class="col-md-2 col-form-label text-md-right">Descrizione</label>
                 <div class="col-md-5">
                     <input type="text" name="description" class="form-control" value="{{$dish -> description}}">
                 </div>
