@@ -15,7 +15,11 @@ use App\Http\Controllers\MainController;
 |
 */
 
+// Route home
 Route::get('/', [MainController::class, 'home'])->name('home');
+
+// Route restaurant
+Route::get('/restaurant', [MainController::class, 'restaurant'])->name('restaurant');
 
 // Route create (per form):
 Route :: get('/dish/create', [MainController :: class, 'dishCreate']) 
@@ -25,8 +29,6 @@ Route :: get('/dish/create', [MainController :: class, 'dishCreate'])
 Route :: post('/dish/store', [MainController :: class, 'dishStore']) 
 -> name('dishStore');
 
-Route::get('/restaurant', [MainController::class, 'restaurant'])->name('restaurant');
-
 // Route delete:
 Route :: get('/dish/delete/{dish}', [MainController :: class, 'dishDelete'])
     -> name('dish.delete');
@@ -34,20 +36,17 @@ Route :: get('/dish/delete/{dish}', [MainController :: class, 'dishDelete'])
 // Route edit (per form):
 Route :: get('/dish/edit/{dish}', [MainController :: class, 'dishEdit']) 
     -> name('dishEdit');
-// Route update (per ricevere dati da form):
-Route :: post('/dish/edit/{dish}', [MainController :: class, 'dishUpdate']) 
-    -> name('dishUpdate');
 
-// Route::middleware(['auth', 'verified'])
-//    ->name('admin.')
-//    ->prefix('admin')
-//    ->group(function () {
-// });
-
+//Route private    
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Route update (per ricevere dati da form):
+    Route :: post('/dish/update/{dish}', [MainController :: class, 'dishUpdate']) 
+    -> name('dishUpdate');
+    
 });
 
 require __DIR__.'/auth.php';
