@@ -97,7 +97,7 @@ class MainController extends Controller
             'ingredients' => 'required',
             'price' => 'required|decimal:1,2',
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            //'visible' => 'required|boolean',
+            'visible' => 'required|boolean',
         ]);
 
         $img_path  = Storage::put('uploads', $data['image']);
