@@ -68,7 +68,7 @@ class MainController extends Controller
         $dish -> restaurant() -> associate($restaurant);
         $dish -> save();
 
-        return redirect() -> route('pages.restaurant', compact('restaurant'));
+        return redirect() -> route('restaurant', compact('restaurant'));
     }
 
     // Metodo delete dish:
