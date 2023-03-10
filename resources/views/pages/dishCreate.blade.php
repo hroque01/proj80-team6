@@ -16,7 +16,7 @@
                 <div class="mb-5 row">
                     <label for="name" class="col-md-2 col-form-label text-md-right">Name</label>
                     <div class="col-md-5">
-                        <input type="text" name="name" class="form-control">
+                        <input type="text" name="name" class="form-control" required>
                     </div>
                 </div>
 
@@ -30,21 +30,21 @@
                 <div class="mb-5 row">
                     <label for="ingredients" class="col-md-2 col-form-label text-md-right">Ingredients</label>
                     <div class="col-md-5">
-                        <textarea name="ingredients" class="form-control"></textarea>
+                        <textarea name="ingredients" class="form-control" required></textarea>
                     </div>
                 </div>
                 
                 <div class="mb-5 row">
                     <label for="price" class="col-md-2 col-form-label text-md-right">Price</label>
                     <div class="col-md-5">
-                        <input type="number" step=".01" name="price" class="form-control">
+                        <input type="number" step=".01" name="price" class="form-control" required>
                     </div>
                 </div>
 
                 <div class="mb-5 row">
                     <label for="image" class="col-md-2 col-form-label text-md-right">Photo</label>
                     <div class="col-md-5">
-                        <input type="file" name="image" class="form-control">
+                        <input type="file" name="image" class="form-control" required>
                     </div>
                 </div>
 
@@ -56,6 +56,6 @@
             </form>
 
         </div>
-    </div>
+    </div>   
 
 @endsection
