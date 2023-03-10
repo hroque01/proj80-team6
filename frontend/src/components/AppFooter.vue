@@ -1,20 +1,12 @@
 <script>
+
+import { store } from '../store';
+
 export default {
     name: 'AppFooter',
     data() {
         return {
-            buttons: [
-                {
-                    icon: "fa-brands fa-apple",
-                    textSmaller: "Donwload on the ",
-                    textBigger: "App Store"
-                },
-                {
-                    icon: "fa-brands fa-google-play",
-                    textSmaller: "GET IT ON ",
-                    textBigger: "Google Play"
-                },
-            ]
+            store,
         }
     }
 }
@@ -103,7 +95,7 @@ export default {
                 </h3>
                 <!-- buttons -->
                 <div class="my_buttons">
-                    <div class="my_button" v-for="(button, index) in buttons" :key="index">
+                    <div class="my_button" v-for="(button, index) in store.buttons" :key="index">
                         <div class="ms_icon">
                             <i :class="button.icon"></i>
                         </div>
