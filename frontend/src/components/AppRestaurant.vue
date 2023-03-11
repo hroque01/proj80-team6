@@ -1,4 +1,5 @@
 <script>
+
 import axios from 'axios';
 
 const API_URL = 'http://localhost:8000/api/v1/';
@@ -7,54 +8,54 @@ export default {
     name: 'AppRestaurant',
     data() {
         return {
-        typologies: [],
-        restaurants: [],
-        // proprietà con array che conterrà le tipologie selezionate dall'utente:
-        selectedTypologies: []
+            typologies: [],
+            restaurants: [],
+            // proprietà con array che conterrà le tipologie selezionate dall'utente:
+            selectedTypologies: []
         };
     },
 
     // METODI:
     methods: {
         updateTypologies() {
-        axios.get(API_URL + 'restaurant/filtered', {
-            params: {
-            typologies: this.selectedTypologies
-            }
-        })
-        .then(res => {
-            const data = res.data;
-            const success = data.success;
-            const response = data.response;
+            axios.get(API_URL + 'restaurant/filtered', {
+                params: {
+                    typologies: this.selectedTypologies
+                }
+            })
+                .then(res => {
+                    const data = res.data;
+                    const success = data.success;
+                    const response = data.response;
 
-            const typologies = response.typologies;
-            const restaurants = response.restaurants;
+                    const typologies = response.typologies;
+                    const restaurants = response.restaurants;
 
-            if (success) {
-            this.typologies = typologies;
-            this.restaurants = restaurants;
-            }
-        })
-        .catch(err => console.error(err));
+                    if (success) {
+                        this.typologies = typologies;
+                        this.restaurants = restaurants;
+                    }
+                })
+                .catch(err => console.error(err));
         }
     },
     computed: {
         // metodo che filtra i ristoranti in base alle tipologie selezionate dall'utente.
         filteredRestaurants() {
-        
-        // variabile con lista completa di tutti i ristoranti:
-        let filteredRestaurants = this.restaurants;
-        
-        // condizione: se utente ha selezionato almeno una tipologia, mi restituisce con il filter solo ristoranti    
-        //  che corrispondono ai criteri di selezione: ALMENO una tipologia
-        if (this.selectedTypologies.length > 0) {
-            filteredRestaurants = filteredRestaurants.filter(restaurant => {
-            return restaurant.typologies.some(typology => {
-                return this.selectedTypologies.includes(typology.id);
-            });
-            });
-        }
-        return filteredRestaurants;
+
+            // variabile con lista completa di tutti i ristoranti:
+            let filteredRestaurants = this.restaurants;
+
+            // condizione: se utente ha selezionato almeno una tipologia, mi restituisce con il filter solo ristoranti    
+            //  che corrispondono ai criteri di selezione: ALMENO una tipologia
+            if (this.selectedTypologies.length > 0) {
+                filteredRestaurants = filteredRestaurants.filter(restaurant => {
+                    return restaurant.typologies.some(typology => {
+                        return this.selectedTypologies.includes(typology.id);
+                    });
+                });
+            }
+            return filteredRestaurants;
         }
     },
     mounted() {
@@ -64,11 +65,11 @@ export default {
 </script>
 
 <template>
-    
     <!-- div container -->
+
     <div class="my_container">
         <div class="restaurantFilter">
-            
+
             <!-- Navbar laterale a sinistra - elenco categorie -->
             <nav>
 
@@ -76,27 +77,29 @@ export default {
                 <ul>
                     <li>
                         <div v-for="typology in typologies" :key="typology.id">
-                            <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies" :value="typology.id">
+                            <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies"
+                                :value="typology.id">
                             <label :for="'typology_' + typology.id">{{ typology.name }}</label>
                         </div>
                     </li>
                 </ul>
             </nav>
 
-    
+
             <div class="my_container restaurants_box">
-    
+
                 <!-- Restaurant List -->
                 <div class="restaurantsContainer">
-    
+
                     <div class="mainTitle-container">
                         <span class="mainTitle">Lista dei ristoranti</span> <br>
                         <span class="mainTitle-descr">Dai un'occhiata alla nostra selezione</span>
                     </div>
-    
+
                     <div class="restaurantWrapper">
-    
-                        <div class="restaurant wrapperProperties" v-for="restaurant in filteredRestaurants" :key="restaurant.id">
+
+                        <div class="restaurant wrapperProperties" v-for="restaurant in filteredRestaurants"
+                            :key="restaurant.id">
 
                             <div class="deliveryPrice"> {{ restaurant.delivery_price }} </div>
                             <div class="restaurant-img">
@@ -106,20 +109,22 @@ export default {
                                 <div class="restaurant-info-restaurantName">{{ restaurant.business_name }}</div>
                                 <div class="restaurant-info-address">{{ restaurant.address }}</div>
                             </div>
-                            
+
+                            <!-- <router-link :to="{ name: 'dish-detail', params: { id: restaurant.id } }">Vai qui</router-link> -->
+
+
                         </div>
-    
+
                     </div>
                 </div>
                 <!-- chiusura restaurant list -->
-    
+
             </div>
             <!-- chiusura restaurant box -->
-    
+
         </div>
     </div>
     <!-- chiusura div container -->
-    
 </template>
 
 <style lang="scss" scoped>
@@ -148,8 +153,8 @@ nav {
     }
 
     input[type=checkbox] {
-        width:20px; 
-        height:20px;
+        width: 20px;
+        height: 20px;
         margin-right: 10px;
         border: 1px solid $btn_red;
     }
@@ -158,6 +163,7 @@ nav {
 .restaurants_box {
     height: 100vh;
     overflow-y: auto;
+
     //general
     //Boxes title
     .mainTitle-container {
@@ -247,7 +253,7 @@ nav {
     border-radius: 5px;
     overflow: hidden;
     position: relative;
-    
+
 
 
     .restaurant-img {
