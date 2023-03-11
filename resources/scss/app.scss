@@ -50,6 +50,13 @@ ul li{
             margin: 0 5px 5px 0;
         }
     }
+
+    a{
+        color: $btn_red;
+        &:hover{
+            color: $text_black;
+        }
+    }
 }
 
 .btn-reg{
