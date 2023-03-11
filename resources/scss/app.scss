@@ -1,13 +1,99 @@
 @import '~bootstrap/scss/bootstrap';
+@import './partials/mixins' ;
+@import './partials/variables';
 
-
-
-// Regole register.blade
-
-.card-reg{
-    border: 1px solid #000;
+// REGOLE GENERALI:
+body{
+    color: $text_black;
 }
-.header-reg{
+
+#app{
+    height: 100vh;
+}
+
+a{
+    text-decoration: none;
+}
+
+ul li{
+    list-style: none;
+}
+
+// REGOLE REGISTRAZIONE:
+.card{
+    border: 1px solid #eaeaea;
+    box-shadow: 0px 20px 10px 0px #b7bec2;
+
+    .title-reg{
+        margin: 30px 0;
+        text-align: center;
+        line-height: 10px;
+
+        span{
+            color: $btn_red;
+        }
+    }
+
+    h5{
+        font-weight: bold;
+    }
+
+    form {
+    
+        h5{
+            margin: 30px 0;
+        }
+    
+        .typologies input[type='checkbox'] {
+            width: 20px;
+            height: 20px;
+            margin: 0 5px 5px 0;
+        }
+    }
+}
+
+.btn-reg{
+    @include button;
+    margin-top: 20px;
+}
+
+// REGOLE LOGIN:
+.wrapper-log{
+    background-image: url(../img/background.login.png);
+    height: calc(100vh - 55px);
+    background-repeat: no-repeat;
+    display: flex;
+    
+    .container{
+        display: flex;
+        justify-content: end;
+        align-items: center;
+
+        .card{
+            width: 600px;
+        }
+    }
+
+    a{
+        color: $text_black;
+        &:hover{
+            color: $btn_red;
+        }
+    }
+}
+
+.btn-log{
+    @include button;
+}
+
+.new-account{
+    span{
+        color: $btn_red;
+    }
+}
+
+// REGOLE COMUNI LOGIN / REGISTRAZIONE:
+.header-form{
     display: flex;
     justify-content: center;
     background-color: #000;
@@ -18,39 +104,18 @@
         object-fit: contain;
         border-radius: 50%;
         padding: 2px;
-        border: 2px solid #ee5743;
+        border: 2px solid $btn_red;
         text-align: center;
     }
 }
 
-form {
-    .star::after {
-        content: "*";
-        color: #ee5743;
-        margin-left: 3px;
-    }
-
-    h5{
-        font-weight: bold;
-        margin: 30px 0;
-    }
-
-    .typologies input[type='checkbox'] {
-        width: 20px;
-        height: 20px;
-        margin: 0 5px 5px 0;
-    }
-
-    .btn{
-        background-color: #ee5743;
-        margin-top: 20px;
-        color: #fff;
-
-        &:hover{
-            border: 2px solid #ee5743;
-        }
-    }
-    
+.star::after {
+    content: "*";
+    color: $btn_red;
+    margin-left: 3px;
 }
+
+
+
 
 

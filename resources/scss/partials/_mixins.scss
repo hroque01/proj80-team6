@@ -1,0 +1,11 @@
+// REGOLE BOTTONI:
+@use './_variables' as*;
+
+@mixin button{
+    background-color: #ee5743;
+    color: #fff;
+
+    &:hover{
+        border: 2px solid #ee5743;
+    }
+}
