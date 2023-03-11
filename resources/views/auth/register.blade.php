@@ -1,15 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.appRegister')
 
 @section('content')
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-reg">
-                <div class="card-header header-reg">
+                <div class="card-header header-form">
                     <img src="{{Vite::asset('resources/img/logo.png')}}" alt="logo" class="logo-form">
                 </div>
 
                 <div class="card-body">
+
+                    <h5 class="title-reg">Inizia a vendere su <span>Deliveboo</span></h5>
+                    <h6 class="title-reg">Ti diamo il benvenuto! Iniziamo subito con la registrazione, ci vorranno pochi secondi. </h6>
+
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
@@ -19,7 +23,7 @@
                             <label for="email" class="star col-md-4 col-form-label text-md-right">{{ __('Il tuo indirizzo e-mail') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" placeholder="email@esempio.com" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" placeholder="email@esempio.com" class="form-control @error('email') non valida @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -195,7 +199,7 @@
                           
                         <div class="mb-4 row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn" id="button">
+                                <button type="submit" class="btn btn-reg" id="button">
                                     {{ __('Registra') }}
                                 </button>
                             </div>
