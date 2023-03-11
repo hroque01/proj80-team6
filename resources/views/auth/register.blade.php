@@ -194,7 +194,7 @@
                                 </div>
                               @endforeach
                             </div>
-                          </div>
+                        </div>
                           
                           
                         <div class="mb-4 row mb-0">
@@ -202,6 +202,13 @@
                                 <button type="submit" class="btn btn-reg" id="button">
                                     {{ __('Registra') }}
                                 </button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col link-log">
+                                <span>Disponi gi&aacute; di un account?</span>
+                                <a href="/login">Accedi</a>
                             </div>
                         </div>
                     </form>

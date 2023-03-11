@@ -1,6 +1,6 @@
-@import '~bootstrap/scss/bootstrap';
-@import './partials/mixins' ;
-@import './partials/variables';
+@import '~bootstrap/scss/bootstrap'; //  bootstrap
+@import './partials/mixins'; // mixins
+@import './partials/variables'; // variables
 
 // REGOLE GENERALI:
 body{
@@ -50,6 +50,13 @@ ul li{
             margin: 0 5px 5px 0;
         }
     }
+
+    a{
+        color: $btn_red;
+        &:hover{
+            color: $text_black;
+        }
+    }
 }
 
 .btn-reg{
@@ -92,7 +99,7 @@ ul li{
     }
 }
 
-// REGOLE COMUNI LOGIN / REGISTRAZIONE:
+// REGOLE COMUNI LOGIN / REGISTRAZIONE / DASHBOARD:
 .header-form{
     display: flex;
     justify-content: center;
@@ -114,6 +121,33 @@ ul li{
     color: $btn_red;
     margin-left: 3px;
 }
+
+// REGOLE DASHBOARD:
+.dashboard-card{
+    .dashboard-title span{
+        color: $btn_red;
+    }  
+
+    ul{
+        margin: 20px 0;
+
+        span{
+            color: $btn_red;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+    }
+
+    .dashboard-link{
+        display: flex;
+        justify-content: center;
+        a{
+          @include button;  
+        }
+        
+    }
+}
+
 
 
 

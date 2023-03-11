@@ -33,12 +33,17 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/restaurant') }}">{{ __('Il tuo ristorante') }}</a>
-                        </li>
                         <li>
-                            <a class="nav-link" href="{{url('http://localhost:5174/') }}">{{ __('Torna al sito') }}</a>
+                            <a class="nav-link" href="{{url('http://localhost:5174/') }}">{{ __('Home') }}</a>
                         </li>
+
+                        @auth
+                             <li class="nav-item">
+                                <a class="nav-link" href="{{url('/restaurant') }}">{{ __('Il tuo ristorante') }}</a>
+                            </li>
+                        @endauth
+                       
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -48,11 +53,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                        @endif
+                        {{-- @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif --}}
                         @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -60,7 +65,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profile')}}</a>
+                                <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profilo')}}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
