@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Typology;
+use App\Models\Dish;
 use App\Models\Restaurant;
 
 class ApiController extends Controller
@@ -56,6 +57,17 @@ class ApiController extends Controller
             'response' => [
                 'typologies' => $typologies,
                 'restaurants' => $restaurants,
+            ]
+        ]);
+    }
+
+    public function getDishes() {
+        $dishes = Dish::all();
+
+        return response()->json([
+            'success' => true,
+            'response' => [
+                'dishes' => $dishes,
             ]
         ]);
     }

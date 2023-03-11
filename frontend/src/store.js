@@ -12,5 +12,8 @@ export const store = reactive({
             textSmaller: "GET IT ON ",
             textBigger: "Google Play"
         },
-    ]
+    ],
+    quantity: [],
+    storedArray: [],
+    length: localStorage.length
 });
