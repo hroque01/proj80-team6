@@ -111,14 +111,7 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
-// .navbar{
-//   border: 1px solid white;
-// }
 .navbar-brand {
-  // h3 {
-  //   color: $btn_red;
-  // }
-
   img {
     width: 70px;
     height: 70px;
