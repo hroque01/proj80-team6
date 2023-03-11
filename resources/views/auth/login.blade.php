@@ -10,15 +10,19 @@
             <div class="col-md-8">
                 
                 <div class="card">
+
+                    {{-- img background --}}
                     <div class="card-header header-form">
                         <img src="{{Vite::asset('resources/img/logo.png')}}" alt="logo" class="logo-form">
                     </div>
 
                     <div class="card-body">
 
+                        {{-- form --}}
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 
+                            {{-- email --}}
                             <div class="mb-4 row">
                                 <label for="email" class="star col-md-4 col-form-label text-md-right">{{ __('Il tuo indirizzo e-mail') }}</label>
 
@@ -33,6 +37,7 @@
                                 </div>
                             </div>
 
+                            {{-- password --}}
                             <div class="mb-4 row">
                                 <label for="password" class="star col-md-4 col-form-label text-md-right">{{ __('La tua password') }}</label>
 
@@ -47,6 +52,7 @@
                                 </div>
                             </div>
 
+                            {{-- ricorda password --}}
                             <div class="mb-4 row">
                                 <div class="col-md-6 offset-md-4">
                                     <div class="form-check">
@@ -59,6 +65,7 @@
                                 </div>
                             </div>
 
+                            {{-- login --}}
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-log">
@@ -78,9 +85,10 @@
                                     <div>Sei nuovo su <span>Deliveboo</span>?</div>
                                     <a href="/register">Crea il tuo account</a>
                                 </div>
-                                
                             </div>
                         </form>
+                        {{-- chiusura form --}}
+
                     </div>
                 </div>
             </div>
