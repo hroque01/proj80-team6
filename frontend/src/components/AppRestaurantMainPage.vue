@@ -94,10 +94,13 @@ export default {
     addDish(id) {
 
       store.quantity.push(this.dishes[id]);
-      const key = 'storedQuantity_' + store.quantity.length;
+      const key = 'storedQuantity_' + localStorage.length;
       localStorage.setItem(key, JSON.stringify(this.dishes[id]));
 
       store.length = localStorage.length;
+
+      const value = localStorage.getItem(key);
+      store.item = JSON.parse(value);
     },
   },
   mounted() {
@@ -153,7 +156,7 @@ export default {
                 <div class="DishIngredients">
                   {{ dish.ingredients }}
                 </div>
-                <button class="addToCart_btn" @click="addDish(index)">Aggiungo al carrello</button>
+                <button class="addToCart_btn" @click="addDish(index)">Aggiungi al carrello</button>
               </div>
             </div>
           </div>
