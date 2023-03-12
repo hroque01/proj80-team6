@@ -83,7 +83,7 @@
                             <div class="new-account mb-4 row mt-5">
                                 <div class="col text-center">
                                     <div>Sei nuovo su <span>Deliveboo</span>?</div>
-                                    <a href="/register">Crea il tuo account</a>
+                                    <a href="{{ route('register') }}">Crea il tuo account</a>
                                 </div>
                             </div>
                         </form>
