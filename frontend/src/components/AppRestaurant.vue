@@ -74,22 +74,10 @@ export default {
         <!-- div container -->
         <div class="my_container">
 
-            <!-- Carosello  -->
-            <div class="typologies">
-
-                <!-- filtro su immagini al click -->
-                <div class="typology" v-for="(typology, index) in typologies" :key="index">
-                    <img :src="typology.image" :alt="typology.name">
-                    <a href="" @click.prevent="filterRestaurants(typology.id)">Scopri i ristoranti</a>
-                </div>
-            </div>
-            
-
-
             <div class="restaurantFilter">
+
                 <!-- Navbar laterale a sinistra - elenco categorie -->
                 <nav>
-
                     <!-- forse da cancellare le checkboxes e fare filtro con immagini -->
                     <h4>Categorie</h4>
                     <ul>
@@ -105,6 +93,15 @@ export default {
 
                 <!-- parte dx -->
                 <div class="my_container restaurants_box">
+
+                    <!-- Carosello  -->
+                    <div class="typologies">
+                        <!-- filtro su immagini al click -->
+                        <div class="typology" v-for="(typology, index) in typologies" :key="index">
+                            <img :src="typology.image" :alt="typology.name">
+                            <div class="typologyTag" @click.prevent="filterRestaurants(typology.id)">{{ typology.name }}</div>
+                        </div>
+                    </div>
 
                     <!-- Restaurant List -->
                     <div class="restaurantsContainer">
@@ -156,24 +153,30 @@ export default {
 
 section{
     margin: 100px 0;
+
     // carosello:
     .typologies{
         display: flex;
         flex-wrap: wrap;
-
+        
         .typology{
-            width: calc(100% / 5 - 20px);
+            width: 150px;
+            border: 1px solid #eaeaea;
+            border-radius: 10px;
+            box-shadow: 0px 5px 5px 0px #ececec;
+            // debug
             margin: 10px;
-            position: relative;
 
-            a{
+            img{
+                border-top-right-radius: 10px;
+                border-top-left-radius: 10px;
+            }
+            .typologyTag{
                 font-size: 15px;
-                color: #fff;
-                position: absolute;
-                bottom: 5px;
-                left: 5px;
-                background-color: $btn_red;
-                padding: 5px 10px;
+                color: $text_black;
+                text-align: center;
+                padding: 5px;
+                cursor: pointer;
             }
         }
     }
@@ -182,8 +185,6 @@ section{
         @include flex(flex);
     }
 }
-
-
 
 nav {
     height: 100vh;
@@ -197,7 +198,7 @@ nav {
     ul {
         li {
             padding: 15px;
-            line-height: 80px;
+            line-height: 50px;
         }
     }
 
@@ -205,7 +206,6 @@ nav {
         width: 20px;
         height: 20px;
         margin-right: 10px;
-        border: 1px solid $btn_red;
     }
 }
 

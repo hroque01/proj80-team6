@@ -189,7 +189,7 @@ export default {
                 <div class="col-4">
                     <div class="card px-3 mb-4 py-2">
                         <h5 class="card-body px-0 py-2">
-                            <b>Carrello</b>
+                            <strong>Carrello</strong>
                         </h5>
                         <button @click="emptyCart">Svuota carrello</button>
 
