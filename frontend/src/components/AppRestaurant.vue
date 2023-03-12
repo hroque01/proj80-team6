@@ -68,6 +68,13 @@ export default {
     <!-- div container -->
 
     <div class="my_container">
+
+        <div class="typologies">
+            <div class="typology" v-for="(typology, index) in typologies" :key="index">
+                <img :src="typology.image" :alt="typology.name">
+                <a href="">Scopri i ristoranti</a>
+            </div>
+        </div>
         <div class="restaurantFilter">
 
             <!-- Navbar laterale a sinistra - elenco categorie -->
@@ -87,15 +94,6 @@ export default {
 
             <!-- parte dx -->
             <div class="my_container restaurants_box">
-
-                <!-- da fare carosello carino. RAGHI MA SCUSATE PERCHE' MANCA IL MESSICANO E LA PIZZA? TUTTAPPO'?!?
-                PARLIAMONE  -->
-                <div class="tagBoxes">
-                    <div class="tagBox" v-for="(typology, index) in typologies" :key="index">
-                        <img :src="typology.image" alt="">
-                    </div>
-                </div>
-                
 
                 <!-- Restaurant List -->
                 <div class="restaurantsContainer">
@@ -141,6 +139,25 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
+// carosello:
+.typologies{
+    display: flex;
+    flex-wrap: wrap;
+
+        .typology{
+            width: calc(100% / 4);
+            position: relative;
+
+            a{
+                color: #fff;
+                position: absolute;
+                bottom: 5px;
+                left: 5px;
+                background-color: $btn_red;
+                padding: 5px 10px;
+            }
+        }
+    }
 .restaurantFilter {
     @include flex(flex);
 }
@@ -174,14 +191,6 @@ nav {
     height: 100vh;
     overflow-y: auto;
 
-    // regole carousel
-    .tagBoxes{
-        display: flex;
-        flex-direction: row;
-        img{
-            width: 200px;
-        }
-    }
     //general
     //Boxes title
     .mainTitle-container {
