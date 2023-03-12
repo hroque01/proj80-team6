@@ -208,7 +208,7 @@
                         <div class="row">
                             <div class="col link-log">
                                 <span>Disponi gi&aacute; di un account?</span>
-                                <a href="/login">Accedi</a>
+                                <a href="{{ route('login') }}">Accedi</a>
                             </div>
                         </div>
                     </form>
