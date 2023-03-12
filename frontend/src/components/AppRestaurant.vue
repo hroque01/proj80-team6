@@ -21,8 +21,7 @@ export default {
             axios.get(API_URL + 'restaurant/filtered', {
                 params: {
                     typologies: this.selectedTypologies
-                }
-            })
+                }})
                 .then(res => {
                     const data = res.data;
                     const success = data.success;
@@ -37,6 +36,10 @@ export default {
                     }
                 })
                 .catch(err => console.error(err));
+        },
+        // metodo per filtrare ristoranti cliccando su immagini: imposto prima la proprietà selectedTypologies su un array contenente solo l'ID della tipologia selezionata dall'utente e poi uso il filtro
+        filterRestaurants(typologyId) {
+            this.selectedTypologies = [typologyId];
         }
     },
     computed: {
@@ -65,73 +68,83 @@ export default {
 </script>
 
 <template>
-    <!-- div container -->
 
-    <div class="my_container">
-         <!-- Carosello  -->
-        <div class="typologies">
-            <div class="typology" v-for="(typology, index) in typologies" :key="index">
-                <img :src="typology.image" :alt="typology.name">
-                <a href="">Scopri i ristoranti</a>
-            </div>
-        </div>
-        <div class="restaurantFilter">
+    <section>
 
-            <!-- Navbar laterale a sinistra - elenco categorie -->
-            <nav>
+        <!-- div container -->
+        <div class="my_container">
 
-                <h4>Categorie</h4>
-                <ul>
-                    <li>
-                        <div v-for="typology in typologies" :key="typology.id">
-                            <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies"
-                                :value="typology.id">
-                            <label :for="'typology_' + typology.id">{{ typology.name }}</label>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
+            <!-- Carosello  -->
+            <div class="typologies">
 
-            <!-- parte dx -->
-            <div class="my_container restaurants_box">
-
-                <!-- Restaurant List -->
-                <div class="restaurantsContainer">
-
-                    <div class="mainTitle-container">
-                        <span class="mainTitle">Lista dei ristoranti</span> <br>
-                        <span class="mainTitle-descr">Dai un'occhiata alla nostra selezione</span>
-                    </div>
-
-                    <div class="restaurantWrapper">
-
-                        <div class="restaurant wrapperProperties" v-for="restaurant in filteredRestaurants"
-                            :key="restaurant.id">
-
-                            <div class="deliveryPrice"> {{ restaurant.delivery_price }} </div>
-                            <div class="restaurant-img">
-                                <img src="https://picsum.photos/400/300" alt="">
-                            </div>
-                            <div class="restaurant-info-wrapper">
-                                <div class="restaurant-info-restaurantName">{{ restaurant.business_name }}</div>
-                                <div class="restaurant-info-address">{{ restaurant.address }}</div>
-                            </div>
-
-                            <!-- <router-link :to="{ name: 'dish-detail', params: { id: restaurant.id } }">Vai qui</router-link> -->
-
-
-                        </div>
-
-                    </div>
+                <!-- filtro su immagini al click -->
+                <div class="typology" v-for="(typology, index) in typologies" :key="index">
+                    <img :src="typology.image" :alt="typology.name">
+                    <a href="" @click.prevent="filterRestaurants(typology.id)">Scopri i ristoranti</a>
                 </div>
-                <!-- chiusura restaurant list -->
+            </div>
+            
+
+
+            <div class="restaurantFilter">
+                <!-- Navbar laterale a sinistra - elenco categorie -->
+                <nav>
+
+                    <!-- forse da cancellare le checkboxes e fare filtro con immagini -->
+                    <h4>Categorie</h4>
+                    <ul>
+                        <li>
+                            <div v-for="typology in typologies" :key="typology.id">
+                                <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies"
+                                    :value="typology.id">
+                                <label :for="'typology_' + typology.id">{{ typology.name }}</label>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- parte dx -->
+                <div class="my_container restaurants_box">
+
+                    <!-- Restaurant List -->
+                    <div class="restaurantsContainer">
+
+                        <div class="mainTitle-container">
+                            <span class="mainTitle">Lista dei ristoranti</span> <br>
+                            <span class="mainTitle-descr">Dai un'occhiata alla nostra selezione</span>
+                        </div>
+
+                        <div class="restaurantWrapper">
+
+                            <div class="restaurant wrapperProperties" v-for="restaurant in filteredRestaurants"
+                                :key="restaurant.id">
+
+                                <div class="deliveryPrice"> {{ restaurant.delivery_price }} </div>
+                                <div class="restaurant-img">
+                                    <img src="https://picsum.photos/400/300" alt="">
+                                </div>
+                                <div class="restaurant-info-wrapper">
+                                    <div class="restaurant-info-restaurantName">{{ restaurant.business_name }}</div>
+                                    <div class="restaurant-info-address">{{ restaurant.address }}</div>
+                                </div>
+
+                                <!-- <router-link :to="{ name: 'dish-detail', params: { id: restaurant.id } }">Vai qui</router-link> -->
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- chiusura restaurant list -->
+
+                </div>
+                <!-- chiusura restaurant box -->
 
             </div>
-            <!-- chiusura restaurant box -->
-
         </div>
-    </div>
-    <!-- chiusura div container -->
+        <!-- chiusura div container -->
+    </section>
+   
 </template>
 
 <style lang="scss" scoped>
@@ -139,16 +152,20 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
-// carosello:
-.typologies{
-    display: flex;
-    flex-wrap: wrap;
+section{
+    margin: 100px 0;
+    // carosello:
+    .typologies{
+        display: flex;
+        flex-wrap: wrap;
 
         .typology{
-            width: calc(100% / 4);
+            width: calc(100% / 5 - 20px);
+            margin: 10px;
             position: relative;
 
             a{
+                font-size: 15px;
                 color: #fff;
                 position: absolute;
                 bottom: 5px;
@@ -158,9 +175,13 @@ export default {
             }
         }
     }
-.restaurantFilter {
-    @include flex(flex);
+
+    .restaurantFilter {
+        @include flex(flex);
+    }
 }
+
+
 
 nav {
     height: 100vh;
