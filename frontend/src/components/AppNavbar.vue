@@ -11,7 +11,7 @@ export default {
         {
           icon: "fa-solid fa-utensils",
           text: "Collabora con noi",
-          url: "http://127.0.0.1:8000/restaurant",
+          url: "http://localhost:8000/restaurant",
         },
         {
           icon: "fa-solid fa-cart-shopping",
@@ -91,9 +91,9 @@ export default {
 
                   <!-- LOGOUT DA TOGLIERE OPURE NO CIT ROMINA -->
                   <!-- <a class="m-4" href="#">
-                                                                                                                                                    <i class="fa-solid fa-right-from-bracket mx-2"></i>
-                                                                                                                                                    <span>LOGOUT</span>
-                                                                                                                                </a> -->
+                                                                                                                                                      <i class="fa-solid fa-right-from-bracket mx-2"></i>
+                                                                                                                                                      <span>LOGOUT</span>
+                                                                                                                                  </a> -->
                   <!--  -->
 
                 </ul>
