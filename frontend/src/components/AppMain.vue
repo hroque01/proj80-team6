@@ -19,7 +19,7 @@ export default {
   <main>
     <AppTrack />
     <AppBannerMain />
-    <AppCategory />
+    <!-- <AppCategory /> -->
   </main>
 </template>
 
