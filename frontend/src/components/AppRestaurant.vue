@@ -68,7 +68,7 @@ export default {
     <!-- div container -->
 
     <div class="my_container">
-
+         <!-- Carosello  -->
         <div class="typologies">
             <div class="typology" v-for="(typology, index) in typologies" :key="index">
                 <img :src="typology.image" :alt="typology.name">
