@@ -25,33 +25,27 @@ class ApiController extends Controller
 
     //Chiamata della rotta '/api/v1/restaurant/filtered'
     public function getFilteredRestaurants(Request $request) {
-
-        //Questo parametro è una lista di ID di tipologie selezionate dall'utente per filtrare i ristoranti che ritorna un ARRAY
+        // Questo parametro è una lista di ID di tipologie selezionate dall'utente per filtrare i ristoranti che ritorna un ARRAY
         $selectedTypologies = $request->get('typologies', []);
-
-        //crea un oggetto query per recuperare i ristoranti della tabella 'restaurants'
-        //La funzione with viene utilizzata per caricare le relazioni delle tipologie associate a ciascun ristorante
+    
+        // Crea un oggetto query per recuperare i ristoranti della tabella 'restaurants'
+        // La funzione with viene utilizzata per caricare le relazioni delle tipologie associate a ciascun ristorante
         $query = Restaurant::with('typologies');
-        
-        //SE l'array contiente gli elementi
+    
+        // Se l'array contiene elementi, filtra i ristoranti in base alle tipologie selezionate dall'utente
         if (count($selectedTypologies) > 0) {
-
-            //whereHas = clausola permette di filtrare i ristoranti
-            //WhereIn = la tipologia dei ristoranti che hanno un ID contenuto nell'array
             $query->whereHas('typologies', function ($q) use ($selectedTypologies) {
                 $q->whereIn('typologies.id', $selectedTypologies);
             });
         }
-        
-        //la query per recuperare i ristoranti
+    
+        // Recupera tutte le tipologie nella tabella 'typologies'
+        $typologies = Typology::all();
+    
+        // Recupera i ristoranti in base alla query definita sopra
         $restaurants = $query->get();
-
-        //si recuperano le tipologie associate a questi ristoranti nella tabella 'typologies' utilizzando la funzione whereIn, che cerca nella colonna "id" i valori presenti nell'array
-        $typologies = Typology::whereIn('id', $restaurants->flatMap(function ($restaurant) {
-            return $restaurant->typologies->pluck('id');
-        }))->get();
-        
-        //Viene restituita la risposta come un oggetto JSON
+    
+        // Restituisce la risposta come un oggetto JSON
         return response()->json([
             'success' => true,
             'response' => [
@@ -60,6 +54,7 @@ class ApiController extends Controller
             ]
         ]);
     }
+    
 
     public function getDishes() {
         $dishes = Dish::all();
