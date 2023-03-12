@@ -119,13 +119,15 @@ export default {
                             <div class="restaurant wrapperProperties" v-for="restaurant in filteredRestaurants"
                                 :key="restaurant.id">
 
-                                <div class="deliveryPrice"> {{ restaurant.delivery_price }} </div>
+                                <div class="deliveryPrice"> {{ restaurant.delivery_price }} &euro; </div>
                                 <div class="restaurant-img">
                                     <img src="https://picsum.photos/400/300" alt="">
                                 </div>
                                 <div class="restaurant-info-wrapper">
                                     <div class="restaurant-info-restaurantName">{{ restaurant.business_name }}</div>
-                                    <div class="restaurant-info-address">{{ restaurant.address }}</div>
+                                    <div class="restaurant-info-address">
+                                        <i class="fa-solid fa-location-dot"></i>{{ restaurant.address }}
+                                    </div>
                                 </div>
 
                                 <!-- <router-link :to="{ name: 'dish-detail', params: { id: restaurant.id } }">Vai qui</router-link> -->
@@ -242,50 +244,17 @@ nav {
             flex-direction: column;
             overflow: hidden;
             margin-right: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             user-select: none;
+            border: 1px solid #eaeaea;
+            border-radius: 10px;
+            box-shadow: 0px 5px 5px 0px #ececec;
         }
 
         .wrapperProperties:hover {
             cursor: pointer;
         }
-
     }
-
-
-
-    // tagBoxes
-
-    .tagWrapper {
-        display: flex;
-        flex-wrap: wrap;
-        margin-left: 50px;
-        margin-right: 50px;
-        gap: 15px;
-    }
-
-    .tag {
-        width: 100px;
-        height: 80px;
-        border-radius: 5px;
-
-        .tagBox-img {
-            width: 100%;
-            height: 70%;
-            overflow: hidden;
-        }
-
-        .tagBox-name {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            height: 30%;
-            padding-left: 5px;
-            font-size: 12px;
-            background-color: $restaurant_card_bg;
-        }
-    }
-
 }
 
 // lpBoxes
@@ -320,21 +289,21 @@ nav {
         justify-content: center;
 
         .restaurant-info-restaurantName {
-
             font-size: 14px;
             font-weight: 600;
-
         }
 
         .restaurant-info-address {
-
             display: flex;
             align-items: center;
+            color: #898a8a;
 
+            .fa-location-dot{
+                margin-right: 5px;
+            }
             .my_otherInfo {
                 font-size: 12px;
             }
-
         }
     }
 
