@@ -165,6 +165,12 @@ class UserSeeder extends Seeder
             'password' => Hash::make('@miglioripescatoredecapusmundi'),
             'vat_number' => '47333643228'
         ],
+        [
+            'email' => 'Italianish.arebetter@gmail.com',
+            'email_verified_at' => '23:00',
+            'password' => Hash::make('@Italianish.arebetter'),
+            'vat_number' => '4733366228'
+        ],
     ];
     
     foreach ($users as $user) {
