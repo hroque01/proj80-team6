@@ -65,20 +65,20 @@ section{
     display: flex;
     flex-wrap: wrap;
 
-    .typology{
-        width: calc(100% / 4);
-        position: relative;
+        .typology{
+            width: calc(100% / 4);
+            position: relative;
 
-        a{
-            color: #fff;
-            font-weight: bolder;
-            position: absolute;
-            bottom: 0;
-            right: 50%;
-            transform: translate(0, -50%);
+            a{
+                color: #fff;
+                font-weight: bolder;
+                position: absolute;
+                bottom: 0;
+                right: 50%;
+                transform: translate(0, -50%);
+            }
         }
     }
-}
 }
 
 </style>

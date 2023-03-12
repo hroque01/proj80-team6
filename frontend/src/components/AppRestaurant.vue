@@ -85,8 +85,17 @@ export default {
                 </ul>
             </nav>
 
-
+            <!-- parte dx -->
             <div class="my_container restaurants_box">
+
+                <!-- da fare carosello carino. RAGHI MA SCUSATE PERCHE' MANCA IL MESSICANO E LA PIZZA? TUTTAPPO'?!?
+                PARLIAMONE  -->
+                <div class="tagBoxes">
+                    <div class="tagBox" v-for="(typology, index) in typologies" :key="index">
+                        <img :src="typology.image" alt="">
+                    </div>
+                </div>
+                
 
                 <!-- Restaurant List -->
                 <div class="restaurantsContainer">
@@ -160,10 +169,19 @@ nav {
     }
 }
 
+// regole parte dx main
 .restaurants_box {
     height: 100vh;
     overflow-y: auto;
 
+    // regole carousel
+    .tagBoxes{
+        display: flex;
+        flex-direction: row;
+        img{
+            width: 200px;
+        }
+    }
     //general
     //Boxes title
     .mainTitle-container {
