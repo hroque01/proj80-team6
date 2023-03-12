@@ -3,47 +3,47 @@
 @import './partials/variables'; // variables
 
 // REGOLE GENERALI:
-body{
+body {
     color: $text_black;
 }
 
-#app{
+#app {
     height: 100vh;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-ul li{
+ul li {
     list-style: none;
 }
 
 // REGOLE REGISTRAZIONE:
-.card{
+.card {
     border: 1px solid #eaeaea;
     box-shadow: 0px 20px 10px 0px #b7bec2;
 
-    .title-reg{
+    .title-reg {
         margin: 30px 0;
         text-align: center;
         line-height: 10px;
 
-        span{
+        span {
             color: $btn_red;
         }
     }
 
-    h5{
+    h5 {
         font-weight: bold;
     }
 
     form {
-    
-        h5{
+
+        h5 {
             margin: 30px 0;
         }
-    
+
         .typologies input[type='checkbox'] {
             width: 20px;
             height: 20px;
@@ -51,61 +51,64 @@ ul li{
         }
     }
 
-    a{
+    a {
         color: $btn_red;
-        &:hover{
+
+        &:hover {
             color: $text_black;
         }
     }
 }
 
-.btn-reg{
+.btn-reg {
     @include button;
     margin-top: 20px;
 }
 
 // REGOLE LOGIN:
-.wrapper-log{
+.wrapper-log {
     background-image: url(../img/background.login.png);
-    height: calc(100vh - 55px);
+    height: calc(100vh - 86px);
     background-repeat: no-repeat;
+    background-size: contain;
     display: flex;
-    
-    .container{
+
+    .container {
         display: flex;
         justify-content: end;
         align-items: center;
 
-        .card{
+        .card {
             width: 600px;
         }
     }
 
-    a{
+    a {
         color: $text_black;
-        &:hover{
+
+        &:hover {
             color: $btn_red;
         }
     }
 }
 
-.btn-log{
+.btn-log {
     @include button;
 }
 
-.new-account{
-    span{
+.new-account {
+    span {
         color: $btn_red;
     }
 }
 
 // REGOLE COMUNI LOGIN / REGISTRAZIONE / DASHBOARD:
-.header-form{
+.header-form {
     display: flex;
     justify-content: center;
     background-color: #000;
 
-    .logo-form{
+    .logo-form {
         width: 70px;
         height: 70px;
         object-fit: contain;
@@ -123,35 +126,35 @@ ul li{
 }
 
 // REGOLE DASHBOARD:
-.dashboard-card{
-    .dashboard-title span{
+.dashboard-card {
+    .dashboard-title span {
         color: $btn_red;
-    }  
+    }
 
-    ul{
+    ul {
         margin: 20px 0;
 
-        span{
+        span {
             color: $btn_red;
             margin-right: 10px;
             font-weight: bold;
         }
     }
 
-    .dashboard-link{
+    .dashboard-link {
         display: flex;
         justify-content: center;
 
-        a{
-          @include button;  
+        a {
+            @include button;
         }
-        
+
     }
 }
 
 // REGOLE NAVBAR:
 nav {
-    .logo-form{
+    .logo-form {
         width: 70px;
         height: 70px;
         object-fit: contain;
@@ -160,8 +163,3 @@ nav {
         border: 2px solid $btn_red;
     }
 }
-
-
-
-
-
