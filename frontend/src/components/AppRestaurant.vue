@@ -76,10 +76,10 @@ export default {
 </script>
 
 <template>
-    <section>
+    <section v-if="$route.name === 'home'">
 
         <!-- div container -->
-        <div class="my_container" v-if="$route.name === 'home'">
+        <div class="my_container">
 
             <div class="restaurantFilter">
 
