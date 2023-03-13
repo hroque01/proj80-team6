@@ -132,7 +132,7 @@ export default {
                                 </div>
                                 <div class="restaurant-info-wrapper">
                                     <div class="restaurant-info-restaurantName">
-                                        <router-link :to="{ name: 'restaurant-detail', params: { id: restaurant.id } }">{{
+                                        <router-link :to="{ name: 'restaurant-detail', params: { id: restaurant.id } }" class="name_res">{{
                                             restaurant.business_name }}
                                         </router-link>
                                     </div>
@@ -280,6 +280,13 @@ nav {
         flex-wrap: wrap;
         margin-left: 25px;
 
+        .name_res{
+            color: $text_black;
+
+            &:hover{
+                text-decoration: underline;
+            }
+        }
         .wrapperProperties {
             width: calc(100% / 3 - 20px);
             display: flex;
