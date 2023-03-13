@@ -15,8 +15,7 @@ export default {
         },
         {
           icon: "fa-solid fa-cart-shopping",
-          text: "Carrello",
-          url: "#",
+          url: "/checkout",
         },
         {
           icon: "fa-solid fa-bars",
@@ -77,7 +76,17 @@ export default {
                 <!-- V-bind and v-for for icons -->
                 <i :class="link.icon"></i>
                 <!-- v-for for text -->
-                <span @click="toggleMenu">{{ link.text }}</span> <span v-if="index === 1">{{ store.length }}</span>
+                <span @click="toggleMenu">
+                  <span v-if="link.text">
+                    {{ link.text }}
+                  </span>
+
+                  <span v-else>
+                    <router-link :to="{ name: 'cart' }">Carrello </router-link>
+                  </span>
+
+                  <span v-if="index === 1">{{ store.length }}</span>
+                </span>
 
                 <!-- toggle menu -->
                 <ul v-if="link.toggle && link.dropdown" class="dropdown my-2">
@@ -91,9 +100,9 @@ export default {
 
                   <!-- LOGOUT DA TOGLIERE OPURE NO CIT ROMINA -->
                   <!-- <a class="m-4" href="#">
-                                                                                                                                                      <i class="fa-solid fa-right-from-bracket mx-2"></i>
-                                                                                                                                                      <span>LOGOUT</span>
-                                                                                                                                  </a> -->
+                                                                                                                                                                        <i class="fa-solid fa-right-from-bracket mx-2"></i>
+                                                                                                                                                                        <span>LOGOUT</span>
+                                                                                                                                                    </a> -->
                   <!--  -->
 
                 </ul>
@@ -103,6 +112,10 @@ export default {
         </div>
       </nav>
     </div>
+  </div>
+
+  <div v-if="$route.name === 'cart'">
+    <router-view></router-view>
   </div>
 </template>
 
