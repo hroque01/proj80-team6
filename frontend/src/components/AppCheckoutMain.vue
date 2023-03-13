@@ -109,15 +109,15 @@ export default {
 
 <template>
     <!-- main section  -->
-<main class="pt-5 pb-3">
-    <div class="my_container">
-        <div class="row">
-            <h3 class="col">
-                <b>Controlla il tuo ordine da U Sushi 8</b>
-            </h3>
-        </div>
-        <div class="row mt-4">
-            <h5 class="col pt-3">
+    <main class="pt-5 pb-3">
+        <div class="my_container">
+            <div class="row">
+                <h3 class="col">
+                    <b>Controlla il tuo ordine da U Sushi 8</b>
+                </h3>
+            </div>
+            <div class="row mt-4">
+                <h5 class="col pt-3">
                     <b>Come vuoi pagare?</b>
                 </h5>
             </div>
@@ -203,7 +203,7 @@ export default {
                         <h5 class="card-body px-0 py-2">
                             <strong>Carrello</strong>
                         </h5>
-                        <button @click="emptyCart">Svuota carrello</button>
+                        <button v-if="store.length !== 0" @click="emptyCart">Svuota carrello</button>
 
                         <ul>
                             <li v-for="item in getItems" class="d-flex justify-content-between align-items-center mb-2">
@@ -211,22 +211,6 @@ export default {
                                 <div>{{ item.price.toFixed(2) }} €</div>
                             </li>
                         </ul>
-                        <!-- <div class="d-flex justify-content-between align-items-center mb-2">
-                                                                                                                                                                                                                                                                                                                                    <div>1x A2. Zuppa di pollo con Mais</div>
-                                                                                                                                                                                                                                                                                                                                    <div>4,00 €</div>
-                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                                                                                                                                                                                                                                                                                                                    <div>1x P5. Yaki udon fish</div>
-                                                                                                                                                                                                                                                                                                                                    <div>6,00 €</div>
-                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                                                                                                                                                                                                                                                                                                                    <div>1x S19. Verdure miste saltato</div>
-                                                                                                                                                                                                                                                                                                                                    <div>6,00 €</div>
-                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                                                                                                                                                                                                                                                                                                                    <div>1x A4. Wakame</div>
-                                                                                                                                                                                                                                                                                                                                    <div>5,00 €</div>
-                                                                                                                                                                                                                                                                                                                                </div> -->
                         <hr class="border-top border-dark mb-3">
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <div>Subtotale</div>
