@@ -160,12 +160,12 @@ section{
         flex-wrap: wrap;
         
         .typology{
-            width: 150px;
+            width: 120px;
             border: 1px solid #eaeaea;
             border-radius: 10px;
             box-shadow: 0px 5px 5px 0px #ececec;
             // debug
-            margin: 10px;
+            margin: 5px;
 
             img{
                 border-top-right-radius: 10px;
@@ -218,7 +218,7 @@ nav {
     //Boxes title
     .mainTitle-container {
         line-height: 20px;
-        margin: 25px 50px;
+        margin: 25px ;
 
         .mainTitle {
             font-size: 20px;
@@ -234,17 +234,16 @@ nav {
 
     //Boxes wrapper and box properties
     .restaurantWrapper {
-
         display: flex;
         flex-wrap: wrap;
-        margin-left: 50px;
+        margin-left: 25px;
 
         .wrapperProperties {
+            width: calc(100% / 3 - 20px);
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            margin-right: 10px;
-            margin-bottom: 20px;
+            margin: 15px 10px;
             user-select: none;
             border: 1px solid #eaeaea;
             border-radius: 10px;
