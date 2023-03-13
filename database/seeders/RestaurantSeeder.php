@@ -231,7 +231,7 @@ class RestaurantSeeder extends Seeder
                 'user_id' => 21,
             ],
             [   'business_name' => 'Bar volontario',
-                'description' => 'colazione a volonta',
+                'description' => 'colazione a volontà',
                 'address' => 'Via delle Rose, 5',
                 'opening_time' => '18:00:00',
                 'closure_time' => '02:00:00',
