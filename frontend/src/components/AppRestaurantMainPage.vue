@@ -45,7 +45,13 @@ export default {
 
       const value = localStorage.getItem(key);
       store.item = JSON.parse(value);
-    },
+    }
+  },
+  goBack() {
+    // Emetti un evento per far sapere al componente padre che l'utente ha cliccato su "Torna indietro"
+    this.$emit('go-back');
+    // Modifica la variabile "containerVisible" del componente padre per tornare indietro
+    this.$emit('update:containerVisible', true);
   },
   computed: {
     filteredRestaurants() {
@@ -63,9 +69,9 @@ export default {
 
 <template>
   <main>
+
     <!-- restaurant header with image and info-->
     <div class="restaurant_header" v-for="(restaurant, index) in filteredRestaurants" :key="index">
-
       <div v-if="restaurant">
         <div class="restaurant_image">
           <img :src="restaurant.image" alt="">
