@@ -132,7 +132,7 @@ footer {
     background-color: #2E3333;
     min-height: 380px;
     color: #fff;
-    padding-top: 20px;
+    margin-top: 100px;
 
     .my_container {
         gap: 20px;
