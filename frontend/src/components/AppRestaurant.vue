@@ -1,13 +1,20 @@
 <script>
 
+import AppRestaurantMainPage from './AppRestaurantMainPage.vue';
+
 import axios from 'axios';
+import { store } from '../store';
 
 const API_URL = 'http://localhost:8000/api/v1/';
 
 export default {
     name: 'AppRestaurant',
+    components: {
+        AppRestaurantMainPage,
+    },
     data() {
         return {
+            store,
             typologies: [],
             restaurants: [],
             selectedTypologies: [] // proprietà con array che conterrà le tipologie selezionate dall'utente:
@@ -33,6 +40,7 @@ export default {
                     if (success) {
                         this.typologies = typologies;
                         this.restaurants = restaurants;
+
                     }
                 })
                 .catch(err => console.error(err));
@@ -129,8 +137,8 @@ export default {
                                     </div>
                                 </div>
 
-                                <!-- <router-link :to="{ name: 'dish-detail', params: { id: restaurant.id } }">Vai qui</router-link> -->
-
+                                <router-link :to="{ name: 'restaurant-detail', params: { id: restaurant.id } }">Vai
+                                    qui</router-link>
 
                             </div>
 
@@ -145,6 +153,8 @@ export default {
         </div>
         <!-- chiusura div container -->
     </section>
+
+    <router-view></router-view>
 </template>
 
 <style lang="scss" scoped>
