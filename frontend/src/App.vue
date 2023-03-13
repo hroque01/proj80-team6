@@ -6,7 +6,7 @@ import AppMain from './components/AppMain.vue';
 // APP RESTAURANT
 import AppRestaurant from './components/AppRestaurant.vue';
 // APP RESTAURANT (MAIN RESTAURANT PAGE)
-import AppRestaurantMainPage from './components/AppRestaurantMainPage.vue';
+// import AppRestaurantMainPage from './components/AppRestaurantMainPage.vue';
 // APP CHECKOUT
 import AppCheckout from './components/AppCheckout.vue';
 
@@ -17,7 +17,7 @@ export default {
     AppMain,
     AppRestaurant,
     // APP RESTAURANT (MAIN RESTAURANT PAGE)
-    AppRestaurantMainPage,
+    // AppRestaurantMainPage,
     // APP CHECKOUT
     AppCheckout,
   }
@@ -35,7 +35,7 @@ export default {
 
   <!-- APP RESTAURANT MAIN PAGE TEMPORANEO -->
 
-  <AppRestaurantMainPage />
+  <!-- <AppRestaurantMainPage /> -->
 
   <!-- APP CHECKOUT TEMPORANEO -->
 
