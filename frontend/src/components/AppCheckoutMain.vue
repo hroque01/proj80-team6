@@ -109,8 +109,8 @@ export default {
 
 <template>
     <!-- main section  -->
-    <main class="pt-5 pb-3">
-        <div class="my_container">
+<main class="pt-5 pb-3">
+    <div class="my_container">
             <div class="row">
                 <h3 class="col">
                     <b>Controlla il tuo ordine da U Sushi 8</b>
@@ -211,15 +211,15 @@ export default {
                                 <div>{{ item.price.toFixed(2) }} €</div>
                             </li>
                         </ul>
-                        <hr class="border-top border-dark mb-3">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <div>Subtotale</div>
-                            <div>21,00 €</div>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <div>Spese di consegna</div>
-                            <div>5,00 €</div>
-                        </div>
+                        <!-- <hr class="border-top border-dark mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>Subtotale</div>
+                                <div>21,00 €</div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>Spese di consegna</div>
+                                <div>5,00 €</div>
+                            </div> -->
                         <hr class="border-top border-dark mb-3">
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <div><b>Totale</b></div>
