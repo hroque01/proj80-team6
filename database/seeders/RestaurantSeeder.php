@@ -274,7 +274,7 @@ class RestaurantSeeder extends Seeder
                 'description' => 'We love nachos and spicy things',
                 'address' => 'Via del habanero 99T',    'opening_time' => '11:00:00',
                 'closure_time' => '22:00:00',
-                'delivery_price' => 10,
+                'delivery_price' => 1.5,
                 'image' => 'https://blog.amigofoods.com/wp-content/uploads/2020/09/mexican-food.jpg',
                 'user_id' =>26,
             ]
