@@ -17,7 +17,7 @@ export default {
             store,
             typologies: [],
             restaurants: [],
-            selectedTypologies: [] // proprietà con array che conterrà le tipologie selezionate dall'utente:
+            selectedTypologies: [], // proprietà con array che conterrà le tipologie selezionate dall'utente:
         };
     },
 
@@ -110,7 +110,7 @@ export default {
                             </div>
                         </div>
 
-                        <i class="fa-solid fa-arrow-right"></i>
+                        <i class="fa-solid fa-arrow-right" @click="change()"></i>
                     </div>
 
                     <!-- Restaurant List -->
@@ -137,8 +137,8 @@ export default {
                                     </div>
                                 </div>
 
-                                <router-link :to="{ name: 'restaurant-detail', params: { id: restaurant.id } }">Vai
-                                    qui</router-link>
+                                <router-link :to="{ name: 'restaurant-detail', params: { id: restaurant.id } }">Vedi info
+                                    ristorante</router-link>
 
                             </div>
 
@@ -154,7 +154,9 @@ export default {
         <!-- chiusura div container -->
     </section>
 
-    <router-view></router-view>
+    <div v-if="$route.name === 'restaurant-detail'">
+        <router-view></router-view>
+    </div>
 </template>
 
 <style lang="scss" scoped>
@@ -169,12 +171,12 @@ export default {
 }
 
 section {
-    margin: 100px 0;
+    margin: 0;
 
     // carosello:
     .typologies {
         width: calc(130px * 13);
-        
+
 
         .typology {
             display: inline-block;
@@ -199,7 +201,7 @@ section {
             }
         }
 
-        .fa-arrow-right{
+        .fa-arrow-right {
             position: absolute;
             right: 0;
             top: 40px;
