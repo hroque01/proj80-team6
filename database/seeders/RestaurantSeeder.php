@@ -444,6 +444,11 @@ class RestaurantSeeder extends Seeder
             $restaurant_25 = Restaurant::find(25);
             $typology_25 = Typology::find([5]);
             $restaurant_25->typologies()->attach($typology_25);
+
+            //Messicano
+            $restaurant_26 = Restaurant::find(26);
+            $typology_26 = Typology::find([6]);
+            $restaurant_26->typologies()->attach($typology_26);
             
     }
 }
