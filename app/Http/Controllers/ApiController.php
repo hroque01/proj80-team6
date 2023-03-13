@@ -58,14 +58,18 @@ class ApiController extends Controller
     }
     
 
-    public function getDishes() {
-        $dishes = Dish::all();
+    public function getDishesAndRestaurants(Restaurant $restaurant) {
+        $dishes = $restaurant->dishes;
 
+        $restaurants = Restaurant::all();
+    
         return response()->json([
             'success' => true,
             'response' => [
                 'dishes' => $dishes,
+                'restaurants' => $restaurants,
             ]
         ]);
     }
+    
 }
