@@ -73,7 +73,7 @@ export default {
 
             <!-- v-for array print in DOM -->
             <li class="nav-item general-btn" v-for="(link, index) in links" :key="index" @click="toggleDropdown(link)">
-              <a class="nav-link" aria-current="page" :href="link.url">
+              <router-link :to="{ name: 'cart' }" class="nav-link" aria-current="page" :href="link.url">
                 <!-- V-bind and v-for for icons -->
                 <i :class="link.icon"></i>
                 <!-- v-for for text -->
@@ -83,7 +83,7 @@ export default {
                   </span>
 
                   <span v-else>
-                    <router-link :to="{ name: 'cart' }">Carrello </router-link>
+                    Carrello
                   </span>
 
                   <span v-if="index === 1">{{ store.length }}</span>
@@ -101,13 +101,13 @@ export default {
 
                   <!-- LOGOUT DA TOGLIERE OPURE NO CIT ROMINA -->
                   <!-- <a class="m-4" href="#">
-                                                                                                                                                                            <i class="fa-solid fa-right-from-bracket mx-2"></i>
-                                                                                                                                                                            <span>LOGOUT</span>
-                                                                                                                                                        </a> -->
+                                                                                                                                                                              <i class="fa-solid fa-right-from-bracket mx-2"></i>
+                                                                                                                                                                              <span>LOGOUT</span>
+                                                                                                                                                          </a> -->
                   <!--  -->
 
                 </ul>
-              </a>
+              </router-link>
             </li>
           </ul>
         </div>
