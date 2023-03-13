@@ -305,8 +305,6 @@ nav {
     overflow: hidden;
     position: relative;
 
-
-
     .restaurant-img {
         width: 100%;
         height: 65%;
