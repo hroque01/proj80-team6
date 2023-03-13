@@ -105,7 +105,7 @@ export default {
               <span></span>
             </div>
             <div class="my_bigBox-img">
-              <img src="https://picsum.photos/400/300" alt="">
+              <img :src="dish.image" :alt="dish.name">
             </div>
             <div class="my_bigBox-info-wrapper">
               <div class="my_bigBox-info-DishName">{{ dish.name }}</div>
