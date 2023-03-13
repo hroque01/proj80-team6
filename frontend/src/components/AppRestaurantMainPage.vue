@@ -45,17 +45,48 @@ export default {
 
       const value = localStorage.getItem(key);
       store.item = JSON.parse(value);
-    }
-  },
-  goBack() {
-    // Emetti un evento per far sapere al componente padre che l'utente ha cliccato su "Torna indietro"
-    this.$emit('go-back');
-    // Modifica la variabile "containerVisible" del componente padre per tornare indietro
-    this.$emit('update:containerVisible', true);
+    },
+    emptyCart() {
+      localStorage.clear();
+      store.length = 0;
+      store.total = 0;
+    },
   },
   computed: {
     filteredRestaurants() {
       return this.restaurants.filter(restaurant => restaurant.id === parseInt(this.$route.params.id));
+    },
+    getItems() {
+      const data = {};
+      // Popola l'oggetto data con tutti gli elementi presenti in localStorage
+      if (store.length !== 0) {
+        for (let key in localStorage) {
+          data[key] = JSON.parse(localStorage.getItem(key));
+        }
+      }
+
+      // Prendi solo le chiavi degli elementi che iniziano con "storedQuantity_"
+      //La funzione Object.keys() viene utilizzata per recuperare un array di tutte le chiavi presenti nell'oggetto localStorage.
+      const itemKeys = Object.keys(localStorage).filter(key => key.startsWith("storedQuantity_"));
+
+      // Somma la quantità e il prezzo per ogni elemento con lo stesso nome
+      const items = {};
+      let total = 0;
+      itemKeys.forEach(key => {
+        const item = JSON.parse(localStorage.getItem(key));
+        const name = item.name;
+        if (items[name]) {
+          items[name].quantity += 1;
+          items[name].price = parseFloat(items[name].price) + parseFloat(item.price);
+        } else {
+          items[name] = { name: item.name, quantity: 1, price: parseFloat(item.price) };
+        }
+        total += parseFloat(item.price);
+      });
+
+      store.total = total;
+
+      return items;
     }
   },
   mounted() {
@@ -68,69 +99,94 @@ export default {
 </script>
 
 <template>
-  <router-link to="/">
-    Torna indietro
-  </router-link>
+  <div v-if="$route.name === 'restaurant-detail'">
+    <router-link to="/">
+      Torna indietro
+    </router-link>
 
-  <!-- restaurant header with image and info-->
-  <div class="restaurant_header" v-for="(restaurant, index) in filteredRestaurants" :key="index">
-    <div v-if="restaurant">
-      <div class="restaurant_image">
-        <img :src="restaurant.image" :alt="restaurant.business_name">
-      </div>
-
-      <div class="restaurant_informations">
-
-        <div class="restaurantName">{{ restaurant.business_name }}</div>
-        <div class="restaurantAdress">Ci puoi trovare a: {{ restaurant.address }}</div>
-        <div class="restaurantDescription">{{ restaurant.description }}</div>
-        <div class="restaurantOpeningTimes">
-          {{ restaurant.opening_time }} - {{ restaurant.closure_time }}
+    <!-- restaurant header with image and info-->
+    <div class="restaurant_header" v-for="(restaurant, index) in filteredRestaurants" :key="index">
+      <div v-if="restaurant">
+        <div class="restaurant_image">
+          <img :src="restaurant.image" :alt="restaurant.business_name">
         </div>
-        <div class="restaurantDeliveryPrice">Consegna al costo di: {{ restaurant.delivery_price }} $</div>
 
+        <div class="restaurant_informations">
+
+          <div class="restaurantName">{{ restaurant.business_name }}</div>
+          <div class="restaurantAdress">Ci puoi trovare a: {{ restaurant.address }}</div>
+          <div class="restaurantDescription">{{ restaurant.description }}</div>
+          <div class="restaurantOpeningTimes">
+            {{ restaurant.opening_time }} - {{ restaurant.closure_time }}
+          </div>
+          <div class="restaurantDeliveryPrice">Consegna al costo di: {{ restaurant.delivery_price }} $</div>
+
+        </div>
       </div>
     </div>
-  </div>
 
 
-  <div class="dish_cart">
+    <div class="dish_cart">
 
-    <!-- restaurant menù list-->
-    <div class="menu_list">
+      <!-- restaurant menù list-->
+      <div class="menu_list">
 
-      <div class="my_Boxes-wrapper">
+        <div class="my_Boxes-wrapper">
 
-        <div class="my_bigBox box-properties" v-for="(dish, index) in dishes" :key="index">
-          <div class="dishPrice" v-if="dish">
-            <span class="Pricebuble"> {{ dish.price }} </span> <br>
-            <span></span>
-          </div>
-          <div class="my_bigBox-img">
-            <img :src="dish.image" :alt="dish.name">
-          </div>
-          <div class="my_bigBox-info-wrapper">
-            <div class="my_bigBox-info-DishName">{{ dish.name }}</div>
-            <div class="my_bigBox-info-OtherDishInfo">
-              <div class="DishDescr">
-                {{ dish.description }}
+          <div class="my_bigBox box-properties" v-for="(dish, index) in dishes" :key="index">
+            <div class="dishPrice" v-if="dish">
+              <span class="Pricebuble"> {{ dish.price }} </span> <br>
+              <span></span>
+            </div>
+            <div class="my_bigBox-img">
+              <img :src="dish.image" :alt="dish.name">
+            </div>
+            <div class="my_bigBox-info-wrapper">
+              <div class="my_bigBox-info-DishName">{{ dish.name }}</div>
+              <div class="my_bigBox-info-OtherDishInfo">
+                <div class="DishDescr">
+                  {{ dish.description }}
+                </div>
+                <div class="DishIngredients">
+                  {{ dish.ingredients }}
+                </div>
+                <button class="addToCart_btn" @click="addDish(index)">Aggiungi al carrello</button>
               </div>
-              <div class="DishIngredients">
-                {{ dish.ingredients }}
-              </div>
-              <button class="addToCart_btn" @click="addDish(index)">Aggiungi al carrello</button>
             </div>
           </div>
-        </div>
 
+        </div>
+      </div>
+
+      <!-- cart right side-->
+      <div class="cart">
+        <h5 class="card-body px-0 py-2">
+          <strong>Carrello</strong>
+        </h5>
+        <button v-if="store.length !== 0" @click="emptyCart">Svuota carrello</button>
+
+        <ul>
+          <li v-for="item in getItems" class="d-flex justify-content-between align-items-center mb-2">
+            <div>{{ item.quantity }}x {{ item.name }}</div>
+            <div>{{ item.price.toFixed(2) }} €</div>
+          </li>
+        </ul>
+        <!-- <hr class="border-top border-dark mb-3">
+                                                      <div class="d-flex justify-content-between align-items-center mb-2">
+                                                          <div>Subtotale</div>
+                                                          <div>21,00 €</div>
+                                                      </div>
+                                                      <div class="d-flex justify-content-between align-items-center mb-2">
+                                                          <div>Spese di consegna</div>
+                                                          <div>5,00 €</div>
+                                                      </div> -->
+        <hr class="border-top border-dark mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <div><b>Totale</b></div>
+          <div><b>{{ store.total.toFixed(2) }} €</b></div>
+        </div>
       </div>
     </div>
-
-    <!-- cart right side-->
-    <div class="cart">
-
-    </div>
-
   </div>
 </template>
 
@@ -305,6 +361,7 @@ export default {
     height: 600px;
     background-color: $restaurant_main_bg;
     border-radius: 15px;
+    padding: 30px;
 
   }
 
