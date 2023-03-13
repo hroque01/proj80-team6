@@ -133,6 +133,7 @@ footer {
     min-height: 380px;
     color: #fff;
     margin-top: 100px;
+    padding-top: 20px;
 
     .my_container {
         gap: 20px;
