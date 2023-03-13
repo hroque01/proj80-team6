@@ -106,7 +106,7 @@ export default {
 
     <!-- restaurant header with image and info-->
     <div class="restaurant_header" v-for="(restaurant, index) in filteredRestaurants" :key="index">
-      <div v-if="restaurant">
+      <div v-if="restaurant" class="flex-info-res my_container">
         <div class="restaurant_image">
           <img :src="restaurant.image" :alt="restaurant.business_name">
         </div>
@@ -114,13 +114,18 @@ export default {
         <div class="restaurant_informations">
 
           <div class="restaurantName">{{ restaurant.business_name }}</div>
-          <div class="restaurantAdress">Ci puoi trovare a: {{ restaurant.address }}</div>
-          <div class="restaurantDescription">{{ restaurant.description }}</div>
-          <div class="restaurantOpeningTimes">
-            {{ restaurant.opening_time }} - {{ restaurant.closure_time }}
+          <div>
+            <i class="fa-solid fa-location-dot icons-description"></i>{{ restaurant.address }}
           </div>
-          <div class="restaurantDeliveryPrice">Consegna al costo di: {{ restaurant.delivery_price }} $</div>
-
+          <div>
+            <i class="fa-solid fa-utensils icons-description"></i>{{ restaurant.description }}
+          </div>
+          <div>
+            <i class="fa-solid fa-clock icons-description"></i>{{ restaurant.opening_time }} - {{ restaurant.closure_time }}
+          </div>
+          <div>
+            <i class="fa-solid fa-motorcycle icons-description"></i>Consegna al costo di: {{ restaurant.delivery_price }} &euro;
+          </div>
         </div>
       </div>
     </div>
@@ -128,241 +133,238 @@ export default {
 
     <div class="dish_cart">
 
-      <!-- restaurant menù list-->
-      <div class="menu_list">
+      <div class="my_container menu-wrapper">
 
-        <div class="my_Boxes-wrapper">
+        <!-- restaurant menù list-->
+        <div class="menu_list">
 
-          <div class="my_bigBox box-properties" v-for="(dish, index) in dishes" :key="index">
-            <div class="dishPrice" v-if="dish">
-              <span class="Pricebuble"> {{ dish.price }} </span> <br>
-              <span></span>
-            </div>
-            <div class="my_bigBox-img">
-              <img :src="dish.image" :alt="dish.name">
-            </div>
-            <div class="my_bigBox-info-wrapper">
-              <div class="my_bigBox-info-DishName">{{ dish.name }}</div>
-              <div class="my_bigBox-info-OtherDishInfo">
-                <div class="DishDescr">
-                  {{ dish.description }}
+          <div class="my_Boxes-wrapper">
+
+            <!-- image -->
+            <div class="my_bigBox box-properties" v-for="(dish, index) in dishes" :key="index">
+              <div class="my_bigBox-img">
+                <img :src="dish.image" :alt="dish.name">
+              </div>
+
+              <!-- info dish -->
+              <div class="my_bigBox-info-wrapper">
+                <div class="my_bigBox-info-DishName">{{ dish.name }}</div>
+                <div class="my_bigBox-info-OtherDishInfo">
+
+                  <div class="DishDescr">
+                    <em>{{ dish.description }}</em> 
+                  </div>
+
+                  <div class="DishIngredients">
+                    Ingredienti: {{ dish.ingredients }}
+                  </div>
+
+                  <div class="pay">
+                    <div class="dishPrice" v-if="dish">
+                      <span class="Pricebuble"> {{ dish.price }} &euro;</span>
+                    </div>
+
+                    <button class="addToCart_btn" @click="addDish(index)"> 
+                      <i class="fa-solid fa-cart-shopping"></i>Aggiungi al carrello
+                    </button>
+                  </div>
                 </div>
-                <div class="DishIngredients">
-                  {{ dish.ingredients }}
-                </div>
-                <button class="addToCart_btn" @click="addDish(index)">Aggiungi al carrello</button>
               </div>
             </div>
+
           </div>
 
         </div>
-      </div>
 
-      <!-- cart right side-->
-      <div class="cart">
-        <h5 class="card-body px-0 py-2">
-          <strong>Carrello</strong>
-        </h5>
-        <button v-if="store.length !== 0" @click="emptyCart">Svuota carrello</button>
+        <!-- cart right side-->
+        <div class="cart">
+          <h5 class="card-body px-0 py-2">
+            <strong>Carrello</strong>
+          </h5>
+          <button v-if="store.length !== 0" @click="emptyCart">Svuota carrello</button>
 
-        <ul>
-          <li v-for="item in getItems" class="d-flex justify-content-between align-items-center mb-2">
-            <div>{{ item.quantity }}x {{ item.name }}</div>
-            <div>{{ item.price.toFixed(2) }} €</div>
-          </li>
-        </ul>
-        <!-- <hr class="border-top border-dark mb-3">
-                                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                                            <div>Subtotale</div>
-                                                            <div>21,00 €</div>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                                            <div>Spese di consegna</div>
-                                                            <div>5,00 €</div>
-                                                        </div> -->
-        <hr class="border-top border-dark mb-3">
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <div><b>Totale</b></div>
-          <div><b>{{ store.total.toFixed(2) }} €</b></div>
+          <ul>
+            <li v-for="item in getItems" class="d-flex justify-content-between align-items-center mb-2">
+              <div>{{ item.quantity }}x {{ item.name }}</div>
+              <div>{{ item.price.toFixed(2) }} €</div>
+            </li>
+          </ul>
+          <!-- <hr class="border-top border-dark mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div>Subtotale</div>
+                    <div>21,00 €</div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div>Spese di consegna</div>
+                    <div>5,00 €</div>
+                </div> -->
+          <hr class="border-top border-dark mb-3">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div><b>Totale</b></div>
+            <div><b>{{ store.total.toFixed(2) }} €</b></div>
+          </div>
         </div>
       </div>
+      
     </div>
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use '../src/styles/general.scss' as *;
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
-
-.restaurant_header {
-  width: 100%;
-  height: auto;
-  background-color: $restaurant_main_bg;
-  border-bottom-right-radius: 25px;
-  border-bottom-left-radius: 25px;
+.my_container{
   display: flex;
-  padding: 50px 200px;
-
+  padding: 50px 0;
+}
+// restaurant header
+.restaurant_header {
+  background-color: #fff;
+  border: 1px solid #eaeaea;
+  box-shadow: 0px 5px 5px 0px #ececec;
   margin-bottom: 50px;
+
+  .flex-info-res{
+    display: flex;
+    align-items: center;
+    padding: 50px 0;
+  }
 
   .restaurant_image {
     width: 500px;
     height: 300px;
-    background-color: #fff;
-    border-radius: 15px;
+    border: 1px solid #eaeaea;
+    box-shadow: 0px 5px 5px 0px #ececec;
+    border-radius: 10px;
     overflow: hidden;
   }
 
   .restaurant_informations {
+    padding-left: 50px;
 
-    padding: 50px;
+    .icons-description{
+      margin-right: 20px;
+    }
 
     .restaurantName {
       font-size: 40px;
       font-weight: 700;
-      color: $text_black;
     }
-
   }
 }
 
-.my_boxesTitle-container {
-
-  line-height: 20px;
-  margin: 25px 0;
-
-  .my_boxesTitle {
-    font-size: 20px;
-    font-weight: 600;
-  }
-
-  .my_boxesTitle-descr {
-    font-size: 15px;
-    font-weight: 300;
-  }
-
-}
-
-.dish_cart {
-  margin-left: 50px;
-  margin-right: 50px;
+// dish menu
+.dish_cart{
   display: flex;
-  gap: 50px;
   justify-content: space-around;
-
-  .menu_list {
-    background-color: $restaurant_main_bg;
-    border-radius: 15px;
+  background-color: #fff;
+  border: 1px solid #eaeaea;
+  box-shadow: 0px 5px 5px 0px #ececec;
+  .menu-wrapper{
     display: flex;
-    justify-content: center;
-    padding: 20px 10px;
-
+  }
+  .menu_list {
+    width: 70%;
+    margin-right: 20px;
     .my_Boxes-wrapper {
-
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
-      gap: 15px;
-
+      margin-inline: -10px;
 
       .box-properties {
-        overflow: hidden;
         user-select: none;
       }
 
       .box-properties:hover {
         cursor: pointer;
       }
-
     }
 
     .my_bigBox {
-      width: 300px;
-      height: 260px;
-      border-radius: 5px;
-      overflow: hidden;
-      position: relative;
+      width: calc(100% / 3 - 20px);
+      margin: 20px 10px;
+      background-color: #fff;
+      border: 1px solid #eaeaea;
+      box-shadow: 0px 10px 5px 0px #ececec;
+      border-radius: 10px;
+
+      // &:hover{
+      //   sca
+      // }
 
       .my_bigBox-img {
         width: 100%;
-        height: 65%;
+        height: 170px;
+        object-fit: cover;
         overflow: hidden;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        background-color: white
       }
 
       .my_bigBox-info-wrapper {
-        width: 100%;
-        height: 25%;
         padding: 10px;
-        background-color: #fff;
+        line-height: 25px;
+        color: #5a5a5a;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        border-bottom-right-radius: 8px;
-        border-bottom-left-radius: 8px;
 
         .my_bigBox-info-DishName {
-
+          color: $text_black;
           font-size: 14px;
           font-weight: 600;
-
         }
 
         .my_bigBox-info-restaurantRating {
-
           font-size: 12px;
-
         }
 
         .my_bigBox-info-OtherDishInfo {
-
           display: flex;
           flex-direction: column;
           font-size: 12px;
-
-          .addToCart_btn {
-            position: absolute;
-            top: 220px;
-            right: 5px;
-            background-color: aqua;
-            padding: 5px;
-            border-radius: 8px;
-            overflow: hidden;
-            z-index: 9999;
-          }
-
         }
       }
 
-      .dishPrice {
-        position: absolute;
-        text-align: center;
-        font-size: 12px;
-        width: 80px;
-        right: 10px;
-        top: 155px;
-        background-color: aqua;
-        padding: 5px 10px;
-        border-radius: 50px;
-      }
+      .pay{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
 
-      .my_likeBtn {
-        position: absolute;
-        right: 15px;
-        top: 10px;
+        .dishPrice {
+          font-size: 15px;
+        }
+        .addToCart_btn {
+          background-color: $btn_red;
+          border: 1px solid $btn_red;
+          color: #fff;
+          padding: 5px;
+          border-radius: 8px;
+
+          &:hover{
+            background-color: #fff;
+            border: 2px solid $btn_red;
+            color: $btn_red;
+          }
+        }
+
+        .fa-cart-shopping{
+          margin-right: 10px;
+        }
       }
+      
     }
 
   }
 
   .cart {
-    width: 30%;
-    height: 600px;
+    width: 300px;
     background-color: $restaurant_main_bg;
     border-radius: 15px;
     padding: 30px;
-
   }
 
 }
