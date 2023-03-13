@@ -72,17 +72,17 @@ export default {
 
           <!-- v-for array print in DOM -->
           <li class="nav-item general-btn" v-for="(link, index) in links" :key="index" @click="toggleDropdown(link)">
-            <router-link :to="{ name: 'cart' }" class="nav-link" aria-current="page" :href="link.url">
+            <div class="nav-link">
               <!-- V-bind and v-for for icons -->
-              <i :class="link.icon"></i>
+              <i :class="link.icon" class="icon-nav"></i>
               <!-- v-for for text -->
               <span @click="toggleMenu">
                 <span v-if="link.text">
-                  {{ link.text }}
+                  <a :href="link.url">{{ link.text }}</a>
                 </span>
 
                 <span v-else>
-                  Carrello
+                  <router-link :to="{ name: 'cart' }">Carrello </router-link>
                 </span>
 
                 <span v-if="index === 1">{{ store.length }}</span>
@@ -100,13 +100,13 @@ export default {
 
                 <!-- LOGOUT DA TOGLIERE OPURE NO CIT ROMINA -->
                 <!-- <a class="m-4" href="#">
-                                                                                                                                                                                        <i class="fa-solid fa-right-from-bracket mx-2"></i>
-                                                                                                                                                                                        <span>LOGOUT</span>
-                                                                                                                                                                    </a> -->
+                                                                                                                                                                                                            <i class="fa-solid fa-right-from-bracket mx-2"></i>
+                                                                                                                                                                                                            <span>LOGOUT</span>
+                                                                                                                                                                                        </a> -->
                 <!--  -->
 
               </ul>
-            </router-link>
+            </div>
           </li>
         </ul>
       </div>
@@ -136,6 +136,11 @@ export default {
   gap: 0.75rem;
   position: relative;
   cursor: pointer;
+
+  .icon-nav {
+    color: #EE5743;
+  }
+
 }
 
 .dropdown {
