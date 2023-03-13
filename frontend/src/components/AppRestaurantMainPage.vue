@@ -99,7 +99,7 @@ export default {
 </script>
 
 <template>
-  <div v-if="$route.name === 'restaurant-detail'">
+  <div>
     <router-link to="/">
       Torna indietro
     </router-link>
@@ -172,14 +172,14 @@ export default {
           </li>
         </ul>
         <!-- <hr class="border-top border-dark mb-3">
-                                                      <div class="d-flex justify-content-between align-items-center mb-2">
-                                                          <div>Subtotale</div>
-                                                          <div>21,00 €</div>
-                                                      </div>
-                                                      <div class="d-flex justify-content-between align-items-center mb-2">
-                                                          <div>Spese di consegna</div>
-                                                          <div>5,00 €</div>
-                                                      </div> -->
+                                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                                            <div>Subtotale</div>
+                                                            <div>21,00 €</div>
+                                                        </div>
+                                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                                            <div>Spese di consegna</div>
+                                                            <div>5,00 €</div>
+                                                        </div> -->
         <hr class="border-top border-dark mb-3">
         <div class="d-flex justify-content-between align-items-center mb-2">
           <div><b>Totale</b></div>
