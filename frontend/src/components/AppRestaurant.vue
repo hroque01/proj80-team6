@@ -169,10 +169,12 @@ export default {
 .my_container {
     overflow-x: hidden;
     position: relative;
+    padding: 20px 0;
 }
 
 section {
-    margin: 100px 0;
+    margin: 50px 0;
+    
 
     // carosello:
     .typologies {
@@ -185,8 +187,13 @@ section {
             border: 1px solid #eaeaea;
             border-radius: 10px;
             box-shadow: 0px 5px 5px 0px #ececec;
+            transition: all .2s ease-in-out;
             // debug
             margin: 5px;
+
+            &:hover{
+                transform: scale(1.1); 
+            }
 
             img {
                 border-top-right-radius: 10px;
