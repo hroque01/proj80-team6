@@ -42,7 +42,7 @@ class ApiController extends Controller
         }
     
         // Recupera tutte le tipologie nella tabella 'typologies'
-        $typologies = Typology::all();
+        $typologies = Typology::orderBy('name')->get();
     
         // Recupera i ristoranti in base alla query definita sopra
         $restaurants = $query->get();
