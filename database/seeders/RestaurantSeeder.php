@@ -45,7 +45,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '11:30:00',
                 'closure_time' => '23:00:00',
                 'delivery_price' => 3,
-                'image' => 'https://www.sushiya.it/wp-content/uploads/2019/12/logo-negativo-300x151.png',
+                'image' => 'https://www.lemilleeunabontadifranci.it/wp-content/uploads/2020/12/Sushi-giapponese-orizzontale.jpg',
                 'user_id' => 3,
             ],
             [   
@@ -55,7 +55,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '12:00:00',
                 'closure_time' => '22:00:00',
                 'delivery_price' => 4, 
-                'image' => 'https://www.burgerbusters.com/wp-content/uploads/2019/05/BurgerBustersLogo_2x-e1559020219277.png',
+                'image' => 'https://d1ralsognjng37.cloudfront.net/dc5a30fb-d7ba-40b3-b951-9bfbdb85f08b.jpeg',
                 'user_id' => 4,
             ],
             [   
@@ -65,7 +65,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '11:30:00',
                 'closure_time' => '23:00:00',
                 'delivery_price' => 2, 
-                'image' => 'https://www.ristoranteming.it/wp-content/uploads/2017/05/logo-1-01-300x146.png', 
+                'image' => 'https://static.cookist.it/wp-content/uploads/sites/21/2020/02/cucina-cinese-migliori-ristoranti-in-italia.jpg', 
                 'user_id' => 5,
             ],
             [   
@@ -75,7 +75,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '12:30:00',
                 'closure_time' => '22:30:00',
                 'delivery_price' => 4, 
-                'image' => 'https://www.tajmahal.it/wp-content/uploads/2017/11/taj-mahal-logo.png', 
+                'image' => 'https://s3-eu-west-1.amazonaws.com/fratelliorsero/wp-content/uploads/2019/06/10105107/shutterstock_1304751289.jpg', 
                 'user_id' =>6,
             ],
             [   'business_name' => 'Taverna Greca',
@@ -84,7 +84,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '12:00:00',
                 'closure_time' => '23:00:00',
                 'delivery_price' => 5,
-                'image' => 'https://www.tavernagreca.com/wp-content/uploads/2019/08/Taverna-Greca-Logo.jpg',
+                'image' => 'https://www.sfizioso.it/wp-content/uploads/2021/06/piatti-tipici-greci.jpg',
                 'user_id' => 7, 
             ],
             [   
@@ -94,7 +94,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '11:30:00', 
                 'closure_time' => '23:30:00', 
                 'delivery_price' => 3,
-                'image' => 'https://www.lapiazzetta.it/wp-content/uploads/2019/04/logo-1-1.png',
+                'image' => 'https://www.saporinostri.it/wp-content/uploads/2020/10/le-origini-della-pizza-napoletana-e1601990439881.jpg',
                 'user_id' => 8,
             ],
             [
@@ -104,7 +104,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '11:00:00',
                 'closure_time' => '23:00:00',
                 'delivery_price' => 3.50,
-                'image' => 'https://gnammydelivery.it/wp-content/uploads/2021/01/pizza.jpg',
+                'image' => 'https://www.kingarthurbaking.com/sites/default/files/styles/featured_image/public/2022-03/Easiest-Pizza_22-2_11.jpg?itok=MD7gO9Kp',
                 'user_id' => 9,
             ],
             [
@@ -114,7 +114,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '18:00:00',
                 'closure_time' => '00:00:00',
                 'delivery_price' => 2.50,
-                'image' => 'https://gnammydelivery.it/wp-content/uploads/2021/01/pizza-2.jpg',
+                'image' => 'https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2018/03/pizza-3000274-960-720.jpg',
                 'user_id' => 10,
             ],
             [
@@ -124,7 +124,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '09:00:00',
                 'closure_time' => '22:00:00',
                 'delivery_price' => 4.00,
-                'image' => 'https://gnammydelivery.it/wp-content/uploads/2021/01/pizza-3.jpg',
+                'image' => 'https://img.freepik.com/free-vector/flying-slice-pizza-cartoon-vector-illustration-fast-food-concept-isolated-vector-flat-cartoon-style_138676-1934.jpg?w=2000',
                 'user_id' => 11,
             ],
             [
@@ -144,7 +144,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '11:30:00',
                 'closure_time' => '23:30:00',
                 'delivery_price' => 3.50,
-                'image' => 'https://gnammydelivery.it/wp-content/uploads/2021/01/pizza-5.jpg',
+                'image' => 'https://www.kingarthurbaking.com/sites/default/files/styles/featured_image/public/2022-03/Easiest-Pizza_22-2_11.jpg?itok=MD7gO9Kp',
                 'user_id' => 13,
             ],
             [
@@ -154,7 +154,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '18:00:00',
                 'closure_time' => '23:30:00',
                 'delivery_price' => 4.00,
-                'image' => 'https://gnammydelivery.it/wp-content/uploads/2021/01/pizza-6.jpg',
+                'image' => 'https://cdn.sanity.io/images/w6ol9cun/production/0fbc5d588c01b4ca1b712061daf2d802154c7ca5-2000x1080.jpg',
                 'user_id' => 14,
             ],
             // Pasticcerie
@@ -165,7 +165,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '08:00:00',
                 'closure_time' => '20:00:00',
                 'delivery_price' => 3.5,
-                'image' => 'https://gnammydelivery.it/wp-content/uploads/2021/01/ciambelle.jpg',
+                'image' => 'https://images.dissapore.com/wp-content/uploads/2015/11/CIOCCOLATINI-2.jpg',
                 'user_id' => 15,
             ],
             [ 
@@ -175,7 +175,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '07:00:00',
                 'closure_time' => '22:00:00',
                 'delivery_price' => 2,
-                'image' => 'https://gnammydelivery.it/wp-content/uploads/2021/01/bignè.jpg',
+                'image' => 'https://www.medicalfacts.it/wp-content/uploads/2020/07/bigstock-Close-up-And-Top-View-Of-Hot-B-350989136-900x580.jpg',
                 'user_id' => 16,
             ],
             [
@@ -185,7 +185,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '06:30:00',
                 'closure_time' => '21:00:00',
                 'delivery_price' => 4,
-                'image' => 'https://gnammydelivery.it/wp-content/uploads/2021/01/cornetti.jpg',
+                'image' => 'https://www.gmfoliviero.it/wp-content/uploads/2019/03/pasticceria.jpg',
                 'user_id' => 17,
             ],
             [
@@ -195,7 +195,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '12:00:00',
                 'closure_time' => '22:00:00',
                 'delivery_price' => 5,
-                'image' => 'https://gnammydelivery.it/wp-content/uploads/2021/01/veganburger.jpg',
+                'image' => 'https://www.ansa.it/crop/crop.php?file=https://www.ansa.it/webimages/cl_1100x/2022/1/11/2e0eb05e0c72b2990b6d2c5e2e4b71a2.jpg&w=1100&h=600&face=Detection&c=uj5eEr1k3yut24LVUwDv6Q',
                 'user_id' => 18,
             ],
             [
@@ -205,7 +205,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '11:30:00',
                 'closure_time' => '20:00:00',
                 'delivery_price' => 3,
-                'image' => 'https://gnammydelivery.it/wp-content/uploads/2021/01/insalata_veg.jpg',
+                'image' => 'https://www.ilgiornaledelcibo.it/wp-content/uploads/2017/02/shutterstock_416842762.jpg',
                 'user_id' => 19,
             ],
 
@@ -217,7 +217,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '06:00:00',
                 'closure_time' => '23:00:00',
                 'delivery_price' => 2.5,
-                'image' => 'https://gnammydelivery.it/wp-content/uploads/2021/01/sfogliatelle.jpg',
+                'image' => 'https://www.peninsula.com/-/media/01-hong-kong-property/phk-the-bar-1074-2.jpg?mw=987&hash=9D6C3F5F211C620548ABAD8CEE09E853',
                 'user_id' => 20,
             ],
 
@@ -227,7 +227,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '12:00:00',
                 'closure_time' => '23:00:00',
                 'delivery_price' => 8,
-                'image' => 'https://gnammydelivery.it/wp-content/uploads/2021/01/pesce_spada.jpg',
+                'image' => 'https://www.seafoodsummit.it/wp-content/uploads/sites/35/2019/11/Bennet_La_Pescheria_foto1_5645236-630x420.jpg',
                 'user_id' => 21,
             ],
             [   'business_name' => 'Bar volontario',
@@ -236,7 +236,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '18:00:00',
                 'closure_time' => '02:00:00',
                 'delivery_price' => 4,
-                'image' => 'https://gnammydelivery.it/wp-content/uploads/2021/01/bar_pub.jpg',
+                'image' => 'https://www.stile.it/wp-content/uploads/2017/10/iStock-491668296.jpg',
                 'user_id' => 22,
             ],
             [   'business_name' => 'Kebab Abhdul',
@@ -245,7 +245,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '19:00:00',
                 'closure_time' => '02:00:00',
                 'delivery_price' => 7,  
-                'image' => 'https://gnammydelivery.it/wp-content/uploads/2021/01/cocktail_bar.jpg',
+                'image' => 'https://www.thespruceeats.com/thmb/ao7czXh1afSBamtQnDUilsLD3uc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/doner-kebab-recipe-4171703-hero-01-c14d8b7189df4685a50bae311317f831.jpg',
                 'user_id' => 23,
             ],
 
@@ -254,7 +254,7 @@ class RestaurantSeeder extends Seeder
                 'address' => 'Via del Porto, 6',    'opening_time' => '11:00:00',
                 'closure_time' => '22:00:00',
                 'delivery_price' => 10,
-                'image' => 'https://gnammydelivery.it/wp-content/uploads/2021/01/pescheria_porto.jpg',
+                'image' => 'https://www.mercatidautore.com/wp-content/uploads/2018/09/img_3413.jpeg',
                 'user_id' =>24,
             ],
 
@@ -263,8 +263,16 @@ class RestaurantSeeder extends Seeder
                 'address' => 'Via del santissimo 6',    'opening_time' => '11:00:00',
                 'closure_time' => '22:00:00',
                 'delivery_price' => 10,
-                'image' => 'https://gnammydelivery.it/wp-content/uploads/2021/01/pescheria_porto.jpg',
+                'image' => 'https://c.ndtvimg.com/2021-04/umk8i7ko_pasta_625x300_01_April_21.jpg?im=FaceCrop,algorithm=dnn,width=1200,height=886',
                 'user_id' =>25,
+            ],
+            [   'business_name' => 'Mexican Hola',
+                'description' => 'We love nachos and spicy things',
+                'address' => 'Via del habanero 99T',    'opening_time' => '11:00:00',
+                'closure_time' => '22:00:00',
+                'delivery_price' => 10,
+                'image' => 'https://blog.amigofoods.com/wp-content/uploads/2020/09/mexican-food.jpg',
+                'user_id' =>26,
             ]
         ];
 
