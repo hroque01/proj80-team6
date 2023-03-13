@@ -10,8 +10,7 @@ export default {
         return {
             typologies: [],
             restaurants: [],
-            // proprietà con array che conterrà le tipologie selezionate dall'utente:
-            selectedTypologies: []
+            selectedTypologies: [] // proprietà con array che conterrà le tipologie selezionate dall'utente:
         };
     },
 
@@ -102,6 +101,8 @@ export default {
                             <div class="typologyTag" @click.prevent="filterRestaurants(typology.id)">{{ typology.name }}
                             </div>
                         </div>
+
+                        <i class="fa-solid fa-arrow-right"></i>
                     </div>
 
                     <!-- Restaurant List -->
@@ -154,6 +155,7 @@ export default {
 
 .my_container {
     overflow-x: hidden;
+    position: relative;
 }
 
 section {
@@ -162,6 +164,7 @@ section {
     // carosello:
     .typologies {
         width: calc(130px * 13);
+        
 
         .typology {
             display: inline-block;
@@ -184,6 +187,19 @@ section {
                 padding: 5px;
                 cursor: pointer;
             }
+        }
+
+        .fa-arrow-right{
+            position: absolute;
+            right: 0;
+            top: 40px;
+            font-size: 20px;
+            color: $btn_red;
+            background-color: #fff;
+            padding: 10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
         }
     }
 
