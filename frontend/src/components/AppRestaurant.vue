@@ -76,7 +76,7 @@ export default {
 </script>
 
 <template>
-    <section v-if="$route.name === 'home'">
+    <section>
 
         <!-- div container -->
         <div class="my_container">
