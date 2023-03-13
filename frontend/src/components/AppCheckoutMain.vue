@@ -69,26 +69,40 @@ export default {
     },
     computed: {
         getItems() {
-            const data = {};
-            // Popola l'oggetto data con tutti gli elementi presenti in localStorage
-            if (store.length !== 0) {
-                for (let key in localStorage) {
-                    data[key] = JSON.parse(localStorage.getItem(key));
-                }
-            }
-            // Prendi solo le chiavi degli elementi che iniziano con "storedQuantity_"
-            //La funzione Object.keys() viene utilizzata per recuperare un array di tutte le chiavi presenti nell'oggetto localStorage.
-            const itemKeys = Object.keys(localStorage).filter(key => key.startsWith("storedQuantity_"));
+    const data = {};
+    // Popola l'oggetto data con tutti gli elementi presenti in localStorage
+    if (store.length !== 0) {
+        for (let key in localStorage) {
+            data[key] = JSON.parse(localStorage.getItem(key));
+        }
+    }
 
-            // Prendi i nomi degli elementi filtrati precedentemente e uniscili in un'unica stringa
-            const items = itemKeys.map(key => {
-                const item = JSON.parse(localStorage.getItem(key));
-                return `${item.name} - ${item.price}$`;
-            });
+    // Prendi solo le chiavi degli elementi che iniziano con "storedQuantity_"
+    //La funzione Object.keys() viene utilizzata per recuperare un array di tutte le chiavi presenti nell'oggetto localStorage.
+    const itemKeys = Object.keys(localStorage).filter(key => key.startsWith("storedQuantity_"));
 
-            // Ritorna la stringa contenente i nomi degli elementi
-            return items;
-        },
+    // Somma la quantità e il prezzo per ogni elemento con lo stesso nome
+    const items = {};
+    itemKeys.forEach(key => {
+        const item = JSON.parse(localStorage.getItem(key));
+        const name = item.name;
+        if (items[name]) {
+            items[name].quantity += 1;
+            items[name].price = parseFloat(items[name].price) + parseFloat(item.price);
+        } else {
+            items[name] = { quantity: 1, price: parseFloat(item.price) };
+        }
+    });
+
+    // Converte l'oggetto items in una stringa
+    const itemStrings = Object.keys(items).map(name => {
+        const { quantity, price } = items[name];
+        return `${quantity}x ${name} - ${price.toFixed(2)}$`;
+    });
+
+    // Ritorna la stringa contenente i nomi degli elementi
+    return itemStrings;
+}
     },
 
 }
