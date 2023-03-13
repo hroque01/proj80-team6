@@ -21,8 +21,7 @@ export default {
             axios.get(API_URL + 'restaurant/filtered', {
                 params: {
                     typologies: this.selectedTypologies
-                }
-            })
+                }})
                 .then(res => {
                     const data = res.data;
                     const success = data.success;
@@ -37,6 +36,10 @@ export default {
                     }
                 })
                 .catch(err => console.error(err));
+        },
+        // metodo per filtrare ristoranti cliccando su immagini: imposto prima la proprietà selectedTypologies su un array contenente solo l'ID della tipologia selezionata dall'utente e poi uso il filtro
+        filterRestaurants(typologyId) {
+            this.selectedTypologies = [typologyId];
         }
     },
     computed: {
@@ -65,73 +68,82 @@ export default {
 </script>
 
 <template>
-    <!-- div container -->
 
-    <div class="my_container">
-         <!-- Carosello  -->
-        <div class="typologies">
-            <div class="typology" v-for="(typology, index) in typologies" :key="index">
-                <img :src="typology.image" :alt="typology.name">
-                <a href="">Scopri i ristoranti</a>
-            </div>
-        </div>
-        <div class="restaurantFilter">
+    <section>
 
-            <!-- Navbar laterale a sinistra - elenco categorie -->
-            <nav>
+        <!-- div container -->
+        <div class="my_container">
 
-                <h4>Categorie</h4>
-                <ul>
-                    <li>
-                        <div v-for="typology in typologies" :key="typology.id">
-                            <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies"
-                                :value="typology.id">
-                            <label :for="'typology_' + typology.id">{{ typology.name }}</label>
+            <div class="restaurantFilter">
+
+                <!-- Navbar laterale a sinistra - elenco categorie -->
+                <nav>
+                    <!-- forse da cancellare le checkboxes e fare filtro con immagini -->
+                    <h4>Categorie</h4>
+                    <ul>
+                        <li>
+                            <div v-for="typology in typologies" :key="typology.id">
+                                <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies"
+                                    :value="typology.id">
+                                <label :for="'typology_' + typology.id">{{ typology.name }}</label>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- parte dx -->
+                <div class="my_container restaurants_box">
+
+                    <!-- Carosello  -->
+                    <div class="typologies">
+                        <!-- filtro su immagini al click -->
+                        <div class="typology" v-for="(typology, index) in typologies" :key="index">
+                            <img :src="typology.image" :alt="typology.name">
+                            <div class="typologyTag" @click.prevent="filterRestaurants(typology.id)">{{ typology.name }}</div>
                         </div>
-                    </li>
-                </ul>
-            </nav>
-
-            <!-- parte dx -->
-            <div class="my_container restaurants_box">
-
-                <!-- Restaurant List -->
-                <div class="restaurantsContainer">
-
-                    <div class="mainTitle-container">
-                        <span class="mainTitle">Lista dei ristoranti</span> <br>
-                        <span class="mainTitle-descr">Dai un'occhiata alla nostra selezione</span>
                     </div>
 
-                    <div class="restaurantWrapper">
+                    <!-- Restaurant List -->
+                    <div class="restaurantsContainer">
 
-                        <div class="restaurant wrapperProperties" v-for="restaurant in filteredRestaurants"
-                            :key="restaurant.id">
-
-                            <div class="deliveryPrice"> {{ restaurant.delivery_price }} </div>
-                            <div class="restaurant-img">
-                                <img src="https://picsum.photos/400/300" alt="">
-                            </div>
-                            <div class="restaurant-info-wrapper">
-                                <div class="restaurant-info-restaurantName">{{ restaurant.business_name }}</div>
-                                <div class="restaurant-info-address">{{ restaurant.address }}</div>
-                            </div>
-
-                            <!-- <router-link :to="{ name: 'dish-detail', params: { id: restaurant.id } }">Vai qui</router-link> -->
-
-
+                        <div class="mainTitle-container">
+                            <span class="mainTitle">Lista dei ristoranti</span> <br>
+                            <span class="mainTitle-descr">Dai un'occhiata alla nostra selezione</span>
                         </div>
 
+                        <div class="restaurantWrapper">
+
+                            <div class="restaurant wrapperProperties" v-for="restaurant in filteredRestaurants"
+                                :key="restaurant.id">
+
+                                <div class="deliveryPrice"> {{ restaurant.delivery_price }} &euro; </div>
+                                <div class="restaurant-img">
+                                    <img src="https://picsum.photos/400/300" alt="">
+                                </div>
+                                <div class="restaurant-info-wrapper">
+                                    <div class="restaurant-info-restaurantName">{{ restaurant.business_name }}</div>
+                                    <div class="restaurant-info-address">
+                                        <i class="fa-solid fa-location-dot"></i>{{ restaurant.address }}
+                                    </div>
+                                </div>
+
+                                <!-- <router-link :to="{ name: 'dish-detail', params: { id: restaurant.id } }">Vai qui</router-link> -->
+
+
+                            </div>
+
+                        </div>
                     </div>
+                    <!-- chiusura restaurant list -->
+
                 </div>
-                <!-- chiusura restaurant list -->
+                <!-- chiusura restaurant box -->
 
             </div>
-            <!-- chiusura restaurant box -->
-
         </div>
-    </div>
-    <!-- chiusura div container -->
+        <!-- chiusura div container -->
+    </section>
+   
 </template>
 
 <style lang="scss" scoped>
@@ -139,27 +151,39 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
-// carosello:
-.typologies{
-    display: flex;
-    flex-wrap: wrap;
+section{
+    margin: 100px 0;
 
+    // carosello:
+    .typologies{
+        display: flex;
+        flex-wrap: wrap;
+        
         .typology{
-            width: calc(100% / 4);
-            position: relative;
+            width: 120px;
+            border: 1px solid #eaeaea;
+            border-radius: 10px;
+            box-shadow: 0px 5px 5px 0px #ececec;
+            // debug
+            margin: 5px;
 
-            a{
-                color: #fff;
-                position: absolute;
-                bottom: 5px;
-                left: 5px;
-                background-color: $btn_red;
-                padding: 5px 10px;
+            img{
+                border-top-right-radius: 10px;
+                border-top-left-radius: 10px;
+            }
+            .typologyTag{
+                font-size: 15px;
+                color: $text_black;
+                text-align: center;
+                padding: 5px;
+                cursor: pointer;
             }
         }
     }
-.restaurantFilter {
-    @include flex(flex);
+
+    .restaurantFilter {
+        @include flex(flex);
+    }
 }
 
 nav {
@@ -174,7 +198,7 @@ nav {
     ul {
         li {
             padding: 15px;
-            line-height: 80px;
+            line-height: 50px;
         }
     }
 
@@ -182,7 +206,6 @@ nav {
         width: 20px;
         height: 20px;
         margin-right: 10px;
-        border: 1px solid $btn_red;
     }
 }
 
@@ -195,7 +218,7 @@ nav {
     //Boxes title
     .mainTitle-container {
         line-height: 20px;
-        margin: 25px 50px;
+        margin: 25px ;
 
         .mainTitle {
             font-size: 20px;
@@ -211,60 +234,26 @@ nav {
 
     //Boxes wrapper and box properties
     .restaurantWrapper {
-
         display: flex;
         flex-wrap: wrap;
-        margin-left: 50px;
+        margin-left: 25px;
 
         .wrapperProperties {
+            width: calc(100% / 3 - 20px);
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            margin-right: 10px;
-            margin-bottom: 10px;
+            margin: 15px 10px;
             user-select: none;
+            border: 1px solid #eaeaea;
+            border-radius: 10px;
+            box-shadow: 0px 5px 5px 0px #ececec;
         }
 
         .wrapperProperties:hover {
             cursor: pointer;
         }
-
     }
-
-
-
-    // tagBoxes
-
-    .tagWrapper {
-        display: flex;
-        flex-wrap: wrap;
-        margin-left: 50px;
-        margin-right: 50px;
-        gap: 15px;
-    }
-
-    .tag {
-        width: 100px;
-        height: 80px;
-        border-radius: 5px;
-
-        .tagBox-img {
-            width: 100%;
-            height: 70%;
-            overflow: hidden;
-        }
-
-        .tagBox-name {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            height: 30%;
-            padding-left: 5px;
-            font-size: 12px;
-            background-color: $restaurant_card_bg;
-        }
-    }
-
 }
 
 // lpBoxes
@@ -299,21 +288,21 @@ nav {
         justify-content: center;
 
         .restaurant-info-restaurantName {
-
             font-size: 14px;
             font-weight: 600;
-
         }
 
         .restaurant-info-address {
-
             display: flex;
             align-items: center;
+            color: #898a8a;
 
+            .fa-location-dot{
+                margin-right: 5px;
+            }
             .my_otherInfo {
                 font-size: 12px;
             }
-
         }
     }
 
