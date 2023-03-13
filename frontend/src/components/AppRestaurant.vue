@@ -21,7 +21,8 @@ export default {
             axios.get(API_URL + 'restaurant/filtered', {
                 params: {
                     typologies: this.selectedTypologies
-                }})
+                }
+            })
                 .then(res => {
                     const data = res.data;
                     const success = data.success;
@@ -68,7 +69,6 @@ export default {
 </script>
 
 <template>
-
     <section>
 
         <!-- div container -->
@@ -99,7 +99,8 @@ export default {
                         <!-- filtro su immagini al click -->
                         <div class="typology" v-for="(typology, index) in typologies" :key="index">
                             <img :src="typology.image" :alt="typology.name">
-                            <div class="typologyTag" @click.prevent="filterRestaurants(typology.id)">{{ typology.name }}</div>
+                            <div class="typologyTag" @click.prevent="filterRestaurants(typology.id)">{{ typology.name }}
+                            </div>
                         </div>
                     </div>
 
@@ -143,7 +144,6 @@ export default {
         </div>
         <!-- chiusura div container -->
     </section>
-   
 </template>
 
 <style lang="scss" scoped>
@@ -151,15 +151,20 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
-section{
+
+.my_container {
+    overflow-x: hidden;
+}
+
+section {
     margin: 100px 0;
 
     // carosello:
-    .typologies{
-        display: flex;
-        flex-wrap: wrap;
-        
-        .typology{
+    .typologies {
+        width: calc(130px * 13);
+
+        .typology {
+            display: inline-block;
             width: 120px;
             border: 1px solid #eaeaea;
             border-radius: 10px;
@@ -167,11 +172,12 @@ section{
             // debug
             margin: 5px;
 
-            img{
+            img {
                 border-top-right-radius: 10px;
                 border-top-left-radius: 10px;
             }
-            .typologyTag{
+
+            .typologyTag {
                 font-size: 15px;
                 color: $text_black;
                 text-align: center;
@@ -218,7 +224,7 @@ nav {
     //Boxes title
     .mainTitle-container {
         line-height: 20px;
-        margin: 25px ;
+        margin: 25px;
 
         .mainTitle {
             font-size: 20px;
@@ -297,9 +303,10 @@ nav {
             align-items: center;
             color: #898a8a;
 
-            .fa-location-dot{
+            .fa-location-dot {
                 margin-right: 5px;
             }
+
             .my_otherInfo {
                 font-size: 12px;
             }
