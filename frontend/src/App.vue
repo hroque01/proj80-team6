@@ -8,7 +8,7 @@ import AppRestaurant from './components/AppRestaurant.vue';
 // APP RESTAURANT (MAIN RESTAURANT PAGE)
 // import AppRestaurantMainPage from './components/AppRestaurantMainPage.vue';
 // APP CHECKOUT
-import AppCheckout from './components/AppCheckout.vue';
+//import AppCheckout from './components/AppCheckout.vue';
 
 export default {
   components: {
@@ -19,7 +19,7 @@ export default {
     // APP RESTAURANT (MAIN RESTAURANT PAGE)
     // AppRestaurantMainPage,
     // APP CHECKOUT
-    AppCheckout,
+    //AppCheckout,
   }
 }
 </script>
@@ -39,7 +39,7 @@ export default {
 
   <!-- APP CHECKOUT TEMPORANEO -->
 
-  <AppCheckout />
+  <!-- <AppCheckout /> -->
   <AppFooter />
 </template>
 
