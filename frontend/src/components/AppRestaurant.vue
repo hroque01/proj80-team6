@@ -79,7 +79,7 @@ export default {
     <section>
 
         <!-- div container -->
-        <div class="my_container">
+        <div class="my_container" v-if="$route.name === 'home'">
 
             <div class="restaurantFilter">
 
@@ -155,7 +155,7 @@ export default {
     </section>
 
     <div v-if="$route.name === 'restaurant-detail'">
-        <router-view></router-view>
+        <AppRestaurantMainPage />
     </div>
 </template>
 
@@ -171,7 +171,7 @@ export default {
 }
 
 section {
-    margin: 0;
+    margin: 100px 0;
 
     // carosello:
     .typologies {
