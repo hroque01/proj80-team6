@@ -131,14 +131,15 @@ export default {
                                     <img :src="restaurant.image" alt="">
                                 </div>
                                 <div class="restaurant-info-wrapper">
-                                    <div class="restaurant-info-restaurantName">{{ restaurant.business_name }}</div>
+                                    <div class="restaurant-info-restaurantName">
+                                        <router-link :to="{ name: 'restaurant-detail', params: { id: restaurant.id } }">{{
+                                            restaurant.business_name }}
+                                        </router-link>
+                                    </div>
                                     <div class="restaurant-info-address">
                                         <i class="fa-solid fa-location-dot"></i>{{ restaurant.address }}
                                     </div>
                                 </div>
-
-                                <router-link :to="{ name: 'restaurant-detail', params: { id: restaurant.id } }">Vedi info
-                                    ristorante</router-link>
 
                             </div>
 
