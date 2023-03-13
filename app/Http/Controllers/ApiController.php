@@ -12,8 +12,10 @@ use App\Models\Restaurant;
 class ApiController extends Controller
 {
     public function getAllTypologies() {
-        $typologies = Typology::all();
 
+        // $typologies = Typology::all();
+        $typologies = Typology::orderBy('name', 'asc')->get();
+        
         return response()->json([
             'success' => true,
             'response' => [
