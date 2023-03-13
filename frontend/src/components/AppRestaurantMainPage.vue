@@ -256,16 +256,15 @@ export default {
 }
 
 // dish menu
-.menu-wrapper{
-  display: flex;
-}
 .dish_cart{
   display: flex;
   justify-content: space-around;
   background-color: #fff;
   border: 1px solid #eaeaea;
   box-shadow: 0px 5px 5px 0px #ececec;
-
+  .menu-wrapper{
+    display: flex;
+  }
   .menu_list {
     width: 70%;
     margin-right: 20px;
@@ -290,6 +289,10 @@ export default {
       border: 1px solid #eaeaea;
       box-shadow: 0px 10px 5px 0px #ececec;
       border-radius: 10px;
+
+      // &:hover{
+      //   sca
+      // }
 
       .my_bigBox-img {
         width: 100%;
@@ -340,6 +343,12 @@ export default {
           color: #fff;
           padding: 5px;
           border-radius: 8px;
+
+          &:hover{
+            background-color: #fff;
+            border: 2px solid $btn_red;
+            color: $btn_red;
+          }
         }
 
         .fa-cart-shopping{
