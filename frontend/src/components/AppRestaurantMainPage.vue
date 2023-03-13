@@ -1,8 +1,8 @@
 <script>
 
-import { store } from '../store';
-
 import axios from 'axios';
+
+import { store } from '../store';
 
 const API_URL = 'http://localhost:8000/api/v1/';
 
@@ -10,73 +10,14 @@ export default {
   name: 'AppRestaurantMainPage',
   data() {
     return {
+      restaurants: [],
+      dishes: [],
       store,
-      restaurantInfo: [
-        {
-          name: 'Burger King',
-          address: '123 Main St',
-          description: 'Burger King is a restaurant located in Burgershire, England',
-          openingTime: '10:00',
-          closingTime: '12:00',
-          deliveryPrice: '10.00',
-          img: '',
-        },
-      ],
-      dishes: [
-        // {
-        //     name: 'DishnamePlaceholder',
-        //     description: 'DishDescriptionPlaceholder',
-        //     price: "prezzo $",
-        //     image: '',
-        //     ingredients: 'IngredientPlaceholder',
-        //     cart:'Ordina',
-        // },
-        // {
-        //     name: 'DishnamePlaceholder',
-        //     description: 'DishDescriptionPlaceholder',
-        //     price: "prezzo $",
-        //     image: '',
-        //     ingredients: 'IngredientPlaceholder',
-        //     cart:'Ordina',
-        // },
-        // {
-        //     name: 'DishnamePlaceholder',
-        //     description: 'DishDescriptionPlaceholder',
-        //     price: "prezzo $",
-        //     image: '',
-        //     ingredients: 'IngredientPlaceholder',
-        //     cart:'Ordina',
-        // },
-        // {
-        //     name: 'DishnamePlaceholder',
-        //     description: 'DishDescriptionPlaceholder',
-        //     price: "prezzo $",
-        //     image: '',
-        //     ingredients: 'IngredientPlaceholder',
-        //     cart:'Ordina',
-        // },
-        // {
-        //     name: 'DishnamePlaceholder',
-        //     description: 'DishDescriptionPlaceholder',
-        //     price: "prezzo $",
-        //     image: '',
-        //     ingredients: 'IngredientPlaceholder',
-        //     cart:'Ordina',
-        // },
-        // {
-        //     name: 'DishnamePlaceholder',
-        //     description: 'DishDescriptionPlaceholder',
-        //     price: "prezzo $",
-        //     image: '',
-        //     ingredients: 'IngredientPlaceholder',
-        //     cart:'Ordina',
-        // }
-      ],
     }
   },
   methods: {
     getDishes() {
-      axios.get(API_URL + 'dish/all')
+      axios.get(API_URL + 'restaurant/' + this.$route.params.id)
         .then(res => {
 
           const data = res.data;
@@ -84,9 +25,12 @@ export default {
           const response = data.response;
 
           const dishes = response.dishes;
+          const restaurants = response.restaurants;
 
           if (success) {
             this.dishes = dishes;
+            this.restaurants = restaurants;
+
           }
         })
         .catch(err => console.error(err));
@@ -103,8 +47,16 @@ export default {
       store.item = JSON.parse(value);
     },
   },
+  computed: {
+    filteredRestaurants() {
+      return this.restaurants.filter(restaurant => restaurant.id === parseInt(this.$route.params.id));
+    }
+  },
   mounted() {
     this.getDishes();
+  },
+  watch: {
+    '$route.params.id': 'getDishes'
   }
 }
 </script>
@@ -112,25 +64,27 @@ export default {
 <template>
   <main>
     <!-- restaurant header with image and info-->
-    <div class="restaurant_header" v-for="(restaurant, index) in restaurantInfo" :key="index">
+    <div class="restaurant_header" v-for="(restaurant, index) in filteredRestaurants" :key="index">
 
-      <div class="restaurant_image">
-        <img src="https://picsum.photos/500/400" alt="">
-      </div>
-
-      <div class="restaurant_informations">
-
-        <div class="restaurantName">{{ restaurant.name }}</div>
-        <div class="restaurantAdress">Ci puoi trovare a: {{ restaurant.address }}</div>
-        <div class="restaurantDescription">{{ restaurant.description }}</div>
-        <div class="restaurantOpeningTimes">
-          {{ restaurant.openingTime }} - {{ restaurant.closingTime }}
+      <div v-if="restaurant">
+        <div class="restaurant_image">
+          <img :src="restaurant.image" alt="">
         </div>
-        <div class="restaurantDeliveryPrice">Consegna al costo di: {{ restaurant.deliveryPrice }} $</div>
 
+        <div class="restaurant_informations">
+
+          <div class="restaurantName">{{ restaurant.business_name }}</div>
+          <div class="restaurantAdress">Ci puoi trovare a: {{ restaurant.address }}</div>
+          <div class="restaurantDescription">{{ restaurant.description }}</div>
+          <div class="restaurantOpeningTimes">
+            {{ restaurant.opening_time }} - {{ restaurant.closure_time }}
+          </div>
+          <div class="restaurantDeliveryPrice">Consegna al costo di: {{ restaurant.delivery_price }} $</div>
+
+        </div>
       </div>
-
     </div>
+
 
     <div class="dish_cart">
 
@@ -140,7 +94,7 @@ export default {
         <div class="my_Boxes-wrapper">
 
           <div class="my_bigBox box-properties" v-for="(dish, index) in dishes" :key="index">
-            <div class="dishPrice">
+            <div class="dishPrice" v-if="dish">
               <span class="Pricebuble"> {{ dish.price }} </span> <br>
               <span></span>
             </div>
