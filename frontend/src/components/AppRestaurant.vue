@@ -120,7 +120,7 @@ export default {
 
                                 <div class="deliveryPrice"> {{ restaurant.delivery_price }} &euro; </div>
                                 <div class="restaurant-img">
-                                    <img src="https://picsum.photos/400/300" alt="">
+                                    <img :src="restaurant.image" alt="">
                                 </div>
                                 <div class="restaurant-info-wrapper">
                                     <div class="restaurant-info-restaurantName">{{ restaurant.business_name }}</div>

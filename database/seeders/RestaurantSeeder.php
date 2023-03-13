@@ -46,8 +46,6 @@ class RestaurantSeeder extends Seeder
                 'closure_time' => '23:00:00',
                 'delivery_price' => 3,
                 'image' => 'https://www.lemilleeunabontadifranci.it/wp-content/uploads/2020/12/Sushi-giapponese-orizzontale.jpg',
-                'delivery_price' => 2,
-                'image' => 'https://www.sushiya.it/wp-content/uploads/2019/12/logo-negativo-300x151.png',
                 'user_id' => 3,
             ],
             [   
@@ -58,8 +56,6 @@ class RestaurantSeeder extends Seeder
                 'closure_time' => '22:00:00',
                 'delivery_price' => 4, 
                 'image' => 'https://d1ralsognjng37.cloudfront.net/dc5a30fb-d7ba-40b3-b951-9bfbdb85f08b.jpeg',
-                'delivery_price' => 1, 
-                'image' => 'https://www.burgerbusters.com/wp-content/uploads/2019/05/BurgerBustersLogo_2x-e1559020219277.png',
                 'user_id' => 4,
             ],
             [   
@@ -128,7 +124,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '09:00:00',
                 'closure_time' => '22:00:00',
                 'delivery_price' => 2.10,
-                'image' => 'https://img.freepik.com/free-vector/flying-slice-pizza-cartoon-vector-illustration-fast-food-concept-isolated-vector-flat-cartoon-style_138676-1934.jpg?w=2000',
+                'image' => 'https://www.negroni.com/sites/negroni.com/files/styles/scale__1440_x_1440_/public/pizza_rustica.jpg?itok=Lbp_jtZW',
                 'user_id' => 11,
             ],
             [
@@ -138,7 +134,7 @@ class RestaurantSeeder extends Seeder
                 'opening_time' => '10:00:00',
                 'closure_time' => '23:00:00',
                 'delivery_price' => 1.20,
-                'image' => 'https://gnammydelivery.it/wp-content/uploads/2021/01/pizza-4.jpg',
+                'image' => 'https://www.fontanaeanghinetti.it/wp-content/uploads/2018/05/pizza-prosciutto-crudo.jpg',
                 'user_id' => 12,
             ],
             [
@@ -444,6 +440,11 @@ class RestaurantSeeder extends Seeder
             $restaurant_25 = Restaurant::find(25);
             $typology_25 = Typology::find([5]);
             $restaurant_25->typologies()->attach($typology_25);
+
+            //Messicano
+            $restaurant_26 = Restaurant::find(26);
+            $typology_26 = Typology::find([6]);
+            $restaurant_26->typologies()->attach($typology_26);
             
     }
 }

@@ -22,56 +22,7 @@ export default {
           img: '',
         },
       ],
-      dishes: [
-        // {
-        //     name: 'DishnamePlaceholder',
-        //     description: 'DishDescriptionPlaceholder',
-        //     price: "prezzo $",
-        //     image: '',
-        //     ingredients: 'IngredientPlaceholder',
-        //     cart:'Ordina',
-        // },
-        // {
-        //     name: 'DishnamePlaceholder',
-        //     description: 'DishDescriptionPlaceholder',
-        //     price: "prezzo $",
-        //     image: '',
-        //     ingredients: 'IngredientPlaceholder',
-        //     cart:'Ordina',
-        // },
-        // {
-        //     name: 'DishnamePlaceholder',
-        //     description: 'DishDescriptionPlaceholder',
-        //     price: "prezzo $",
-        //     image: '',
-        //     ingredients: 'IngredientPlaceholder',
-        //     cart:'Ordina',
-        // },
-        // {
-        //     name: 'DishnamePlaceholder',
-        //     description: 'DishDescriptionPlaceholder',
-        //     price: "prezzo $",
-        //     image: '',
-        //     ingredients: 'IngredientPlaceholder',
-        //     cart:'Ordina',
-        // },
-        // {
-        //     name: 'DishnamePlaceholder',
-        //     description: 'DishDescriptionPlaceholder',
-        //     price: "prezzo $",
-        //     image: '',
-        //     ingredients: 'IngredientPlaceholder',
-        //     cart:'Ordina',
-        // },
-        // {
-        //     name: 'DishnamePlaceholder',
-        //     description: 'DishDescriptionPlaceholder',
-        //     price: "prezzo $",
-        //     image: '',
-        //     ingredients: 'IngredientPlaceholder',
-        //     cart:'Ordina',
-        // }
-      ],
+      dishes: [],
     }
   },
   methods: {
