@@ -14,5 +14,6 @@ export const store = reactive({
         },
     ],
     quantity: [],
-    length: localStorage.length
+    length: localStorage.length,
+    total: 0,
 });
