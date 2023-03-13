@@ -4,42 +4,35 @@ import AppHeader from './components/AppHeader.vue';
 import AppFooter from './components/AppFooter.vue';
 import AppMain from './components/AppMain.vue';
 // APP RESTAURANT
-import AppRestaurant from './components/AppRestaurant.vue';
 // APP RESTAURANT (MAIN RESTAURANT PAGE)
 // import AppRestaurantMainPage from './components/AppRestaurantMainPage.vue';
 // APP CHECKOUT
-//import AppCheckout from './components/AppCheckout.vue';
+import AppCheckout from './components/AppCheckout.vue';
 
 export default {
   components: {
     AppHeader,
     AppFooter,
     AppMain,
-    AppRestaurant,
     // APP RESTAURANT (MAIN RESTAURANT PAGE)
     // AppRestaurantMainPage,
     // APP CHECKOUT
-    //AppCheckout,
+    AppCheckout,
   }
 }
 </script>
 
 <template>
   <AppHeader />
-  <AppMain />
 
-  <!-- APP RESTAURANT TEMPORANEO -->
-  <!-- APP RESTAURANT LIST TEMPORANEO -->
+  <main>
+    <AppMain />
 
-  <AppRestaurant />
+    <div v-if="$route.name === 'cart'">
+      <AppCheckout />
+    </div>
+  </main>
 
-  <!-- APP RESTAURANT MAIN PAGE TEMPORANEO -->
-
-  <!-- <AppRestaurantMainPage /> -->
-
-  <!-- APP CHECKOUT TEMPORANEO -->
-
-  <!-- <AppCheckout /> -->
   <AppFooter />
 </template>
 

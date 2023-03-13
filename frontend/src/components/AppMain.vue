@@ -2,13 +2,17 @@
 import AppTrack from './AppTrack.vue';
 import AppBannerMain from './AppBannerMain.vue';
 import AppCategory from './AppCategory.vue';
+import AppRestaurant from './AppRestaurant.vue';
+
 
 export default {
   name: 'AppMain',
   components: {
     AppTrack,
     AppBannerMain,
-    AppCategory
+    AppCategory,
+    AppRestaurant,
+
   }
 }
 
@@ -16,11 +20,12 @@ export default {
 
 <template>
   <!-- main section home -->
-  <main>
+  <div v-if="$route.name === 'home'">
     <AppTrack />
     <AppBannerMain />
-    <!-- <AppCategory /> -->
-  </main>
+  </div>
+  <AppRestaurant />
+  <!-- <AppCategory /> -->
 </template>
 
 <style lang="scss" scoped>
