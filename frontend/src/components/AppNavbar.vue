@@ -56,10 +56,11 @@ export default {
   <div class="container-fluid">
     <div class="logo">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <a class="navbar-brand" href="/">
+        <router-link to="/" class="navbar-brand">
           <img src="/public/img/logo.png" alt="logo deliveboo">
           <span>Deliveboo</span>
-        </a>
+        </router-link>
+
 
         <!-- BUTTON FOR RESPONSIVE -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -100,9 +101,9 @@ export default {
 
                   <!-- LOGOUT DA TOGLIERE OPURE NO CIT ROMINA -->
                   <!-- <a class="m-4" href="#">
-                                                                                                                                                                        <i class="fa-solid fa-right-from-bracket mx-2"></i>
-                                                                                                                                                                        <span>LOGOUT</span>
-                                                                                                                                                    </a> -->
+                                                                                                                                                                            <i class="fa-solid fa-right-from-bracket mx-2"></i>
+                                                                                                                                                                            <span>LOGOUT</span>
+                                                                                                                                                        </a> -->
                   <!--  -->
 
                 </ul>
@@ -112,10 +113,6 @@ export default {
         </div>
       </nav>
     </div>
-  </div>
-
-  <div v-if="$route.name === 'cart'">
-    <router-view></router-view>
   </div>
 </template>
 
