@@ -69,8 +69,8 @@ export default {
 
 <template>
   <!-- <router-link to="/">
-      Torna indietro
-    </router-link> -->
+        Torna indietro
+      </router-link> -->
 
   <!-- restaurant header with image and info-->
   <div class="restaurant_header" v-for="(restaurant, index) in filteredRestaurants" :key="index">
