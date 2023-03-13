@@ -53,66 +53,64 @@ export default {
 </script>
 
 <template>
-  <div class="container-fluid">
-    <div class="logo">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <router-link to="/" class="navbar-brand">
-          <img src="/public/img/logo.png" alt="logo deliveboo">
-          <span>Deliveboo</span>
-        </router-link>
+  <div class="logo">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <router-link to="/" class="navbar-brand">
+        <img src="/public/img/logo.png" alt="logo deliveboo">
+        <span>Deliveboo</span>
+      </router-link>
 
 
-        <!-- BUTTON FOR RESPONSIVE -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <!-- BUTTON FOR RESPONSIVE -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-          <ul class="navbar-nav mb-lg-0">
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-lg-0">
 
-            <!-- v-for array print in DOM -->
-            <li class="nav-item general-btn" v-for="(link, index) in links" :key="index" @click="toggleDropdown(link)">
-              <router-link :to="{ name: 'cart' }" class="nav-link" aria-current="page" :href="link.url">
-                <!-- V-bind and v-for for icons -->
-                <i :class="link.icon"></i>
-                <!-- v-for for text -->
-                <span @click="toggleMenu">
-                  <span v-if="link.text">
-                    {{ link.text }}
-                  </span>
-
-                  <span v-else>
-                    Carrello
-                  </span>
-
-                  <span v-if="index === 1">{{ store.length }}</span>
+          <!-- v-for array print in DOM -->
+          <li class="nav-item general-btn" v-for="(link, index) in links" :key="index" @click="toggleDropdown(link)">
+            <router-link :to="{ name: 'cart' }" class="nav-link" aria-current="page" :href="link.url">
+              <!-- V-bind and v-for for icons -->
+              <i :class="link.icon"></i>
+              <!-- v-for for text -->
+              <span @click="toggleMenu">
+                <span v-if="link.text">
+                  {{ link.text }}
                 </span>
 
-                <!-- toggle menu -->
-                <ul v-if="link.toggle && link.dropdown" class="dropdown my-2">
-                  <!-- Bootstrap margin class -->
-                  <li class="m-2" v-for="item in link.dropdown" :key="item.title">
-                    <a href="item.url" class="mx-3">
-                      <i class="mx-2" :class="item.iconDrop"></i>
-                      <span>{{ item.title }}</span>
-                    </a>
-                  </li>
+                <span v-else>
+                  Carrello
+                </span>
 
-                  <!-- LOGOUT DA TOGLIERE OPURE NO CIT ROMINA -->
-                  <!-- <a class="m-4" href="#">
-                                                                                                                                                                              <i class="fa-solid fa-right-from-bracket mx-2"></i>
-                                                                                                                                                                              <span>LOGOUT</span>
-                                                                                                                                                          </a> -->
-                  <!--  -->
+                <span v-if="index === 1">{{ store.length }}</span>
+              </span>
 
-                </ul>
-              </router-link>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
+              <!-- toggle menu -->
+              <ul v-if="link.toggle && link.dropdown" class="dropdown my-2">
+                <!-- Bootstrap margin class -->
+                <li class="m-2" v-for="item in link.dropdown" :key="item.title">
+                  <a href="item.url" class="mx-3">
+                    <i class="mx-2" :class="item.iconDrop"></i>
+                    <span>{{ item.title }}</span>
+                  </a>
+                </li>
+
+                <!-- LOGOUT DA TOGLIERE OPURE NO CIT ROMINA -->
+                <!-- <a class="m-4" href="#">
+                                                                                                                                                                                        <i class="fa-solid fa-right-from-bracket mx-2"></i>
+                                                                                                                                                                                        <span>LOGOUT</span>
+                                                                                                                                                                    </a> -->
+                <!--  -->
+
+              </ul>
+            </router-link>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </div>
 </template>
 
