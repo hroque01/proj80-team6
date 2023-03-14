@@ -100,9 +100,6 @@ export default {
 
 <template>
   <section>
-  <router-link to="/">
-    Torna indietro
-  </router-link>
 
     <!-- restaurant header with image and info-->
     <div class="restaurant_header" v-for="(restaurant, index) in filteredRestaurants" :key="index">
@@ -196,14 +193,14 @@ export default {
             </li>
           </ul>
           <!-- <hr class="border-top border-dark mb-3">
-                                                                                                  <div class="d-flex justify-content-between align-items-center mb-2">
-                                                                                                      <div>Subtotale</div>
-                                                                                                      <div>21,00 €</div>
-                                                                                                  </div>
-                                                                                                  <div class="d-flex justify-content-between align-items-center mb-2">
-                                                                                                      <div>Spese di consegna</div>
-                                                                                                      <div>5,00 €</div>
-                                                                                                  </div> -->
+                                                                                                                                      <div class="d-flex justify-content-between align-items-center mb-2">
+                                                                                                                                          <div>Subtotale</div>
+                                                                                                                                          <div>21,00 €</div>
+                                                                                                                                      </div>
+                                                                                                                                      <div class="d-flex justify-content-between align-items-center mb-2">
+                                                                                                                                          <div>Spese di consegna</div>
+                                                                                                                                          <div>5,00 €</div>
+                                                                                                                                      </div> -->
           <hr class="border-top border-dark mb-3">
           <div class="d-flex justify-content-between align-items-center mb-2">
             <div><b>Totale</b></div>
@@ -307,12 +304,16 @@ export default {
 
       .my_bigBox-img {
         width: 100%;
-        height: 170px;
         object-fit: cover;
         background-color: white;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
 
         img {
           display: block;
+          width: 100%;
+          height: 180px;
+          object-fit: cover;
           border-top-right-radius: 10px;
           border-top-left-radius: 10px;
         }
@@ -346,7 +347,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px;
+        padding: 50px 10px 10px 10px;
 
         .dishPrice {
           font-size: 15px;

@@ -82,7 +82,7 @@ export default {
 
 section {
     background-color: #f9fafa;
-    padding: 200px 0;
+    padding: 220px 0 90px 0;
     position: relative;
     overflow: hidden;
 
