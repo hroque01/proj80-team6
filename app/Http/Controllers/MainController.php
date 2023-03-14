@@ -83,6 +83,8 @@ class MainController extends Controller
     // Metodo edit (per form):
     public function dishEdit(Dish $dish) {
         
+        $this->authorize('update-dish', $dish);
+        
         $restaurants = Restaurant::all();
 
         return view('pages.dishEdit', compact('dish', 'restaurants'));
@@ -90,6 +92,8 @@ class MainController extends Controller
 
     // Metodo update (per ricevere dati modificati da form):
     public function dishUpdate(Request $request, Dish $dish) {
+
+        $this->authorize('update', $dish);
 
         $data = $request -> validate([
             'name' => 'required|string|max:64',
