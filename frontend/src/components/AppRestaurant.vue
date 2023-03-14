@@ -40,10 +40,10 @@ export default {
                     // imposto la proprietà isChecked su false per tutte le tipologie nell'array typologies quando aggiorno la lista delle tipologie, in modo che le checkbox non rimangono selezionate quando la selezione viene modificata.
                     if (success) {
                         this.typologies = typologies.map(typology => {
-                        typology.isChecked = false;
-                        return typology;
-                    });
-                    this.restaurants = restaurants;
+                            typology.isChecked = false;
+                            return typology;
+                        });
+                        this.restaurants = restaurants;
                     }
                 })
                 .catch(err => console.error(err));
@@ -87,14 +87,16 @@ export default {
             <!-- filtro img categorie -->
             <div class="carousel-typology">
                 <div class="typology" v-for="typology in typologies" :key="typology.id">
-                    <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies" :value="typology.id" />
-                        <label :for="'typology_' + typology.id" :class="{ 'checked': typology.isChecked }" @click="typology.isChecked = !typology.isChecked">
+                    <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies"
+                        :value="typology.id" />
+                    <label :for="'typology_' + typology.id" :class="{ 'checked': typology.isChecked }"
+                        @click="typology.isChecked = !typology.isChecked">
                         <img :src="typology.image" />
                         <div class="typologyTag">{{ typology.name }}</div>
                     </label>
                 </div>
             </div>
-            
+
             <div class="restaurantFilter">
 
                 <!-- parte dx -->
@@ -114,15 +116,16 @@ export default {
                                 :key="restaurant.id">
 
                                 <div class="deliveryPrice">
-                                    <i class="fa-solid fa-motorcycle"></i> {{ restaurant.delivery_price }} &euro; 
+                                    <i class="fa-solid fa-motorcycle"></i> {{ restaurant.delivery_price }} &euro;
                                 </div>
                                 <div class="restaurant-img">
                                     <img :src="restaurant.image" alt="">
                                 </div>
                                 <div class="restaurant-info-wrapper">
                                     <div class="restaurant-info-restaurantName">
-                                        <router-link :to="{ name: 'restaurant-detail', params: { id: restaurant.id } }" class="name_res">{{
-                                            restaurant.business_name }}
+                                        <router-link :to="{ name: 'restaurant-detail', params: { id: restaurant.id } }"
+                                            class="name_res">{{
+                                                restaurant.business_name }}
                                         </router-link>
                                     </div>
                                     <div class="restaurant-info-address">
@@ -143,10 +146,6 @@ export default {
         </div>
         <!-- chiusura div container -->
     </section>
-
-    <div v-if="$route.name === 'restaurant-detail'">
-        <AppRestaurantMainPage />
-    </div>
 </template>
 
 <style lang="scss" scoped>
@@ -154,46 +153,41 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
-
-.my_container {
-    overflow-x: hidden;
-    position: relative;
-}
-
 // filtri categoria
-.carousel-typology{
+.carousel-typology {
     display: flex;
 
     .typology {
-    box-shadow: 0px 5px 5px 0px #ececec;
-    height: 100%;
-    border-radius: 10px;
-    margin: 20px 0;
+        box-shadow: 0px 5px 5px 0px #ececec;
+        height: 100%;
+        border-radius: 10px;
+        margin: 20px 0;
 
-    input{
-        display: none;
-    }
+        input {
+            display: none;
+        }
 
-    img {
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
-    }
+        img {
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
 
-    .typologyTag{
-        padding: 10px;
-        text-align: center;
+        .typologyTag {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .checked {
+            border: 5px solid $btn_red;
+            border-radius: 15px;
+        }
     }
-    .checked {
-        border: 5px solid $btn_red;
-        border-radius: 15px;
-    }
-}
 
 }
 
 section {
     margin: 50px 0;
-    
+
     .restaurantFilter {
         @include flex(flex);
     }
@@ -239,13 +233,14 @@ section {
         flex-wrap: wrap;
         margin-left: 25px;
 
-        .name_res{
+        .name_res {
             color: $text_black;
 
-            &:hover{
+            &:hover {
                 text-decoration: underline;
             }
         }
+
         .wrapperProperties {
             width: calc(100% / 4 - 20px);
             display: flex;
