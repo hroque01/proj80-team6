@@ -97,6 +97,11 @@ export default {
                 </div>
             </div>
 
+            <div class="mainTitle-container">
+                <span class="mainTitle">Lista dei ristoranti</span> <br>
+                <span class="mainTitle-descr">Dai un'occhiata alla nostra selezione</span>
+            </div>
+
             <div class="restaurantFilter">
 
                 <!-- parte dx -->
@@ -104,11 +109,6 @@ export default {
 
                     <!-- Restaurant List -->
                     <div class="restaurantsContainer">
-
-                        <div class="mainTitle-container">
-                            <span class="mainTitle">Lista dei ristoranti</span> <br>
-                            <span class="mainTitle-descr">Dai un'occhiata alla nostra selezione</span>
-                        </div>
 
                         <div class="restaurantWrapper">
 
@@ -124,8 +124,8 @@ export default {
                                 <div class="restaurant-info-wrapper">
                                     <div class="restaurant-info-restaurantName">
                                         <router-link :to="{ name: 'restaurant-detail', params: { id: restaurant.id } }"
-                                            class="name_res">{{
-                                                restaurant.business_name }}
+                                            class="name_res">
+                                            {{ restaurant.business_name }}
                                         </router-link>
                                     </div>
                                     <div class="restaurant-info-address">
@@ -204,9 +204,19 @@ section {
 //     box-shadow: 0px 20px 5px 0px #ececec;
 // }
 
+.mainTitle {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.mainTitle-descr {
+    font-size: 15px;
+    font-weight: 300;
+}
+
 // regole parte dx main
 .restaurants_box {
-    height: 100vh;
+    height: 300px;
     overflow-y: auto;
 
     //general
@@ -214,16 +224,6 @@ section {
     .mainTitle-container {
         line-height: 20px;
         margin: 25px;
-
-        .mainTitle {
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        .mainTitle-descr {
-            font-size: 15px;
-            font-weight: 300;
-        }
 
     }
 
