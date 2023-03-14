@@ -18,6 +18,10 @@ use App\Http\Controllers\MainController;
 // Route home
 Route::get('/', [MainController::class, 'home'])->name('home');
 
+// Route show
+Route :: get('/dish/show/{dish}', [MainController :: class, 'dishShow'])
+    -> name('dish.show');
+
 // Route create (per form):
 Route :: get('/dish/create', [MainController :: class, 'dishCreate']) 
 -> name('dishCreate');

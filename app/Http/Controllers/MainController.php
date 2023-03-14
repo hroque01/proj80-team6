@@ -37,6 +37,12 @@ class MainController extends Controller
         return view('pages.restaurant', compact('restaurants', 'dishes', 'restaurant'));
     }
 
+    // Metodo Show
+    public function dishShow(Dish $dish) {
+        
+        return view('pages.dishShow', compact('dish'));
+    }
+
     // Metodo create (per form):
     public function dishCreate() {
 
@@ -115,6 +121,8 @@ class MainController extends Controller
         
         return redirect() -> route('restaurant');
     }
+
+    
 }
 
 
