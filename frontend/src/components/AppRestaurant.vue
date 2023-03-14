@@ -70,7 +70,15 @@ export default {
                 });
             }
             return filteredRestaurants;
+        },
+        typologyGroups() {
+        const groups = [];
+        let i, j;
+        for (i = 0, j = this.typologies.length; i < j; i += 5) {
+            groups.push(this.typologies.slice(i, i + 5));
         }
+        return groups;
+    },
     },
     mounted() {
         this.updateTypologies();
@@ -83,19 +91,20 @@ export default {
 
         <!-- div container -->
         <div class="my_container">
-
-            <!-- filtro img categorie -->
-            <div class="carousel-typology">
-                <div class="typology" v-for="typology in typologies" :key="typology.id">
-                    <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies"
-                        :value="typology.id" />
-                    <label :for="'typology_' + typology.id" :class="{ 'checked': typology.isChecked }"
-                        @click="typology.isChecked = !typology.isChecked">
-                        <img :src="typology.image" />
-                        <div class="typologyTag">{{ typology.name }}</div>
-                    </label>
-                </div>
-            </div>
+                <v-carousel class="container-carousel" :interval="4000" :hide-delimiters="true" :hide-controls="true" >
+                    <v-carousel-item v-for="(typologyGroup, index) in typologyGroups" :key="index">
+                    <div class="d-flex flex-wrap carousel-typology">
+                        <div class="typology" v-for="typology in typologyGroup" :key="typology.id">
+                            <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies" :value="typology.id" />
+                            <label class="reduction" :for="'typology_' + typology.id" :class="{ 'checked': typology.isChecked }" @click="typology.isChecked = !typology.isChecked">
+                            <img :src="typology.image" />
+                                <div class="typologyTag">{{ typology.name }}</div>
+                            </label>
+                        </div>
+                    </div>
+                    </v-carousel-item>
+                </v-carousel>
+            
 
             <div class="restaurantFilter">
 
@@ -156,12 +165,13 @@ export default {
 // filtri categoria
 .carousel-typology {
     display: flex;
-
+    gap: 12px;
     .typology {
         box-shadow: 0px 5px 5px 0px #ececec;
         height: 100%;
         border-radius: 10px;
         margin: 20px 0;
+        
 
         input {
             display: none;
@@ -203,6 +213,15 @@ section {
 //     border-radius: 10px;
 //     box-shadow: 0px 20px 5px 0px #ececec;
 // }
+
+
+.reduction {
+    width: 230px;
+}
+
+.container-carousel {
+    height: 230px !important;
+}
 
 // regole parte dx main
 .restaurants_box {
