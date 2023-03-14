@@ -1,7 +1,5 @@
 <script>
 
-import AppRestaurantMainPage from './AppRestaurantMainPage.vue';
-
 import axios from 'axios';
 import { store } from '../store';
 
@@ -9,9 +7,6 @@ const API_URL = 'http://localhost:8000/api/v1/';
 
 export default {
     name: 'AppRestaurant',
-    components: {
-        AppRestaurantMainPage,
-    },
     data() {
         return {
             store,
@@ -40,10 +35,10 @@ export default {
                     // imposto la proprietà isChecked su false per tutte le tipologie nell'array typologies quando aggiorno la lista delle tipologie, in modo che le checkbox non rimangono selezionate quando la selezione viene modificata.
                     if (success) {
                         this.typologies = typologies.map(typology => {
-                        typology.isChecked = false;
-                        return typology;
-                    });
-                    this.restaurants = restaurants;
+                            typology.isChecked = false;
+                            return typology;
+                        });
+                        this.restaurants = restaurants;
                     }
                 })
                 .catch(err => console.error(err));
@@ -70,7 +65,15 @@ export default {
                 });
             }
             return filteredRestaurants;
-        }
+        },
+        typologyGroups() {
+            const groups = [];
+            let i, j;
+            for (i = 0, j = this.typologies.length; i < j; i += 5) {
+                groups.push(this.typologies.slice(i, i + 5));
+            }
+            return groups;
+        },
     },
     mounted() {
         this.updateTypologies();
@@ -83,18 +86,24 @@ export default {
 
         <!-- div container -->
         <div class="my_container">
+            <v-carousel class="container-carousel" :interval="4000" :hide-delimiters="true" :hide-controls="true">
+                <v-carousel-item v-for="(typologyGroup, index) in typologyGroups" :key="index">
+                    <div class="d-flex flex-wrap carousel-typology">
+                        <div class="typology" v-for="typology in typologyGroup" :key="typology.id">
+                            <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies"
+                                :value="typology.id" />
+                            <label class="reduction" :for="'typology_' + typology.id"
+                                :class="{ 'checked': typology.isChecked }"
+                                @click="typology.isChecked = !typology.isChecked">
+                                <img :src="typology.image" />
+                                <div class="typologyTag">{{ typology.name }}</div>
+                            </label>
+                        </div>
+                    </div>
+                </v-carousel-item>
+            </v-carousel>
 
-            <!-- filtro img categorie -->
-            <div class="carousel-typology">
-                <div class="typology" v-for="typology in typologies" :key="typology.id">
-                    <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies" :value="typology.id" />
-                        <label :for="'typology_' + typology.id" :class="{ 'checked': typology.isChecked }" @click="typology.isChecked = !typology.isChecked">
-                        <img :src="typology.image" />
-                        <div class="typologyTag">{{ typology.name }}</div>
-                    </label>
-                </div>
-            </div>
-            
+
             <div class="restaurantFilter">
 
                 <!-- parte dx -->
@@ -103,26 +112,22 @@ export default {
                     <!-- Restaurant List -->
                     <div class="restaurantsContainer">
 
-                        <div class="mainTitle-container">
-                            <span class="mainTitle">Lista dei ristoranti</span> <br>
-                            <span class="mainTitle-descr">Dai un'occhiata alla nostra selezione</span>
-                        </div>
-
                         <div class="restaurantWrapper">
 
                             <div class="restaurant wrapperProperties" v-for="restaurant in filteredRestaurants"
                                 :key="restaurant.id">
 
                                 <div class="deliveryPrice">
-                                    <i class="fa-solid fa-motorcycle"></i> {{ restaurant.delivery_price }} &euro; 
+                                    <i class="fa-solid fa-motorcycle"></i> {{ restaurant.delivery_price }} &euro;
                                 </div>
                                 <div class="restaurant-img">
                                     <img :src="restaurant.image" alt="">
                                 </div>
                                 <div class="restaurant-info-wrapper">
                                     <div class="restaurant-info-restaurantName">
-                                        <router-link :to="{ name: 'restaurant-detail', params: { id: restaurant.id } }" class="name_res">{{
-                                            restaurant.business_name }}
+                                        <router-link :to="{ name: 'restaurant-detail', params: { id: restaurant.id } }"
+                                            class="name_res">
+                                            {{ restaurant.business_name }}
                                         </router-link>
                                     </div>
                                     <div class="restaurant-info-address">
@@ -143,10 +148,6 @@ export default {
         </div>
         <!-- chiusura div container -->
     </section>
-
-    <div v-if="$route.name === 'restaurant-detail'">
-        <AppRestaurantMainPage />
-    </div>
 </template>
 
 <style lang="scss" scoped>
@@ -154,46 +155,43 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
-
-.my_container {
-    overflow-x: hidden;
-    position: relative;
-}
-
 // filtri categoria
-.carousel-typology{
+.carousel-typology {
     display: flex;
+    gap: 12px;
 
     .typology {
-    box-shadow: 0px 5px 5px 0px #ececec;
-    height: 100%;
-    border-radius: 10px;
-    margin: 20px 0;
+        box-shadow: 0px 5px 5px 0px #ececec;
+        height: 100%;
+        border-radius: 10px;
+        margin: 20px 0;
 
-    input{
-        display: none;
-    }
 
-    img {
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
-    }
+        input {
+            display: none;
+        }
 
-    .typologyTag{
-        padding: 10px;
-        text-align: center;
+        img {
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+
+        .typologyTag {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .checked {
+            border: 5px solid $btn_red;
+            border-radius: 15px;
+        }
     }
-    .checked {
-        border: 5px solid $btn_red;
-        border-radius: 15px;
-    }
-}
 
 }
 
 section {
     margin: 50px 0;
-    
+
     .restaurantFilter {
         @include flex(flex);
     }
@@ -210,9 +208,18 @@ section {
 //     box-shadow: 0px 20px 5px 0px #ececec;
 // }
 
+
+.reduction {
+    width: 230px;
+}
+
+.container-carousel {
+    height: 230px !important;
+}
+
 // regole parte dx main
 .restaurants_box {
-    height: 100vh;
+    height: 300px;
     overflow-y: auto;
 
     //general
@@ -220,16 +227,6 @@ section {
     .mainTitle-container {
         line-height: 20px;
         margin: 25px;
-
-        .mainTitle {
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        .mainTitle-descr {
-            font-size: 15px;
-            font-weight: 300;
-        }
 
     }
 
@@ -239,13 +236,14 @@ section {
         flex-wrap: wrap;
         margin-left: 25px;
 
-        .name_res{
+        .name_res {
             color: $text_black;
 
-            &:hover{
+            &:hover {
                 text-decoration: underline;
             }
         }
+
         .wrapperProperties {
             width: calc(100% / 4 - 20px);
             display: flex;

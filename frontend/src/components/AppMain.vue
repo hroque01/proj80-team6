@@ -28,7 +28,7 @@ export default {
 
   <AppBannerMain v-if="$route.name === 'home'" />
 
-  <AppRestaurant v-if="$route.name !== 'cart'" />
+  <AppRestaurant v-if="$route.name === 'home'" />
 
   <AppRestaurantMainPage v-if="$route.name === 'restaurant-detail'" />
 
