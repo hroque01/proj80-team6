@@ -5,9 +5,7 @@ import AppFooter from './components/AppFooter.vue';
 import AppMain from './components/AppMain.vue';
 // APP RESTAURANT
 // APP RESTAURANT (MAIN RESTAURANT PAGE)
-// import AppRestaurantMainPage from './components/AppRestaurantMainPage.vue';
 // APP CHECKOUT
-import AppCheckout from './components/AppCheckout.vue';
 
 export default {
   components: {
@@ -15,9 +13,9 @@ export default {
     AppFooter,
     AppMain,
     // APP RESTAURANT (MAIN RESTAURANT PAGE)
-    // AppRestaurantMainPage,
+    //AppRestaurantMainPage,
     // APP CHECKOUT
-    AppCheckout,
+    //AppCheckout,
   }
 }
 </script>
@@ -27,10 +25,6 @@ export default {
 
   <main>
     <AppMain />
-
-    <div v-if="$route.name === 'cart'">
-      <AppCheckout />
-    </div>
   </main>
 
   <AppFooter />
