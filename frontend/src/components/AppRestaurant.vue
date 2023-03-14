@@ -91,7 +91,7 @@ export default {
                         :value="typology.id" />
                     <label :for="'typology_' + typology.id" :class="{ 'checked': typology.isChecked }"
                         @click="typology.isChecked = !typology.isChecked">
-                        <img :src="typology.image" />
+                        <img :src="'/img/' + typology.image" />
                         <div class="typologyTag">{{ typology.name }}</div>
                     </label>
                 </div>

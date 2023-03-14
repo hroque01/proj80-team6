@@ -22,67 +22,67 @@ class TypologySeeder extends Seeder
             //1 HAMBURGER
             [
                 'name'  => 'Hamburgers',
-                'image' => 'img/hamburger.jpg',
+                'image' => 'hamburger.jpg',
             ],
             //2 CINESE
             [
                 'name'  => 'Cinese',
-                'image' => 'img/chinese.jpg',
+                'image' => 'chinese.jpg',
             ],
             //3 GRECO
             [
                 'name'  => 'Greco',
-                'image' => 'img/greek.jpg',
+                'image' => 'greek.jpg',
             ],
             //4 INDIANO
             [
                 'name'  => 'Indiano',
-                'image' => 'img/indian.jpg',
+                'image' => 'indian.jpg',
             ],
             //5 ITALIANO
             [
                 'name'  => 'Italiano',
-                'image' => 'img/italian.jpg',
+                'image' => 'italian.jpg',
             ],
             //6 MESSICANO
             [
                 'name'  => 'Messicano',
-                'image' => 'img/mexican.jpg',
+                'image' => 'mexican.jpg',
             ],
             //7 PIZZA
             [
                 'name'  => 'Pizza',
-                'image' => 'img/pizza.jpg',
+                'image' => 'pizza.jpg',
             ],
             //8 SUSHI
             [
                 'name'  => 'Sushi',
-                'image' => 'img/sushi.jpg',
+                'image' => 'sushi.jpg',
             ],
             //9 DOLCI
             [
                 'name'  => 'Dolci',
-                'image' => 'img/sweet.jpg',
+                'image' => 'sweet.jpg',
             ],
             //10 VEGANO
             [
                 'name'  => 'Vegano',
-                'image' => 'img/vegetarian.jpg',
+                'image' => 'vegetarian.jpg',
             ],
             //11 KEBAB
             [
                 'name'  => 'Kebab',
-                'image' => 'img/kebab.jpg',
+                'image' => 'kebab.jpg',
             ],
             //12 COLAZIONE
             [
                 'name'  => 'Colazione',
-                'image' => 'img/breakfast.jpg',
+                'image' => 'breakfast.jpg',
             ],
             //13 PESCE
             [
                 'name'  => 'Pesce',
-                'image' => 'img/fish.jpg',
+                'image' => 'fish.jpg',
             ],
         ];
 
