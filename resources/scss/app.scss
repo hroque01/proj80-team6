@@ -268,9 +268,9 @@ nav {
 }
   
 // REGOLE CREATE:
-.create-crud{
+.create-crud, .edit-crud{
     margin-top: 50px;
-    
+
     .btn{
         background-color: $btn_red;
         color: #fff;
@@ -282,3 +282,4 @@ nav {
         }
     }
 } 
+

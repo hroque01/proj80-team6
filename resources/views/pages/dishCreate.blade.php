@@ -14,7 +14,7 @@
                         <img src="{{Vite::asset('resources/img/logo.png')}}" alt="logo" class="logo-form">
                     </div>
 
-                    <div class="card-body ">
+                    <div class="card-body">
                         <h5 class="mt-3 mb-5">Aggiungi un nuovo piatto al tuo men&uacute;</h5>
 
                         {{-- form --}}
@@ -58,7 +58,7 @@
 
                             <div class="mb-4 row mt-5">
                                 <div class="col-md-6 offset-md-4">
-                                    <input type="submit" value="Create" class="btn">
+                                    <input type="submit" value="Aggiungi" class="btn">
                                 </div>
                             </div>
                         </form>
