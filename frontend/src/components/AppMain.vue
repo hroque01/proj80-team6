@@ -1,7 +1,6 @@
 <script>
 import AppTrack from './AppTrack.vue';
 import AppBannerMain from './AppBannerMain.vue';
-import AppCategory from './AppCategory.vue';
 import AppRestaurant from './AppRestaurant.vue';
 import AppCheckout from './AppCheckout.vue';
 import AppRestaurantMainPage from './AppRestaurantMainPage.vue';
@@ -14,7 +13,6 @@ export default {
   components: {
     AppTrack,
     AppBannerMain,
-    AppCategory,
     AppRestaurant,
     AppCheckout,
     AppRestaurantMainPage
@@ -30,13 +28,11 @@ export default {
 
   <AppBannerMain v-if="$route.name === 'home'" />
 
-  <AppRestaurant v-if="$route.name === 'home'" />
-
-  <AppCheckout v-if="$route.name === 'cart'" />
+  <AppRestaurant v-if="$route.name !== 'cart'" />
 
   <AppRestaurantMainPage v-if="$route.name === 'restaurant-detail'" />
 
-  <!-- <AppCategory /> -->
+  <AppCheckout v-if="$route.name === 'cart'" />
 </template>
 
 <style lang="scss" scoped>
