@@ -13,6 +13,7 @@ export default {
       restaurants: [],
       dishes: [],
       store,
+      restaurantId: null,
     }
   },
   methods: {
@@ -37,19 +38,55 @@ export default {
     },
     addDish(id) {
 
-      store.quantity.push(this.dishes[id]);
-      const key = 'storedQuantity_' + localStorage.length;
-      localStorage.setItem(key, JSON.stringify(this.dishes[id]));
+      if (store.length == 0) {
 
-      store.length = localStorage.length;
+        store.quantity.push(this.dishes[id]);
+        const key = 'storedQuantity_' + localStorage.length;
+        localStorage.setItem(key, JSON.stringify(this.dishes[id]));
 
-      const value = localStorage.getItem(key);
-      store.item = JSON.parse(value);
+        store.length = localStorage.length;
+
+        const value = localStorage.getItem(key);
+        store.items.push(JSON.parse(value));
+
+        /* console.log(store.items); */
+
+        /* this.restaurants.forEach(function(res) {
+          if (res.id == store.restaurantId) {
+            store.restaurantName = res.business_name;
+            console.log(store.restaurantName);
+          }
+        }); */
+      }
+
+      else {
+
+        const clickedRestaurantId = this.dishes[id].restaurant_id;
+
+        const item = localStorage.getItem('storedQuantity_0');
+        const obj = JSON.parse(item);
+        const cartRestaurantId = obj.restaurant_id;
+
+        if (clickedRestaurantId == cartRestaurantId) {
+
+          store.quantity.push(this.dishes[id]);
+          const key = 'storedQuantity_' + localStorage.length;
+          localStorage.setItem(key, JSON.stringify(this.dishes[id]));
+
+          store.length = localStorage.length;
+
+        }
+
+      }
+
     },
     emptyCart() {
       localStorage.clear();
       store.length = 0;
       store.total = 0;
+      store.items = [];
+      store.restaurantId = null;
+      store.restaurantName = '';
     },
   },
   computed: {
@@ -87,7 +124,7 @@ export default {
       store.total = total;
 
       return items;
-    }
+    },
   },
   mounted() {
     this.getDishes();
@@ -185,7 +222,8 @@ export default {
         <!-- cart right side-->
         <div class="cart">
           <h5 class="card-body px-0 py-2">
-            <strong>Carrello</strong>
+            <strong>Carrello </strong>
+            <span>per {{ store.restaurantName }}</span>
           </h5>
           <button v-if="store.length !== 0" @click="emptyCart">Svuota carrello</button>
 
