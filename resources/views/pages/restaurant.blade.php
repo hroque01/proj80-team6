@@ -2,42 +2,45 @@
 
 @section('content')
 
-  <div class="container pt-5">
+  <div class="container res-hub-txt pt-5">
+
     <h1>
       Ciao, <span class="res-hub-welcome">{{$restaurant->business_name }}</span>! Benvenuto nel Restaurant Hub.
     </h1>
 
-    <h2>
-        <a href="{{ route('dishCreate') }}">Crea un nuovo piatto</a>
-    </h2>
+    <h4>
+      Qui puoi visualizzare il men&uacute; completo del tuo ristorante con la lista dei tuoi piatti
+    </h4>
 
-    <h3>
-        I tuoi piatti: 
-    </h3>
-    <div class="row">
+    <h5>
+      <a class="create-crud" href="{{ route('dishCreate') }}"> &plus; Aggiungi un nuovo piatto al tuo men&uacute; e attira sempre pi&uacute; clienti! Cosa aspetti?</a>
+    </h5>
+    
+    <div class="cards-res-hub">
+
+      {{-- ciclo foreach per stampare lista di piatti --}}
       @foreach($dishes as $dish)
         @if ($dish->restaurant_id === $restaurant->id)
-          <div class="col-md-4">
 
-            <div class="card">
+          <div class="card card_crud">
 
-              {{-- img caricamento --}}
-              <img src="{{ Vite::asset('storage/app/public/' . $dish -> image) }}" alt="{{ $dish -> name }}">
+            {{-- img caricate--}}
+            <img class="img-res-hub" src="{{ Vite::asset('storage/app/public/' . $dish -> image) }}" alt="{{ $dish -> name }}">
 
-              <div class="card-body">
-                <h5 class="card-title">{{ $dish->name }}</h5>
-                <p class="card-text">{{ $dish->description }}</p>
-                <p class="card-text">{{ $dish->price }} &euro;</p>
-              </div>
-
-              {{-- delete / edit --}}
-              <div>
-                <a href="{{ route('dish.delete', $dish) }}">ELIMINA</a>
-                <a href="{{ route('dishEdit', $dish) }}">EDIT</a>
-              </div>
+            {{-- show --}}
+            <div class="card-body body-crud">
+              <h5 class="card-title">{{ $dish->name }}</h5>
+              <a class="link-show" href="{{ route('dish.show', $dish) }}">Clicca qui per visualizzare il piatto</a>
             </div>
 
+            {{-- delete / edit --}}
+            <div>
+              <a class="btn-crud" href="{{ route('dish.delete', $dish) }}">Elimina</a>
+              <a class="btn-crud" href="{{ route('dishEdit', $dish) }}">Modifica</a>
+            </div>
+      
           </div>
+           
         @endif
       @endforeach
     </div>
