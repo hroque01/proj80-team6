@@ -267,4 +267,18 @@ nav {
     }
 }
   
-
+// REGOLE CREATE:
+.create-crud{
+    margin-top: 50px;
+    
+    .btn{
+        background-color: $btn_red;
+        color: #fff;
+    
+        &:hover{
+            border: 2px solid $btn_red;
+            background-color: #fff;
+            color: $btn_red;
+        }
+    }
+} 

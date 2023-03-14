@@ -2,60 +2,75 @@
 
 @section('content')
 
-    <div class="container pt-5">
-        <h1>
-            Create new dish
-        </h1>
+    <div class="container">
 
-        <div class="col-md-8">
+        <div class="row justify-content-center">
 
-            {{-- form --}}
-            <form method="POST" action="{{ route('dishStore') }}" enctype="multipart/form-data">
+            <div class="col-md-8">
+                <div class="card create-crud">
 
-                @csrf
-                <div class="mb-5 row">
-                    <label for="name" class="col-md-2 col-form-label text-md-right">Name</label>
-                    <div class="col-md-5">
-                        <input type="text" name="name" class="form-control" required>
+                    {{-- logo --}}
+                    <div class="card-header header-form">
+                        <img src="{{Vite::asset('resources/img/logo.png')}}" alt="logo" class="logo-form">
+                    </div>
+
+                    <div class="card-body ">
+                        <h5 class="mt-3 mb-5">Aggiungi un nuovo piatto al tuo men&uacute;</h5>
+
+                        {{-- form --}}
+                        <form method="POST" action="{{ route('dishStore') }}" enctype="multipart/form-data">
+
+                            @csrf
+                            <div class="mb-4 row">
+                                <label for="name" class="star col-md-3 col-form-label text-md-right">Nome del piatto</label>
+                                <div class="col-md-6">
+                                    <input type="text" name="name" class="form-control" placeholder="Spaghetti alle vongole" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <label for="description" class="col-md-3 col-form-label text-md-right">Descrizione</label>
+                                <div class="col-md-6">
+                                    <input type="text" name="description" class="form-control" placeholder="Descrizione">
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <label for="ingredients" class="star col-md-3 col-form-label text-md-right">Ingredienti</label>
+                                <div class="col-md-6">
+                                    <textarea name="ingredients" class="form-control" required></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4 row">
+                                <label for="price" class="star col-md-3 col-form-label text-md-right">Prezzo</label>
+                                <div class="col-md-6">
+                                    <input type="number" step=".01" name="price" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <label for="image" class="star col-md-3 col-form-label text-md-right">Immagine</label>
+                                <div class="col-md-6">
+                                    <input type="file" name="image" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row mt-5">
+                                <div class="col-md-6 offset-md-4">
+                                    <input type="submit" value="Create" class="btn">
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-
-                <div class="mb-5 row">
-                    <label for="description" class="col-md-2 col-form-label text-md-right">Description</label>
-                    <div class="col-md-5">
-                        <input type="text" name="description" class="form-control">
-                    </div>
-                </div>
-
-                <div class="mb-5 row">
-                    <label for="ingredients" class="col-md-2 col-form-label text-md-right">Ingredients</label>
-                    <div class="col-md-5">
-                        <textarea name="ingredients" class="form-control" required></textarea>
-                    </div>
-                </div>
-                
-                <div class="mb-5 row">
-                    <label for="price" class="col-md-2 col-form-label text-md-right">Price</label>
-                    <div class="col-md-5">
-                        <input type="number" step=".01" name="price" class="form-control" required>
-                    </div>
-                </div>
-
-                <div class="mb-5 row">
-                    <label for="image" class="col-md-2 col-form-label text-md-right">Photo</label>
-                    <div class="col-md-5">
-                        <input type="file" name="image" class="form-control" required>
-                    </div>
-                </div>
-
-                <div class="mb-5 row mb-0">
-                    <div class="col-md-5 offset-md-4">
-                        <input type="submit" value="Create" class="btn btn-primary">
-                    </div>
-                </div>
-            </form>
+            </div>
 
         </div>
+        
+
+            
+
     </div>   
 
 @endsection
