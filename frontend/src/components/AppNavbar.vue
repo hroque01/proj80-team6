@@ -99,19 +99,6 @@ export default {
 
 }
 
-.dropdown {
-  width: 200px;
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 5%;
-  padding: 10%;
-  position: absolute;
-  top: 40px;
-  left: -115px;
-  z-index: 100;
-
-}
-
 .general-btn {
   @include button;
 }
