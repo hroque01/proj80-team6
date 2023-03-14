@@ -53,11 +53,10 @@ export default {
 </script>
 
 <template>
-  <div class="logo">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" :class="{ 'navbar-black': $route.name !== 'home' }">
+    <div class="container">
       <router-link to="/" class="navbar-brand">
         <img src="/public/img/logo.png" alt="logo deliveboo">
-        <span>Deliveboo</span>
       </router-link>
 
 
@@ -97,27 +96,23 @@ export default {
                     <span>{{ item.title }}</span>
                   </a>
                 </li>
-
-                <!-- LOGOUT DA TOGLIERE OPURE NO CIT ROMINA -->
-                <!-- <a class="m-4" href="#">
-                                                                                                                                                                                                            <i class="fa-solid fa-right-from-bracket mx-2"></i>
-                                                                                                                                                                                                            <span>LOGOUT</span>
-                                                                                                                                                                                        </a> -->
-                <!--  -->
-
               </ul>
             </div>
           </li>
         </ul>
       </div>
-    </nav>
-  </div>
+    </div>
+  </nav>
 </template>
 
 <style lang="scss" scoped>
 @use '../src/styles/general.scss' as *;
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
+
+.navbar-black {
+  background-color: #000;
+}
 
 .navbar-brand {
   img {
