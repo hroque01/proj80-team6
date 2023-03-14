@@ -126,7 +126,9 @@ export default {
                             <div class="restaurant wrapperProperties" v-for="restaurant in filteredRestaurants"
                                 :key="restaurant.id">
 
-                                <div class="deliveryPrice"> {{ restaurant.delivery_price }} &euro; </div>
+                                <div class="deliveryPrice">
+                                    <i class="fa-solid fa-motorcycle"></i> {{ restaurant.delivery_price }} &euro; 
+                                </div>
                                 <div class="restaurant-img">
                                     <img :src="restaurant.image" alt="">
                                 </div>
