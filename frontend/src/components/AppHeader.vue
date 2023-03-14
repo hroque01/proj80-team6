@@ -14,7 +14,9 @@ export default {
 <template>
   <header>
     <AppNavbar />
-    <AppJumbotron />
+    <div v-if="$route.name === 'home'">
+      <AppJumbotron />
+    </div>
   </header>
 </template>
 
