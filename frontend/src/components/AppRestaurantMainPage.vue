@@ -104,6 +104,13 @@ export default {
     <!-- restaurant header with image and info-->
     <div class="restaurant_header" v-for="(restaurant, index) in filteredRestaurants" :key="index">
       <div v-if="restaurant" class="flex-info-res my_container">
+
+        <div class="indietro">
+          <router-link to="/">
+            Torna indietro
+          </router-link>
+        </div>
+
         <div class="restaurant_image">
           <img :src="restaurant.image" :alt="restaurant.business_name">
         </div>
@@ -192,15 +199,6 @@ export default {
               <div>{{ item.price.toFixed(2) }} €</div>
             </li>
           </ul>
-          <!-- <hr class="border-top border-dark mb-3">
-                                                                                                                                      <div class="d-flex justify-content-between align-items-center mb-2">
-                                                                                                                                          <div>Subtotale</div>
-                                                                                                                                          <div>21,00 €</div>
-                                                                                                                                      </div>
-                                                                                                                                      <div class="d-flex justify-content-between align-items-center mb-2">
-                                                                                                                                          <div>Spese di consegna</div>
-                                                                                                                                          <div>5,00 €</div>
-                                                                                                                                      </div> -->
           <hr class="border-top border-dark mb-3">
           <div class="d-flex justify-content-between align-items-center mb-2">
             <div><b>Totale</b></div>
@@ -220,6 +218,11 @@ export default {
 
 .my_container {
   display: flex;
+  flex-wrap: wrap;
+
+  .indietro {
+    width: 100%;
+  }
 }
 
 // restaurant header
@@ -377,10 +380,10 @@ export default {
   }
 
   .cart {
-    width: 300px;
+    width: 25%;
     background-color: $restaurant_main_bg;
     border-radius: 15px;
-    padding: 30px;
+    padding: 25px;
   }
 
 }
