@@ -99,10 +99,10 @@ export default {
 </script>
 
 <template>
-  <div>
-    <router-link to="/">
-      Torna indietro
-    </router-link>
+  <section>
+  <router-link to="/">
+    Torna indietro
+  </router-link>
 
     <!-- restaurant header with image and info-->
     <div class="restaurant_header" v-for="(restaurant, index) in filteredRestaurants" :key="index">
@@ -111,22 +111,24 @@ export default {
           <img :src="restaurant.image" :alt="restaurant.business_name">
         </div>
 
-        <div class="restaurant_informations">
+        <ul class="restaurant_informations">
 
-          <div class="restaurantName">{{ restaurant.business_name }}</div>
-          <div>
-            <i class="fa-solid fa-location-dot icons-description"></i>{{ restaurant.address }}
-          </div>
-          <div>
-            <i class="fa-solid fa-utensils icons-description"></i>{{ restaurant.description }}
-          </div>
-          <div>
-            <i class="fa-solid fa-clock icons-description"></i>{{ restaurant.opening_time }} - {{ restaurant.closure_time }}
-          </div>
-          <div>
-            <i class="fa-solid fa-motorcycle icons-description"></i>Consegna al costo di: {{ restaurant.delivery_price }} &euro;
-          </div>
-        </div>
+          <li class="restaurantName">{{ restaurant.business_name }}</li>
+          <li class="info-restaurant">
+            <i class="fa-solid fa-location-dot"></i>{{ restaurant.address }}
+          </li>
+          <li>
+            <i class="fa-solid fa-utensils"></i>{{ restaurant.description }}
+          </li>
+          <li>
+            <i class="fa-solid fa-clock"></i>{{ restaurant.opening_time }} - {{ restaurant.closure_time
+            }}
+          </li>
+          <li>
+            <i class="fa-solid fa-motorcycle"></i>Consegna al costo di: {{ restaurant.delivery_price }}
+            &euro;
+          </li>
+        </ul>
       </div>
     </div>
 
@@ -142,33 +144,37 @@ export default {
 
             <!-- image -->
             <div class="my_bigBox box-properties" v-for="(dish, index) in dishes" :key="index">
-              <div class="my_bigBox-img">
-                <img :src="dish.image" :alt="dish.name">
-              </div>
+              <div class="info-top">
 
-              <!-- info dish -->
-              <div class="my_bigBox-info-wrapper">
-                <div class="my_bigBox-info-DishName">{{ dish.name }}</div>
-                <div class="my_bigBox-info-OtherDishInfo">
+                <div class="my_bigBox-img">
+                  <img :src="dish.image" :alt="dish.name">
+                </div>
 
-                  <div class="DishDescr">
-                    <em>{{ dish.description }}</em> 
-                  </div>
+                <!-- info dish -->
+                <div class="my_bigBox-info-wrapper">
+                  <div class="my_bigBox-info-DishName">{{ dish.name }}</div>
+                  <div class="my_bigBox-info-OtherDishInfo">
 
-                  <div class="DishIngredients">
-                    Ingredienti: {{ dish.ingredients }}
-                  </div>
-
-                  <div class="pay">
-                    <div class="dishPrice" v-if="dish">
-                      <span class="Pricebuble"> {{ dish.price }} &euro;</span>
+                    <div class="DishDescr">
+                      <em>{{ dish.description }}</em>
                     </div>
 
-                    <button class="addToCart_btn" @click="addDish(index)"> 
-                      <i class="fa-solid fa-cart-shopping"></i>Aggiungi al carrello
-                    </button>
+                    <div class="DishIngredients">
+                      Ingredienti: {{ dish.ingredients }}
+                    </div>
                   </div>
                 </div>
+              </div>
+
+
+              <div class="pay">
+                <div class="dishPrice" v-if="dish">
+                  <span class="Pricebuble"> {{ dish.price }} &euro;</span>
+                </div>
+
+                <button class="addToCart_btn" @click="addDish(index)">
+                  <i class="fa-solid fa-cart-shopping"></i>Aggiungi al carrello
+                </button>
               </div>
             </div>
 
@@ -190,14 +196,14 @@ export default {
             </li>
           </ul>
           <!-- <hr class="border-top border-dark mb-3">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <div>Subtotale</div>
-                    <div>21,00 €</div>
-                </div>
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <div>Spese di consegna</div>
-                    <div>5,00 €</div>
-                </div> -->
+                                                                                                  <div class="d-flex justify-content-between align-items-center mb-2">
+                                                                                                      <div>Subtotale</div>
+                                                                                                      <div>21,00 €</div>
+                                                                                                  </div>
+                                                                                                  <div class="d-flex justify-content-between align-items-center mb-2">
+                                                                                                      <div>Spese di consegna</div>
+                                                                                                      <div>5,00 €</div>
+                                                                                                  </div> -->
           <hr class="border-top border-dark mb-3">
           <div class="d-flex justify-content-between align-items-center mb-2">
             <div><b>Totale</b></div>
@@ -205,9 +211,9 @@ export default {
           </div>
         </div>
       </div>
-      
+
     </div>
-  </div>
+  </section>
 </template>
 
 <style lang="scss" scoped>
@@ -215,10 +221,10 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
-.my_container{
+.my_container {
   display: flex;
-  padding: 50px 0;
 }
+
 // restaurant header
 .restaurant_header {
   background-color: #fff;
@@ -226,7 +232,7 @@ export default {
   box-shadow: 0px 5px 5px 0px #ececec;
   margin-bottom: 50px;
 
-  .flex-info-res{
+  .flex-info-res {
     display: flex;
     align-items: center;
     padding: 50px 0;
@@ -234,18 +240,22 @@ export default {
 
   .restaurant_image {
     width: 500px;
-    height: 300px;
     border: 1px solid #eaeaea;
     box-shadow: 0px 5px 5px 0px #ececec;
     border-radius: 10px;
-    overflow: hidden;
+
+    img {
+      display: block;
+      border-radius: 10px;
+    }
   }
 
   .restaurant_informations {
     padding-left: 50px;
 
-    .icons-description{
-      margin-right: 20px;
+    svg {
+      width: 20px;
+      padding-right: 10px;
     }
 
     .restaurantName {
@@ -256,18 +266,21 @@ export default {
 }
 
 // dish menu
-.dish_cart{
+.dish_cart {
   display: flex;
   justify-content: space-around;
   background-color: #fff;
   border: 1px solid #eaeaea;
   box-shadow: 0px 5px 5px 0px #ececec;
-  .menu-wrapper{
+
+  .menu-wrapper {
     display: flex;
   }
+
   .menu_list {
     width: 70%;
     margin-right: 20px;
+
     .my_Boxes-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -275,10 +288,6 @@ export default {
 
       .box-properties {
         user-select: none;
-      }
-
-      .box-properties:hover {
-        cursor: pointer;
       }
     }
 
@@ -289,19 +298,24 @@ export default {
       border: 1px solid #eaeaea;
       box-shadow: 0px 10px 5px 0px #ececec;
       border-radius: 10px;
+      display: flex;
+      flex-direction: column;
 
-      // &:hover{
-      //   sca
-      // }
+      .info-top {
+        flex-grow: 1;
+      }
 
       .my_bigBox-img {
         width: 100%;
         height: 170px;
         object-fit: cover;
-        overflow: hidden;
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
-        background-color: white
+        background-color: white;
+
+        img {
+          display: block;
+          border-top-right-radius: 10px;
+          border-top-left-radius: 10px;
+        }
       }
 
       .my_bigBox-info-wrapper {
@@ -328,34 +342,35 @@ export default {
         }
       }
 
-      .pay{
+      .pay {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 20px;
+        padding: 10px;
 
         .dishPrice {
           font-size: 15px;
         }
+
         .addToCart_btn {
           background-color: $btn_red;
-          border: 1px solid $btn_red;
+          border: 2px solid $btn_red;
           color: #fff;
           padding: 5px;
           border-radius: 8px;
 
-          &:hover{
+          &:hover {
             background-color: #fff;
             border: 2px solid $btn_red;
             color: $btn_red;
           }
         }
 
-        .fa-cart-shopping{
+        .fa-cart-shopping {
           margin-right: 10px;
         }
       }
-      
+
     }
 
   }

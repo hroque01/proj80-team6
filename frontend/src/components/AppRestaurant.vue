@@ -1,7 +1,5 @@
 <script>
 
-import AppRestaurantMainPage from './AppRestaurantMainPage.vue';
-
 import axios from 'axios';
 import { store } from '../store';
 
@@ -9,9 +7,6 @@ const API_URL = 'http://localhost:8000/api/v1/';
 
 export default {
     name: 'AppRestaurant',
-    components: {
-        AppRestaurantMainPage,
-    },
     data() {
         return {
             store,
@@ -154,10 +149,6 @@ export default {
         </div>
         <!-- chiusura div container -->
     </section>
-
-    <div v-if="$route.name === 'restaurant-detail'">
-        <AppRestaurantMainPage />
-    </div>
 </template>
 
 <style lang="scss" scoped>
@@ -174,7 +165,7 @@ export default {
 
 section {
     margin: 50px 0;
-    
+
 
     // carosello:
     .typologies {
@@ -191,8 +182,8 @@ section {
             // debug
             margin: 5px;
 
-            &:hover{
-                transform: scale(1.1); 
+            &:hover {
+                transform: scale(1.1);
             }
 
             img {
@@ -291,10 +282,6 @@ nav {
             border-radius: 10px;
             box-shadow: 0px 5px 5px 0px #ececec;
         }
-
-        .wrapperProperties:hover {
-            cursor: pointer;
-        }
     }
 }
 
@@ -328,7 +315,7 @@ nav {
         justify-content: center;
 
         .restaurant-info-restaurantName {
-            font-size: 14px;
+            font-size: 18px;
             font-weight: 600;
         }
 
