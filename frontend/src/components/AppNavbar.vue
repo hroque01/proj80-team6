@@ -17,35 +17,7 @@ export default {
           icon: "fa-solid fa-cart-shopping",
           url: "/checkout",
         },
-        {
-          icon: "fa-solid fa-bars",
-          text: "Menu",
-          toggle: false,
-          dropdown: [
-            {
-              iconDrop: "fa-solid fa-user",
-              title: "Account",
-              email: "email.com",
-              url: "#",
-            },
-            {
-              iconDrop: "fa-solid fa-receipt",
-              title: "Storico ordini",
-              url: "#",
-            },
-            {
-              iconDrop: "fa-solid fa-clipboard-question",
-              title: "FAQ",
-              url: "#",
-            },
-          ]
-        }
       ]
-    }
-  },
-  methods: {
-    toggleDropdown(link) {
-      link.toggle = !link.toggle;
     }
   }
 }
@@ -70,7 +42,7 @@ export default {
         <ul class="navbar-nav mb-lg-0">
 
           <!-- v-for array print in DOM -->
-          <li class="nav-item general-btn" v-for="(link, index) in links" :key="index" @click="toggleDropdown(link)">
+          <li class="nav-item general-btn" v-for="(link, index) in links" :key="index">
             <div class="nav-link">
               <!-- V-bind and v-for for icons -->
               <i :class="link.icon" class="icon-nav"></i>
@@ -86,17 +58,6 @@ export default {
 
                 <span v-if="index === 1">{{ store.length }}</span>
               </span>
-
-              <!-- toggle menu -->
-              <ul v-if="link.toggle && link.dropdown" class="dropdown my-2">
-                <!-- Bootstrap margin class -->
-                <li class="m-2" v-for="item in link.dropdown" :key="item.title">
-                  <a href="item.url" class="mx-3">
-                    <i class="mx-2" :class="item.iconDrop"></i>
-                    <span>{{ item.title }}</span>
-                  </a>
-                </li>
-              </ul>
             </div>
           </li>
         </ul>
