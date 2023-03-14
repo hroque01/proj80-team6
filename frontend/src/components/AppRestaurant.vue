@@ -37,10 +37,13 @@ export default {
                     const typologies = response.typologies;
                     const restaurants = response.restaurants;
 
+                    // imposto la proprietà isChecked su false per tutte le tipologie nell'array typologies quando aggiorno la lista delle tipologie, in modo che le checkbox non rimangono selezionate quando la selezione viene modificata.
                     if (success) {
-                        this.typologies = typologies;
-                        this.restaurants = restaurants;
-
+                        this.typologies = typologies.map(typology => {
+                        typology.isChecked = false;
+                        return typology;
+                    });
+                    this.restaurants = restaurants;
                     }
                 })
                 .catch(err => console.error(err));
@@ -81,37 +84,21 @@ export default {
         <!-- div container -->
         <div class="my_container">
 
+            <!-- filtro img categorie -->
+            <div class="carousel-typology">
+                <div class="typology" v-for="typology in typologies" :key="typology.id">
+                    <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies" :value="typology.id" />
+                        <label :for="'typology_' + typology.id" :class="{ 'checked': typology.isChecked }" @click="typology.isChecked = !typology.isChecked">
+                        <img :src="typology.image" />
+                        <div class="typologyTag">{{ typology.name }}</div>
+                    </label>
+                </div>
+            </div>
+            
             <div class="restaurantFilter">
 
-                <!-- Navbar laterale a sinistra - elenco categorie -->
-                <nav>
-                    <!-- forse da cancellare le checkboxes e fare filtro con immagini -->
-                    <h4>Categorie</h4>
-                    <ul>
-                        <li>
-                            <div v-for="typology in typologies" :key="typology.id">
-                                <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies"
-                                    :value="typology.id">
-                                <label :for="'typology_' + typology.id">{{ typology.name }}</label>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
-
                 <!-- parte dx -->
-                <div class="my_container restaurants_box">
-
-                    <!-- Carosello  -->
-                    <div class="typologies">
-                        <!-- filtro su immagini al click -->
-                        <div class="typology" v-for="(typology, index) in typologies" :key="index">
-                            <img :src="typology.image" :alt="typology.name">
-                            <div class="typologyTag" @click.prevent="filterRestaurants(typology.id)">{{ typology.name }}
-                            </div>
-                        </div>
-
-                        <i class="fa-solid fa-arrow-right" @click="change()"></i>
-                    </div>
+                <div class="restaurants_box">
 
                     <!-- Restaurant List -->
                     <div class="restaurantsContainer">
@@ -171,87 +158,57 @@ export default {
 .my_container {
     overflow-x: hidden;
     position: relative;
-    padding: 20px 0;
+}
+
+// filtri categoria
+.carousel-typology{
+    display: flex;
+
+    .typology {
+    box-shadow: 0px 5px 5px 0px #ececec;
+    height: 100%;
+    border-radius: 10px;
+    margin: 20px 0;
+
+    input{
+        display: none;
+    }
+
+    img {
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+    }
+
+    .typologyTag{
+        padding: 10px;
+        text-align: center;
+    }
+    .checked {
+        border: 5px solid $btn_red;
+        border-radius: 15px;
+    }
+}
+
 }
 
 section {
     margin: 50px 0;
     
-
-    // carosello:
-    .typologies {
-        width: calc(130px * 13);
-
-
-        .typology {
-            display: inline-block;
-            width: 120px;
-            border: 1px solid #eaeaea;
-            border-radius: 10px;
-            box-shadow: 0px 5px 5px 0px #ececec;
-            transition: all .2s ease-in-out;
-            // debug
-            margin: 5px;
-
-            &:hover{
-                transform: scale(1.1); 
-            }
-
-            img {
-                border-top-right-radius: 10px;
-                border-top-left-radius: 10px;
-            }
-
-            .typologyTag {
-                font-size: 15px;
-                color: $text_black;
-                text-align: center;
-                padding: 5px;
-                cursor: pointer;
-            }
-        }
-
-        .fa-arrow-right {
-            position: absolute;
-            right: 0;
-            top: 40px;
-            font-size: 20px;
-            color: $btn_red;
-            background-color: #fff;
-            padding: 10px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-        }
-    }
-
     .restaurantFilter {
         @include flex(flex);
     }
 }
 
-nav {
-    height: 100vh;
-    overflow: auto;
-    width: 300px;
-    padding: 20px;
-    border: 1px solid #eaeaea;
-    border-radius: 10px;
-    box-shadow: 0px 20px 5px 0px #ececec;
-
-    ul {
-        li {
-            padding: 15px;
-            line-height: 50px;
-        }
-    }
-
-    input[type=checkbox] {
-        width: 20px;
-        height: 20px;
-        margin-right: 10px;
-    }
-}
+// vedere se eliminare questo codice: era il codice della nav bar laterale con le categorie e scrollbar
+// nav {
+//     height: 100vh;
+//     overflow: auto;
+//     width: 300px;
+//     padding: 20px;
+//     border: 1px solid #eaeaea;
+//     border-radius: 10px;
+//     box-shadow: 0px 20px 5px 0px #ececec;
+// }
 
 // regole parte dx main
 .restaurants_box {
@@ -290,7 +247,7 @@ nav {
             }
         }
         .wrapperProperties {
-            width: calc(100% / 3 - 20px);
+            width: calc(100% / 4 - 20px);
             display: flex;
             flex-direction: column;
             overflow: hidden;
