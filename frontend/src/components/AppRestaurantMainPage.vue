@@ -129,8 +129,10 @@ export default {
             <i class="fa-solid fa-utensils"></i>{{ restaurant.description }}
           </li>
           <li>
-            <i class="fa-solid fa-clock"></i>{{ restaurant.opening_time }} - {{ restaurant.closure_time
-            }}
+            <i class="fa-solid fa-clock"></i>
+            <!-- La funzione substring prende due argomenti: l'indice di partenza (inclusivo) e l'indice finale (esclusivo) della sottostringa da estrarre. Nel nostro caso, 0 è l'indice di partenza, mentre restaurant.opening_time.length - 2 -->
+            {{ restaurant.opening_time.substring(0, restaurant.opening_time.length - 3) }}
+            - {{ restaurant.closure_time.substring(0, restaurant.closure_time.length - 3) }}
           </li>
           <li>
             <i class="fa-solid fa-motorcycle"></i><span class="delivery">Consegna al costo di: {{
