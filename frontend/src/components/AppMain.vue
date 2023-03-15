@@ -32,7 +32,7 @@ export default {
 
   <AppRestaurantMainPage v-if="$route.name === 'restaurant-detail'" />
 
-  <AppCheckout v-if="$route.name === 'cart'" />
+  <AppCheckout v-if="$route.name !== 'home' && $route.name !== 'restaurant-detail'" />
 </template>
 
 <style lang="scss" scoped>
