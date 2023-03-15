@@ -53,9 +53,7 @@ export default {
     },
     scrollToTop() {
       window.history.back();
-      const windowHeight = window.innerHeight;
-      const scrollAmount = Math.max(Math.floor(windowHeight / 2), 1);
-      window.scrollBy(0, -scrollAmount);
+      window.scrollBy(0, -1000);
     }
   },
   computed: {
