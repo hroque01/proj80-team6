@@ -181,6 +181,7 @@ nav {
     label{
         display: flex;
         align-items: center;
+        cursor: pointer;
     }
 
     input[type=checkbox] {
