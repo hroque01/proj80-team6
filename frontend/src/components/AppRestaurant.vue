@@ -86,7 +86,7 @@ export default {
 
         <!-- div container -->
         <div class="my_container">
-            <v-carousel class="container-carousel" :interval="4000" :hide-delimiters="true" :hide-controls="true">
+            <!-- <v-carousel class="container-carousel" :interval="4000" :hide-delimiters="true" :hide-controls="true">
                 <v-carousel-item v-for="(typologyGroup, index) in typologyGroups" :key="index">
                     <div class="d-flex flex-wrap carousel-typology">
                         <div class="typology" v-for="typology in typologyGroup" :key="typology.id">
@@ -101,7 +101,7 @@ export default {
                         </div>
                     </div>
                 </v-carousel-item>
-            </v-carousel>
+            </v-carousel> -->
 
 
             <div class="restaurantFilter">
@@ -198,16 +198,15 @@ section {
 }
 
 // vedere se eliminare questo codice: era il codice della nav bar laterale con le categorie e scrollbar
-// nav {
-//     height: 100vh;
-//     overflow: auto;
-//     width: 300px;
-//     padding: 20px;
-//     border: 1px solid #eaeaea;
-//     border-radius: 10px;
-//     box-shadow: 0px 20px 5px 0px #ececec;
-// }
-
+nav {
+    height: 100vh;
+    overflow: auto;
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    box-shadow: 0px 20px 5px 0px #ececec;
+}
 
 .reduction {
     width: 230px;
@@ -219,10 +218,10 @@ section {
 
 // regole parte dx main
 .restaurants_box {
-    height: 300px;
+    height: 80vh;
     overflow-y: auto;
 
-    //general
+    //generalrestaurantWrappe
     //Boxes title
     .mainTitle-container {
         line-height: 20px;
@@ -318,7 +317,8 @@ section {
         width: 80px;
         right: 10px;
         bottom: 65px;
-        background-color: white;
+        color: white;
+        background-color: $btn_red;
         padding: 5px 10px;
         border-radius: 50px;
     }

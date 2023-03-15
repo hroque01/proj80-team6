@@ -129,8 +129,9 @@ export default {
             }}
           </li>
           <li>
-            <i class="fa-solid fa-motorcycle"></i>Consegna al costo di: {{ restaurant.delivery_price }}
-            &euro;
+            <i class="fa-solid fa-motorcycle"></i><span class="delivery">Consegna al costo di: {{ restaurant.delivery_price }}&euro;</span>
+            
+            
           </li>
         </ul>
       </div>
@@ -252,6 +253,7 @@ export default {
 
   .restaurant_informations {
     padding-left: 50px;
+    line-height: 30px;
 
     svg {
       width: 20px;
@@ -261,6 +263,13 @@ export default {
     .restaurantName {
       font-size: 40px;
       font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .delivery{
+      background-color: $btn_red;
+      padding: 5px 10px;
+      color: #fff;
+      border-radius: 10px;
     }
   }
 }
