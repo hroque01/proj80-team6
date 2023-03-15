@@ -99,10 +99,10 @@ export default {
                                 <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies"
                                     :value="typology.id">
                                 <label :for="'typology_' + typology.id" :class="{ 'checked': typology.isChecked }"
-                                @click="typology.isChecked = !typology.isChecked">
-                                <img class="icon-cat" :src="'/img/icons/' + typology.image" />
-                                <div class="typologyTag">{{ typology.name }}</div>
-                            </label>
+                                    @click="typology.isChecked = !typology.isChecked">
+                                    <img class="icon-cat" :src="'/img/icons/' + typology.image" />
+                                    <div class="typologyTag">{{ typology.name }}</div>
+                                </label>
                             </li>
                         </div>
                     </ul>
@@ -157,7 +157,7 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
-.my_container{
+.my_container {
     display: flex;
 }
 
@@ -174,11 +174,12 @@ nav {
         li {
             padding: 15px;
             line-height: 35px;
-            border-bottom: 1px solid #eaeaea;;
+            border-bottom: 1px solid #eaeaea;
+            ;
         }
     }
 
-    label{
+    label {
         display: flex;
         align-items: center;
         cursor: pointer;
@@ -188,7 +189,7 @@ nav {
         display: none;
     }
 
-    .icon-cat{
+    .icon-cat {
         width: 50px;
         height: 50px;
         border-radius: 50%;
@@ -206,7 +207,7 @@ nav {
             font-weight: bold;
         }
 
-        .icon-cat{
+        .icon-cat {
             opacity: 1;
         }
     }
@@ -218,16 +219,6 @@ section {
     .restaurantFilter {
         @include flex(flex);
     }
-}
-
-
-
-.reduction {
-    width: 230px;
-}
-
-.container-carousel {
-    height: 230px !important;
 }
 
 // regole parte dx main
@@ -251,6 +242,7 @@ section {
 
         .name_res {
             color: $text_black;
+            font-size: 18px;
 
             &:hover {
                 text-decoration: underline;
