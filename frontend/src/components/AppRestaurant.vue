@@ -118,7 +118,7 @@ export default {
 
                             <div class="restaurant wrapperProperties" v-for="restaurant in filteredRestaurants"
                                 :key="restaurant.id">
-
+                            <router-link :to="{ name: 'restaurant-detail', params: { id: restaurant.id } }">
                                 <div class="deliveryPrice">
                                     <i class="fa-solid fa-motorcycle"></i> {{ restaurant.delivery_price }} &euro;
                                 </div>
@@ -127,18 +127,17 @@ export default {
                                 </div>
                                 <div class="restaurant-info-wrapper">
                                     <div class="restaurant-info-restaurantName">
-                                        <router-link :to="{ name: 'restaurant-detail', params: { id: restaurant.id } }"
-                                            class="name_res">
+                                        <div class="name_res">
                                             {{ restaurant.business_name }}
-                                        </router-link>
+                                        </div>
                                     </div>
                                     <div class="restaurant-info-address">
                                         <i class="fa-solid fa-location-dot"></i>{{ restaurant.address }}
                                     </div>
                                 </div>
-
+                            </router-link>
                             </div>
-
+                            
                         </div>
                     </div>
                     <!-- chiusura restaurant list -->
