@@ -292,6 +292,9 @@ class RestaurantSeeder extends Seeder
             $restaurant_2 = Restaurant::find(2);
             $typology_2 = Typology::find([7]);
             $restaurant_2->typologies()->attach($typology_2);
+            $restaurant_second2 = Restaurant::find(2);
+            $typology_second2 = Typology::find([9]);
+            $restaurant_second2->typologies()->attach($typology_second2);
 
             //SUSHI YAH
             $restaurant_3 = Restaurant::find(3);
@@ -303,26 +306,42 @@ class RestaurantSeeder extends Seeder
             $restaurant_third3 = Restaurant::find(3);
             $typology_third3 = Typology::find([2]);
             $restaurant_third3->typologies()->attach($typology_third3);
+            $restaurant_third3 = Restaurant::find(3);
+            $typology_third3 = Typology::find([9]);
+            $restaurant_third3->typologies()->attach($typology_third3);
 
             //BURGER BUSTERS
             $restaurant_4 = Restaurant::find(4);
             $typology_4 = Typology::find([1]);
             $restaurant_4->typologies()->attach($typology_4);
+            $restaurant_second4 = Restaurant::find(4);
+            $typology_second4 = Typology::find([9]);
+            $restaurant_second4->typologies()->attach($typology_second4);
+
 
             //Ristorante Cinese Ming
             $restaurant_5 = Restaurant::find(5);
             $typology_5 = Typology::find([2]);
             $restaurant_5->typologies()->attach($typology_5);
+            $restaurant_second5 = Restaurant::find(5);
+            $typology_second5 = Typology::find([9]);
+            $restaurant_second5->typologies()->attach($typology_second5);
 
             //Taj Mahal
             $restaurant_6 = Restaurant::find(6);
             $typology_6 = Typology::find([4]);
             $restaurant_6->typologies()->attach($typology_6);
+            $restaurant_second6 = Restaurant::find(6);
+            $typology_second6 = Typology::find([9]);
+            $restaurant_second6->typologies()->attach($typology_second6);
 
             //Taverna Greca
             $restaurant_7 = Restaurant::find(7);
             $typology_7 = Typology::find([3]);
             $restaurant_7->typologies()->attach($typology_7);
+            $restaurant_second7 = Restaurant::find(7);
+            $typology_second7 = Typology::find([9]);
+            $restaurant_second7->typologies()->attach($typology_second7);
 
             //La Piazzetta
             $restaurant_8 = Restaurant::find(8);
@@ -331,6 +350,9 @@ class RestaurantSeeder extends Seeder
             $restaurant_second8 = Restaurant::find(8);
             $typology_second8 = Typology::find([5]);
             $restaurant_second8->typologies()->attach($typology_second8);
+            $restaurant_third8 = Restaurant::find(8);
+            $typology_third8 = Typology::find([9]);
+            $restaurant_third8->typologies()->attach($typology_third8);
 
             //Pizza House
             $restaurant_9 = Restaurant::find(9);
@@ -339,6 +361,9 @@ class RestaurantSeeder extends Seeder
             $restaurant_second9 = Restaurant::find(9);
             $typology_second9 = Typology::find([5]);
             $restaurant_second9->typologies()->attach($typology_second9);
+            $restaurant_third9 = Restaurant::find(9);
+            $typology_third9 = Typology::find([9]);
+            $restaurant_third9->typologies()->attach($typology_third9);
 
             //Pizzeria Gigi
             $restaurant_10 = Restaurant::find(10);
@@ -347,6 +372,9 @@ class RestaurantSeeder extends Seeder
             $restaurant_second10 = Restaurant::find(10);
             $typology_second10 = Typology::find([5]);
             $restaurant_second10->typologies()->attach($typology_second10);
+            $restaurant_third10 = Restaurant::find(10);
+            $typology_third10 = Typology::find([9]);
+            $restaurant_third10->typologies()->attach($typology_third10);
 
             //Pizza Italia
             $restaurant_11 = Restaurant::find(11);
@@ -355,6 +383,9 @@ class RestaurantSeeder extends Seeder
             $restaurant_second11 = Restaurant::find(11);
             $typology_second11 = Typology::find([5]);
             $restaurant_second11->typologies()->attach($typology_second11);
+            $restaurant_third11 = Restaurant::find(11);
+            $typology_third11 = Typology::find([9]);
+            $restaurant_third11->typologies()->attach($typology_third11);
 
             //pizza express
             $restaurant_12 = Restaurant::find(12);
@@ -363,6 +394,9 @@ class RestaurantSeeder extends Seeder
             $restaurant_second12 = Restaurant::find(12);
             $typology_second12 = Typology::find([5]);
             $restaurant_second12->typologies()->attach($typology_second12);
+            $restaurant_third12 = Restaurant::find(12);
+            $typology_third12 = Typology::find([9]);
+            $restaurant_third12->typologies()->attach($typology_third12);
 
             //La Margherita
             $restaurant_13 = Restaurant::find(13);
@@ -371,6 +405,9 @@ class RestaurantSeeder extends Seeder
             $restaurant_second13 = Restaurant::find(13);
             $typology_second13 = Typology::find([5]);
             $restaurant_second13->typologies()->attach($typology_second13);
+            $restaurant_third13 = Restaurant::find(13);
+            $typology_third13 = Typology::find([9]);
+            $restaurant_third13->typologies()->attach($typology_third13);
 
             //Pizza Napoletana
             $restaurant_14 = Restaurant::find(14);
@@ -379,6 +416,9 @@ class RestaurantSeeder extends Seeder
             $restaurant_second14 = Restaurant::find(14);
             $typology_second14 = Typology::find([5]);
             $restaurant_second14->typologies()->attach($typology_second14);
+            $restaurant_third14 = Restaurant::find(14);
+            $typology_third14 = Typology::find([9]);
+            $restaurant_third14->typologies()->attach($typology_third14);
 
             //Dolcezze al Cioccolato
             $restaurant_15 = Restaurant::find(15);
@@ -402,11 +442,17 @@ class RestaurantSeeder extends Seeder
             $restaurant_18 = Restaurant::find(18);
             $typology_18 = Typology::find([10]);
             $restaurant_18->typologies()->attach($typology_18);
+            $restaurant_second18 = Restaurant::find(18);
+            $typology_second18 = Typology::find([9]);
+            $restaurant_second18->typologies()->attach($typology_second18);
 
             //Il Girasole
             $restaurant_19 = Restaurant::find(19);
             $typology_19 = Typology::find([10]);
             $restaurant_19->typologies()->attach($typology_19);
+            $restaurant_second19 = Restaurant::find(19);
+            $typology_second19 = Typology::find([9]);
+            $restaurant_second19->typologies()->attach($typology_second19);
             
             //Bar Centro
             $restaurant_20 = Restaurant::find(20);
@@ -435,6 +481,9 @@ class RestaurantSeeder extends Seeder
             $restaurant_24 = Restaurant::find(24);
             $typology_24 = Typology::find([13]);
             $restaurant_24->typologies()->attach($typology_24);
+            $restaurant_second24 = Restaurant::find(24);
+            $typology_second24 = Typology::find([9]);
+            $restaurant_second24->typologies()->attach($typology_second24);
 
             //Pescheria del Porto
             $restaurant_25 = Restaurant::find(25);
@@ -446,5 +495,5 @@ class RestaurantSeeder extends Seeder
             $typology_26 = Typology::find([6]);
             $restaurant_26->typologies()->attach($typology_26);
             
-    }
+        }
 }
