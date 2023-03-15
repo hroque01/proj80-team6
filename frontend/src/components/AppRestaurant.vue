@@ -63,7 +63,6 @@ export default {
 
             return filteredRestaurants;
         }
-
     },
     mounted() {
         this.updateTypologies();
@@ -107,19 +106,22 @@ export default {
                     </ul>
                 </nav>
 
-
-
-
                 <!-- parte dx -->
                 <div class="my_container restaurants_box">
 
                     <!-- Restaurant List -->
                     <div class="restaurantsContainer">
 
+                        <div class="no-restaurant" v-if="filteredRestaurants.length === 0">
+                            <i class="fa-regular fa-face-frown"></i> 
+                            Mi dispiace non c'&eacute; nessun ristorante che soddisfa le tue selezioni<p>Prova con un'altra categoria</p>
+                        </div>
                         <div class="restaurantWrapper">
 
+                            
                             <div class="restaurant wrapperProperties" v-for="restaurant in filteredRestaurants"
                                 :key="restaurant.id">
+
                                 <router-link :to="{ name: 'restaurant-detail', params: { id: restaurant.id } }">
                                     <div class="deliveryPrice">
                                         <i class="fa-solid fa-motorcycle"></i> {{ restaurant.delivery_price }} &euro;
@@ -259,6 +261,18 @@ section {
 
 .restaurantsContainer {
     flex-direction: row;
+
+    .no-restaurant{
+        display: block;
+        font-size: 20px;
+        padding: 25px;
+        font-style: italic;
+        color: rgb(101, 101, 101);
+
+        p{
+            font-size: 18px;
+        }
+    }
 
 }
 
