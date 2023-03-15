@@ -13,7 +13,9 @@ export default {
       restaurants: [],
       dishes: [],
       store,
-      restaurantId: null,
+      selRes: null,
+      selResId: null,
+      cartResId: null,
     }
   },
   methods: {
@@ -36,6 +38,17 @@ export default {
         })
         .catch(err => console.error(err));
     },
+    filterRestaurants() {
+      if (localStorage.getItem("storedQuantity_0")) {
+        let storedQuantity = localStorage.getItem("storedQuantity_0");
+        let cartRestaurantId = JSON.parse(storedQuantity).restaurant_id;
+
+        this.cartResId = cartRestaurantId;
+
+        this.selResId = parseInt(this.$route.params.id);
+
+      }
+    },
     addDish(id) {
 
       if (store.length == 0) {
@@ -46,8 +59,10 @@ export default {
 
         store.length = localStorage.length;
 
-        const value = localStorage.getItem(key);
-        store.items.push(JSON.parse(value));
+        console.log(this.selResId);
+
+        /* const value = localStorage.getItem(key);
+        store.items.push(JSON.parse(value)); */
 
         /* console.log(store.items); */
 
@@ -61,13 +76,17 @@ export default {
 
       else {
 
-        const clickedRestaurantId = this.dishes[id].restaurant_id;
+        let storedQuantity = localStorage.getItem("storedQuantity_0");
 
-        const item = localStorage.getItem('storedQuantity_0');
-        const obj = JSON.parse(item);
-        const cartRestaurantId = obj.restaurant_id;
+        let cartRestaurantId = JSON.parse(storedQuantity).restaurant_id;
 
-        if (clickedRestaurantId == cartRestaurantId) {
+        this.cartResId = cartRestaurantId;
+
+        console.log(this.cartResId);
+
+        console.log(this.selResId);
+
+        if (this.selResId == this.cartResId) {
 
           store.quantity.push(this.dishes[id]);
           const key = 'storedQuantity_' + localStorage.length;
@@ -84,14 +103,14 @@ export default {
       localStorage.clear();
       store.length = 0;
       store.total = 0;
-      store.items = [];
-      store.restaurantId = null;
-      store.restaurantName = '';
     },
   },
   computed: {
     filteredRestaurants() {
-      return this.restaurants.filter(restaurant => restaurant.id === parseInt(this.$route.params.id));
+      let selectedRestaurant = this.restaurants.filter(restaurant => restaurant.id === parseInt(this.$route.params.id));
+      this.selRes = selectedRestaurant;
+      this.selResId = parseInt(this.$route.params.id);
+      return selectedRestaurant;
     },
     getItems() {
       const data = {};
@@ -123,14 +142,17 @@ export default {
 
       store.total = total;
 
+      console.log(store.total);
+
       return items;
     },
   },
   mounted() {
     this.getDishes();
+    this.filterRestaurants();
   },
   watch: {
-    '$route.params.id': 'getDishes'
+    '$route.params.id': 'getDishes',
   }
 }
 </script>
@@ -158,8 +180,7 @@ export default {
             <i class="fa-solid fa-utensils"></i>{{ restaurant.description }}
           </li>
           <li>
-            <i class="fa-solid fa-clock"></i>{{ restaurant.opening_time }} - {{ restaurant.closure_time
-            }}
+            <i class="fa-solid fa-clock"></i>{{ restaurant.opening_time }} - {{ restaurant.closure_time }}
           </li>
           <li>
             <i class="fa-solid fa-motorcycle"></i>Consegna al costo di: {{ restaurant.delivery_price }}
@@ -221,31 +242,36 @@ export default {
 
         <!-- cart right side-->
         <div class="cart">
-          <h5 class="card-body px-0 py-2">
-            <strong>Carrello </strong>
-            <span>per {{ store.restaurantName }}</span>
-          </h5>
-          <button v-if="store.length !== 0" @click="emptyCart">Svuota carrello</button>
+          <div v-if="store.length !== 0 && this.selResId == this.cartResId">
+            <h5 class="card-body px-0 py-2">
+              <strong>Carrello </strong>
+              <span v-if="this.selRes[0] && this.selRes[0].user_id">per {{ this.selRes[0].business_name }}</span>
+            </h5>
+            <button v-if="store.length !== 0" @click="emptyCart">Svuota carrello</button>
 
-          <ul>
-            <li v-for="item in getItems" class="d-flex justify-content-between align-items-center mb-2">
-              <div>{{ item.quantity }}x {{ item.name }}</div>
-              <div>{{ item.price.toFixed(2) }} €</div>
-            </li>
-          </ul>
-          <!-- <hr class="border-top border-dark mb-3">
-                                                                                                  <div class="d-flex justify-content-between align-items-center mb-2">
-                                                                                                      <div>Subtotale</div>
-                                                                                                      <div>21,00 €</div>
-                                                                                                  </div>
-                                                                                                  <div class="d-flex justify-content-between align-items-center mb-2">
-                                                                                                      <div>Spese di consegna</div>
-                                                                                                      <div>5,00 €</div>
-                                                                                                  </div> -->
-          <hr class="border-top border-dark mb-3">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <div><b>Totale</b></div>
-            <div><b>{{ store.total.toFixed(2) }} €</b></div>
+            <ul>
+              <li v-for="item in getItems" class="d-flex justify-content-between align-items-center mb-2">
+                <div>{{ item.quantity }}x {{ item.name }}</div>
+                <div>{{ item.price.toFixed(2) }} €</div>
+              </li>
+            </ul>
+            <!-- <hr class="border-top border-dark mb-3">
+                                                                                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                                                                                        <div>Subtotale</div>
+                                                                                                        <div>21,00 €</div>
+                                                                                                    </div>
+                                                                                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                                                                                        <div>Spese di consegna</div>
+                                                                                                        <div>5,00 €</div>
+                                                                                                    </div> -->
+            <hr class="border-top border-dark mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <div><b>Totale</b></div>
+              <div><b>{{ store.total.toFixed(2) }} €</b></div>
+            </div>
+          </div>
+          <div v-else>
+            CARRELLO VUOTO
           </div>
         </div>
       </div>

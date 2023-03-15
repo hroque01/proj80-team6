@@ -13,7 +13,6 @@ export const store = reactive({
             textBigger: "Google Play"
         },
     ],
-    restaurantName: '',
     quantity: [],
     length: localStorage.length,
     total: 0,
