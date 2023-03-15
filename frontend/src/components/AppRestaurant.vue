@@ -43,10 +43,6 @@ export default {
                 })
                 .catch(err => console.error(err));
         },
-        // metodo per filtrare ristoranti cliccando su immagini: imposto prima la proprietà selectedTypologies su un array contenente solo l'ID della tipologia selezionata dall'utente e poi uso il filtro
-        filterRestaurants(typologyId) {
-            this.selectedTypologies = [typologyId];
-        }
     },
     computed: {
         // metodo che filtra i ristoranti in base alle tipologie selezionate dall'utente.
@@ -65,14 +61,6 @@ export default {
                 });
             }
             return filteredRestaurants;
-        },
-        typologyGroups() {
-            const groups = [];
-            let i, j;
-            for (i = 0, j = this.typologies.length; i < j; i += 5) {
-                groups.push(this.typologies.slice(i, i + 5));
-            }
-            return groups;
         },
     },
     mounted() {
