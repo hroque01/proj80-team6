@@ -15,14 +15,14 @@
                 <h1 class="card-title">{{ $dish->name }}</h1>
 
                 <div class="show-text">
-                    <p>{{$dish-> description}}</p>
+                    <p>Descrizione: {{$dish-> description}}</p>
                     <p>Ingredienti: {{$dish-> ingredients}}</p>
                     
                 </div>
-                <span>{{$dish-> price}} &euro;</p>
+                <span>Prezzo: {{$dish-> price}} &euro;</p>
             </div>
 
-            <a class="link-back" href="/restaurant">Torna al men&uacute;</a>
+            <a class="link-back" href="/restaurant">Torna al men&ugrave;</a>
         </div>
           
     </div>

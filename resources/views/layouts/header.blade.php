@@ -24,9 +24,9 @@
 
 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="my_container">
 
-                <img src="{{Vite::asset('resources/img/logo-white.png')}}" alt="logo" class="logo-form">
+                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -35,7 +35,9 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('http://localhost:5174/') }}">{{ __('Home') }}</a>
+                            <a class="nav-link" href="{{url('http://localhost:5174/') }}">
+                                <img src="{{Vite::asset('resources/img/logo-white.png')}}" alt="logo" class="logo-form">
+                            </a>
                         </li>
                     </ul>
 

@@ -32,7 +32,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav me-auto align-items-center">
                         <li>
                             <a class="nav-link" href="{{url('http://localhost:5174/') }}">
                                 <img src="{{Vite::asset('resources/img/logo-white.png')}}" alt="logo" class="logo-form">
