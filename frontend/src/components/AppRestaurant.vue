@@ -52,16 +52,18 @@ export default {
             let filteredRestaurants = this.restaurants;
 
             // condizione: se utente ha selezionato almeno una tipologia, mi restituisce con il filter solo ristoranti    
-            //  che corrispondono ai criteri di selezione: ALMENO una tipologia
+            //  che corrispondono ai criteri di selezione: soddisfando tutte le selezioni utente
             if (this.selectedTypologies.length > 0) {
                 filteredRestaurants = filteredRestaurants.filter(restaurant => {
-                    return restaurant.typologies.some(typology => {
-                        return this.selectedTypologies.includes(typology.id);
+                    return this.selectedTypologies.every(typologyId => {
+                        return restaurant.typologies.some(typology => typology.id === typologyId);
                     });
                 });
             }
+
             return filteredRestaurants;
-        },
+        }
+
     },
     mounted() {
         this.updateTypologies();
