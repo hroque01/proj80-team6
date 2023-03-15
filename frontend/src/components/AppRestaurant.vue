@@ -86,28 +86,30 @@ export default {
 
         <!-- div container -->
         <div class="my_container">
-            <!-- <v-carousel class="container-carousel" :interval="4000" :hide-delimiters="true" :hide-controls="true">
-                <v-carousel-item v-for="(typologyGroup, index) in typologyGroups" :key="index">
-                    <div class="d-flex flex-wrap carousel-typology">
-                        <div class="typology" v-for="typology in typologyGroup" :key="typology.id">
-                            <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies"
-                                :value="typology.id" />
-                            <label class="reduction" :for="'typology_' + typology.id"
-                                :class="{ 'checked': typology.isChecked }"
-                                @click="typology.isChecked = !typology.isChecked">
-                                <img :src="typology.image" />
-                                <div class="typologyTag">{{ typology.name }}</div>
-                            </label>
-                        </div>
-                    </div>
-                </v-carousel-item>
-            </v-carousel> -->
-
 
             <div class="restaurantFilter">
 
+                <!-- Navbar laterale a sinistra - elenco categorie -->
+                <nav>
+                    <h4 class="mb-3">Categorie</h4>
+                    <ul>
+                        <!-- ciclo per stampare elenco categorie da dbs -->
+                        <div v-for="typology in typologies" :key="typology.id">
+                            <li>
+                                <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies"
+                                    :value="typology.id">
+                                <label :for="'typology_' + typology.id" :class="{ 'checked': typology.isChecked }"
+                                @click="typology.isChecked = !typology.isChecked">
+                                <img class="icon-cat" :src="'/img/icons/' + typology.image" />
+                                <div class="typologyTag">{{ typology.name }}</div>
+                            </label>
+                            </li>
+                        </div>
+                    </ul>
+                </nav>
+
                 <!-- parte dx -->
-                <div class="restaurants_box">
+                <div class="my_container restaurants_box">
 
                     <!-- Restaurant List -->
                     <div class="restaurantsContainer">
@@ -155,38 +157,58 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
-// filtri categoria
-.carousel-typology {
+.my_container{
     display: flex;
-    gap: 12px;
+}
 
-    .typology {
-        box-shadow: 0px 5px 5px 0px #ececec;
-        height: 100%;
-        border-radius: 10px;
-        margin: 20px 0;
+nav {
+    height: 80vh;
+    width: 300px;
+    overflow: auto;
+    padding: 20px;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    box-shadow: 0px 20px 5px 0px #ececec;
 
-
-        input {
-            display: none;
-        }
-
-        img {
-            border-top-right-radius: 10px;
-            border-top-left-radius: 10px;
-        }
-
-        .typologyTag {
-            padding: 10px;
-            text-align: center;
-        }
-
-        .checked {
-            border: 5px solid $btn_red;
-            border-radius: 15px;
+    ul {
+        li {
+            padding: 15px;
+            line-height: 35px;
+            border-bottom: 1px solid #eaeaea;;
         }
     }
 
+    label{
+        display: flex;
+        align-items: center;
+    }
+
+    input[type=checkbox] {
+        display: none;
+    }
+
+    .icon-cat{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 20px;
+        padding: 5px;
+        opacity: 0.4;
+    }
+
+    .typologyTag {
+        font-size: 17px;
+    }
+
+    .checked {
+        .typologyTag {
+            font-weight: bold;
+        }
+
+        .icon-cat{
+            opacity: 1;
+        }
+    }
 }
 
 section {
@@ -197,16 +219,7 @@ section {
     }
 }
 
-// vedere se eliminare questo codice: era il codice della nav bar laterale con le categorie e scrollbar
-nav {
-    height: 100vh;
-    overflow: auto;
-    width: 300px;
-    padding: 20px;
-    border: 1px solid #eaeaea;
-    border-radius: 10px;
-    box-shadow: 0px 20px 5px 0px #ececec;
-}
+
 
 .reduction {
     width: 230px;
@@ -244,7 +257,7 @@ nav {
         }
 
         .wrapperProperties {
-            width: calc(100% / 4 - 20px);
+            width: calc(100% / 3 - 20px);
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -317,8 +330,8 @@ nav {
         width: 80px;
         right: 10px;
         bottom: 65px;
-        color: white;
         background-color: $btn_red;
+        color: white;
         padding: 5px 10px;
         border-radius: 50px;
     }
