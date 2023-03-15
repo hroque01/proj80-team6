@@ -17,7 +17,7 @@ export default {
         {
           icon: "fa-solid fa-cart-shopping",
           text: "Carrello",
-          url: "/checkout",
+          url: "/cart",
         },
       ]
     }
