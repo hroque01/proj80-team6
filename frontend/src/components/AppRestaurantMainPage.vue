@@ -122,7 +122,6 @@ export default {
         total += parseFloat(item.price);
       });
       store.total = total;
-      console.log(items);
       return items;
     }
   },
