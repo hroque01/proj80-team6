@@ -9,11 +9,11 @@
     </h1>
 
     <h4>
-      Qui puoi visualizzare il men&uacute; completo del tuo ristorante con la lista dei tuoi piatti
+      Qui puoi visualizzare il men&ugrave; completo del tuo ristorante con la lista dei tuoi piatti
     </h4>
 
     <h5>
-      <a class="create-crud" href="{{ route('dishCreate') }}"> &plus; Aggiungi un nuovo piatto al tuo men&uacute; e attira sempre pi&uacute; clienti! Cosa aspetti?</a>
+      <a class="create-crud" href="{{ route('dishCreate') }}"> &plus; Aggiungi un nuovo piatto al tuo men&ugrave; e attira sempre pi&ugrave; clienti! Cosa aspetti?</a>
     </h5>
     
     <div class="cards-res-hub">

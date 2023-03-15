@@ -87,6 +87,15 @@ export default {
         <!-- div container -->
         <div class="my_container">
 
+            <div class="mainTitle-container">
+                <h2>
+                    Lista dei ristoranti
+                </h2>
+                <h4>
+                    Dai un'occhiata alla nostra selezione
+                </h4>
+            </div>
+
             <div class="restaurantFilter">
 
                 <!-- Navbar laterale a sinistra - elenco categorie -->
@@ -108,6 +117,9 @@ export default {
                     </ul>
                 </nav>
 
+
+
+
                 <!-- parte dx -->
                 <div class="my_container restaurants_box">
 
@@ -118,26 +130,26 @@ export default {
 
                             <div class="restaurant wrapperProperties" v-for="restaurant in filteredRestaurants"
                                 :key="restaurant.id">
-                            <router-link :to="{ name: 'restaurant-detail', params: { id: restaurant.id } }">
-                                <div class="deliveryPrice">
-                                    <i class="fa-solid fa-motorcycle"></i> {{ restaurant.delivery_price }} &euro;
-                                </div>
-                                <div class="restaurant-img">
-                                    <img :src="restaurant.image" alt="">
-                                </div>
-                                <div class="restaurant-info-wrapper">
-                                    <div class="restaurant-info-restaurantName">
-                                        <div class="name_res">
-                                            {{ restaurant.business_name }}
+                                <router-link :to="{ name: 'restaurant-detail', params: { id: restaurant.id } }">
+                                    <div class="deliveryPrice">
+                                        <i class="fa-solid fa-motorcycle"></i> {{ restaurant.delivery_price }} &euro;
+                                    </div>
+                                    <div class="restaurant-img">
+                                        <img :src="restaurant.image" alt="">
+                                    </div>
+                                    <div class="restaurant-info-wrapper">
+                                        <div class="restaurant-info-restaurantName">
+                                            <div class="name_res">
+                                                {{ restaurant.business_name }}
+                                            </div>
+                                        </div>
+                                        <div class="restaurant-info-address">
+                                            <i class="fa-solid fa-location-dot"></i>{{ restaurant.address }}
                                         </div>
                                     </div>
-                                    <div class="restaurant-info-address">
-                                        <i class="fa-solid fa-location-dot"></i>{{ restaurant.address }}
-                                    </div>
-                                </div>
-                            </router-link>
+                                </router-link>
                             </div>
-                            
+
                         </div>
                     </div>
                     <!-- chiusura restaurant list -->
@@ -147,6 +159,7 @@ export default {
 
             </div>
         </div>
+
         <!-- chiusura div container -->
     </section>
 </template>
@@ -156,12 +169,13 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
-.my_container {
-    display: flex;
+.mainTitle-container {
+    width: 100%;
+    padding-bottom: 20px;
 }
 
 nav {
-    height: 80vh;
+    height: 600px;
     width: 300px;
     overflow: auto;
     padding: 20px;
@@ -174,7 +188,6 @@ nav {
             padding: 15px;
             line-height: 35px;
             border-bottom: 1px solid #eaeaea;
-            ;
         }
     }
 
@@ -222,22 +235,14 @@ section {
 
 // regole parte dx main
 .restaurants_box {
-    height: 80vh;
-    overflow-y: auto;
-
-    //generalrestaurantWrappe
-    //Boxes title
-    .mainTitle-container {
-        line-height: 20px;
-        margin: 25px;
-
-    }
 
     //Boxes wrapper and box properties
     .restaurantWrapper {
         display: flex;
         flex-wrap: wrap;
         margin-left: 25px;
+        height: 600px;
+        overflow-y: auto;
 
         .name_res {
             color: $text_black;
@@ -251,17 +256,11 @@ section {
         .wrapperProperties {
             width: calc(100% / 3 - 20px);
             display: flex;
-            flex-direction: column;
-            overflow: hidden;
             margin: 15px 10px;
             user-select: none;
             border: 1px solid #eaeaea;
             border-radius: 10px;
             box-shadow: 0px 5px 5px 0px #ececec;
-        }
-
-        .wrapperProperties:hover {
-            cursor: pointer;
         }
     }
 }
