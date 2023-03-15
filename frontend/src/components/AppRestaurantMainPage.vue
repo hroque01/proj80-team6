@@ -51,6 +51,10 @@ export default {
       store.length = 0;
       store.total = 0;
     },
+    scrollToTop() {
+      window.history.back();
+      window.scrollBy(0, -1000);
+    }
   },
   computed: {
     filteredRestaurants() {
@@ -105,10 +109,10 @@ export default {
     <div class="restaurant_header" v-for="(restaurant, index) in filteredRestaurants" :key="index">
       <div v-if="restaurant" class="flex-info-res my_container">
 
-        <div class="indietro">
-          <router-link to="/">
-            Torna indietro
-          </router-link>
+        <div class="back-button">
+          <button @click="scrollToTop()">
+            Torna ai ristoranti
+          </button>
         </div>
 
         <div class="restaurant_image">
@@ -129,9 +133,10 @@ export default {
             }}
           </li>
           <li>
-            <i class="fa-solid fa-motorcycle"></i><span class="delivery">Consegna al costo di: {{ restaurant.delivery_price }}&euro;</span>
-            
-            
+            <i class="fa-solid fa-motorcycle"></i><span class="delivery">Consegna al costo di: {{
+              restaurant.delivery_price }}&euro;</span>
+
+
           </li>
         </ul>
       </div>
@@ -221,8 +226,15 @@ export default {
   display: flex;
   flex-wrap: wrap;
 
-  .indietro {
+  .back-button {
     width: 100%;
+    padding-bottom: 30px;
+
+    button {
+      &:hover {
+        color: #EE5743;
+      }
+    }
   }
 }
 
@@ -265,7 +277,8 @@ export default {
       font-weight: 700;
       margin-bottom: 20px;
     }
-    .delivery{
+
+    .delivery {
       background-color: $btn_red;
       padding: 5px 10px;
       color: #fff;
