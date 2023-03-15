@@ -1,27 +1,12 @@
 <script>
+
+import { store } from '../store';
+
 export default {
     name: 'AppJumbotron',
     data() {
         return {
-            // array di immagini per slider
-            restaurants:
-                [
-                    'img/img-carousel/aubergine-pizza.jpg',
-                    'img/img-carousel/avocado-toast.jpg',
-                    'img/img-carousel/cappuccino.jpg',
-                    'img/img-carousel/corona-beer.jpg',
-                    'img/img-carousel/donuts.jpg',
-                    'img/img-carousel/green-sushi.jpg',
-                    'img/img-carousel/hamburger.jpg',
-                    'img/img-carousel/macarons.jpg',
-                    'img/img-carousel/meat-skewer.jpg',
-                    'img/img-carousel/pennette.jpg',
-                    'img/img-carousel/round-vegetables.jpg',
-                    'img/img-carousel/soup.jpg',
-                    'img/img-carousel/spaghetti-chinese.jpg',
-                    'img/img-carousel/sushi.jpg',
-                    'img/img-carousel/vegetables.jpg',
-                ]
+            store,
         }
     }
 }
@@ -39,8 +24,8 @@ export default {
 
         <!-- slider con v-for con immagini -->
         <div class="ms_slider resto-carousel">
-            <div class="ms_card" v-for="restaurant in restaurants">
-                <img :src="restaurant" alt="image food">
+            <div class="ms_card" v-for="restaurant in store.restaurants">
+                <img :src="'img/img-carousel/' + restaurant" alt="image food">
             </div>
         </div>
     </div>

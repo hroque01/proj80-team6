@@ -37,6 +37,12 @@ class MainController extends Controller
         return view('pages.restaurant', compact('restaurants', 'dishes', 'restaurant'));
     }
 
+    // Metodo Show
+    public function dishShow(Dish $dish) {
+        
+        return view('pages.dishShow', compact('dish'));
+    }
+
     // Metodo create (per form):
     public function dishCreate() {
 
@@ -83,13 +89,20 @@ class MainController extends Controller
     // Metodo edit (per form):
     public function dishEdit(Dish $dish) {
         
+        $this->authorize('update-dish', $dish);
+        
         $restaurants = Restaurant::all();
-
+    
         return view('pages.dishEdit', compact('dish', 'restaurants'));
     }
+        
+        
+        
 
     // Metodo update (per ricevere dati modificati da form):
     public function dishUpdate(Request $request, Dish $dish) {
+
+        $this->authorize('update', $dish);
 
         $data = $request -> validate([
             'name' => 'required|string|max:64',
@@ -115,6 +128,8 @@ class MainController extends Controller
         
         return redirect() -> route('restaurant');
     }
+
+    
 }
 
 

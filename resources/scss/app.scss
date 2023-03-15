@@ -19,6 +19,12 @@ ul li {
     list-style: none;
 }
 
+.my_container {
+    max-width: 1200px;
+    width: 85%;
+    margin: 0 auto;
+}
+
 // REGOLE REGISTRAZIONE:
 .card {
     border: 1px solid #eaeaea;
@@ -63,6 +69,7 @@ ul li {
 .btn-reg {
     @include button;
     margin-top: 20px;
+    border: 2px solid $btn_red;
 }
 
 // REGOLE LOGIN:
@@ -94,6 +101,7 @@ ul li {
 
 .btn-log {
     @include button;
+    border: 2px solid $btn_red;
 }
 
 .new-account {
@@ -125,6 +133,10 @@ ul li {
     margin-left: 3px;
 }
 
+.card {
+    margin-bottom: 50px;
+}
+
 // REGOLE DASHBOARD:
 .dashboard-card {
     .dashboard-title span {
@@ -144,6 +156,10 @@ ul li {
     .dashboard-link {
         display: flex;
         justify-content: center;
+
+        .btn {
+            border: 2px solid $btn_red;
+        }
 
         a {
             @include button;
@@ -165,14 +181,119 @@ nav {
 }
 
 // REGOLE HOME RESTAURANT:
-.res-hub-welcome{
-    color: $btn_red;
+.res-hub-txt {
+
+    .res-hub-welcome {
+        color: $btn_red;
+    }
+
+    h4 {
+        margin: 20px 0;
+    }
+
+    .create-crud {
+        color: $text_black;
+    }
+
+    .cards-res-hub {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 30px;
+
+        .card_crud {
+            width: calc(100% / 4 - 40px);
+            margin: 20px;
+            padding: 30px 20px 30px 20px;
+            border-radius: 20px;
+
+            .img-res-hub {
+                display: block;
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
+            }
+
+            .body-crud {
+                padding: 20px 0;
+                margin-bottom: 50px;
+
+                .link-show {
+                    color: $text_black;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            img {
+                border-radius: 10px;
+            }
+
+            .btn-crud {
+                border: 2px solid $btn_red;
+                border-radius: 10px;
+                padding: 5px 10px;
+                margin-right: 5px;
+
+                &:hover {
+                    background-color: $btn_red;
+                    color: #fff;
+                }
+            }
+        }
+    }
 }
 
-.card{
-    margin-bottom: 50px;
+// REGOLE SHOW:
+.show-dish {
+    display: flex;
+    align-items: center;
+    border: 1px solid #eaeaea;
+    box-shadow: 0px 5px 5px 0px #ececec;
+    border-radius: 10px;
+    padding: 50px;
+
+
+    .text-card {
+        margin-left: 50px;
+
+        .link-back {
+            color: $text_black;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    img {
+        width: 400px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .show-text {
+        color: #4c4c4c;
+        font-style: italic;
+    }
 }
 
-.title-crud{
-    margin-bottom: 50px 0;
+// REGOLE CREATE:
+.create-crud,
+.edit-crud {
+    margin-top: 50px;
+
+    .btn {
+        background-color: $btn_red;
+        color: #fff;
+        border: 2px solid $btn_red;
+
+        &:hover {
+            border: 2px solid $btn_red;
+            background-color: #fff;
+            color: $btn_red;
+        }
+    }
 }

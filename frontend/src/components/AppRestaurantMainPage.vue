@@ -103,6 +103,10 @@ export default {
       this.requestChangeCart = false;
       this.cartResId = this.selResId;
     },
+    scrollToTop() {
+      window.history.back();
+      window.scrollBy(0, -1000);
+    }
   },
   computed: {
     filteredRestaurants() {
@@ -157,13 +161,17 @@ export default {
 
 <template>
   <section>
-  <router-link to="/">
-    Torna indietro
-  </router-link>
 
     <!-- restaurant header with image and info-->
     <div class="restaurant_header" v-for="(restaurant, index) in filteredRestaurants" :key="index">
       <div v-if="restaurant" class="flex-info-res my_container">
+
+        <div class="back-button">
+          <button @click="scrollToTop()">
+            Torna ai ristoranti
+          </button>
+        </div>
+
         <div class="restaurant_image">
           <img :src="restaurant.image" :alt="restaurant.business_name">
         </div>
@@ -178,11 +186,14 @@ export default {
             <i class="fa-solid fa-utensils"></i>{{ restaurant.description }}
           </li>
           <li>
-            <i class="fa-solid fa-clock"></i>{{ restaurant.opening_time }} - {{ restaurant.closure_time }}
+            <i class="fa-solid fa-clock"></i>{{ restaurant.opening_time }} - {{ restaurant.closure_time
+            }}
           </li>
           <li>
-            <i class="fa-solid fa-motorcycle"></i>Consegna al costo di: {{ restaurant.delivery_price }}
-            &euro;
+            <i class="fa-solid fa-motorcycle"></i><span class="delivery">Consegna al costo di: {{
+              restaurant.delivery_price }}&euro;</span>
+
+
           </li>
         </ul>
       </div>
@@ -247,34 +258,25 @@ export default {
             </h5>
             <button v-if="store.length !== 0" @click="emptyCart">Svuota carrello</button>
 
-            <ul>
-              <li v-for="item in getItems" class="d-flex justify-content-between align-items-center mb-2">
-                <div>{{ item.quantity }}x {{ item.name }}</div>
-                <div>{{ item.price.toFixed(2) }} €</div>
-              </li>
-            </ul>
-            <!-- <hr class="border-top border-dark mb-3">
-                                                                                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                                                                                        <div>Subtotale</div>
-                                                                                                        <div>21,00 €</div>
-                                                                                                    </div>
-                                                                                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                                                                                        <div>Spese di consegna</div>
-                                                                                                        <div>5,00 €</div>
-                                                                                                    </div> -->
-            <hr class="border-top border-dark mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <div><b>Totale</b></div>
-              <div><b>{{ store.total.toFixed(2) }} €</b></div>
-            </div>
-          </div>
-          <div v-else-if="this.requestChangeCart == false">
-            CARRELLO VUOTO
-          </div>
-          <div v-else class="cart-notification">
-            Hai già un carrello aperto, vuoi svuotarlo?
-            <button class="empty-cart-btn" @click="emptyCart()">Nuovo carrello</button>
-            <button class="keep-cart-btn" @click="this.requestChangeCart = false">Annulla</button>
+          <ul>
+            <li v-for="item in getItems" class="d-flex justify-content-between align-items-center mb-2">
+              <div>{{ item.quantity }}x {{ item.name }}</div>
+              <div>{{ item.price.toFixed(2) }} €</div>
+            </li>
+          </ul>
+          <!-- <hr class="border-top border-dark mb-3">
+                                                                                                  <div class="d-flex justify-content-between align-items-center mb-2">
+                                                                                                      <div>Subtotale</div>
+                                                                                                      <div>21,00 €</div>
+                                                                                                  </div>
+                                                                                                  <div class="d-flex justify-content-between align-items-center mb-2">
+                                                                                                      <div>Spese di consegna</div>
+                                                                                                      <div>5,00 €</div>
+                                                                                                  </div> -->
+          <hr class="border-top border-dark mb-3">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div><b>Totale</b></div>
+            <div><b>{{ store.total.toFixed(2) }} €</b></div>
           </div>
         </div>
       </div>
@@ -290,6 +292,18 @@ export default {
 
 .my_container {
   display: flex;
+  flex-wrap: wrap;
+
+  .back-button {
+    width: 100%;
+    padding-bottom: 30px;
+
+    button {
+      &:hover {
+        color: #EE5743;
+      }
+    }
+  }
 }
 
 // restaurant header
@@ -319,6 +333,7 @@ export default {
 
   .restaurant_informations {
     padding-left: 50px;
+    line-height: 30px;
 
     svg {
       width: 20px;
@@ -328,6 +343,14 @@ export default {
     .restaurantName {
       font-size: 40px;
       font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .delivery {
+      background-color: $btn_red;
+      padding: 5px 10px;
+      color: #fff;
+      border-radius: 10px;
     }
   }
 }
@@ -374,12 +397,16 @@ export default {
 
       .my_bigBox-img {
         width: 100%;
-        height: 170px;
         object-fit: cover;
         background-color: white;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
 
         img {
           display: block;
+          width: 100%;
+          height: 180px;
+          object-fit: cover;
           border-top-right-radius: 10px;
           border-top-left-radius: 10px;
         }
@@ -413,7 +440,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px;
+        padding: 50px 10px 10px 10px;
 
         .dishPrice {
           font-size: 15px;
@@ -443,10 +470,10 @@ export default {
   }
 
   .cart {
-    width: 300px;
+    width: 25%;
     background-color: $restaurant_main_bg;
     border-radius: 15px;
-    padding: 30px;
+    padding: 25px;
   }
 
 }
