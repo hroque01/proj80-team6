@@ -16,6 +16,7 @@ export default {
       selRes: null,
       selResId: null,
       cartResId: null,
+      requestChangeCart: false,
     }
   },
   methods: {
@@ -39,17 +40,21 @@ export default {
         .catch(err => console.error(err));
     },
     filterRestaurants() {
+      this.selResId = parseInt(this.$route.params.id);
       if (localStorage.getItem("storedQuantity_0")) {
         let storedQuantity = localStorage.getItem("storedQuantity_0");
         let cartRestaurantId = JSON.parse(storedQuantity).restaurant_id;
 
         this.cartResId = cartRestaurantId;
-
-        this.selResId = parseInt(this.$route.params.id);
-
+      }
+      else {
+        this.cartResId = this.selResId;
       }
     },
     addDish(id) {
+
+      console.log(this.cartResId);
+      console.log(this.selResId);
 
       if (store.length == 0) {
 
@@ -76,16 +81,6 @@ export default {
 
       else {
 
-        let storedQuantity = localStorage.getItem("storedQuantity_0");
-
-        let cartRestaurantId = JSON.parse(storedQuantity).restaurant_id;
-
-        this.cartResId = cartRestaurantId;
-
-        console.log(this.cartResId);
-
-        console.log(this.selResId);
-
         if (this.selResId == this.cartResId) {
 
           store.quantity.push(this.dishes[id]);
@@ -96,13 +91,17 @@ export default {
 
         }
 
+        else {
+          this.requestChangeCart = true;
+        }
       }
-
     },
     emptyCart() {
       localStorage.clear();
       store.length = 0;
       store.total = 0;
+      this.requestChangeCart = false;
+      this.cartResId = this.selResId;
     },
   },
   computed: {
@@ -110,7 +109,6 @@ export default {
       let selectedRestaurant = this.restaurants.filter(restaurant => restaurant.id === parseInt(this.$route.params.id));
       this.selRes = selectedRestaurant;
       this.selResId = parseInt(this.$route.params.id);
-      return selectedRestaurant;
     },
     getItems() {
       const data = {};
@@ -142,7 +140,7 @@ export default {
 
       store.total = total;
 
-      console.log(store.total);
+      console.log(items);
 
       return items;
     },
@@ -270,8 +268,13 @@ export default {
               <div><b>{{ store.total.toFixed(2) }} €</b></div>
             </div>
           </div>
-          <div v-else>
+          <div v-else-if="this.requestChangeCart == false">
             CARRELLO VUOTO
+          </div>
+          <div v-else class="cart-notification">
+            Hai già un carrello aperto, vuoi svuotarlo?
+            <button class="empty-cart-btn" @click="emptyCart()">Nuovo carrello</button>
+            <button class="keep-cart-btn" @click="this.requestChangeCart = false">Annulla</button>
           </div>
         </div>
       </div>
