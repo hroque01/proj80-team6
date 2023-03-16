@@ -22,9 +22,8 @@ class OrderSeeder extends Seeder
             [
                 'create_time' => '19:00',
                 'order_number' => '324562',
-                'total' => '15.00',
-                'customer_name' => 'Mario',
-                'customer_surname' => 'Rossi',
+                'total' => 15.00,
+                'customer_name' => 'Mario Rossi',
                 'address' => 'Via Mario Rossi, 69',
                 'email' => 'mariorossi@gmail.com',
                 'phone_number' => '3334445557',
@@ -33,9 +32,8 @@ class OrderSeeder extends Seeder
             [
                 'create_time' => '19:00',
                 'order_number' => '46132',
-                'total' => '24.35',
-                'customer_name' => 'Luigi',
-                'customer_surname' => 'Verdi',
+                'total' => 24.35,
+                'customer_name' => 'Luigi Bianchi',
                 'address' => 'Via Luigi Verdi, 65',
                 'email' => 'luigiverdi@gmail.com',
                 'phone_number' => '3234565784',
