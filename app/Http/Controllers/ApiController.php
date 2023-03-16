@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\Typology;
 use App\Models\Dish;
 use App\Models\Restaurant;
+use App\Models\Order;
+
+use Carbon\Carbon;
 
 class ApiController extends Controller
 {
@@ -69,6 +72,38 @@ class ApiController extends Controller
                 'dishes' => $dishes,
                 'restaurants' => $restaurants,
             ]
+        ]);
+    }
+
+    public function orderStore(Request $request, Restaurant $restaurant) {
+
+        $data = $request -> validate([
+            'create_time' => 'date_format:H:i',
+            'order_number' => 'string|unique:orders,order_number',
+            'total' => 'required|decimal:1,2',
+            'customer_name' => 'required|string|max:64',
+            'address' => 'required|string|max:64',
+            'email' => 'required|string|email|max:64',
+            'phone_number' => 'required|string|max:32',
+            'restaurant_id' => 'required|integer',
+        ]);
+
+        $order_number = rand(1, 9999);
+        $data['order_number'] = $order_number;
+
+        $create_time = Carbon::now()->format('H:i');
+        $data['create_time'] = $create_time;
+
+        $order = Order::make($data);
+        $restaurant = Restaurant::find($data['restaurant_id']);
+
+        $order -> restaurant() -> associate($restaurant);
+        $order -> save();
+
+        return response() -> json([
+            'success' => true,
+            'response' => $order,
+            'data' => $request -> all()
         ]);
     }
     
