@@ -19,7 +19,7 @@ Route::get('/order/create', [MainController::class, 'orderCreate'])->name('order
     Route :: post('/order/store', [MainController :: class, 'orderStore']) 
     -> name('orderStore');
 
-
+    Route :: get('/order', [MainController :: class, 'getOrders']);
 
 // Route home
 Route::get('/', [MainController::class, 'home'])->name('home');

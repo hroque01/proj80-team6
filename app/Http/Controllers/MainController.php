@@ -18,6 +18,45 @@ use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
+
+    public function getOrders(Order $order) {
+
+        $orders = Order::all();
+    
+        return view('pages.order', compact('orders'));
+    }
+
+    public function orderStore(Request $request, Restaurant $restaurant) {
+        
+        $data = $request->validate([
+            'create_time' => 'date_format:H:i',
+            'order_number' => 'string|unique:orders,order_number',
+            'total' => 'required|decimal:1,2',
+            'customer_name' => 'required|string|max:64',
+            'address' => 'required|string|max:64',
+            'email' => 'required|string|email|max:64',
+            'phone_number' => 'required|string|max:32'
+        ]);
+
+        $order_number = rand(1, 1000);
+        $data['order_number'] = $order_number;
+
+        $create_time = Carbon::now('Europe/Rome')->format('H:i');
+
+        $data['create_time'] = $create_time;
+
+        $order = Order::make($data);
+
+        $user = Auth::user();
+
+        $restaurant = Restaurant::find($user->id); 
+
+        $order -> restaurant() -> associate($restaurant);
+        $order -> save();
+
+        return redirect() -> route('restaurant', compact('restaurant'));
+    }
+
     // DEBUG DA CANCELLARE!
     public function orderCreate() {
 

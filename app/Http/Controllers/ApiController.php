@@ -76,6 +76,18 @@ class ApiController extends Controller
         ]);
     }
 
+    public function getOrders(Order $order) {
+
+        $orders = Order::all();
+    
+        return response()->json([
+            'success' => true,
+            'response' => [
+                'orders' => $orders,
+            ]
+        ]);
+    }
+
     // Metodo per ordini:
     public function orderStore(Request $request, Restaurant $restaurant) {
         
@@ -89,7 +101,7 @@ class ApiController extends Controller
             'phone_number' => 'required|string|max:32'
         ]);
 
-        $order_number = rand(1, 9999);
+        $order_number = rand(1, 1000);
         $data['order_number'] = $order_number;
 
         $create_time = Carbon::now('Europe/Rome')->format('H:i');
@@ -107,8 +119,7 @@ class ApiController extends Controller
 
         return response() -> json([
             'success' => true,
-            'response' => $order,
-            'data' => $request -> all()
+            'response' => $order
         ]);
     }
 }

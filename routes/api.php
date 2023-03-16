@@ -10,3 +10,5 @@ Route::get('/v1/restaurant/filtered', [ApiController::class, 'getFilteredRestaur
 Route::get('/v1/restaurant/{restaurant}', [ApiController::class, 'getDishesAndRestaurants']);
 
 Route::post('/v1/order/store', [ApiController::class, 'orderStore']);
+
+Route::get('/v1/order', [ApiController::class, 'getOrders']);
