@@ -89,11 +89,11 @@ class ApiController extends Controller
     }
 
     // Metodo per ordini:
-    public function orderStore(Request $request, Restaurant $restaurant) {
+    public function orderStore(Request $request) {
         
         $data = $request->validate([
-            'create_time' => 'date_format:H:i',
-            'order_number' => 'string|unique:orders,order_number',
+            'create_time' => 'required|date_format:H:i',
+            'order_number' => 'required|string|unique:orders,order_number',
             'total' => 'required|decimal:1,2',
             'customer_name' => 'required|string|max:64',
             'address' => 'required|string|max:64',
@@ -110,9 +110,8 @@ class ApiController extends Controller
 
         $order = Order::make($data);
 
-        $user = Auth::user();
-
-        $restaurant = Restaurant::find($user->id); 
+        $restaurantId = $data['restaurant_id'];
+        $restaurant = Restaurant::find($restaurantId); 
 
         $order -> restaurant() -> associate($restaurant);
         $order -> save();
