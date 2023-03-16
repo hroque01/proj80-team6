@@ -150,6 +150,7 @@ export default {
                 <!-- chiusura restaurant box -->
 
             </div>
+
         </div>
 
         <!-- chiusura div container -->

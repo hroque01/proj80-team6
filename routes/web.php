@@ -14,6 +14,12 @@ use App\Http\Controllers\MainController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// DEBUG DA CANCELLARE
+Route::get('/order/create', [MainController::class, 'orderCreate'])->name('orderCreate');
+    Route :: post('/order/store', [MainController :: class, 'orderStore']) 
+    -> name('orderStore');
+
+
 
 // Route home
 Route::get('/', [MainController::class, 'home'])->name('home');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Typology;
 use App\Models\Dish;
@@ -75,27 +76,31 @@ class ApiController extends Controller
         ]);
     }
 
+    // Metodo per ordini:
     public function orderStore(Request $request, Restaurant $restaurant) {
-
-        $data = $request -> validate([
+        
+        $data = $request->validate([
             'create_time' => 'date_format:H:i',
             'order_number' => 'string|unique:orders,order_number',
             'total' => 'required|decimal:1,2',
             'customer_name' => 'required|string|max:64',
             'address' => 'required|string|max:64',
             'email' => 'required|string|email|max:64',
-            'phone_number' => 'required|string|max:32',
-            'restaurant_id' => 'required|integer',
+            'phone_number' => 'required|string|max:32'
         ]);
 
         $order_number = rand(1, 9999);
         $data['order_number'] = $order_number;
 
-        $create_time = Carbon::now()->format('H:i');
+        $create_time = Carbon::now('Europe/Rome')->format('H:i');
+
         $data['create_time'] = $create_time;
 
         $order = Order::make($data);
-        $restaurant = Restaurant::find($data['restaurant_id']);
+
+        $user = Auth::user();
+
+        $restaurant = Restaurant::find($user->id); 
 
         $order -> restaurant() -> associate($restaurant);
         $order -> save();
@@ -106,5 +111,4 @@ class ApiController extends Controller
             'data' => $request -> all()
         ]);
     }
-    
 }
