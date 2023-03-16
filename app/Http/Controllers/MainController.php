@@ -8,6 +8,9 @@ use App\Models\Restaurant;
 use App\Models\Dish;
 use App\Models\Typology;
 use App\Models\User;
+// debug order model forse da togliere
+use App\Models\Order;
+use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -15,6 +18,14 @@ use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
+    // DEBUG DA CANCELLARE!
+    public function orderCreate() {
+
+        $orders = Order::all();
+
+        return view('pages.orderCreate', compact('orders'));
+    }
+    
     public function home(Typology $typology) {
 
         $restaurants = Restaurant::all();
