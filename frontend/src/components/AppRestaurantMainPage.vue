@@ -34,7 +34,7 @@ export default {
       }
     },
     getDishes() {
-      if (this.$route.params.id) {
+      if (this.$route.params.id && this.$route.name === 'restaurant-detail') {
         axios.get(API_URL + 'restaurant/' + this.$route.params.id)
         .then(res => {
           const data = res.data;
