@@ -17,19 +17,21 @@ export default {
   },
   methods: {
     getDishes() {
-      axios.get(API_URL + 'restaurant/' + this.$route.params.id)
-        .then(res => {
-          const data = res.data;
-          const success = data.success;
-          const response = data.response;
-          const dishes = response.dishes;
-          const restaurants = response.restaurants;
-          if (success) {
-            this.dishes = dishes;
-            this.restaurants = restaurants;
-          }
-        })
-        .catch(err => console.error(err));
+      if (this.$route.name === 'restaurant-detail') {
+        axios.get(API_URL + 'restaurant/' + this.$route.params.id)
+          .then(res => {
+            const data = res.data;
+            const success = data.success;
+            const response = data.response;
+            const dishes = response.dishes;
+            const restaurants = response.restaurants;
+            if (success) {
+              this.dishes = dishes;
+              this.restaurants = restaurants;
+            }
+          })
+          .catch(err => console.error(err));
+      }
     },
     filterRestaurants() {
       this.selResId = parseInt(this.$route.params.id);
@@ -50,7 +52,6 @@ export default {
         const key = 'storedQuantity_' + localStorage.length;
         localStorage.setItem(key, JSON.stringify(this.dishes[id]));
         store.length = localStorage.length;
-        console.log(this.selResId);
         /* const value = localStorage.getItem(key);
         store.items.push(JSON.parse(value)); */
         /* console.log(store.items); */
