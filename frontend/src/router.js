@@ -4,7 +4,7 @@ import AppRestaurantMainPage from './components/AppRestaurantMainPage.vue';
 
 import AppCart from './components/AppCart.vue';
 
-import AppData from './components/AppData.vue';
+//import AppData from './components/AppData.vue';
 
 import AppPayment from './components/AppPayment.vue';
 
@@ -28,11 +28,11 @@ const router = createRouter({
             name: 'cart',
             component: AppCart
         },
-        {
-            path: '/data',
-            name: 'data',
-            component: AppData
-        },
+        // {
+        //     path: '/data',
+        //     name: 'data',
+        //     component: AppData
+        // },
         {
             path: '/payment',
             name: 'payment',

@@ -27,6 +27,10 @@ class OrderFactory extends Factory
             'phone_number' => fake()->phoneNumber(),
             'completed' => fake()->boolean(),
             'restaurant_id' => fake()->numberBetween(1, 26),
+
+            //Info carta pagamento
+            'card_number' => fake()->unique()->numberBetween(100000, 999999),
+            'expiration_date' => fake()->numberBetween(1000, 9999)
         ];
     }
 }

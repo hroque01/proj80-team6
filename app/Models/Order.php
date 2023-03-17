@@ -11,6 +11,7 @@ class Order extends Model
 
     protected $fillable = [
 
+        'create_date',
         'create_time',
         'order_number',
         'total',
@@ -18,6 +19,10 @@ class Order extends Model
         'address',
         'email',
         'phone_number',
+        'completed',
+
+        'card_number',
+        'expiration_date'
 
     ];
 

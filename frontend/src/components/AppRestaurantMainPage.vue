@@ -38,20 +38,20 @@ export default {
     getDishes() {
       if (this.$route.params.id && this.$route.name === 'restaurant-detail') {
         axios.get(API_URL + 'restaurant/' + this.$route.params.id)
-        .then(res => {
-          const data = res.data;
-          const success = data.success;
-          const response = data.response;
-          const dishes = response.dishes;
-          const restaurants = response.restaurants;
-          const resDelPrice = response.restaurants[this.$route.params.id - 1].delivery_price;
-          if (success) {
-            this.dishes = dishes;
-            this.restaurants = restaurants;
-            this.deliveryPrice = resDelPrice;
-          }
-        })
-        .catch(err => console.error(err));
+          .then(res => {
+            const data = res.data;
+            const success = data.success;
+            const response = data.response;
+            const dishes = response.dishes;
+            const restaurants = response.restaurants;
+            const resDelPrice = response.restaurants[this.$route.params.id - 1].delivery_price;
+            if (success) {
+              this.dishes = dishes;
+              this.restaurants = restaurants;
+              this.deliveryPrice = resDelPrice;
+            }
+          })
+          .catch(err => console.error(err));
       }
     },
     added(dish) {
@@ -71,7 +71,7 @@ export default {
           this.cartadd.restaurant_id = dish.restaurant_id;
           this.cart.push(this.cartadd);
           this.cartadd = {};
-          
+
           this.saveCats(); // this function most important to save all inform of products
         }
       }
@@ -79,49 +79,39 @@ export default {
         this.requestChangeCart = true;
       }
       this.getTotal();
-      console.log(this.cartTotal);
     },
     remove(id) {
-        const item = Object.values(this.cart).find(item => item.id === id);
-        if (item !== undefined) {
-          item.quantity -= 1;
-          if (item.quantity <= 0) {
-            const index = this.cart.indexOf(item);
-            this.cart.splice(index, 1);
-            /* if (this.cart.length == 0) { */
-            localStorage.removeItem('cart');
-            /* } */
-          }
-          if (this.cart.length !== 0) {
-            this.saveCats();
-          }
+      const item = Object.values(this.cart).find(item => item.id === id);
+      if (item !== undefined) {
+        item.quantity -= 1;
+        if (item.quantity <= 0) {
+          const index = this.cart.indexOf(item);
+          this.cart.splice(index, 1);
+          localStorage.removeItem('cart');
         }
-      this.getTotal();
-      /* console.log(this.cartTotal); */
-    },
-    /* getDeliveryPrice() {
-      if (this.$route.params.id) {
-        console.log(this.$route.params.id);
-        console.log(this.restaurants);
+        if (this.cart.length !== 0) {
+          this.saveCats();
+        }
       }
-    }, */
+      this.getTotal();
+    },
     getTotal() {
-        if (this.cart) {
-          let cart = this.cart;
-          let sum = 0;
-          let i = 0;
-          while (i < cart.length) {
-            let item = cart[i];
-            sum += item.quantity * parseFloat(item.price);
-            i++;
-          }
-          if (this.cart.length > 0) {
-            sum += parseFloat(this.deliveryPrice);
-          } 
-          this.cartTotal = sum;
+      if (this.cart) {
+        let cart = this.cart;
+        let sum = 0;
+        let i = 0;
+        while (i < cart.length) {
+          let item = cart[i];
+          sum += item.quantity * parseFloat(item.price);
+          i++;
         }
-        store.total = this.cartTotal;
-        localStorage.setItem('total', this.cartTotal);  
+        if (this.cart.length > 0) {
+          sum += parseFloat(this.deliveryPrice);
+        }
+        this.cartTotal = sum;
+      }
+      store.total = this.cartTotal;
+      localStorage.setItem('total', this.cartTotal);
     },
     saveCats() {
       // for save in local storage set the below code
@@ -139,78 +129,13 @@ export default {
           this.cartResId = cartRestaurantId;
         }
       }
-      /* if (localStorage.getItem("storedQuantity_0")) {
-        let storedQuantity = localStorage.getItem("storedQuantity_0");
-        let cartRestaurantId = JSON.parse(storedQuantity).restaurant_id;
-        this.cartResId = cartRestaurantId;
-      } */
       else {
         this.cartResId = this.selResId;
       }
     },
-    /* addDish(id) {
-      console.log(this.cartResId);
-      console.log(this.selResId);
-      if (store.length == 0) {
-        const key = 'storedQuantity_' + localStorage.length;
-        localStorage.setItem(key, JSON.stringify(this.dishes[id]));
-        store.length = localStorage.length;
-        console.log(this.selResId);
-        /* const value = localStorage.getItem(key);
-        store.items.push(JSON.parse(value)); */
-        /* console.log(store.items); */
-        /* this.restaurants.forEach(function(res) {
-          if (res.id == store.restaurantId) {
-            store.restaurantName = res.business_name;
-            console.log(store.restaurantName);
-          }
-        }); 
-      }
-      else {
-        if (this.selResId == this.cartResId) {
-          const key = 'storedQuantity_' + localStorage.length;
-          localStorage.setItem(key, JSON.stringify(this.dishes[id]));
-          store.length = localStorage.length;
-        }
-        else {
-          this.requestChangeCart = true;
-        }
-      }
-    }, */
-    /* addOneItem(id) {
-      let storageData = Object.values(localStorage);
-
-      // converte gli elementi in un array di oggetti JavaScript
-      let data = storageData.map(item => JSON.parse(item));
-
-      console.log(data);
-      console.log(localStorage);
-
-      store.length = localStorage.length;
-      let dish = this.dishes.find(dish => dish.id === id);
-      const key = 'storedQuantity_' + localStorage.length;
-      localStorage.setItem(key, JSON.stringify(dish));
-      console.log(store.length);
-      this.updateItems();
-    }, */
-    /* removeOneItem(id) {
-      store.length = localStorage.length;
-      console.log(store.length);
-      for (let i = 0; i < localStorage.length; i++) {
-        let oggettoLocalStorage = JSON.parse(localStorage.getItem(localStorage.key(i)));
-        if (oggettoLocalStorage.id === id) {
-          localStorage.removeItem(localStorage.key(i));
-          break;
-        }
-      }
-      this.updateItems();
-    }, */
     emptyCart() {
       this.cart = [];
       localStorage.clear();
-      /* localStorage.clear();
-      store.length = 0;
-      store.total = 0; */
       this.requestChangeCart = false;
       this.cartResId = this.selResId;
       this.getTotal();
@@ -278,9 +203,10 @@ export default {
           <li>
             <i class="fa-solid fa-motorcycle"></i><span class="delivery">Consegna al costo di: {{
               restaurant.delivery_price }}&euro;</span>
-
-
           </li>
+          <!-- <li>
+                <a href="#dishes">Vedi i nostri men&ugrave;</a>
+              </li> -->
         </ul>
       </div>
     </div>
@@ -345,11 +271,13 @@ export default {
             <div v-for="item in cart" :key="item.id">
               <div class="d-flex justify-content-between">
                 <div>
-                  {{item.name}}
+                  {{ item.name }}
                 </div>
                 <div>
-                  <button @click="remove(item.id)">-</button> {{item.quantity}} <button @click="added(item)">+</button> {{ parseFloat(item.price * item.quantity).toFixed(2) }} €
-                </div> 
+                  <button @click="remove(item.id)">-</button> {{ item.quantity }} <button @click="added(item)">+</button>
+                  {{
+                    parseFloat(item.price * item.quantity).toFixed(2) }} €
+                </div>
               </div>
             </div>
             <hr class="mt-3">
@@ -380,32 +308,32 @@ export default {
             <button class="keep-cart-btn" @click="this.requestChangeCart = false">Annulla</button>
           </div>
           <!-- <div v-if="store.length !== 0 && this.selResId == this.cartResId">
-            <h5 class="card-body px-0 py-2">
-              <strong>Carrello </strong>
-              <span v-if="this.selRes[0] && this.selRes[0].user_id">per {{ this.selRes[0].business_name }}</span>
-            </h5>
-            <button v-if="store.length !== 0" @click="emptyCart">Svuota carrello</button>
+                            <h5 class="card-body px-0 py-2">
+                              <strong>Carrello </strong>
+                              <span v-if="this.selRes[0] && this.selRes[0].user_id">per {{ this.selRes[0].business_name }}</span>
+                            </h5>
+                            <button v-if="store.length !== 0" @click="emptyCart">Svuota carrello</button>
 
-            <ul>
-              <li v-for="item in getItems" class="d-flex justify-content-between align-items-center mb-2">
-                <div>{{ item.name }}</div>
-                <div><button @click="removeOneItem(item.id)">-</button> {{ item.quantity }} <button @click="addOneItem(item.id)">+</button>{{ item.price.toFixed(2) }} €</div>
-              </li>
-            </ul>
-            <hr class="border-top border-dark mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <div><b>Totale</b></div>
-              <div><b>{{ store.total.toFixed(2) }} €</b></div>
-            </div>
-          </div>
-          <div v-else-if="this.requestChangeCart == false">
-            CARRELLO VUOTO
-          </div>
-          <div v-else class="cart-notification">
-            Hai già un carrello aperto, vuoi svuotarlo?
-            <button class="empty-cart-btn" @click="emptyCart()">Nuovo carrello</button>
-            <button class="keep-cart-btn" @click="this.requestChangeCart = false">Annulla</button>
-          </div> -->
+                            <ul>
+                              <li v-for="item in getItems" class="d-flex justify-content-between align-items-center mb-2">
+                                <div>{{ item.name }}</div>
+                                <div><button @click="removeOneItem(item.id)">-</button> {{ item.quantity }} <button @click="addOneItem(item.id)">+</button>{{ item.price.toFixed(2) }} €</div>
+                              </li>
+                            </ul>
+                            <hr class="border-top border-dark mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                              <div><b>Totale</b></div>
+                              <div><b>{{ store.total.toFixed(2) }} €</b></div>
+                            </div>
+                          </div>
+                          <div v-else-if="this.requestChangeCart == false">
+                            CARRELLO VUOTO
+                          </div>
+                          <div v-else class="cart-notification">
+                            Hai già un carrello aperto, vuoi svuotarlo?
+                            <button class="empty-cart-btn" @click="emptyCart()">Nuovo carrello</button>
+                            <button class="keep-cart-btn" @click="this.requestChangeCart = false">Annulla</button>
+                          </div> -->
         </div>
 
       </div>

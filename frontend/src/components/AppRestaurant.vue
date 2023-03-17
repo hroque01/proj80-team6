@@ -90,7 +90,7 @@ export default {
                 <!-- Navbar laterale a sinistra - elenco categorie -->
                 <nav>
                     <h4 class="mb-3">Categorie</h4>
-                    <ul>
+                    <ul class="typologies-list">
                         <!-- ciclo per stampare elenco categorie da dbs -->
                         <div v-for="typology in typologies" :key="typology.id">
                             <li>
@@ -113,12 +113,13 @@ export default {
                     <div class="restaurantsContainer">
 
                         <div class="no-restaurant" v-if="filteredRestaurants.length === 0">
-                            <i class="fa-regular fa-face-frown"></i> 
-                            Mi dispiace non c'&eacute; nessun ristorante che soddisfa le tue selezioni<p>Prova con un'altra categoria</p>
+                            <i class="fa-regular fa-face-frown"></i>
+                            Mi dispiace non c'&egrave; nessun ristorante che soddisfa le tue selezioni<p>Prova con un'altra
+                                categoria</p>
                         </div>
                         <div class="restaurantWrapper">
 
-                            
+
                             <div class="restaurant wrapperProperties" v-for="restaurant in filteredRestaurants"
                                 :key="restaurant.id">
 
@@ -170,13 +171,15 @@ export default {
 nav {
     height: 600px;
     width: 300px;
-    overflow: auto;
     padding: 20px;
     border: 1px solid #eaeaea;
     border-radius: 10px;
     box-shadow: 0px 20px 5px 0px #ececec;
 
     ul {
+        overflow-y: auto;
+        height: 520px;
+
         li {
             padding: 15px;
             line-height: 35px;
@@ -255,7 +258,7 @@ section {
             border-radius: 10px;
             box-shadow: 0px 5px 5px 0px #ececec;
 
-            &:hover{
+            &:hover {
                 border-bottom: 5px solid $btn_red;
             }
         }
@@ -267,14 +270,14 @@ section {
 .restaurantsContainer {
     flex-direction: row;
 
-    .no-restaurant{
+    .no-restaurant {
         display: block;
         font-size: 20px;
         padding: 25px;
         font-style: italic;
         color: rgb(101, 101, 101);
 
-        p{
+        p {
             font-size: 18px;
         }
     }
