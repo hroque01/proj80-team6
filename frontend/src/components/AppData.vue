@@ -2,12 +2,15 @@
 
 import axios from 'axios';
 
+import { store } from '../store';
+
 const API_URL = 'http://localhost:8000/api/v1/';
 
 export default {
     name: 'AppData',
     data() {
         return {
+            store,
             orders: [],
             newOrder: {
                 customer_name: '',
@@ -141,9 +144,9 @@ export default {
         </div>
 
         <!-- <div class="flex-form">
-                                                                        <label for="total">Totale<span>*</span></label>
-                                                                        <input type="number" step=".01" placeholder="totale" name="total" required v-model="newOrder.total">
-                                                                    </div> -->
+                                                                            <label for="total">Totale<span>*</span></label>
+                                                                            <input type="number" step=".01" placeholder="totale" name="total" required v-model="newOrder.total">
+                                                                        </div> -->
 
         <input @click="orderSubmit" type="submit" value="Invia">
 
