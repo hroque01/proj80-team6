@@ -6,6 +6,7 @@ export default {
     data() {
         return {
             store,
+            cartTotalValue: 0,
         };
     },
     methods: {
@@ -43,6 +44,13 @@ export default {
             });
             store.total = total;
             return items;
+        },
+        getCartTotal() {
+            if (store.total) {
+                const totalValue = localStorage.getItem('total');
+                this.cartTotalValue = totalValue;
+                store.total = this.cartTotalValue;
+            }
         }
     },
 
@@ -51,39 +59,7 @@ export default {
 </script>
 
 <template>
-    <!-- main section  -->
-    <main class="pt-5 pb-3">
-        <div class="container">
-            <div class="row">
-                <h3 class="col">
-                    <b>Controlla il tuo ordine da U Sushi 8</b>
-                </h3>
-            </div>
-            <h5 class="col mt-5 mb-2">
-                <b>Dettagli consegna</b>
-            </h5>
-        </div>
-        <div class="col-4">
-            <div class="card px-3 mb-4 py-2">
-                <h5 class="card-body px-0 py-2">
-                    <strong>Carrello</strong>
-                </h5>
-                <button v-if="store.length !== 0" @click="emptyCart">Svuota carrello</button>
-
-                <ul>
-                    <li v-for="item in getItems" class="d-flex justify-content-between align-items-center mb-2">
-                        <div>{{ item.quantity }}x {{ item.name }}</div>
-                        <div>{{ item.price.toFixed(2) }} €</div>
-                    </li>
-                </ul>
-                <hr class="border-top border-dark mb-3">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <div><b>Totale</b></div>
-                    <div><b>{{ store.total.toFixed(2) }} €</b></div>
-                </div>
-            </div>
-        </div>
-    </main>
+    Totale: {{ store.total }}
 </template>
 
 <style lang="scss" scoped>
