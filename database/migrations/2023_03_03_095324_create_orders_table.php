@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
 
+            $table->date('create_date');
             $table->time('create_time');
             $table->string('order_number');
             $table->decimal('total') -> unsigned();
