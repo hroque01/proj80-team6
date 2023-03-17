@@ -25,7 +25,11 @@
           <div class="card card_crud">
 
             {{-- img caricate--}}
-            <img class="img-res-hub" src="{{ Vite::asset('storage/app/public/' . $dish -> image) }}" alt="{{ $dish -> name }}">
+            <img class="img-res-hub" src="{{ Vite::asset('storage/app/public/' . $dish -> image) }}" alt="{{ $dish -> name }}" onerror="this.onerror=null; this.src='{{$dish->image}}';">
+         
+              
+            
+            
 
             {{-- show --}}
             <div class="card-body body-crud">
