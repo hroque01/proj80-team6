@@ -27,6 +27,7 @@ class OrderSeeder extends Seeder
             //      'address' => 'Via Mario Rossi, 69',
             //      'email' => 'mariorossi@gmail.com',
             //      'phone_number' => '3334445557',
+            //      'completed' => false,
             //      'restaurant_id'=> 2,
             //  ],
             
