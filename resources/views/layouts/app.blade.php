@@ -40,11 +40,11 @@
                                 <img src="{{Vite::asset('resources/img/logo-white.png')}}" alt="logo" class="logo-form">
                             </a>
                         </li>
-                        @auth
+                        {{-- @auth
                             <li class="nav-item">
                                 <a class="nav-link" href="{{url('/restaurant') }}">{{ __('Il tuo ristorante') }}</a>
                             </li>  
-                        @endauth
+                        @endauth --}}
                         
                     </ul>
 
@@ -61,11 +61,16 @@
                             </li>
                         @endif
                         @else
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url('/restaurant') }}">{{ __('Home') }}</a>
+                            </li>  
+                        @endauth
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Men&ugrave;
+                                {{Auth::user()-> restaurant->business_name}}
                             </a>
-
+                            
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profile')}}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

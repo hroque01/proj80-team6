@@ -14,40 +14,43 @@ use App\Http\Controllers\MainController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// DEBUG DA CANCELLARE
-Route::get('/order/create', [MainController::class, 'orderCreate'])->name('orderCreate');
-    Route :: post('/order/store', [MainController :: class, 'orderStore']) 
-    -> name('orderStore');
-
-    Route :: get('/order', [MainController :: class, 'getOrders']);
 
 // Route home
 Route::get('/', [MainController::class, 'home'])->name('home');
 
-// Route show
+// Route show dish
 Route :: get('/dish/show/{dish}', [MainController :: class, 'dishShow'])
     -> name('dish.show');
 
-// Route create (per form):
-Route :: get('/dish/create', [MainController :: class, 'dishCreate']) 
--> name('dishCreate');
+// Route home orders:
+Route :: get('/order', [MainController :: class, 'orderHome'])
+    -> name('order.home');
 
-// Route create (per ricevere dati da form):
+// Route show order:
+Route :: get('/order/show/{order}', [MainController :: class, 'orderShow'])
+    -> name('order.show');
+
+// Route create dish(per form):
+Route :: get('/dish/create', [MainController :: class, 'dishCreate']) 
+    -> name('dishCreate');
+
+// Route create dish(per ricevere dati da form):
 Route :: post('/dish/store', [MainController :: class, 'dishStore']) 
 -> name('dishStore');
 
-// Route delete:
+// Route delete dish:
 Route :: get('/dish/delete/{dish}', [MainController :: class, 'dishDelete'])
     -> name('dish.delete');
 
-// Route edit (per form):
+// Route edit dish(per form):
 Route :: get('/dish/edit/{dish}', [MainController :: class, 'dishEdit']) 
     -> name('dishEdit');
 
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->middleware(['auth', 'verified'])->name('dashboard');
-    
+
+
 
 //Route private    
 Route::middleware('auth')->group(function () {
