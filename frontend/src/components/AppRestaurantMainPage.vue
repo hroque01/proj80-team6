@@ -336,6 +336,7 @@ export default {
 
         <!-- cart right side-->
         <div class="cart">
+          ciao
           <div v-if="this.cart.length !== 0 && this.selResId == this.cartResId">
             <strong>Carrello:</strong>
             <div>
@@ -371,7 +372,7 @@ export default {
             </div>
           </div>
           <div v-else-if="this.requestChangeCart == false">
-            CARRELLO VUOTO
+            CARRELLO VUOTO 
           </div>
           <div v-else class="cart-notification">
             Hai già un carrello aperto, vuoi svuotarlo?
