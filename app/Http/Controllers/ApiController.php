@@ -92,6 +92,7 @@ class ApiController extends Controller
     public function orderStore(Request $request) {
         
         $data = $request->validate([
+            'create_date' => 'required|date',
             'create_time' => 'required|date_format:H:i',
             'order_number' => 'required|string',
             'total' => 'required|decimal:1,2',
@@ -99,15 +100,31 @@ class ApiController extends Controller
             'address' => 'required|string',
             'email' => 'required|string|email',
             'phone_number' => 'required|string',
-            'restaurant_id' => 'required|integer'
+            'restaurant_id' => 'required|integer',
+            'completed' => 'filled|boolean',
+
+            // Info carta pagamento
+            'card_number' => 'required|string',
+            'expiration_date' => 'required|string'
         ]);
 
         $order_number = rand(1, 1000);
         $data['order_number'] = $order_number;
 
         $create_time = Carbon::now('Europe/Rome')->format('H:i');
-
         $data['create_time'] = $create_time;
+
+        $create_date = Carbon::now();
+        $data['create_date'] = $create_date;
+
+        $completed = (bool) rand(0, 1);
+        $data['completed'] = $completed;
+
+        $card_number = rand(100000, 999999);
+        $data['card_number'] = $card_number;
+
+        $expiration_date = rand(1000, 9999);
+        $data['expiration_date'] = $expiration_date;
 
         $order = Order::make($data);
 
