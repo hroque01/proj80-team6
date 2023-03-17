@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <div class="container res-hub-txt pt-5">
+  <div class="my_container res-hub-txt pt-5">
 
     <h1>
       Ciao, <span class="res-hub-welcome">{{$restaurant->business_name }}</span>! Benvenuto nel Restaurant Hub.
@@ -27,10 +27,6 @@
             {{-- img caricate--}}
             <img class="img-res-hub" src="{{ Vite::asset('storage/app/public/' . $dish -> image) }}" alt="{{ $dish -> name }}" onerror="this.onerror=null; this.src='{{$dish->image}}';">
          
-              
-            
-            
-
             {{-- show --}}
             <div class="card-body body-crud">
               <h5 class="card-title">{{ $dish->name }}</h5>
