@@ -18,54 +18,6 @@ use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
-
-    public function getOrders(Order $order) {
-
-        $orders = Order::all();
-    
-        return view('pages.order', compact('orders'));
-    }
-
-    public function orderStore(Request $request, Restaurant $restaurant) {
-        
-        $data = $request->validate([
-            'create_time' => 'date_format:H:i',
-            //'order_number' => 'string|unique:orders,order_number',
-            'total' => 'required|decimal:1,2',
-            'customer_name' => 'required|string|max:64',
-            'address' => 'required|string|max:64',
-            'email' => 'required|string|email|max:64',
-            'phone_number' => 'required|string|max:32'
-        ]);
-
-        // $order_number = rand(1, 1000);
-        // $data['order_number'] = $order_number;
-
-        $create_time = Carbon::now('Europe/Rome')->format('H:i:s');
-
-        $data['create_time'] = $create_time;
-
-        $order = Order::make($data);
-
-        $user = Auth::user();
-
-        $restaurant = Restaurant::find($user->id); 
-
-        $order -> restaurant() -> associate($restaurant);
-        $order -> save();
-
-        dd($data);
-
-        return redirect() -> route('restaurant', compact('restaurant'));
-    }
-
-    // DEBUG DA CANCELLARE!
-    public function orderCreate() {
-
-        $orders = Order::all();
-
-        return view('pages.orderCreate', compact('orders'));
-    }
     
     public function home(Typology $typology) {
 
@@ -77,10 +29,11 @@ class MainController extends Controller
 
     }
 
+    // Metodo per stampare in home lista restaurants, dishes:
     public function restaurant(Restaurant $restaurant) {
         $restaurants = Restaurant::all();
 
-        $dishes = Dish::all();
+        $dishes = Dish::orderBy('name')->get();
 
         $user = Auth::user();
 
@@ -89,13 +42,13 @@ class MainController extends Controller
         return view('pages.restaurant', compact('restaurants', 'dishes', 'restaurant'));
     }
 
-    // Metodo Show
+    // Metodo Show dish
     public function dishShow(Dish $dish) {
         
         return view('pages.dishShow', compact('dish'));
     }
 
-    // Metodo create (per form):
+    // Metodo create dish (per form):
     public function dishCreate() {
 
         $restaurants = Restaurant::all();
@@ -103,7 +56,7 @@ class MainController extends Controller
         return view('pages.dishCreate', compact('restaurants'));
     }
 
-    // Metodo create (per ricevere dati da form):
+    // Metodo create dish (per ricevere dati da form):
     public function dishStore(Request $request, Restaurant $restaurant) {
 
         $data = $request -> validate([
@@ -138,7 +91,7 @@ class MainController extends Controller
         return redirect()-> route('restaurant');
     }
 
-    // Metodo edit (per form):
+    // Metodo edit dish(per form):
     public function dishEdit(Dish $dish) {
         
         $this->authorize('update-dish', $dish);
@@ -147,11 +100,8 @@ class MainController extends Controller
     
         return view('pages.dishEdit', compact('dish', 'restaurants'));
     }
-        
-        
-        
-
-    // Metodo update (per ricevere dati modificati da form):
+    
+    // Metodo update dish (per ricevere dati modificati da form):
     public function dishUpdate(Request $request, Dish $dish) {
 
         $this->authorize('update', $dish);
@@ -181,7 +131,26 @@ class MainController extends Controller
         return redirect() -> route('restaurant');
     }
 
-    
+    // Metodo home orders:
+    public function orderHome(Restaurant $restaurant) {
+
+        $restaurants = Restaurant::all();
+
+        $orders = Order::orderBy('create_date')->get();
+
+        $user = Auth::user();
+
+        $restaurant = Restaurant::find($user->id); 
+
+        return view('pages.orderHome', compact('restaurants', 'orders', 'restaurant'));
+    }
+
+    // Metodo Show order
+    public function orderShow(Order $order) {
+        
+        return view('pages.orderShow', compact('order'));
+    }
+
 }
 
 
