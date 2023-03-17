@@ -7,6 +7,7 @@ export default {
   data() {
     return {
       store,
+      cartTotalValue: 0,
       links: [
         {
           icon: "fa-solid fa-utensils",
@@ -21,7 +22,18 @@ export default {
         },
       ]
     }
-  }
+  },
+  created() {
+    this.getCartTotal();
+  },
+  methods: {
+    getCartTotal() {
+      const totalValue = localStorage.getItem('total');
+      this.cartTotalValue = totalValue;
+      store.total = this.cartTotalValue;
+      console.log(totalValue);
+    }
+  },
 }
 
 </script>

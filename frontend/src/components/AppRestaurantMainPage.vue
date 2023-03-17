@@ -102,6 +102,8 @@ export default {
     }, */
     getTotal() {
       if (this.selResId == this.cartResId) {
+        console.log(this.selResId);
+        console.log(this.cartResId);
         if (this.cart) {
           let cart = this.cart;
           let sum = 0;
@@ -119,6 +121,7 @@ export default {
         if (this.cartTotal) {
           store.total = this.cartTotal;
         }
+        localStorage.setItem('total', this.cartTotal);
       }      
     },
     saveCats() {
@@ -230,6 +233,7 @@ export default {
     this.getDishes();
   },
   updated() {
+    this.filterRestaurants();
     this.getTotal();
   },
   watch: {
