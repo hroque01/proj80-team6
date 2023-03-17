@@ -106,8 +106,6 @@ export default {
       }
     }, */
     getTotal() {
-        console.log(this.selResId);
-        console.log(this.cartResId);
         if (this.cart) {
           let cart = this.cart;
           let sum = 0;
