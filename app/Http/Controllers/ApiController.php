@@ -93,12 +93,13 @@ class ApiController extends Controller
         
         $data = $request->validate([
             'create_time' => 'required|date_format:H:i',
-            'order_number' => 'required|string|unique:orders,order_number',
+            'order_number' => 'required|string',
             'total' => 'required|decimal:1,2',
-            'customer_name' => 'required|string|max:64',
-            'address' => 'required|string|max:64',
-            'email' => 'required|string|email|max:64',
-            'phone_number' => 'required|string|max:32'
+            'customer_name' => 'required|string',
+            'address' => 'required|string',
+            'email' => 'required|string|email',
+            'phone_number' => 'required|string',
+            'restaurant_id' => 'required|integer'
         ]);
 
         $order_number = rand(1, 1000);

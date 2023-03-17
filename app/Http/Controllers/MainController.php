@@ -30,7 +30,7 @@ class MainController extends Controller
         
         $data = $request->validate([
             'create_time' => 'date_format:H:i',
-            'order_number' => 'string|unique:orders,order_number',
+            //'order_number' => 'string|unique:orders,order_number',
             'total' => 'required|decimal:1,2',
             'customer_name' => 'required|string|max:64',
             'address' => 'required|string|max:64',
@@ -38,10 +38,10 @@ class MainController extends Controller
             'phone_number' => 'required|string|max:32'
         ]);
 
-        $order_number = rand(1, 1000);
-        $data['order_number'] = $order_number;
+        // $order_number = rand(1, 1000);
+        // $data['order_number'] = $order_number;
 
-        $create_time = Carbon::now('Europe/Rome')->format('H:i');
+        $create_time = Carbon::now('Europe/Rome')->format('H:i:s');
 
         $data['create_time'] = $create_time;
 
@@ -53,6 +53,8 @@ class MainController extends Controller
 
         $order -> restaurant() -> associate($restaurant);
         $order -> save();
+
+        dd($data);
 
         return redirect() -> route('restaurant', compact('restaurant'));
     }
