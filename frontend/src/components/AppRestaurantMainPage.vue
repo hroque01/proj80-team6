@@ -88,8 +88,13 @@ export default {
           if (item.quantity <= 0) {
             const index = this.cart.indexOf(item);
             this.cart.splice(index, 1);
+            /* if (this.cart.length == 0) { */
+            localStorage.removeItem('cart');
+            /* } */
           }
-          this.saveCats();
+          if (this.cart.length !== 0) {
+            this.saveCats();
+          }
         }
       this.getTotal();
       /* console.log(this.cartTotal); */
@@ -101,7 +106,6 @@ export default {
       }
     }, */
     getTotal() {
-      if (this.selResId == this.cartResId) {
         console.log(this.selResId);
         console.log(this.cartResId);
         if (this.cart) {
@@ -121,8 +125,7 @@ export default {
         if (this.cartTotal) {
           store.total = this.cartTotal;
         }
-        localStorage.setItem('total', this.cartTotal);
-      }      
+        localStorage.setItem('total', this.cartTotal);   
     },
     saveCats() {
       // for save in local storage set the below code
