@@ -338,8 +338,7 @@ export default {
 
         <!-- cart right side-->
         <div class="cart">
-          ciao
-          <div v-if="this.cart.length !== 0 && this.selResId == this.cartResId">
+          <div v-if="this.cart.length !== 0 && this.requestChangeCart == false && this.cart.length !== 0">
             <strong>Carrello:</strong>
             <div>
               <button @click="emptyCart">SVUOTA CARRELLO</button>
@@ -373,8 +372,8 @@ export default {
               </div>
             </div>
           </div>
-          <div v-else-if="this.requestChangeCart == false">
-            CARRELLO VUOTO 
+          <div v-else-if="this.cart.length === 0">
+            CARRELLO VUOTO
           </div>
           <div v-else class="cart-notification">
             Hai già un carrello aperto, vuoi svuotarlo?
