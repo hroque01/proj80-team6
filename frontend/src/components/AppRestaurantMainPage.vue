@@ -102,22 +102,25 @@ export default {
       }
     }, */
     getTotal() {
-      if (this.cart) {
-        let cart = this.cart;
-        let sum = 0;
-        let i = 0;
-        while (i < cart.length) {
-          let item = cart[i];
-          sum += item.quantity * parseFloat(item.price);
-          i++;
+      if (this.selResId == this.cartResId) {
+        if (this.cart) {
+          let cart = this.cart;
+          let sum = 0;
+          let i = 0;
+          while (i < cart.length) {
+            let item = cart[i];
+            sum += item.quantity * parseFloat(item.price);
+            i++;
+          }
+          if (this.cart.length > 0) {
+            sum += parseFloat(this.deliveryPrice);
+          } 
+          this.cartTotal = sum;
         }
-        sum += parseFloat(this.deliveryPrice);
-        this.cartTotal = sum;
-      }
-      if (this.cartTotal) {
-        store.total = this.cartTotal;
-      }
-      
+        if (this.cartTotal) {
+          store.total = this.cartTotal;
+        }
+      }      
     },
     saveCats() {
       // for save in local storage set the below code
