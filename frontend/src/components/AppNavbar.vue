@@ -28,10 +28,11 @@ export default {
   },
   methods: {
     getCartTotal() {
-      const totalValue = localStorage.getItem('total');
-      this.cartTotalValue = totalValue;
-      store.total = this.cartTotalValue;
-      console.log(totalValue);
+      if (store.total) {
+        const totalValue = localStorage.getItem('total');
+        this.cartTotalValue = totalValue;
+        store.total = this.cartTotalValue;
+      }
     }
   },
 }
@@ -60,7 +61,7 @@ export default {
             <router-link :to="{ name: 'cart' }">
               <i v-if="link.icon === 'fa-solid fa-cart-shopping'" :class="link.icon" class="icon-nav"></i>
               {{ link.text }}
-              <span v-if="index === 1">{{ parseFloat(store.total).toFixed(2) }} €</span>
+              <span v-if="index === 1 && store.total !== 0">{{ parseFloat(store.total).toFixed(2) }} €</span>
             </router-link>
           </span>
         </li>
