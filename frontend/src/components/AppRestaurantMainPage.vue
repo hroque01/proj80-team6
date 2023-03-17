@@ -120,10 +120,8 @@ export default {
           } 
           this.cartTotal = sum;
         }
-        if (this.cartTotal) {
-          store.total = this.cartTotal;
-        }
-        localStorage.setItem('total', this.cartTotal);   
+        store.total = this.cartTotal;
+        localStorage.setItem('total', this.cartTotal);  
     },
     saveCats() {
       // for save in local storage set the below code
