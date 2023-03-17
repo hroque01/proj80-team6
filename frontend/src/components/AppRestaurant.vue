@@ -254,6 +254,10 @@ section {
             border: 1px solid #eaeaea;
             border-radius: 10px;
             box-shadow: 0px 5px 5px 0px #ececec;
+
+            &:hover{
+                border-bottom: 5px solid $btn_red;
+            }
         }
     }
 }
