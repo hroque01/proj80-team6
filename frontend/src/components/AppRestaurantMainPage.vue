@@ -44,12 +44,11 @@ export default {
           const response = data.response;
           const dishes = response.dishes;
           const restaurants = response.restaurants;
-          const resDelPrice = response.restaurants[this.$route.params.id].delivery_price;
+          const resDelPrice = response.restaurants[this.$route.params.id - 1].delivery_price;
           if (success) {
             this.dishes = dishes;
             this.restaurants = restaurants;
             this.deliveryPrice = resDelPrice;
-            console.log(this.deliveryPrice);
           }
         })
         .catch(err => console.error(err));
