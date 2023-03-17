@@ -23,18 +23,22 @@ export default {
       ]
     }
   },
-  created() {
-    this.getCartTotal();
-  },
   methods: {
     getCartTotal() {
-      if (store.total) {
-        const totalValue = localStorage.getItem('total');
-        this.cartTotalValue = totalValue;
+      if (localStorage.total) {
+        this.cartTotalValue = localStorage.total;
+        store.total = this.cartTotalValue;
+      } else {
+        this.cartTotalValue = 0;
         store.total = this.cartTotalValue;
       }
+      localStorage.total = this.cartTotalValue;
     }
   },
+  mounted() {
+    this.getCartTotal();
+  },
+
 }
 
 </script>
@@ -61,7 +65,7 @@ export default {
             <router-link :to="{ name: 'cart' }">
               <i v-if="link.icon === 'fa-solid fa-cart-shopping'" :class="link.icon" class="icon-nav"></i>
               {{ link.text }}
-              <span v-if="index === 1 && store.total !== 0">{{ parseFloat(store.total).toFixed(2) }} €</span>
+              <span v-if="index === 1 && store.total > 0">{{ parseFloat(store.total).toFixed(2) }} &euro;</span>
             </router-link>
           </span>
         </li>
