@@ -13,8 +13,10 @@ export default {
       selRes: null,
       selResId: null,
       cartResId: null,
+      deliveryPrice: null,
       requestChangeCart: false,
       cart: [],
+      cartTotal: 0,
       cartadd: {
         id: "",
         name: "",
@@ -42,9 +44,12 @@ export default {
           const response = data.response;
           const dishes = response.dishes;
           const restaurants = response.restaurants;
+          const resDelPrice = response.restaurants[this.$route.params.id].delivery_price;
           if (success) {
             this.dishes = dishes;
             this.restaurants = restaurants;
+            this.deliveryPrice = resDelPrice;
+            console.log(this.deliveryPrice);
           }
         })
         .catch(err => console.error(err));
@@ -74,18 +79,45 @@ export default {
       else {
         this.requestChangeCart = true;
       }
+      this.getTotal();
+      console.log(this.cartTotal);
     },
     remove(id) {
-      // this function remove buy, one by one according id in cart & main page
-      const item = Object.values(this.cart).find(item => item.id === id);
-      if (item !== undefined) {
-        item.quantity -= 1;
-        if (item.quantity <= 0) {
-          const index = this.cart.indexOf(item);
-          this.cart.splice(index, 1);
+        const item = Object.values(this.cart).find(item => item.id === id);
+        if (item !== undefined) {
+          item.quantity -= 1;
+          if (item.quantity <= 0) {
+            const index = this.cart.indexOf(item);
+            this.cart.splice(index, 1);
+          }
+          this.saveCats();
         }
-        this.saveCats();
+      this.getTotal();
+      /* console.log(this.cartTotal); */
+    },
+    /* getDeliveryPrice() {
+      if (this.$route.params.id) {
+        console.log(this.$route.params.id);
+        console.log(this.restaurants);
       }
+    }, */
+    getTotal() {
+      if (this.cart) {
+        let cart = this.cart;
+        let sum = 0;
+        let i = 0;
+        while (i < cart.length) {
+          let item = cart[i];
+          sum += item.quantity * parseFloat(item.price);
+          i++;
+        }
+        sum += parseFloat(this.deliveryPrice);
+        this.cartTotal = sum;
+      }
+      if (this.cartTotal) {
+        store.total = this.cartTotal;
+      }
+      
     },
     saveCats() {
       // for save in local storage set the below code
@@ -105,12 +137,12 @@ export default {
         let storedQuantity = localStorage.getItem("storedQuantity_0");
         let cartRestaurantId = JSON.parse(storedQuantity).restaurant_id;
         this.cartResId = cartRestaurantId;
-      }
+      } */
       else {
         this.cartResId = this.selResId;
-      } */
+      }
     },
-    addDish(id) {
+    /* addDish(id) {
       console.log(this.cartResId);
       console.log(this.selResId);
       if (store.length == 0) {
@@ -126,7 +158,7 @@ export default {
             store.restaurantName = res.business_name;
             console.log(store.restaurantName);
           }
-        }); */
+        }); 
       }
       else {
         if (this.selResId == this.cartResId) {
@@ -138,8 +170,8 @@ export default {
           this.requestChangeCart = true;
         }
       }
-    },
-    addOneItem(id) {
+    }, */
+    /* addOneItem(id) {
       let storageData = Object.values(localStorage);
 
       // converte gli elementi in un array di oggetti JavaScript
@@ -154,7 +186,7 @@ export default {
       localStorage.setItem(key, JSON.stringify(dish));
       console.log(store.length);
       this.updateItems();
-    },
+    }, */
     /* removeOneItem(id) {
       store.length = localStorage.length;
       console.log(store.length);
@@ -169,12 +201,14 @@ export default {
     }, */
     emptyCart() {
       this.cart = [];
-      this.saveCats();
+      localStorage.clear();
       /* localStorage.clear();
       store.length = 0;
       store.total = 0; */
       this.requestChangeCart = false;
       this.cartResId = this.selResId;
+      this.getTotal();
+      store.total = this.cartTotal;
     },
     scrollToTop() {
       window.history.back();
@@ -192,6 +226,9 @@ export default {
   mounted() {
     this.filterRestaurants();
     this.getDishes();
+  },
+  updated() {
+    this.getTotal();
   },
   watch: {
     '$route.params.id': 'getDishes'
@@ -295,9 +332,35 @@ export default {
         <div class="cart">
           <div v-if="this.cart.length !== 0 && this.selResId == this.cartResId">
             <strong>Carrello:</strong>
+            <div>
+              <button @click="emptyCart">SVUOTA CARRELLO</button>
+            </div>
             <div v-for="item in cart" :key="item.id">
+              <div class="d-flex justify-content-between">
+                <div>
+                  {{item.name}}
+                </div>
+                <div>
+                  <button @click="remove(item.id)">-</button> {{item.quantity}} <button @click="added(item)">+</button> {{ parseFloat(item.price * item.quantity).toFixed(2) }} €
+                </div> 
+              </div>
+            </div>
+            <hr class="mt-3">
+            <div class="d-flex justify-content-between">
               <div>
-                {{item.name}} <button @click="remove(item.id)">-</button> {{item.quantity}} <button @click="added(item)">+</button> {{item.price}}
+                <b>Consegna</b>
+              </div>
+              <div>
+                {{ this.deliveryPrice }} €
+              </div>
+            </div>
+            <hr class="mt-4">
+            <div class="d-flex justify-content-between">
+              <div>
+                <b>Totale</b>
+              </div>
+              <div>
+                <b v-if="this.cartTotal">{{ parseFloat(this.cartTotal).toFixed(2) }} €</b>
               </div>
             </div>
           </div>

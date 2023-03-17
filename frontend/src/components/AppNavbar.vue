@@ -48,7 +48,7 @@ export default {
             <router-link :to="{ name: 'cart' }">
               <i v-if="link.icon === 'fa-solid fa-cart-shopping'" :class="link.icon" class="icon-nav"></i>
               {{ link.text }}
-              <span v-if="index === 1 && store.length > 0">{{ store.length }}</span>
+              <span v-if="index === 1">{{ parseFloat(store.total).toFixed(2) }} €</span>
             </router-link>
           </span>
         </li>
