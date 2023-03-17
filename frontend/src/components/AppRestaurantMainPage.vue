@@ -134,9 +134,11 @@ export default {
       this.selResId = parseInt(this.$route.params.id);
       if (localStorage.getItem("cart")) {
         const cart = JSON.parse(localStorage.getItem('cart'));
-        const firstItem = cart[0];
-        const cartRestaurantId = firstItem.restaurant_id;
-        this.cartResId = cartRestaurantId;
+        if (cart[0]) {
+          const firstItem = cart[0];
+          const cartRestaurantId = firstItem.restaurant_id;
+          this.cartResId = cartRestaurantId;
+        }
       }
       /* if (localStorage.getItem("storedQuantity_0")) {
         let storedQuantity = localStorage.getItem("storedQuantity_0");
