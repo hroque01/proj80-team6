@@ -45,7 +45,6 @@ export default {
             
             <!-- logo -->
             <div class="logo-footer">
-                <span>WORK IN PROGRESS! KEEP CALM! </span>
                 <img src="/public/img/logo-footer-dark.png" alt="logo deliveboo" class="logo">
 
                 <span>Deliveboo - Team 6</span>
@@ -88,7 +87,7 @@ footer {
 
             span{
                 display: block;
-                color: $btn_red;
+                color: #d0d0d0;
                 font-size: 20px;
                 margin: 30px 0;
                 font-weight: bold;
@@ -115,7 +114,7 @@ footer {
     margin: 10px;
     height: 200px;
     border-radius: 10px;
-    border: 1px solid #2E3333;
+    
 
     .card_Rag{
         transition: all .2s ease-in-out;
@@ -126,14 +125,14 @@ footer {
     }
     
     a{
-        color: #fff;
+        color: #d0d0d0;
         font-weight: bold;
     }
     img{
         width: 100%;
         height: 200px;
         object-fit: cover;
-        border-radius: 10px;
+        border-radius: 8px;
     }
 
     .romina{
