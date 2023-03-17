@@ -35,6 +35,11 @@ export default {
         this.cart = JSON.parse(localStorage.getItem("cart"));
       }
     },
+    setTotal() {
+      if (!localStorage.getItem("cart")) {
+        localStorage.setItem('total', 0); 
+      }
+    },
     getDishes() {
       if (this.$route.params.id && this.$route.name === 'restaurant-detail') {
         axios.get(API_URL + 'restaurant/' + this.$route.params.id)
@@ -80,7 +85,6 @@ export default {
         this.requestChangeCart = true;
       }
       this.getTotal();
-      console.log(this.cartTotal);
     },
     remove(id) {
         const item = Object.values(this.cart).find(item => item.id === id);
@@ -102,7 +106,8 @@ export default {
       }
     }, */
     getTotal() {
-      if (this.selResId == this.cartResId) {
+        console.log(this.selResId);
+        console.log(this.cartResId);
         if (this.cart) {
           let cart = this.cart;
           let sum = 0;
@@ -117,10 +122,11 @@ export default {
           } 
           this.cartTotal = sum;
         }
-        if (this.cartTotal) {
-          store.total = this.cartTotal;
-        }
-      }      
+        store.total = this.cartTotal;
+        localStorage.setItem('total', this.cartTotal); 
+        if (localStorage.length ==0) {
+          localStorage.setItem('total', 0);
+        }   
     },
     saveCats() {
       // for save in local storage set the below code
@@ -132,9 +138,11 @@ export default {
       this.selResId = parseInt(this.$route.params.id);
       if (localStorage.getItem("cart")) {
         const cart = JSON.parse(localStorage.getItem('cart'));
-        const firstItem = cart[0];
-        const cartRestaurantId = firstItem.restaurant_id;
-        this.cartResId = cartRestaurantId;
+        if (cart[0]) {
+          const firstItem = cart[0];
+          const cartRestaurantId = firstItem.restaurant_id;
+          this.cartResId = cartRestaurantId;
+        }
       }
       /* if (localStorage.getItem("storedQuantity_0")) {
         let storedQuantity = localStorage.getItem("storedQuantity_0");
@@ -142,8 +150,12 @@ export default {
         this.cartResId = cartRestaurantId;
       } */
       else {
+        console.log(this.cartResId);
+        console.log(this.selResId);
         this.cartResId = this.selResId;
       }
+      console.log(this.cartResId);
+      console.log(this.selResId);
     },
     /* addDish(id) {
       console.log(this.cartResId);
@@ -229,6 +241,7 @@ export default {
   mounted() {
     this.filterRestaurants();
     this.getDishes();
+    this.setTotal();
   },
   updated() {
     this.getTotal();
@@ -333,7 +346,7 @@ export default {
 
         <!-- cart right side-->
         <div class="cart">
-          <div v-if="this.cart.length !== 0 && this.selResId == this.cartResId">
+          <div v-if="this.cart.length !== 0 && this.requestChangeCart == false && this.cart.length !== 0">
             <strong>Carrello:</strong>
             <div>
               <button @click="emptyCart">SVUOTA CARRELLO</button>
@@ -367,7 +380,7 @@ export default {
               </div>
             </div>
           </div>
-          <div v-else-if="this.requestChangeCart == false">
+          <div v-else-if="this.cart.length === 0">
             CARRELLO VUOTO
           </div>
           <div v-else class="cart-notification">
