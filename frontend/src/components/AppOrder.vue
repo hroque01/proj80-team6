@@ -1,12 +1,18 @@
 <script>
 
 export default {
-    name: 'AppPayment',
+    name: 'AppOrder',
+    data() {
+        return {
+        }
+    }
 }
 </script>
 
 <template>
-    Info Pagamento
+    <h1>
+        Info ordine
+    </h1>
 </template>
 
 <style lang="scss" scoped>
