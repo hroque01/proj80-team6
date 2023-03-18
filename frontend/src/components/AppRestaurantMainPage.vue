@@ -264,23 +264,6 @@ export default {
 
         <!-- cart right side-->
         <div class="cart">
-<<<<<<< HEAD
-
-          <!-- carrello con items -->
-          <div class="modify-cart" v-if="this.cart.length !== 0 && this.requestChangeCart == false && this.cart.length !== 0">
-            <h3>Il tuo ordine</h3>
-
-            <!-- ciclo per stampare items con bottoni per modifica quantità -->
-            <div class="row-order" v-for="item in cart" :key="item.id">
-
-              <!-- items -->
-              <div class="d-flex justify-content-between align-items-center">
-
-                <div>{{item.name}}</div>
-
-                <!-- totale -->
-                <div >{{ parseFloat(item.price * item.quantity).toFixed(2) }}€</div>
-=======
           <div v-if="this.cart.length !== 0 && this.requestChangeCart == false && this.cart.length !== 0">
             <strong>Carrello:</strong>
             <div>
@@ -289,28 +272,12 @@ export default {
             <div v-for="item in cart" :key="item.id">
               <div class="d-flex justify-content-between">
                 <div>
-                  {{ item.name }}
+                  {{item.name}}
                 </div>
                 <div>
-                  <button @click="remove(item.id)">-</button> {{ item.quantity }} <button @click="added(item)">+</button>
-                  {{
-                    parseFloat(item.price * item.quantity).toFixed(2) }} €
-                </div>
->>>>>>> 56558fb946450a3704ebb4e3418743dc3bf70c41
+                  <button @click="remove(item.id)">-</button> {{item.quantity}} <button @click="added(item)">+</button> {{ parseFloat(item.price * item.quantity).toFixed(2) }} €
+                </div> 
               </div>
-
-              <!-- bottoni per modifica -->
-              <div class="modify-order">
-                <div class="btn-order" >
-                  <div @click="remove(item.id)">
-                    <i class="sign-order fa-solid fa-circle-minus"></i>
-                  </div> 
-                    {{item.quantity}} 
-                  <div @click="added(item)">
-                    <i class="sign-order fa-solid fa-circle-plus"></i>
-                  </div>
-                </div>
-              </div> 
             </div>
 
             <!-- consegna -->
