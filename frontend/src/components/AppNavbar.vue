@@ -44,7 +44,7 @@ export default {
 </script>
 
 <template>
-  <nav :class="{ 'navbar-black': $route.name !== 'home' }">
+  <nav :class="{ 'navbar-black': $route.name !== 'home', 'fixed': $route.name === 'restaurant-detail' }">
     <div class="my_container">
       <router-link to="/" class="navbar-brand">
         <img src="/public/img/logo.png" alt="logo deliveboo">
@@ -106,6 +106,13 @@ nav {
 
 .navbar-black {
   background-color: #000;
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 20;
 }
 
 .navbar-brand {
