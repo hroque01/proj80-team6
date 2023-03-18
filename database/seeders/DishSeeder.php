@@ -62,7 +62,7 @@ class DishSeeder extends Seeder
                 'ingredients'=> 'Panino, patatine',
                 'price'=> 8.50,
                 'image'=> 'https://inconsegna.com/wp-content/uploads/2020/10/menu-piadina.jpg',
-                'visible'=> true,
+                'visible'=> false,
                 'restaurant_id'=> 1,
             ],
             //PIZZA PALACE
@@ -218,7 +218,7 @@ class DishSeeder extends Seeder
                 'ingredients'=> 'manzo, pomodoro, lattuga, cheddar, cetriolo, bacon, uovo, salsa burger',
                 'price'=> 12.50,
                 'image'=> 'https://www.lifeasastrawberry.com/wp-content/uploads/2017/06/loaded-bacon-cheeseburger-9s.jpg',
-                'visible'=> true,
+                'visible'=> false,
                 'restaurant_id'=> 4,
             ],
             [
@@ -547,7 +547,7 @@ class DishSeeder extends Seeder
                 'ingredients'=> 'farina. latte, uova, burro, cioccolato fondente',
                 'price'=> 7.50,
                 'image'=> 'https://www.naturalebio.com/wp-content/uploads/2021-05-2021-01-torta-al-cioccolato-fondente-con-olio-di-cocco.jpg',
-                'visible'=> true,
+                'visible'=> false,
                 'restaurant_id'=> 9,
             ],
             // PIZZERIA GIGI:
@@ -712,7 +712,7 @@ class DishSeeder extends Seeder
                 'ingredients'=> 'Birra della sicilia con cristalli di sale da mezzo litro',
                 'price'=> 5.00,
                 'image'=> 'https://buonitaly.it/2719825-thickbox_default/1000069482-birra-messina-cristalli-di-sale-ricetta-speciale-15-bottiglie-da-50-cl.jpg',
-                'visible'=> true,
+                'visible'=> false,
                 'restaurant_id'=> 12,
             ],
             [
@@ -1227,7 +1227,7 @@ class DishSeeder extends Seeder
                 'ingredients'=> 'Americani, kebab, cipola',
                 'price'=> 4.20,
                 'image'=> 'https://static.cookist.it/wp-content/uploads/sites/21/2018/11/istock-912629972.jpg',
-                'visible'=> true,
+                'visible'=> false,
                 'restaurant_id'=> 23,
             ],
             [
