@@ -29,7 +29,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended('restaurant');
+        return redirect()->intended('dashboard');
     }
 
     /**
