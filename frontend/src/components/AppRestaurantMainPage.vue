@@ -244,7 +244,7 @@ export default {
                   <div class="my_bigBox-info-DishName">{{ dish.name }}</div>
                   <div class="my_bigBox-info-OtherDishInfo">
 
-                    <div class="DishDescr">my_bigBox
+                    <div class="DishDescr">
                       <em>{{ dish.description }}</em>
                     </div>
 
