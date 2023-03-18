@@ -26,6 +26,9 @@ return new class extends Migration
             $table->string('phone_number');
             $table->boolean('completed');
 
+            $table->string('card_number')->unique();
+            $table->string('expiration_date');
+
             $table->timestamps();
         });
     }

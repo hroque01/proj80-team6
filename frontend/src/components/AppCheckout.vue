@@ -18,9 +18,9 @@ export default {
             <router-link to="/cart">Carrello</router-link>
         </h1>
 
-        <h1>
-            <router-link to="/data">Dati</router-link>
-        </h1>
+        <!-- <h1>
+                <router-link to="/data">Dati</router-link>
+            </h1> -->
 
         <h1>
             <router-link to="/payment">Pagamento</router-link>

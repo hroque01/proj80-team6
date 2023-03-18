@@ -12,6 +12,7 @@ export default {
         return {
             store,
             orders: [],
+            cartTotalValue: 0,
             newOrder: {
                 customer_name: '',
                 restaurant_id: '',
@@ -20,7 +21,9 @@ export default {
                 address: '',
                 email: '',
                 phone_number: '',
-                order_number: ''
+                order_number: '',
+                create_date: '',
+                completed: ''
             },
             restaurantId: null,
         };
@@ -43,26 +46,28 @@ export default {
         orderSubmit(e) {
             e.preventDefault();
 
-            axios.post(API_URL + 'order/store', this.newOrder)
-                .then(res => {
-                    const data = res.data;
-                    const success = data.success;
-                    if (success) {
-                        this.updateOrders();
-                        this.$router.push('/payment');
-                    }
-                })
-                .catch(err => console.log(err));
+            if (this.newOrder.customer_name || this.newOrder.address || this.newOrder.email || this.newOrder.phone_number) {
+                axios.post(API_URL + 'order/store', this.newOrder)
+                    .then(res => {
+                        const data = res.data;
+                        const success = data.success;
+                        if (success) {
+                            this.updateOrders();
+                            this.$router.push('/payment');
+                        }
+                    })
+                    .catch(err => console.log(err));
+            }
         },
 
         findRestaurant() {
-            const cartItem = localStorage.getItem('storedQuantity_0');
+            const cartItem = localStorage.getItem('cart');
             let element;
 
             if (cartItem) {
                 element = JSON.parse(cartItem);
 
-                this.restaurantId = element.restaurant_id;
+                this.restaurantId = element[0].id;
 
                 this.newOrder.restaurant_id = this.restaurantId;
             }
@@ -78,31 +83,28 @@ export default {
             this.newOrder.order_number = randomNumber.toString();
         },
         getPrice() {
-            const data = {};
-            if (store.length !== 0) {
-                for (let key in localStorage) {
-                    data[key] = JSON.parse(localStorage.getItem(key));
-                }
+            if (localStorage.total) {
+                this.cartTotalValue = localStorage.total;
+                store.total = this.cartTotalValue;
+            } else {
+                this.cartTotalValue = 0;
+                store.total = this.cartTotalValue;
             }
-            // Prendi solo le chiavi degli elementi che iniziano con "storedQuantity_"
-            //La funzione Object.keys() viene utilizzata per recuperare un array di tutte le chiavi presenti nell'oggetto localStorage.
-            const itemKeys = Object.keys(localStorage).filter(key => key.startsWith("storedQuantity_"));
-            // Somma la quantità e il prezzo per ogni elemento con lo stesso nome
-            const items = {};
-            let total = 0;
-            itemKeys.forEach(key => {
-                const item = JSON.parse(localStorage.getItem(key));
-                const name = item.name;
-                if (items[name]) {
-                    items[name].quantity += 1;
-                    items[name].price = parseFloat(items[name].price) + parseFloat(item.price);
-                } else {
-                    items[name] = { name: item.name, quantity: 1, price: parseFloat(item.price) };
-                }
-                total += parseFloat(item.price);
+            localStorage.total = this.cartTotalValue;
 
-                this.newOrder.total = total.toFixed(2);
-            });
+            this.cartTotalValue = localStorage.total;
+
+            this.newOrder.total = parseFloat(this.cartTotalValue).toFixed(2);
+        },
+        getDate() {
+            let create_date = new Date().toISOString().slice(0, 10);
+
+            this.newOrder.create_date = create_date;
+        },
+        getCompleted() {
+            let bool = Math.floor(Math.random() * 0) + 1;
+
+            this.newOrder.completed = bool;
         }
 
     },
@@ -112,45 +114,44 @@ export default {
         this.getCurrentTime();
         this.getOrderNumber();
         this.getPrice();
+        this.getDate();
+        this.getCompleted();
     }
 };
 </script>
 
 <template>
-    Info Dati
+    <!-- Info Dati
 
-    <form>
+        <form>
 
-        <!-- nome -->
-        <div class="flex-form">
-            <label for="customer_name">Inserisci il tuo nome e cognome<span>*</span></label>
-            <input type="text" placeholder="Mario Rossi" name="customer_name" id="customer_name"
-                v-model="newOrder.customer_name" required>
-        </div>
+            <div class="flex-form">
+                <label for="customer_name">Inserisci il tuo nome e cognome<span>*</span></label>
+                <input type="text" placeholder="Mario Rossi" name="customer_name" v-model="newOrder.customer_name" required
+                    class="input-form">
+            </div>
 
-        <div class="flex-form">
-            <label for="address">Inserisci il tuo indirizzo<span>*</span></label>
-            <input type="text" placeholder="Via Roma, 10" name="address" v-model="newOrder.address" required>
-        </div>
+            <div class="flex-form">
+                <label for="address">Inserisci il tuo indirizzo<span>*</span></label>
+                <input type="text" placeholder="Via Roma, 10" name="address" v-model="newOrder.address" required
+                    class="input-form">
+            </div>
 
-        <div class="flex-form">
-            <label for="email">Inserisci la tua email<span>*</span></label>
-            <input type="email" placeholder="email@prova.it" name="email" v-model="newOrder.email" required>
-        </div>
+            <div class="flex-form">
+                <label for="email">Inserisci la tua email<span>*</span></label>
+                <input type="email" placeholder="email@prova.it" name="email" v-model="newOrder.email" required
+                    class="input-form">
+            </div>
 
-        <div class="flex-form">
-            <label for="phone_number">Inserisci il tuo telefono<span>*</span></label>
-            <input type="text" placeholder="3468888888" name="phone_number" v-model="newOrder.phone_number" required>
-        </div>
+            <div class="flex-form">
+                <label for="phone_number">Inserisci il tuo telefono<span>*</span></label>
+                <input type="text" placeholder="3468888888" name="phone_number" v-model="newOrder.phone_number" required
+                    class="input-form">
+            </div>
 
-        <!-- <div class="flex-form">
-                                                                            <label for="total">Totale<span>*</span></label>
-                                                                            <input type="number" step=".01" placeholder="totale" name="total" required v-model="newOrder.total">
-                                                                        </div> -->
+            <input @click="orderSubmit" type="submit" value="Invia">
 
-        <input @click="orderSubmit" type="submit" value="Invia">
-
-    </form>
+        </form> -->
 </template>
 
 <style lang="scss" scoped>
