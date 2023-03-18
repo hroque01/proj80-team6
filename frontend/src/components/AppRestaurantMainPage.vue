@@ -123,11 +123,12 @@ export default {
         store.total = this.cartTotal;
         localStorage.setItem('total', this.cartTotal);  
     },
+    // metodo per salvare i gatti: aiutooooo
     saveCats() {
-      // for save in local storage set the below code
+      // per salvare nel local storage:
       let parsed = JSON.stringify(this.cart);
       localStorage.setItem("cart", parsed);
-      this.viewCart(); // by this function we can see all products are save in web
+      this.viewCart(); 
     },
     filterRestaurants() {
       this.selResId = parseInt(this.$route.params.id);
@@ -337,21 +338,38 @@ export default {
 
         <!-- cart right side-->
         <div class="cart">
-          <div v-if="this.cart.length !== 0 && this.requestChangeCart == false && this.cart.length !== 0">
-            <strong>Carrello:</strong>
-            <div>
-              <button @click="emptyCart">SVUOTA CARRELLO</button>
-            </div>
-            <div v-for="item in cart" :key="item.id">
-              <div class="d-flex justify-content-between">
-                <div>
-                  {{item.name}}
-                </div>
-                <div>
-                  <button @click="remove(item.id)">-</button> {{item.quantity}} <button @click="added(item)">+</button> {{ parseFloat(item.price * item.quantity).toFixed(2) }} €
-                </div> 
+
+          <!-- carrello con items -->
+          <div class="modify-cart" v-if="this.cart.length !== 0 && this.requestChangeCart == false && this.cart.length !== 0">
+            <h3>Il tuo ordine</h3>
+
+            <!-- ciclo per stampare items con bottoni per modifica quantità -->
+            <div class="row-order" v-for="item in cart" :key="item.id">
+
+              <!-- items -->
+              <div class="d-flex justify-content-between align-items-center">
+
+                <div>{{item.name}}</div>
+
+                <!-- totale -->
+                <div >{{ parseFloat(item.price * item.quantity).toFixed(2) }}€</div>
               </div>
+
+              <!-- bottoni per modifica -->
+              <div class="modify-order">
+                <div class="btn-order" >
+                  <div @click="remove(item.id)">
+                    <i class="sign-order fa-solid fa-circle-minus"></i>
+                  </div> 
+                    {{item.quantity}} 
+                  <div @click="added(item)">
+                    <i class="sign-order fa-solid fa-circle-plus"></i>
+                  </div>
+                </div>
+              </div> 
             </div>
+
+            <!-- consegna -->
             <hr class="mt-3">
             <div class="d-flex justify-content-between">
               <div>
@@ -362,6 +380,8 @@ export default {
               </div>
             </div>
             <hr class="mt-4">
+
+            <!-- totale -->
             <div class="d-flex justify-content-between">
               <div>
                 <b>Totale</b>
@@ -370,15 +390,28 @@ export default {
                 <b v-if="this.cartTotal">{{ parseFloat(this.cartTotal).toFixed(2) }} €</b>
               </div>
             </div>
+
+            <!-- totale -->
+            <button @click="emptyCart">Svuota carrello</button>
           </div>
-          <div v-else-if="this.cart.length === 0">
-            CARRELLO VUOTO
+          <!-- fine carrello con items -->
+
+          <!-- carrello vuoto -->
+          <div class="empty_cart" v-else-if="this.cart.length === 0">
+            <h3><i class="fa-solid fa-cart-shopping"></i> Il tuo deliveboo</h3>
+            <img src="/public/img/logo-white.png" alt="logo deliveboo">
+            <p>Non hai ancora aggiunto alcun prodotto. Quando lo farai, compariranno qui!</p>
           </div>
+          <!-- fine carrello vuoto -->
+
+          <!-- notifica carrello già pieno -->
           <div v-else class="cart-notification">
-            Hai già un carrello aperto, vuoi svuotarlo?
-            <button class="empty-cart-btn" @click="emptyCart()">Nuovo carrello</button>
+            <h3>Vuoi creare un nuovo carrello&quest;</h3>
+            <p>In questo modo cancelli il carrello esistente e ne crei uno nuovo.</p>
             <button class="keep-cart-btn" @click="this.requestChangeCart = false">Annulla</button>
+            <button class="empty-cart-btn" @click="emptyCart()">Nuovo carrello</button> 
           </div>
+
           <!-- <div v-if="store.length !== 0 && this.selResId == this.cartResId">
             <h5 class="card-body px-0 py-2">
               <strong>Carrello </strong>
@@ -497,7 +530,7 @@ export default {
 
   .menu_list {
     width: 70%;
-    margin-right: 20px;
+    margin-right: 1%;
 
     .my_Boxes-wrapper {
       display: flex;
@@ -597,12 +630,128 @@ export default {
 
   }
 
+  // regole carrello:
   .cart {
-    width: 25%;
-    background-color: $restaurant_main_bg;
-    border-radius: 15px;
-    padding: 25px;
-  }
+    width: 29%;
+    background-color: #F9FAFA;
+    border: 1px solid  #eaeaea;
+    box-shadow: 0px 5px 5px 0px #ececec;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 20px 15px;
+    height: 500px;
+    overflow-y: auto;
 
+    // modifica quantità
+    .modify-cart{
+      h3{
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .row-order{
+        margin-bottom: 10px ;
+      }
+
+      button{
+        margin-top: 20px;
+        width: 100%;
+        border: 3px solid $btn_red;
+        background-color: #F9FAFA;
+        border-radius: 10px;
+        color: $btn_red;
+        padding: 3px 0;
+
+        &:hover{
+          background-color: $btn_red;
+          color: #fff;
+        }
+      }
+
+      // modifica ordini
+    .modify-order{
+      font-size: 18px;
+      display: flex;
+      height: 100%;
+      align-items: center;
+
+      
+      .btn-order{
+        display: flex;
+        align-items: center;
+        width: 70px;
+        text-align: left;
+        .sign-order{
+          color: $btn_red;
+          margin: 0 5px;
+        }
+      }
+    }
+    }
+
+    // carrello vuoto
+    .empty_cart{
+      text-align: center;
+
+      h3{
+        font-weight: bold;
+        opacity: 0.8;
+      }
+
+      img{
+        width: 200px;
+        height: 200px;
+        margin: 50px 0;
+        padding: 5px;
+        filter: grayscale(100%);
+        opacity: 0.5;
+        border: 1px solid $btn_red;
+        border-radius: 50%;
+      }
+
+      p{
+        font-size: 18px;
+        opacity: 0.8;
+      }
+    }
+
+    // carrello già pieno
+    .cart-notification{
+      h3{
+        font-weight: bold;
+        text-align: center;
+      }
+
+      p{
+        margin: 30px 0;
+      }
+      .keep-cart-btn, .empty-cart-btn{
+        width: calc(100% / 2 - 4px);
+        margin-inline: 2px;
+        border-radius: 10px;
+        padding: 5px 0;
+      }
+
+      .keep-cart-btn{
+        background-color: #F9FAFA;
+        color: $btn_red;
+        border: 1px solid $btn_red;
+
+        &:hover{
+          border: 2px solid $btn_red;
+        }
+      }
+
+      .empty-cart-btn{
+        background-color: $btn_red ;
+        color: #F9FAFA ;
+        border: 2px solid $btn_red;
+
+        &:hover{
+          background-color: #e96d5d;
+        }
+      }
+    }
+  }
 }
 </style>
