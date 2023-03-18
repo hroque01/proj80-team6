@@ -12,8 +12,8 @@
         <th>Numero ordine</th>
         <th>Nome Cliente</th>
         <th>Totale Ordine</th>
-        <th>Stato Ordine</th>
-        <th>Info Ordine</th>
+        <th class="text-center">Stato Ordine</th>
+        <th></th>
       </thead>
 
       <tbody>
@@ -24,14 +24,14 @@
               <td>{{$order ->create_date}}</td>
               <td>{{$order ->order_number}}</td>
               <td>{{$order ->customer_name}}</td>
-              <td>{{$order ->address}}</td>
-              <td class="text-center ">
-                <span class="rounded p-2 text-light {{ $order->completed === 1 ? 'bg-success' : 'bg-danger' }}">
-                  {{ $order->completed == 0 ? 'Failed' : 'Done' }}
+              <td>{{$order ->total}}&euro;</td>
+              <td class="">
+                <span class="d-block text-center rounded p-2 text-light {{ $order->completed === 1 ? 'bg-success' : 'bg-danger' }}">
+                  {{ $order->completed == 0 ? 'Rifiutato' : 'Completato' }}
                 </span>
               </td>
               <td class="text-center">
-                <a class="bg-warning p-2 rounded text-light" href="{{route('order.show', $order)}}">Info</a>
+                <a class="d-block bg-warning p-2 rounded text-light" href="{{route('order.show', $order)}}">Info</a>
               </td>
             </tr>
             

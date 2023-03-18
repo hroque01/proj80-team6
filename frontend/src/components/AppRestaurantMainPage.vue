@@ -7,6 +7,7 @@ export default {
   name: 'AppRestaurantMainPage',
   data() {
     return {
+      showCart: false,
       restaurants: [],
       dishes: [],
       store,
@@ -46,6 +47,7 @@ export default {
           const restaurants = response.restaurants;
           const resDelPrice = response.restaurants[this.$route.params.id - 1].delivery_price;
           if (success) {
+            this.showCart = true;
             this.dishes = dishes;
             this.restaurants = restaurants;
             this.deliveryPrice = resDelPrice;
@@ -230,6 +232,7 @@ export default {
 
             <!-- image -->
             <div class="my_bigBox box-properties" v-for="(dish, index) in dishes" :key="index">
+
               <div class="info-top">
 
                 <div class="my_bigBox-img">
@@ -241,7 +244,7 @@ export default {
                   <div class="my_bigBox-info-DishName">{{ dish.name }}</div>
                   <div class="my_bigBox-info-OtherDishInfo">
 
-                    <div class="DishDescr">
+                    <div class="DishDescr">my_bigBox
                       <em>{{ dish.description }}</em>
                     </div>
 
@@ -262,6 +265,13 @@ export default {
                   <i class="fa-solid fa-cart-shopping"></i>Aggiungi al carrello
                 </button>
               </div>
+
+              <!-- div che compare se piatto è esaurito -->
+              <div v-if="!dish.visible" class="dish-not-available">
+                <div class="tag-order"></div>
+                <div class="tag-not-available">Non disponibile</div>
+              </div>
+              
             </div>
 
           </div>
@@ -269,7 +279,7 @@ export default {
         </div>
 
         <!-- cart right side-->
-        <div class="cart">
+        <div class="cart" v-if="showCart">
 
           <!-- carrello con items -->
           <div class="modify-cart" v-if="this.cart.length !== 0 && this.requestChangeCart == false && this.cart.length !== 0">
@@ -456,7 +466,26 @@ export default {
       border-radius: 10px;
       display: flex;
       flex-direction: column;
+      position: relative;
 
+      // layover per dish not available
+      .dish-not-available{
+        position: absolute;
+        @include flex(both-center);
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        background-color: #0000004d;
+        .tag-not-available{
+          font-size: 30px;
+          background-color: #eeeeee;
+          border: 3px solid $btn_red;
+          border-radius: 10px;
+          color: $btn_red;
+          padding: 5px 7px;
+        }
+      }
+      
       .info-top {
         flex-grow: 1;
       }
@@ -542,10 +571,12 @@ export default {
     border: 1px solid  #eaeaea;
     box-shadow: 0px 5px 5px 0px #ececec;
     border-radius: 10px;
-    margin-top: 20px;
+    margin: 20px 0;
     padding: 20px 15px;
     height: 500px;
     overflow-y: auto;
+    position: sticky;
+    top: 20px;
 
     // modifica quantità
     .modify-cart{
@@ -657,6 +688,13 @@ export default {
         }
       }
     }
+  }
+
+  .piatto-esaurito{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    // position: absolute;
   }
 }
 </style>
