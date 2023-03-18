@@ -247,7 +247,7 @@ export default {
             <h3>
                 Carrello bello
             </h3>
-            Totale: {{ cartTotalValue }}
+            Totale: {{ store.total }}
         </div>
 
         <div class="form-cart">

@@ -8,6 +8,7 @@ import AppOrder from './components/AppOrder.vue';
 
 import App from './App.vue';
 
+
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -34,4 +35,10 @@ const router = createRouter({
         },
     ]
 });
+
+router.beforeEach((to, from, next) => {
+    window.scrollTo(0, 0);
+    next();
+});
+
 export default router;
