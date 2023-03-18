@@ -82,9 +82,7 @@ class ApiController extends Controller
     
         return response()->json([
             'success' => true,
-            'response' => [
-                'orders' => $orders,
-            ]
+            'response' => $orders,
         ]);
     }
 
