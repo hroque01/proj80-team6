@@ -1,35 +1,248 @@
 <script>
-import AppCart from './AppCart.vue';
-import AppData from './AppData.vue';
-import AppPayment from './AppPayment.vue';
+
+import axios from 'axios';
+
+import { store } from '../store';
+
+const API_URL = 'http://localhost:8000/api/v1/';
 
 export default {
-    components: {
-        AppCart,
-        AppData,
-        AppPayment
+    name: 'AppCheckout',
+    data() {
+        return {
+            store,
+            cartTotalValue: 0,
+            orders: [],
+            newOrder: {
+                customer_name: '',
+                restaurant_id: '',
+                create_time: '',
+                total: '',
+                address: '',
+                email: '',
+                phone_number: '',
+                order_number: '',
+                create_date: '',
+                completed: '',
+                card_number: '',
+                expiration_date: ''
+            },
+            restaurantId: null,
+            showSubmit: false,
+            cardNumber: ''
+        };
+    },
+    methods: {
+        emptyCart() {
+            localStorage.clear();
+            store.length = 0;
+            store.total = 0;
+        },
+        getCartTotal() {
+            if (localStorage.total) {
+                this.cartTotalValue = localStorage.total;
+                store.total = this.cartTotalValue;
+            } else {
+                this.cartTotalValue = 0;
+                store.total = this.cartTotalValue;
+            }
+            localStorage.total = this.cartTotalValue;
+        },
+        updateOrders() {
+            axios.get(API_URL + 'order')
+                .then(res => {
+                    const data = res.data;
+                    const success = data.success;
+                    const response = data.response;
+                    const orders = response.orders;
+
+                    console.log(this.newOrder);
+
+                    if (success) {
+                        this.orders = orders;
+                    }
+                })
+                .catch(err => console.log(err));
+        },
+        orderSubmit(e) {
+            e.preventDefault();
+            if (this.newOrder.customer_name || this.newOrder.address || this.newOrder.email || this.newOrder.phone_number) {
+                axios.post(API_URL + 'order/store', this.newOrder)
+                    .then(res => {
+                        const data = res.data;
+                        const success = data.success;
+                        if (success) {
+                            this.updateOrders();
+                            this.$router.push('/payment');
+                        }
+                    })
+                    .catch(err => console.log(err));
+            }
+        },
+        updateValue(e) {
+            this.cardNumber = e.target.value.replace(/ /g, '');
+        },
+
+        findRestaurant() {
+            const cartItem = localStorage.getItem('cart');
+            let element;
+
+            if (cartItem) {
+                element = JSON.parse(cartItem);
+
+                this.restaurantId = element[0].id;
+
+                this.newOrder.restaurant_id = this.restaurantId;
+            }
+        },
+        getCurrentTime() {
+            const options = { hour: '2-digit', minute: '2-digit' };
+            const currentTime = new Date().toLocaleTimeString('it-IT', options);
+            this.newOrder.create_time = currentTime;
+        },
+        getOrderNumber() {
+            const randomNumber = Math.floor(Math.random() * 1000) + 1;
+
+            this.newOrder.order_number = randomNumber.toString();
+        },
+        getPrice() {
+            if (localStorage.total) {
+                this.cartTotalValue = localStorage.total;
+                store.total = this.cartTotalValue;
+            } else {
+                this.cartTotalValue = 0;
+                store.total = this.cartTotalValue;
+            }
+            localStorage.total = this.cartTotalValue;
+
+            this.cartTotalValue = localStorage.total;
+
+            this.newOrder.total = parseFloat(this.cartTotalValue).toFixed(2);
+        },
+        getDate() {
+            let create_date = new Date().toISOString().slice(0, 10);
+
+            this.newOrder.create_date = create_date;
+        },
+        getCompleted() {
+            let bool = Math.floor(Math.random() * 0) + 1;
+
+            this.newOrder.completed = bool;
+        },
+        prosegui() {
+            if (!this.showSubmit) {
+                this.showSubmit = true;
+            }
+        },
+
+    },
+    computed: {
+        getItems() {
+            const data = {};
+            // Popola l'oggetto data con tutti gli elementi presenti in localStorage
+            if (store.length !== 0) {
+                for (let key in localStorage) {
+                    data[key] = JSON.parse(localStorage.getItem(key));
+                }
+            }
+            // Prendi solo le chiavi degli elementi che iniziano con "storedQuantity_"
+            //La funzione Object.keys() viene utilizzata per recuperare un array di tutte le chiavi presenti nell'oggetto localStorage.
+            const itemKeys = Object.keys(localStorage).filter(key => key.startsWith("storedQuantity_"));
+            // Somma la quantità e il prezzo per ogni elemento con lo stesso nome
+            const items = {};
+            let total = 0;
+            itemKeys.forEach(key => {
+                const item = JSON.parse(localStorage.getItem(key));
+                const name = item.name;
+                if (items[name]) {
+                    items[name].quantity += 1;
+                    items[name].price = parseFloat(items[name].price) + parseFloat(item.price);
+                } else {
+                    items[name] = { name: item.name, quantity: 1, price: parseFloat(item.price) };
+                }
+                total += parseFloat(item.price);
+            });
+            store.total = total;
+            return items;
+        },
+        formatCardNumber() {
+            return this.cardNumber ? this.cardNumber.match(/.{1,4}/g).join(' ') : '';
+        },
+    },
+    mounted() {
+        this.getCartTotal();
+        this.updateOrders();
+        this.findRestaurant();
+        this.getCurrentTime();
+        this.getOrderNumber();
+        this.getPrice();
+        this.getDate();
+        this.getCompleted();
     }
+
 }
+
 </script>
 
 <template>
-    <div class="my_container">
-        <h1>
-            <router-link to="/cart">Carrello</router-link>
-        </h1>
-
-        <!-- <h1>
-                <router-link to="/data">Dati</router-link>
-            </h1> -->
-
-        <h1>
-            <router-link to="/payment">Pagamento</router-link>
-        </h1>
-
-        <div class="info">
-            <router-view></router-view>
+    <div class="my_container" v-if="$route.name === 'checkout'">
+        <div class="cart">
+            <h3>
+                Carrello bello
+            </h3>
+            Totale: {{ cartTotalValue }}
         </div>
+
+        <div class="form-cart">
+            <form>
+
+                <div v-if="!showSubmit">
+                    <div class="flex-form">
+                        <label for="customer_name">Inserisci il tuo nome e cognome<span>*</span></label>
+                        <input type="text" placeholder="Mario Rossi" name="customer_name" v-model="newOrder.customer_name"
+                            required class="input-form">
+                    </div>
+
+                    <div class="flex-form">
+                        <label for="address">Inserisci il tuo indirizzo<span>*</span></label>
+                        <input type="text" placeholder="Via Roma, 10" name="address" v-model="newOrder.address" required>
+                    </div>
+
+                    <div class="flex-form">
+                        <label for="email">Inserisci la tua email<span>*</span></label>
+                        <input type="email" placeholder="email@prova.it" name="email" v-model="newOrder.email" required>
+                    </div>
+
+                    <div class="flex-form">
+                        <label for="phone_number">Inserisci il tuo telefono<span>*</span></label>
+                        <input type="text" placeholder="3468888888" name="phone_number" v-model="newOrder.phone_number"
+                            required>
+                    </div>
+                </div>
+
+                <div v-if="showSubmit">
+                    <div class="flex-form">
+                        <label for="card_number">Numero di carta<span>*</span></label>
+                        <input type="string" placeholder="●●●● ●●●● ●●●● ●●●●" name="card_number" :value="formatCardNumber"
+                            @input="updateValue" required>
+                    </div>
+
+                    <div class="flex-form">
+                        <label for="expiration_date">Data di scadenza<span>*</span></label>
+                        <input type="string" placeholder="MM / AA" name="expiration_date" v-model="newOrder.expiration_date"
+                            required>
+                    </div>
+
+                    <input @click="orderSubmit" type="submit" value="Invia">
+                </div>
+            </form>
+
+            <button @click="prosegui" v-if="!showSubmit" class="prosegui">Prosegui</button>
+        </div>
+
     </div>
+
+    <router-view v-if="$route.name === 'order'"></router-view>
 </template>
 
 <style lang="scss" scoped>
@@ -39,12 +252,52 @@ export default {
 
 .my_container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     gap: 30px;
-    flex-wrap: wrap;
 
-    .info {
+    .form-cart {
+        width: 80%;
+        border: 1px solid black;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+
+    }
+
+    .cart {
+        border: 1px solid #000;
+        height: 307px;
+        width: 20%;
+    }
+
+    form {
         width: 100%;
+        height: 90%;
+        padding: 20px;
+        // debug
+
+        .flex-form {
+            @include flex(between);
+            margin: 10px 0;
+
+            span {
+                color: $btn_red;
+            }
+
+            input {
+                padding: 5px;
+                width: 55%;
+            }
+        }
+
+        input[type="submit"] {
+            margin-top: 10px;
+            padding: 0 15px;
+        }
+
     }
 }
 </style>
