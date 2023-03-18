@@ -141,6 +141,10 @@ ul li {
     margin-bottom: 50px;
 }
 
+.res-hub-welcome {
+    color: $btn_red;
+}
+
 // REGOLE DASHBOARD:
 .dashboard-card {
     .dashboard-title span {
@@ -216,10 +220,6 @@ nav {
 
 // REGOLE HOME RESTAURANT:
 .res-hub-txt {
-
-    .res-hub-welcome {
-        color: $btn_red;
-    }
 
     h4 {
         margin: 20px 0;

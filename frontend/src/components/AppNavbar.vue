@@ -81,7 +81,7 @@ export default {
 
 nav {
   padding: 15px 0;
-
+  
   .my_container {
     display: flex;
     justify-content: space-between;

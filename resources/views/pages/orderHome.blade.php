@@ -3,8 +3,12 @@
 @section('content')
 
   <div class="my_container pt-5">
-      
-    <h1 class="mb-4">Lista ordini</h1>
+    <h1>
+      Ciao, <span class="res-hub-welcome">{{$restaurant->business_name }}</span>!
+    </h1>
+    <h4 class="my-4">
+      Qui puoi visualizzare il riepilogo dei tuoi ordini, elencati in modo decrescente per data.
+    </h4>
     <table class="table">
 
       <thead>

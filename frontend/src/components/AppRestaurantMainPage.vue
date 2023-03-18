@@ -193,7 +193,7 @@ export default {
 
         <div class="back-button">
           <button @click="scrollToTop()">
-            Torna ai ristoranti
+            <i class="fa-solid fa-utensils"></i> Torna alla nostra selezione di ristoranti
           </button>
         </div>
 
@@ -378,11 +378,22 @@ export default {
 
   .back-button {
     width: 100%;
-    padding-bottom: 30px;
+    margin-bottom: 40px;
 
     button {
-      &:hover {
-        color: #EE5743;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ffffff;
+      color: $text_black;
+      font-size: 18px;
+
+      .fa-utensils{
+        margin-right: 10px;
+      }
+
+      &:hover{
+        color: $btn_red;
       }
     }
   }

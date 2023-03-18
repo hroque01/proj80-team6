@@ -5,7 +5,7 @@
   <div class="my_container res-hub-txt pt-5">
 
     <h1>
-      Ciao, <span class="res-hub-welcome">{{$restaurant->business_name }}</span>! Benvenuto nel Restaurant Hub.
+      Ciao, <span class="res-hub-welcome">{{$restaurant->business_name }}</span>!
     </h1>
 
     <h4>

@@ -136,7 +136,7 @@ class MainController extends Controller
 
         $restaurants = Restaurant::all();
 
-        $orders = Order::orderBy('create_date')->get();
+        $orders = Order::orderBy('create_date', 'desc')->get();
 
         $user = Auth::user();
 
