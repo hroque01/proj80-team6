@@ -32,5 +32,6 @@ export const store = reactive({
     ],
     quantity: [],
     length: localStorage.length,
-    total: 0,
+    deliveryPrice: localStorage.getItem('deliveryPrice'),
+    total: localStorage.getItem('total'),
 });

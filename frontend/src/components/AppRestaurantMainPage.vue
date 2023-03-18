@@ -45,37 +45,38 @@ export default {
           const response = data.response;
           const dishes = response.dishes;
           const restaurants = response.restaurants;
-          const resDelPrice = response.restaurants[this.$route.params.id - 1].delivery_price;
+          /* const resDelPrice = response.restaurants[this.$route.params.id - 1].delivery_price; */
           if (success) {
             this.showCart = true;
             this.dishes = dishes;
             this.restaurants = restaurants;
-            this.deliveryPrice = resDelPrice;
+            /* if (this.selResId == this.cartResId) {
+              this.deliveryPrice = resDelPrice;
+            } */
           }
         })
         .catch(err => console.error(err));
       }
     },
-    added(dish) {
+    added(dish, button) {
       // when user choose a buy, this function add that in cart
-      if (this.selResId == this.cartResId) {
-        const item = Object.values(this.cart).find(item => item.id === dish.id);
-        if (item) {
-          item.quantity += 1;
-          this.saveCats();
-        } else {
-          // cartadd is here to get all things that click or chosen by user
-          this.cartadd.id = dish.id;
-          this.cartadd.name = dish.name;
-          this.cartadd.price = dish.price;
-          this.cartadd.image = dish.image;
-          this.cartadd.quantity = 1;
-          this.cartadd.restaurant_id = dish.restaurant_id;
-          this.cart.push(this.cartadd);
-          this.cartadd = {};
-          
-          this.saveCats(); // this function most important to save all inform of products
-        }
+      let buttonId = button.id;
+      const item = Object.values(this.cart).find(item => item.id === dish.id);
+      if (item) {
+        item.quantity += 1;
+        this.saveCats();
+      } else if (this.cart.length == 0 && buttonId == "ok") {
+        // cartadd is here to get all things that click or chosen by user
+        this.cartadd.id = dish.id;
+        this.cartadd.name = dish.name;
+        this.cartadd.price = dish.price;
+        this.cartadd.image = dish.image;
+        this.cartadd.quantity = 1;
+        this.cartadd.restaurant_id = dish.restaurant_id;
+        this.cart.push(this.cartadd);
+        this.cartadd = {};
+        
+        this.saveCats(); // this function most important to save all inform of products
       }
       else {
         this.requestChangeCart = true;
@@ -111,13 +112,16 @@ export default {
             sum += item.quantity * parseFloat(item.price);
             i++;
           }
-          if (this.cart.length > 0) {
-            sum += parseFloat(this.deliveryPrice);
-          } 
+          if (this.cart.length > 0 && this.selResId == this.cartResId) {
+            localStorage.setItem('deliveryPrice', this.restaurants[this.$route.params.id - 1].delivery_price);
+          }
+          store.deliveryPrice = this.deliveryPrice;
+          this.deliveryPrice = localStorage.getItem('deliveryPrice');
+          sum += parseFloat(this.deliveryPrice); 
           this.cartTotal = sum;
         }
         store.total = this.cartTotal;
-        localStorage.setItem('total', this.cartTotal);  
+        localStorage.setItem('total', this.cartTotal); 
     },
     // metodo per salvare i gatti: aiutooooo
     saveCats() {
@@ -261,7 +265,7 @@ export default {
                   <span class="Pricebuble"> {{ dish.price }} &euro;</span>
                 </div>
 
-                <button class="addToCart_btn" @click="added(dish)">
+                <button id="add" class="addToCart_btn" @click="added(dish,this)">
                   <i class="fa-solid fa-cart-shopping"></i>Aggiungi al carrello
                 </button>
               </div>
@@ -304,7 +308,7 @@ export default {
                     <i class="sign-order fa-solid fa-circle-minus"></i>
                   </div> 
                     {{item.quantity}} 
-                  <div @click="added(item)">
+                  <div id="ok" @click="added(item, this)">
                     <i class="sign-order fa-solid fa-circle-plus"></i>
                   </div>
                 </div>
@@ -318,7 +322,7 @@ export default {
                 <b>Consegna</b>
               </div>
               <div>
-                {{ this.deliveryPrice }} €
+                {{ store.deliveryPrice }} €
               </div>
             </div>
             <hr class="mt-4">
@@ -329,7 +333,7 @@ export default {
                 <b>Totale</b>
               </div>
               <div>
-                <b v-if="this.cartTotal">{{ parseFloat(this.cartTotal).toFixed(2) }} €</b>
+                <b v-if="store.total">{{ parseFloat(store.total).toFixed(2) }} €</b>
               </div>
             </div>
 
