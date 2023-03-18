@@ -92,9 +92,11 @@ export default {
             const index = this.cart.indexOf(item);
             this.cart.splice(index, 1);
             /* if (this.cart.length == 0) { */
-            localStorage.removeItem('cart');
-            localStorage.removeItem('total');
-            localStorage.removeItem('deliveryPrice');
+              if (this.cart.length == 0) {
+                localStorage.removeItem('cart');
+                localStorage.removeItem('total');
+                localStorage.removeItem('deliveryPrice');
+              }
             /* } */
           }
           if (this.cart.length !== 0) {
