@@ -2,6 +2,7 @@
 @import './partials/mixins'; // mixins
 @import './partials/variables'; // variables
 
+
 // REGOLE GENERALI:
 body {
     color: $text_black;
@@ -11,6 +12,9 @@ body {
     height: 100vh;
 }
 
+img{
+    max-width: 100%;
+}
 a {
     text-decoration: none;
 }
@@ -143,29 +147,59 @@ ul li {
         color: $btn_red;
     }
 
-    ul {
-        margin: 20px 0;
-
-        span {
-            color: $btn_red;
-            margin-right: 10px;
-            font-weight: bold;
-        }
+    p{
+        font-size: 20px;
+        line-height: 15px;
     }
-
-    .dashboard-link {
+    
+    .dash-flex{
         display: flex;
-        justify-content: center;
 
-        .btn {
-            border: 2px solid $btn_red;
+        .card{
+            width: calc(50% - 50px);
+            margin-inline: 25px;
+
+            .header-dash{
+                text-align: center;
+                padding: 20px 0;
+                font-size: 30px;
+            }
+
+            .card-body{
+                padding: 0 40px 40px 40px;
+
+                img{
+                    border-radius: 10px;
+                }
+
+                ul {
+                    margin: 30px 0;
+                    padding-left: 0;
+            
+                    span {
+                        color: $btn_red;
+                        margin-right: 10px;
+                        font-weight: bold;
+                    }
+                }
+            
+                .dashboard-link {
+                    display: flex;
+                    justify-content: center;
+            
+                    .btn {
+                        border: 2px solid $btn_red;
+                    }
+            
+                    a {
+                        @include button;
+                    }
+            
+                }
+            }
         }
-
-        a {
-            @include button;
-        }
-
     }
+    
 }
 
 // REGOLE NAVBAR:
