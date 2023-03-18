@@ -65,7 +65,7 @@ export default {
       if (item) {
         item.quantity += 1;
         this.saveCats();
-      } else if (this.cart.length == 0 && buttonId == "ok") {
+      } else if ((this.cart.length == 0 && buttonId == "ok") || this.selResId == this.cartResId) {
         // cartadd is here to get all things that click or chosen by user
         this.cartadd.id = dish.id;
         this.cartadd.name = dish.name;
