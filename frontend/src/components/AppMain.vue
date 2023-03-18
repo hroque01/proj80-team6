@@ -5,9 +5,6 @@ import AppRestaurant from './AppRestaurant.vue';
 import AppCheckout from './AppCheckout.vue';
 import AppRestaurantMainPage from './AppRestaurantMainPage.vue';
 
-
-
-
 export default {
   name: 'AppMain',
   components: {
@@ -30,7 +27,9 @@ export default {
 
   <AppRestaurant v-if="$route.name === 'home'" />
 
-  <AppRestaurantMainPage v-if="$route.name === 'restaurant-detail'" />
+  <div class="cerotto">
+    <AppRestaurantMainPage v-if="$route.name === 'restaurant-detail'" />
+  </div>
 
   <AppCheckout v-if="$route.name !== 'home' && $route.name !== 'restaurant-detail'" />
 </template>
@@ -39,4 +38,8 @@ export default {
 @use '../src/styles/general.scss' as *;
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
+
+.cerotto {
+  padding-top: 100px;
+}
 </style>
