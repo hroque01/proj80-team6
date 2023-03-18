@@ -571,10 +571,12 @@ export default {
     border: 1px solid  #eaeaea;
     box-shadow: 0px 5px 5px 0px #ececec;
     border-radius: 10px;
-    margin-top: 20px;
+    margin: 20px 0;
     padding: 20px 15px;
     height: 500px;
     overflow-y: auto;
+    position: sticky;
+    top: 20px;
 
     // modifica quantità
     .modify-cart{
