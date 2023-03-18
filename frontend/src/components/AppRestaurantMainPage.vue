@@ -93,6 +93,8 @@ export default {
             this.cart.splice(index, 1);
             /* if (this.cart.length == 0) { */
             localStorage.removeItem('cart');
+            localStorage.removeItem('total');
+            localStorage.removeItem('deliveryPrice');
             /* } */
           }
           if (this.cart.length !== 0) {
