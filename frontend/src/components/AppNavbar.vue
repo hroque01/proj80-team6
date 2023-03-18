@@ -18,7 +18,7 @@ export default {
         {
           icon: "fa-solid fa-cart-shopping",
           text: "Carrello",
-          url: "/cart",
+          url: "/checkout",
         },
       ]
     }
@@ -62,7 +62,7 @@ export default {
           </span>
 
           <span v-else>
-            <router-link :to="{ name: 'cart' }">
+            <router-link :to="{ name: 'checkout' }">
               <i v-if="link.icon === 'fa-solid fa-cart-shopping'" :class="link.icon" class="icon-nav"></i>
               {{ link.text }}
               <span v-if="index === 1 && store.total > 0">{{ parseFloat(store.total).toFixed(2) }} &euro;</span>
