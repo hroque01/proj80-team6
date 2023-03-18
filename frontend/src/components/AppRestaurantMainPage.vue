@@ -99,12 +99,6 @@ export default {
       this.getTotal();
       /* console.log(this.cartTotal); */
     },
-    /* getDeliveryPrice() {
-      if (this.$route.params.id) {
-        console.log(this.$route.params.id);
-        console.log(this.restaurants);
-      }
-    }, */
     getTotal() {
         if (this.cart) {
           let cart = this.cart;
@@ -140,72 +134,10 @@ export default {
           this.cartResId = cartRestaurantId;
         }
       }
-      /* if (localStorage.getItem("storedQuantity_0")) {
-        let storedQuantity = localStorage.getItem("storedQuantity_0");
-        let cartRestaurantId = JSON.parse(storedQuantity).restaurant_id;
-        this.cartResId = cartRestaurantId;
-      } */
       else {
         this.cartResId = this.selResId;
       }
-    },
-    /* addDish(id) {
-      console.log(this.cartResId);
-      console.log(this.selResId);
-      if (store.length == 0) {
-        const key = 'storedQuantity_' + localStorage.length;
-        localStorage.setItem(key, JSON.stringify(this.dishes[id]));
-        store.length = localStorage.length;
-        console.log(this.selResId);
-        /* const value = localStorage.getItem(key);
-        store.items.push(JSON.parse(value)); */
-        /* console.log(store.items); */
-        /* this.restaurants.forEach(function(res) {
-          if (res.id == store.restaurantId) {
-            store.restaurantName = res.business_name;
-            console.log(store.restaurantName);
-          }
-        }); 
-      }
-      else {
-        if (this.selResId == this.cartResId) {
-          const key = 'storedQuantity_' + localStorage.length;
-          localStorage.setItem(key, JSON.stringify(this.dishes[id]));
-          store.length = localStorage.length;
-        }
-        else {
-          this.requestChangeCart = true;
-        }
-      }
-    }, */
-    /* addOneItem(id) {
-      let storageData = Object.values(localStorage);
-
-      // converte gli elementi in un array di oggetti JavaScript
-      let data = storageData.map(item => JSON.parse(item));
-
-      console.log(data);
-      console.log(localStorage);
-
-      store.length = localStorage.length;
-      let dish = this.dishes.find(dish => dish.id === id);
-      const key = 'storedQuantity_' + localStorage.length;
-      localStorage.setItem(key, JSON.stringify(dish));
-      console.log(store.length);
-      this.updateItems();
-    }, */
-    /* removeOneItem(id) {
-      store.length = localStorage.length;
-      console.log(store.length);
-      for (let i = 0; i < localStorage.length; i++) {
-        let oggettoLocalStorage = JSON.parse(localStorage.getItem(localStorage.key(i)));
-        if (oggettoLocalStorage.id === id) {
-          localStorage.removeItem(localStorage.key(i));
-          break;
-        }
-      }
-      this.updateItems();
-    }, */
+    }, 
     emptyCart() {
       this.cart = [];
       localStorage.clear();
@@ -411,34 +343,7 @@ export default {
             <button class="keep-cart-btn" @click="this.requestChangeCart = false">Annulla</button>
             <button class="empty-cart-btn" @click="emptyCart()">Nuovo carrello</button> 
           </div>
-
-          <!-- <div v-if="store.length !== 0 && this.selResId == this.cartResId">
-            <h5 class="card-body px-0 py-2">
-              <strong>Carrello </strong>
-              <span v-if="this.selRes[0] && this.selRes[0].user_id">per {{ this.selRes[0].business_name }}</span>
-            </h5>
-            <button v-if="store.length !== 0" @click="emptyCart">Svuota carrello</button>
-
-            <ul>
-              <li v-for="item in getItems" class="d-flex justify-content-between align-items-center mb-2">
-                <div>{{ item.name }}</div>
-                <div><button @click="removeOneItem(item.id)">-</button> {{ item.quantity }} <button @click="addOneItem(item.id)">+</button>{{ item.price.toFixed(2) }} €</div>
-              </li>
-            </ul>
-            <hr class="border-top border-dark mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <div><b>Totale</b></div>
-              <div><b>{{ store.total.toFixed(2) }} €</b></div>
-            </div>
-          </div>
-          <div v-else-if="this.requestChangeCart == false">
-            CARRELLO VUOTO
-          </div>
-          <div v-else class="cart-notification">
-            Hai già un carrello aperto, vuoi svuotarlo?
-            <button class="empty-cart-btn" @click="emptyCart()">Nuovo carrello</button>
-            <button class="keep-cart-btn" @click="this.requestChangeCart = false">Annulla</button>
-          </div> -->
+          
         </div>
 
       </div>
