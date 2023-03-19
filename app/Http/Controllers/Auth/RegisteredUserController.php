@@ -64,7 +64,7 @@ class RegisteredUserController extends Controller
             'opening_time' => $request->opening_time,
             'closure_time' => $request->closure_time,
             'delivery_price' => $request->delivery_price,
-            'image' => $request->image
+            'image' => $request->image->store('restaurants-image')
         ]);
 
         $img_path  = Storage::put('uploads', $data['image']);
