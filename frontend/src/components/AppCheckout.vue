@@ -235,24 +235,27 @@ export default {
         this.getPrice();
         this.getDate();
         this.getCompleted();
-        let button = document.getElementById('submit-button');
+
+        const button = document.getElementById('submit-button');
         braintree.dropin.create({
             authorization: 'sandbox_zjjssg84_pwdgvf89z8k3wgdg',
             selector: '#dropin-container',
             locale: 'it_IT',
         }, function (err, instance) {
-            button.addEventListener('click', function () {
-                instance.requestPaymentMethod(function (err, payload) {
-                    if (payload) {
-                        console.log(localStorage.getItem('paid'));
-                        localStorage.setItem('paid', true);
-                        console.log(localStorage.getItem('paid'));
-                    } else {
-                        console.log("Dentro errore paymenent", err, payload);
-                        console.log(localStorage.getItem('paid'));
-                    }
-                });
-            })
+            if (button) {
+                button.addEventListener('click', function () {
+                    instance.requestPaymentMethod(function (err, payload) {
+                        if (payload) {
+                            console.log(localStorage.getItem('paid'));
+                            localStorage.setItem('paid', true);
+                            console.log(localStorage.getItem('paid'));
+                        } else {
+                            console.log("Dentro errore paymenent", err, payload);
+                            console.log(localStorage.getItem('paid'));
+                        }
+                    });
+                })
+            }
         });
     }
 
@@ -300,18 +303,18 @@ export default {
 
                 <div id="dropin-container"></div>
                 <!-- <div class="flex-form">
-                                    <label for="card_number">Numero di carta<span>*</span></label>
-                                    <input type="text" placeholder="●●●● ●●●● ●●●● ●●●●" name="card_number" v-model="formatCardNumber"
-                                        @input="updateCard" required maxlength="19">
+                                        <label for="card_number">Numero di carta<span>*</span></label>
+                                        <input type="text" placeholder="●●●● ●●●● ●●●● ●●●●" name="card_number" v-model="formatCardNumber"
+                                            @input="updateCard" required maxlength="19">
 
-                                </div>
+                                    </div>
 
-                                <div class="flex-form">
-                                    <label for="expiration_date">Data di scadenza<span>*</span></label>
-                                    <input type="text" placeholder="MM / AA" name="expiration_date" v-model="dateNumber"
-                                        @input="formatDateNumber" required>
+                                    <div class="flex-form">
+                                        <label for="expiration_date">Data di scadenza<span>*</span></label>
+                                        <input type="text" placeholder="MM / AA" name="expiration_date" v-model="dateNumber"
+                                            @input="formatDateNumber" required>
 
-                                </div> -->
+                                    </div> -->
 
                 <input @click="orderSubmit" type="submit" value="Invia">
             </form>
