@@ -63,7 +63,7 @@ export default {
                 <div class="ciaoRaghi" v-for="card in cards">
                     <div class="card_Rag">
                         <a :href="card.gitHub">
-                            <img :src="'/public/img/' + card.img" :alt="card.name"
+                            <img :src="'/img/' + card.img" :alt="card.name"
                                 :class="card.name === 'ROMINA MALIMBAN' ? 'romina' : ''">
                             <span>{{ card.name }}</span>
                         </a>

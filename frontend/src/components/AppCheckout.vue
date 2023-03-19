@@ -24,13 +24,10 @@ export default {
                 order_number: '',
                 create_date: '',
                 completed: '',
-                //card_number: '',
-                //expiration_date: ''
             },
+            showForm1: true,
             restaurantId: null,
-            //showSubmit: false,
-            //cardNumber: '',
-            //dateNumber: ''
+            showForm2: false,
         };
     },
     methods: {
@@ -63,24 +60,26 @@ export default {
                 })
                 .catch(err => console.log(err));
         },
-        orderSubmit(e) {
-            e.preventDefault();
-
+        //butta tutto in database
+        orderSubmit() {
             console.log(this.newOrder);
-
-            axios.post(API_URL + 'order/store', this.newOrder)
-                .then(res => {
-                    const data = res.data;
-                    const success = data.success;
-                    if (success) {
-                        this.updateOrders();
-                        localStorage.clear();
-                        store.total = 0;
-                        this.$router.push('/order');
-
-                    }
-                })
-                .catch(err => console.log(err));
+            
+            if (localStorage.getItem('paid') == 'true') {
+                axios.post(API_URL + 'order/store', this.newOrder)
+                    .then(res => {
+                        const data = res.data;
+                        const success = data.success;
+                        if (success) {
+                            this.updateOrders();
+                            localStorage.clear();
+                            store.total = 0;
+                            this.$router.push('/order');
+                        }
+                    })
+                    .catch(err => console.log(err));
+                } else {
+                    console.log('Il pagamento non è stato effettuato con successo.');
+                }
         },
         findRestaurant() {
             const cartItem = localStorage.getItem('cart');
@@ -129,24 +128,13 @@ export default {
             this.newOrder.completed = bool;
         },
         prosegui() {
-            if (!this.showSubmit) {
-                this.showSubmit = true;
-            }
         },
-        // validaNumero() {
-        //     if (isNaN(this.numero)) {
-        //         this.numero = '';
-        //     }
-        // },
-        // updateCard(e) {
-        //     this.cardNumber = e.target.value.replace(/ /g, '');
-        // },
-        // updateDate(e) {
-        //     this.dateNumber = e.target.value.replace(/ /g, '');
-        // },
-        // onOrderSubmitted() {
-        //     store.total = 0; // Svuotiamo il carrello
-        // },
+        submitForm1() {
+            this.showForm1 = false;
+        },
+        submitForm2() {
+            this.showForm1 = true;
+        }
 
     },
     computed: {
@@ -178,51 +166,6 @@ export default {
             store.total = total;
             return items;
         },
-        // formatCardNumber() {
-        //     if (this.cardNumber) {
-        //         // Verifica se l'input contiene solo numeri
-        //         if (/^\d+$/.test(this.cardNumber)) {
-        //             // Aggiunge uno spazio ogni quattro cifre
-        //             this.cardNumber = this.cardNumber.match(/.{1,4}/g).join(' ');
-        //         } else {
-        //             // Se l'input non contiene solo numeri, ripristina il valore precedente
-        //             this.cardNumber = this.previousCardNumber;
-        //         }
-        //     } else {
-        //         this.cardNumber = "";
-        //     }
-
-        //     // Salva il valore precedente
-        //     this.previousCardNumber = this.cardNumber;
-
-        //     this.newOrder.card_number = this.previousCardNumber;
-
-        //     return this.newOrder.card_number;
-        // },
-        // formatDateNumber() {
-        //     if (this.dateNumber) {
-        //         // Rimuove tutti i caratteri non numerici
-        //         let numericValue = this.dateNumber.replace(/\D/g, '');
-
-        //         // Aggiunge lo slash dopo i primi due numeri
-        //         let formattedNumber = numericValue.substr(0, 2) + '/' + numericValue.substr(2);
-
-        //         // Se la lunghezza della stringa è superiore a 5, tronca il valore
-        //         if (formattedNumber.length > 5) {
-        //             formattedNumber = formattedNumber.substr(0, 5);
-        //         }
-
-        //         this.dateNumber = formattedNumber;
-        //     } else {
-        //         this.dateNumber = "";
-        //     }
-
-        //     // Salva il valore precedente
-        //     this.previousDateNumber = this.dateNumber;
-
-        //     this.newOrder.expiration_date = this.previousDateNumber;
-        // }
-
     },
     mounted() {
         this.getCartTotal();
@@ -256,8 +199,7 @@ export default {
             }
         });
     }
-
-}
+    } 
 
 </script>
 
@@ -273,7 +215,7 @@ export default {
         </div>
 
         <div class="form-cart">
-            <form>
+            <form v-show="showForm1" @submit.prevent="submitForm1">
 
                 <div>
                     <div class="flex-form">
@@ -298,25 +240,19 @@ export default {
                             required>
                     </div>
                 </div>
+                <button @click.prevent="showForm2 = true">Prosegui</button>
 
-                <div id="dropin-container"></div>
-                <!-- <div class="flex-form">
-                                                <label for="card_number">Numero di carta<span>*</span></label>
-                                                <input type="text" placeholder="●●●● ●●●● ●●●● ●●●●" name="card_number" v-model="formatCardNumber"
-                                                    @input="updateCard" required maxlength="19">
-
-                                            </div>
-
-                                            <div class="flex-form">
-                                                <label for="expiration_date">Data di scadenza<span>*</span></label>
-                                                <input type="text" placeholder="MM / AA" name="expiration_date" v-model="dateNumber"
-                                                    @input="formatDateNumber" required>
-
-                                            </div> -->
-
-                <input @click="orderSubmit" type="submit" value="Invia">
+                <!-- Deve apparire solamente quando  il secondo form esce "pagamento eseguitp" -->
+                <input @click="orderSubmit()" type="submit" value="Invia">
             </form>
 
+            <div v-show="showForm2">
+                <div id="dropin-container">
+                </div>
+                <button id="submit-button">Prosegui</button>              
+            </div>
+            
+            
             <!-- <button @click="prosegui" v-if="!showSubmit" class="prosegui">Prosegui</button> -->
         </div>
 
