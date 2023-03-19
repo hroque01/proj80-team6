@@ -96,7 +96,7 @@ export default {
             <div class="restaurantFilter">
 
                 <!-- Navbar laterale a sinistra - elenco categorie -->
-                <nav>
+                <nav class="nav-filter-container">
                     <h4 class="mb-3">Categorie</h4>
                     <ul class="typologies-list">
                         <!-- ciclo per stampare elenco categorie da dbs -->
@@ -303,14 +303,13 @@ section {
 }
 
 .restaurant {
-    width: 270px;
+    max-width: 270px;
     height: 230px;
     border-radius: 5px;
     overflow: hidden;
     position: relative;
 
     .restaurant-img {
-        width: 100%;
         height: 65%;
         overflow: hidden;
     }
@@ -357,4 +356,173 @@ section {
         border-radius: 50px;
     }
 }
+
+@media only screen and (max-width: 1270px) { // screen width 1200px
+    .my_container {
+        width: 95%;
+        margin: 0 auto;
+    }
+    .restaurant {
+        min-width: 150px;
+        height: 230px;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+
+        .restaurant-img{
+            width: 200%;
+        }
+    }
+    
+}
+
+@media only screen and (max-width: 1100px) {
+    
+    .restaurant-info-wrapper {
+
+        .restaurant-info-restaurantName{
+
+            .name_res{
+                font-size: 13px;
+            }
+
+        }   
+
+        .restaurant-info-address{
+            font-size: 12px;
+        }
+
+    }
+
+}
+
+@media only screen and (max-width: 900px) {
+    .restaurant {
+        height: 180px;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+
+        .restaurant-info-wrapper {
+
+            .restaurant-info-restaurantName{
+
+                .name_res{
+                    font-size: 13px;
+                    font-weight: 700;
+                }
+
+            }
+
+        }
+
+        .deliveryPrice {
+            font-size: 12px;
+            width: 80px;
+            right: 10px;
+            bottom: 50px;
+            background-color: $btn_red;
+            color: white;
+            padding: 5px 10px;
+        }   
+
+    }
+}
+
+@media only screen and (max-width: 806px) {
+
+    .restaurant {
+        min-width: 210px;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+
+        .restaurant-img{
+            width: 200%;
+        }
+    }
+
+}
+
+@media only screen and (max-width: 750px) {
+
+    .restaurant {
+        min-width: 45%;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+
+        .restaurant-img{
+            width: 200%;
+        }
+    }
+
+}
+
+@media only screen and (max-width: 679px) {
+
+    .restaurant {
+        min-width: 90%;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+
+        .restaurant-img{
+            width: 100%;
+        }
+    }
+
+}
+
+@media only screen and (max-width: 470px) {
+
+    section {
+        margin: 50px 0;
+
+        .restaurantFilter {
+                display: block;
+            }
+
+        .nav-filter-container{
+            width: 95%;
+            height: 150px;
+            margin: 0 auto;
+            .typologies-list{
+                display: flex;
+                overflow-x: scroll;
+                scrollbar-width: none;
+            }
+
+            .icon-cat {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin-right: 5px;
+                padding: 5px;
+                opacity: 0.4;
+            }
+
+            .typologyTag {
+                font-size: 14px;
+                margin-right: 20px;
+            }
+
+            .checked {
+                .typologyTag {
+                    font-weight: bold;
+                }
+
+                .icon-cat {
+                    opacity: 1;
+                }
+            }
+
+        }
+
+        
+    }
+
+}
+
+
 </style>
