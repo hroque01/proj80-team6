@@ -258,7 +258,7 @@ export default {
               <div class="info-top">
 
                 <div class="my_bigBox-img">
-                  <img :src="getDishImage(dish)" :alt="dish.name">
+                  <img :src="getDishImage(dish)" :alt="dish.name" :class="!dish.visible ? 'not-available-img' : ''" >
                 </div>
 
                 <!-- info dish -->
@@ -290,7 +290,7 @@ export default {
 
               <!-- div che compare se piatto è esaurito -->
               <div v-if="!dish.visible" class="dish-not-available">
-                <div class="tag-order"></div>
+                
                 <div class="tag-not-available">Non disponibile</div>
               </div>
 
@@ -388,6 +388,12 @@ export default {
 @use '../src/styles/general.scss' as *;
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
+
+// filtro b/n per piatti non disponibili
+.not-available-img{
+  filter: grayscale(100%);
+  opacity: 0,8;
+}
 
 .my_container {
   display: flex;
@@ -513,7 +519,7 @@ export default {
 
         .tag-not-available {
           font-size: 30px;
-          background-color: #eeeeee;
+          background-color: #eeeeeeaf;
           border: 3px solid $btn_red;
           border-radius: 10px;
           color: $btn_red;
