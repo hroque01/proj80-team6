@@ -72,10 +72,10 @@
                         </div>
 
                         <div class="mb-4 row">
-                            <label for="business_name" class="star col-md-4 col-form-label text-md-right">{{ __('Ragione Sociale') }}</label>
+                            <label for="business_name" class="star col-md-4 col-form-label text-md-right">{{ __('Nome attività') }}</label>
 
                             <div class="col-md-6">
-                                <input id="business_name" type="text" placeholder="Ristorante Srl di Mario Rossi" class="form-control @error('business_name') is-invalid @enderror" name="business_name" value="{{ old('business_name') }}" required>
+                                <input id="business_name" type="text" placeholder="Ristorante di Mario Rossi" class="form-control @error('business_name') is-invalid @enderror" name="business_name" value="{{ old('business_name') }}" required>
 
                                 @error('business_name')
                                 <span class="invalid-feedback" role="alert">
