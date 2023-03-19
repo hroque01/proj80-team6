@@ -24,8 +24,8 @@ export default {
                 order_number: '',
                 create_date: '',
                 completed: '',
-                card_number: '',
-                expiration_date: ''
+                //card_number: '',
+                //expiration_date: ''
             },
             restaurantId: null,
             //showSubmit: false,
@@ -68,21 +68,19 @@ export default {
 
             console.log(this.newOrder);
 
-            if (this.newOrder.customer_name || this.newOrder.address || this.newOrder.email || this.newOrder.phone_number) {
-                axios.post(API_URL + 'order/store', this.newOrder)
-                    .then(res => {
-                        const data = res.data;
-                        const success = data.success;
-                        if (success) {
-                            this.updateOrders();
-                            localStorage.clear();
-                            store.total = 0;
-                            this.$router.push('/order');
+            axios.post(API_URL + 'order/store', this.newOrder)
+                .then(res => {
+                    const data = res.data;
+                    const success = data.success;
+                    if (success) {
+                        this.updateOrders();
+                        localStorage.clear();
+                        store.total = 0;
+                        this.$router.push('/order');
 
-                        }
-                    })
-                    .catch(err => console.log(err));
-            }
+                    }
+                })
+                .catch(err => console.log(err));
         },
         findRestaurant() {
             const cartItem = localStorage.getItem('cart');
@@ -303,18 +301,18 @@ export default {
 
                 <div id="dropin-container"></div>
                 <!-- <div class="flex-form">
-                                        <label for="card_number">Numero di carta<span>*</span></label>
-                                        <input type="text" placeholder="●●●● ●●●● ●●●● ●●●●" name="card_number" v-model="formatCardNumber"
-                                            @input="updateCard" required maxlength="19">
+                                                <label for="card_number">Numero di carta<span>*</span></label>
+                                                <input type="text" placeholder="●●●● ●●●● ●●●● ●●●●" name="card_number" v-model="formatCardNumber"
+                                                    @input="updateCard" required maxlength="19">
 
-                                    </div>
+                                            </div>
 
-                                    <div class="flex-form">
-                                        <label for="expiration_date">Data di scadenza<span>*</span></label>
-                                        <input type="text" placeholder="MM / AA" name="expiration_date" v-model="dateNumber"
-                                            @input="formatDateNumber" required>
+                                            <div class="flex-form">
+                                                <label for="expiration_date">Data di scadenza<span>*</span></label>
+                                                <input type="text" placeholder="MM / AA" name="expiration_date" v-model="dateNumber"
+                                                    @input="formatDateNumber" required>
 
-                                    </div> -->
+                                            </div> -->
 
                 <input @click="orderSubmit" type="submit" value="Invia">
             </form>

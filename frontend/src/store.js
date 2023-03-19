@@ -4,7 +4,7 @@ export const store = reactive({
     buttons: [
         {
             icon: "fa-brands fa-apple",
-            textSmaller: "Donwload on the ",
+            textSmaller: "Download on the ",
             textBigger: "App Store"
         },
         {

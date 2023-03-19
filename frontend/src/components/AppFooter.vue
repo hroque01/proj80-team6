@@ -49,8 +49,11 @@ export default {
 
                 <span>Deliveboo - Team 6</span>
 
-                <p>Ciao a tutti! Siamo un gruppo di cinque giovani studenti Boolean che hanno lavorato duramente per portare a termine questo progetto di Deliveboo. Qui troverete il frutto del nostro lavoro e delle nostre idee. Speriamo che il nostro progetto possa ispirarvi e farvi apprezzare la passione che abbiamo messo in esso.</p>
-                <p>Qui sotto, potrete visionare i nostri progetti su GitHub.</p>
+                <p>Ciao a tutti&excl; Siamo un gruppo di cinque giovani studenti Boolean che hanno lavorato duramente per
+                    portare a termine questo progetto di Deliveboo. Qui troverete il frutto del nostro lavoro e delle nostre
+                    idee. Speriamo che il nostro progetto possa ispirarvi e farvi apprezzare la passione che abbiamo messo
+                    in esso.</p>
+                <p>Qui sotto i link a GitHub dove potrete visionare i nostri progetti.</p>
 
                 <span>&hearts;</span>
             </div>
@@ -78,7 +81,7 @@ export default {
 
 footer {
     background-color: #2E3333;
-    padding: 50px 0 60PX 0 ;
+    padding: 50px 0 60PX 0;
 
     .my_container {
         display: flex;
@@ -91,7 +94,7 @@ footer {
         display: flex;
         flex-direction: column;
         align-items: center;
-        
+
         span {
             display: block;
             color: #d0d0d0;
@@ -110,7 +113,7 @@ footer {
             border: 2px solid $btn_red;
         }
 
-        p{
+        p {
             color: #d0d0d0;
             width: 60%;
             font-size: 14px;
@@ -128,7 +131,7 @@ footer {
         margin: 10px;
         height: 200px;
         border-radius: 10px;
-        
+
         .card_Rag {
             transition: all .2s ease-in-out;
             filter: grayscale(100%);

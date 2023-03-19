@@ -8,7 +8,7 @@
             <div class="text-center">
                 <h1 class="dashboard-title">Ti diamo il benvenuto sul <span>Restaurant Hub</span>. </h1>
                 <p class="mt-3" >{{ __('Sfrutta i dati a disposizione per far crescere il tuo business. Monitora le vendite, controlla i tuoi progressi e attira nuovi clienti con offerte speciali.') }}</p>
-                <p class="mb-5">Adesso è ancora pi&uacute; facile modificare il tuo men&uacute;</p>
+                <p class="mb-5">Adesso è ancora pi&ugrave; facile modificare il tuo men&ugrave;</p>
             </div>
             
             <div class="dash-flex">
@@ -16,7 +16,7 @@
                 {{-- menu piatti --}}
                 <div class="card">
                     <div class="header-dash">
-                        Men&uacute;
+                        Men&ugrave;
                     </div>
 
                     <div class="card-body">
@@ -37,15 +37,15 @@
                                 <span>&check;</span>Modifica facilmente nomi, descrizioni e prezzi
                             </li>
                             <li>
-                                <span>&check;</span>Pubblica il tuo men&uacute; in pochi secondi
+                                <span>&check;</span>Pubblica il tuo men&ugrave; in pochi secondi
                             </li>
                             <li>
-                                <span>&check;</span>Il tuo men&uacute; &eacute; sempre aggiornato e il tuoi clienti sono soddisfatti
+                                <span>&check;</span>Il tuo men&ugrave; &egrave; sempre aggiornato e il tuoi clienti sono soddisfatti
                             </li>
                         </ul>
 
                         <div class="dashboard-link">
-                            <a href="/restaurant" class="btn">Visualizza men&uacute;</a>
+                            <a href="/restaurant" class="btn">Visualizza men&ugrave;</a>
                         </div>
                         
                     </div>
@@ -79,7 +79,7 @@
                                 <span>&check;</span>Visualizza le statistiche degli ordini ricevuti per mese/anno
                             </li>
                             <li>
-                                <span>&check;</span>Visualizza l&#39;ammontare delle vendite
+                                <span>&check;</span>Visualizza l'ammontare delle vendite
                             </li>
                         </ul>
 

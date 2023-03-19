@@ -15,48 +15,43 @@ use App\Http\Controllers\MainController;
 |
 */
 
-// Route home
-Route::get('/', [MainController::class, 'home'])->name('home');
-
-// Route show dish
-Route :: get('/dish/show/{dish}', [MainController :: class, 'dishShow'])
-    -> name('dish.show');
-
-// Route home orders:
-Route :: get('/order', [MainController :: class, 'orderHome'])
-    -> name('order.home');
-
-// Route show order:
-Route :: get('/order/show/{order}', [MainController :: class, 'orderShow'])
-    -> name('order.show');
-
-// Route create dish(per form):
-Route :: get('/dish/create', [MainController :: class, 'dishCreate']) 
-    -> name('dishCreate');
-
-// Route create dish(per ricevere dati da form):
-Route :: post('/dish/store', [MainController :: class, 'dishStore']) 
--> name('dishStore');
-
-// Route delete dish:
-Route :: get('/dish/delete/{dish}', [MainController :: class, 'dishDelete'])
-    -> name('dish.delete');
-
-// Route edit dish(per form):
-Route :: get('/dish/edit/{dish}', [MainController :: class, 'dishEdit']) 
-    -> name('dishEdit');
-
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->middleware(['auth', 'verified'])->name('dashboard');
-
-
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 //Route private    
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Route delete dish:
+    Route :: get('/dish/delete/{dish}', [MainController :: class, 'dishDelete'])
+    -> name('dish.delete');
+
+    // Route edit dish(per form):
+    Route :: get('/dish/edit/{dish}', [MainController :: class, 'dishEdit']) 
+    -> name('dishEdit');
+
+    // Route create dish(per form):
+    Route :: get('/dish/create', [MainController :: class, 'dishCreate']) 
+    -> name('dishCreate');
+
+    // Route create dish(per ricevere dati da form):
+    Route :: post('/dish/store', [MainController :: class, 'dishStore']) 
+    -> name('dishStore');
+
+    // Route home orders:
+    Route :: get('/order', [MainController :: class, 'orderHome'])
+    -> name('order.home');
+
+    // Route show order:
+    Route :: get('/order/show/{order}', [MainController :: class, 'orderShow'])
+    -> name('order.show');
+
+    // Route show dish
+    Route :: get('/dish/show/{dish}', [MainController :: class, 'dishShow'])
+    -> name('dish.show');
 
     // Route update (per ricevere dati da form):
     Route :: post('/dish/update/{dish}', [MainController :: class, 'dishUpdate']) 

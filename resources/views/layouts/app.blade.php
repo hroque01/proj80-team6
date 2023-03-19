@@ -61,18 +61,23 @@
                             </li>
                         @endif
                         @else
-                        @auth
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{url('/restaurant') }}">{{ __('Home') }}</a>
-                            </li>  
-                        @endauth
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{Auth::user()-> restaurant->business_name}}
                             </a>
                             
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profile')}}</a>
+                                @if (Request::is('dashboard'))
+                                    <a class="dropdown-item" href="{{ url('restaurant') }}">{{__('Il tuo ristorante')}}</a>
+                                    <a class="dropdown-item" href="{{ url('order') }}">{{__('I tuoi ordini')}}</a>
+                                @elseif (Request::is('restaurant'))
+                                    <a class="dropdown-item" href="{{ url('dashboard') }}">{{__('Dashboard')}}</a>
+                                    <a class="dropdown-item" href="{{ url('order') }}">{{__('I tuoi ordini')}}</a>
+                                @elseif (Request::is('order'))
+                                    <a class="dropdown-item" href="{{ url('dashboard') }}">{{__('Dashboard')}}</a>
+                                    <a class="dropdown-item" href="{{ url('restaurant') }}">{{__('Il tuo ristorante')}}</a>
+                                @endif
+                                <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profilo')}}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}

@@ -8,9 +8,7 @@ use App\Models\Restaurant;
 use App\Models\Dish;
 use App\Models\Typology;
 use App\Models\User;
-// debug order model forse da togliere
 use App\Models\Order;
-use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -18,16 +16,6 @@ use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
-    
-    public function home(Typology $typology) {
-
-        $restaurants = Restaurant::all();
-
-        $typologies = Typology::all();
-
-        return view('pages.home', compact('restaurants', 'typologies', 'typology'));
-
-    }
 
     // Metodo per stampare in home lista restaurants, dishes:
     public function restaurant(Restaurant $restaurant) {

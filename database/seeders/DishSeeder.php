@@ -1134,7 +1134,7 @@ class DishSeeder extends Seeder
                 'description'=> 'madò che fame, anyway, boh roba di mare',
                 'ingredients'=> 'polpo, pesciolini, grassi saturi',
                 'price'=> 4.20,
-                'image'=> 'https://wips.plug.it/cips/buonissimo.org/cms/2011/11/bigne-cioccolato.jpg',
+                'image'=> 'https://www.giallozafferano.it/images/ricette/195/19593/foto_hd/hd650x433_wm.jpg',
                 'visible'=> true,
                 'restaurant_id'=> 21,
             ],
