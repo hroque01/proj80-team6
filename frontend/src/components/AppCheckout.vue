@@ -28,9 +28,9 @@ export default {
                 expiration_date: ''
             },
             restaurantId: null,
-            showSubmit: false,
-            cardNumber: '',
-            dateNumber: ''
+            //showSubmit: false,
+            //cardNumber: '',
+            //dateNumber: ''
         };
     },
     methods: {
@@ -135,20 +135,20 @@ export default {
                 this.showSubmit = true;
             }
         },
-        validaNumero() {
-            if (isNaN(this.numero)) {
-                this.numero = '';
-            }
-        },
-        updateCard(e) {
-            this.cardNumber = e.target.value.replace(/ /g, '');
-        },
-        updateDate(e) {
-            this.dateNumber = e.target.value.replace(/ /g, '');
-        },
-        onOrderSubmitted() {
-            store.total = 0; // Svuotiamo il carrello
-        },
+        // validaNumero() {
+        //     if (isNaN(this.numero)) {
+        //         this.numero = '';
+        //     }
+        // },
+        // updateCard(e) {
+        //     this.cardNumber = e.target.value.replace(/ /g, '');
+        // },
+        // updateDate(e) {
+        //     this.dateNumber = e.target.value.replace(/ /g, '');
+        // },
+        // onOrderSubmitted() {
+        //     store.total = 0; // Svuotiamo il carrello
+        // },
 
     },
     computed: {
@@ -180,50 +180,50 @@ export default {
             store.total = total;
             return items;
         },
-        formatCardNumber() {
-            if (this.cardNumber) {
-                // Verifica se l'input contiene solo numeri
-                if (/^\d+$/.test(this.cardNumber)) {
-                    // Aggiunge uno spazio ogni quattro cifre
-                    this.cardNumber = this.cardNumber.match(/.{1,4}/g).join(' ');
-                } else {
-                    // Se l'input non contiene solo numeri, ripristina il valore precedente
-                    this.cardNumber = this.previousCardNumber;
-                }
-            } else {
-                this.cardNumber = "";
-            }
+        // formatCardNumber() {
+        //     if (this.cardNumber) {
+        //         // Verifica se l'input contiene solo numeri
+        //         if (/^\d+$/.test(this.cardNumber)) {
+        //             // Aggiunge uno spazio ogni quattro cifre
+        //             this.cardNumber = this.cardNumber.match(/.{1,4}/g).join(' ');
+        //         } else {
+        //             // Se l'input non contiene solo numeri, ripristina il valore precedente
+        //             this.cardNumber = this.previousCardNumber;
+        //         }
+        //     } else {
+        //         this.cardNumber = "";
+        //     }
 
-            // Salva il valore precedente
-            this.previousCardNumber = this.cardNumber;
+        //     // Salva il valore precedente
+        //     this.previousCardNumber = this.cardNumber;
 
-            this.newOrder.card_number = this.previousCardNumber;
+        //     this.newOrder.card_number = this.previousCardNumber;
 
-            return this.newOrder.card_number;
-        },
-        formatDateNumber() {
-            if (this.dateNumber) {
-                // Rimuove tutti i caratteri non numerici
-                let numericValue = this.dateNumber.replace(/\D/g, '');
+        //     return this.newOrder.card_number;
+        // },
+        // formatDateNumber() {
+        //     if (this.dateNumber) {
+        //         // Rimuove tutti i caratteri non numerici
+        //         let numericValue = this.dateNumber.replace(/\D/g, '');
 
-                // Aggiunge lo slash dopo i primi due numeri
-                let formattedNumber = numericValue.substr(0, 2) + '/' + numericValue.substr(2);
+        //         // Aggiunge lo slash dopo i primi due numeri
+        //         let formattedNumber = numericValue.substr(0, 2) + '/' + numericValue.substr(2);
 
-                // Se la lunghezza della stringa è superiore a 5, tronca il valore
-                if (formattedNumber.length > 5) {
-                    formattedNumber = formattedNumber.substr(0, 5);
-                }
+        //         // Se la lunghezza della stringa è superiore a 5, tronca il valore
+        //         if (formattedNumber.length > 5) {
+        //             formattedNumber = formattedNumber.substr(0, 5);
+        //         }
 
-                this.dateNumber = formattedNumber;
-            } else {
-                this.dateNumber = "";
-            }
+        //         this.dateNumber = formattedNumber;
+        //     } else {
+        //         this.dateNumber = "";
+        //     }
 
-            // Salva il valore precedente
-            this.previousDateNumber = this.dateNumber;
+        //     // Salva il valore precedente
+        //     this.previousDateNumber = this.dateNumber;
 
-            this.newOrder.expiration_date = this.previousDateNumber;
-        }
+        //     this.newOrder.expiration_date = this.previousDateNumber;
+        // }
 
     },
     mounted() {
@@ -235,6 +235,25 @@ export default {
         this.getPrice();
         this.getDate();
         this.getCompleted();
+        let button = document.getElementById('submit-button');
+        braintree.dropin.create({
+            authorization: 'sandbox_zjjssg84_pwdgvf89z8k3wgdg',
+            selector: '#dropin-container',
+            locale: 'it_IT',
+        }, function (err, instance) {
+            button.addEventListener('click', function () {
+                instance.requestPaymentMethod(function (err, payload) {
+                    if (payload) {
+                        console.log(localStorage.getItem('paid'));
+                        localStorage.setItem('paid', true);
+                        console.log(localStorage.getItem('paid'));
+                    } else {
+                        console.log("Dentro errore paymenent", err, payload);
+                        console.log(localStorage.getItem('paid'));
+                    }
+                });
+            })
+        });
     }
 
 }
@@ -247,13 +266,15 @@ export default {
             <h3>
                 Carrello bello
             </h3>
-            Totale: {{ store.total }}
+            <div v-if="store.total > 0">
+                Totale: {{ parseFloat(store.total).toFixed(2) }}
+            </div>
         </div>
 
         <div class="form-cart">
             <form>
 
-                <div v-if="!showSubmit">
+                <div>
                     <div class="flex-form">
                         <label for="customer_name">Inserisci il tuo nome e cognome<span>*</span></label>
                         <input type="text" placeholder="Mario Rossi" name="customer_name" v-model="newOrder.customer_name"
@@ -277,26 +298,25 @@ export default {
                     </div>
                 </div>
 
-                <div v-if="showSubmit">
-                    <div class="flex-form">
-                        <label for="card_number">Numero di carta<span>*</span></label>
-                        <input type="text" placeholder="●●●● ●●●● ●●●● ●●●●" name="card_number" v-model="formatCardNumber"
-                            @input="updateCard" required maxlength="19">
+                <div id="dropin-container"></div>
+                <!-- <div class="flex-form">
+                                    <label for="card_number">Numero di carta<span>*</span></label>
+                                    <input type="text" placeholder="●●●● ●●●● ●●●● ●●●●" name="card_number" v-model="formatCardNumber"
+                                        @input="updateCard" required maxlength="19">
 
-                    </div>
+                                </div>
 
-                    <div class="flex-form">
-                        <label for="expiration_date">Data di scadenza<span>*</span></label>
-                        <input type="text" placeholder="MM / AA" name="expiration_date" v-model="dateNumber"
-                            @input="formatDateNumber" required>
+                                <div class="flex-form">
+                                    <label for="expiration_date">Data di scadenza<span>*</span></label>
+                                    <input type="text" placeholder="MM / AA" name="expiration_date" v-model="dateNumber"
+                                        @input="formatDateNumber" required>
 
-                    </div>
+                                </div> -->
 
-                    <input @click="orderSubmit" type="submit" value="Invia">
-                </div>
+                <input @click="orderSubmit" type="submit" value="Invia">
             </form>
 
-            <button @click="prosegui" v-if="!showSubmit" class="prosegui">Prosegui</button>
+            <!-- <button @click="prosegui" v-if="!showSubmit" class="prosegui">Prosegui</button> -->
         </div>
 
     </div>
