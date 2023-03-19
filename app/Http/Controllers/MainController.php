@@ -67,7 +67,7 @@ class MainController extends Controller
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
-        $img_path  = Storage::put('uploads', $data['image']);
+        $img_path  = Storage::put('dishes-image', $data['image']);
         $data['image'] = $img_path;
 
         $dish = Dish::make($data);

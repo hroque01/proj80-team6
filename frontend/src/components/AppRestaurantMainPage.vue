@@ -171,7 +171,7 @@ export default {
       }
     },
     getDishImage(dish) {
-      if (dish.image.includes("uploads")) {
+      if (dish.image.includes("dishes-image")) {
         return 'http://[::1]:5173/storage/app/public/' + dish.image;
       } else {
         return dish.image;
@@ -223,7 +223,7 @@ export default {
           <li class="info-restaurant">
             <i class="fa-solid fa-location-dot"></i>{{ restaurant.address }}
           </li>
-          <li>
+          <li v-if="restaurant.description">
             <i class="fa-solid fa-utensils"></i>{{ restaurant.description }}
           </li>
           <li>
