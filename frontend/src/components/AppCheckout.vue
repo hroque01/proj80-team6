@@ -63,7 +63,7 @@ export default {
         //butta tutto in database
         orderSubmit() {
             console.log(this.newOrder);
-            
+
             if (localStorage.getItem('paid') == 'true') {
                 axios.post(API_URL + 'order/store', this.newOrder)
                     .then(res => {
@@ -77,9 +77,9 @@ export default {
                         }
                     })
                     .catch(err => console.log(err));
-                } else {
-                    console.log('Il pagamento non è stato effettuato con successo.');
-                }
+            } else {
+                console.log('Il pagamento non è stato effettuato con successo.');
+            }
         },
         findRestaurant() {
             const cartItem = localStorage.getItem('cart');
@@ -88,7 +88,7 @@ export default {
             if (cartItem) {
                 element = JSON.parse(cartItem);
 
-                this.restaurantId = element[0].id;
+                this.restaurantId = element[0].restaurant_id;
 
                 this.newOrder.restaurant_id = this.restaurantId;
             }
@@ -199,7 +199,7 @@ export default {
             }
         });
     }
-    } 
+}
 
 </script>
 
@@ -249,10 +249,10 @@ export default {
             <div v-show="showForm2">
                 <div id="dropin-container">
                 </div>
-                <button id="submit-button">Prosegui</button>              
+                <button id="submit-button">Prosegui</button>
             </div>
-            
-            
+
+
             <!-- <button @click="prosegui" v-if="!showSubmit" class="prosegui">Prosegui</button> -->
         </div>
 
