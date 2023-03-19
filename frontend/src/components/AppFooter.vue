@@ -48,6 +48,11 @@ export default {
                 <img src="/public/img/logo-footer-dark.png" alt="logo deliveboo" class="logo">
 
                 <span>Deliveboo - Team 6</span>
+
+                <p>Ciao a tutti! Siamo un gruppo di cinque giovani studenti Boolean che hanno lavorato duramente per portare a termine questo progetto di Deliveboo. Qui troverete il frutto del nostro lavoro e delle nostre idee. Speriamo che il nostro progetto possa ispirarvi e farvi apprezzare la passione che abbiamo messo in esso.</p>
+                <p>Qui sotto, potrete visionare i nostri progetti su GitHub.</p>
+
+                <span>&hearts;</span>
             </div>
 
             <!-- ciclo per cards -->
@@ -62,8 +67,6 @@ export default {
                     </div>
                 </div>
             </div>
-
-
         </div>
     </footer>
 </template>
@@ -75,7 +78,7 @@ export default {
 
 footer {
     background-color: #2E3333;
-    padding: 50px 0;
+    padding: 50px 0 60PX 0 ;
 
     .my_container {
         display: flex;
@@ -85,12 +88,15 @@ footer {
 
     .logo-footer {
         text-align: center;
-
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
         span {
             display: block;
             color: #d0d0d0;
             font-size: 20px;
-            margin: 30px 0;
+            margin: 10px 0;
             font-weight: bold;
             font-style: italic;
         }
@@ -102,6 +108,13 @@ footer {
             border-radius: 50%;
             padding: 2px;
             border: 2px solid $btn_red;
+        }
+
+        p{
+            color: #d0d0d0;
+            width: 60%;
+            font-size: 14px;
+            line-height: 30px;
         }
     }
 }
@@ -115,13 +128,16 @@ footer {
         margin: 10px;
         height: 200px;
         border-radius: 10px;
-
-
+        
         .card_Rag {
             transition: all .2s ease-in-out;
+            filter: grayscale(100%);
+            opacity: 0.8;
 
             &:hover {
                 transform: scale(1.1);
+                filter: grayscale(0%);
+                opacity: 1;
             }
         }
 
