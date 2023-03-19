@@ -16,9 +16,9 @@ export default {
     <!-- jumbotron-->
     <div class="jumbotron">
         <div class="ms_content">
-            <h1>Ristoranti, cibo, takeaway, spesa.
+            <h1 >La scelta migliore per un pasto facile e veloce.
                 <br>
-                <span>DELIVEBOO</span>
+                <strong><span class="pt-2">DELIVEBOO</span></strong> 
             </h1>
         </div>
 
