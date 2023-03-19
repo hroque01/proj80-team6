@@ -4,6 +4,7 @@ import AppBannerMain from './AppBannerMain.vue';
 import AppRestaurant from './AppRestaurant.vue';
 import AppCheckout from './AppCheckout.vue';
 import AppRestaurantMainPage from './AppRestaurantMainPage.vue';
+import AppFaq from './AppFaq.vue';
 
 export default {
   name: 'AppMain',
@@ -12,8 +13,8 @@ export default {
     AppBannerMain,
     AppRestaurant,
     AppCheckout,
-    AppRestaurantMainPage
-
+    AppRestaurantMainPage,
+    AppFaq
   }
 }
 
@@ -32,6 +33,8 @@ export default {
   </div>
 
   <AppCheckout v-if="$route.name !== 'home' && $route.name !== 'restaurant-detail'" />
+
+  <AppFaq v-if="$route.name === 'home'" />
 </template>
 
 <style lang="scss" scoped>

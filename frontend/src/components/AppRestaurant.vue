@@ -166,6 +166,16 @@ export default {
 .mainTitle-container {
     width: 100%;
     padding-bottom: 20px;
+
+    h2{
+        font-weight: bold;
+        color: $btn_red;
+        margin-bottom: 5px;
+    }
+
+    h4{
+        font-size: 18px;
+    }
 }
 
 nav {
