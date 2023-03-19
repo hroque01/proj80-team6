@@ -44,11 +44,13 @@ export default {
                 .catch(err => console.error(err));
         },
         getRestaurantImage(restaurant) {
+            let restaurantImage;
             if (restaurant.image.includes("restaurants-image")) {
-                return 'http://[::1]:5173/storage/app/public/' + restaurant.image;
+                restaurantImage = 'http://[::1]:5173/storage/app/public/' + restaurant.image;
             } else {
-                return restaurant.image;
+                restaurantImage = restaurant.image;
             }
+            return restaurantImage;
         },
     },
     computed: {
