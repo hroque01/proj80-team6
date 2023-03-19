@@ -43,6 +43,13 @@ export default {
                 })
                 .catch(err => console.error(err));
         },
+        getRestaurantImage(restaurant) {
+            if (restaurant.image.includes("restaurants-image")) {
+                return 'http://[::1]:5173/storage/app/public/' + restaurant.image;
+            } else {
+                return restaurant.image;
+            }
+        },
     },
     computed: {
         // metodo che filtra i ristoranti in base alle tipologie selezionate dall'utente.
@@ -62,7 +69,8 @@ export default {
             }
 
             return filteredRestaurants;
-        }
+        },
+
     },
     mounted() {
         this.updateTypologies();
@@ -128,7 +136,7 @@ export default {
                                         <i class="fa-solid fa-motorcycle"></i> {{ restaurant.delivery_price }} &euro;
                                     </div>
                                     <div class="restaurant-img">
-                                        <img :src="restaurant.image" alt="">
+                                        <img :src="getRestaurantImage(restaurant)" :alt="restaurant.business_name">
                                     </div>
                                     <div class="restaurant-info-wrapper">
                                         <div class="restaurant-info-restaurantName">
@@ -167,13 +175,13 @@ export default {
     width: 100%;
     padding-bottom: 20px;
 
-    h2{
+    h2 {
         font-weight: bold;
         color: $btn_red;
         margin-bottom: 5px;
     }
 
-    h4{
+    h4 {
         font-size: 18px;
     }
 }
