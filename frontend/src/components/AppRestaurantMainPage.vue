@@ -164,18 +164,22 @@ export default {
       window.scrollBy(0, -1000);
     },
     getRestaurantImage(restaurant) {
+      let restaurantImage;
       if (restaurant.image.includes("restaurants-image")) {
-        return 'http://[::1]:5173/storage/app/public/' + restaurant.image;
+        restaurantImage = 'http://[::1]:5173/storage/app/public/' + restaurant.image;
       } else {
-        return restaurant.image;
+        restaurantImage = restaurant.image;
       }
+      return restaurantImage;
     },
     getDishImage(dish) {
+      let dishImage;
       if (dish.image.includes("dishes-image")) {
-        return 'http://[::1]:5173/storage/app/public/' + dish.image;
+        dishImage = 'http://[::1]:5173/storage/app/public/' + dish.image;
       } else {
-        return dish.image;
+        dishImage = dish.image;
       }
+      return dishImage;
     },
   },
   computed: {
@@ -679,6 +683,7 @@ export default {
         opacity: 0.5;
         border: 1px solid $btn_red;
         border-radius: 50%;
+        object-fit: contain;
       }
 
       p {
@@ -733,6 +738,26 @@ export default {
     height: 100%;
     background-color: black;
     // position: absolute;
+  }
+}
+
+
+
+@media all and (max-width: 480px) {
+  .my_container {
+    width: 100%;
+    padding: 0 30px;
+
+    .my_Boxes-wrapper {
+
+      .my_bigBox {
+        width: 60%;
+      }
+
+      .cart {
+        width: 40%;
+      }
+    }
   }
 }
 </style>
