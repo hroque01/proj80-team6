@@ -100,10 +100,10 @@ class UserSeeder extends Seeder
             'vat_number' => '47847665328'
         ],
         [
-            'email' => 'dolcezzeCioccolato@gmail.com',
+            'email' => 'pizzanapoly@gmail.com',
             'email_verified_at' => '09:00',
-            'password' => Hash::make('dolcezzeCioccolato222'),
-            'vat_number' => '47844455328'
+            'password' => Hash::make('pizzanapoly2'),
+            'vat_number' => '47844455318'
         ],
         [
             'email' => 'dolcezzeCioccolato@gmail.com',

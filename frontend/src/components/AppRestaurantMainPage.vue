@@ -595,7 +595,7 @@ export default {
     height: 500px;
     overflow-y: auto;
     position: sticky;
-    top: 20px;
+    top: 120px;
 
     // modifica quantità
     .modify-cart{
