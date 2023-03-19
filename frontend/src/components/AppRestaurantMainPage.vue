@@ -39,23 +39,23 @@ export default {
     getDishes() {
       if (this.$route.params.id && this.$route.name === 'restaurant-detail') {
         axios.get(API_URL + 'restaurant/' + this.$route.params.id)
-        .then(res => {
-          const data = res.data;
-          const success = data.success;
-          const response = data.response;
-          const dishes = response.dishes;
-          const restaurants = response.restaurants;
-          /* const resDelPrice = response.restaurants[this.$route.params.id - 1].delivery_price; */
-          if (success) {
-            this.showCart = true;
-            this.dishes = dishes;
-            this.restaurants = restaurants;
-            /* if (this.selResId == this.cartResId) {
-              this.deliveryPrice = resDelPrice;
-            } */
-          }
-        })
-        .catch(err => console.error(err));
+          .then(res => {
+            const data = res.data;
+            const success = data.success;
+            const response = data.response;
+            const dishes = response.dishes;
+            const restaurants = response.restaurants;
+            /* const resDelPrice = response.restaurants[this.$route.params.id - 1].delivery_price; */
+            if (success) {
+              this.showCart = true;
+              this.dishes = dishes;
+              this.restaurants = restaurants;
+              /* if (this.selResId == this.cartResId) {
+                this.deliveryPrice = resDelPrice;
+              } */
+            }
+          })
+          .catch(err => console.error(err));
       }
     },
     added(dish, button) {
@@ -75,7 +75,7 @@ export default {
         this.cartadd.restaurant_id = dish.restaurant_id;
         this.cart.push(this.cartadd);
         this.cartadd = {};
-        
+
         this.saveCats(); // this function most important to save all inform of products
       }
       else {
@@ -85,54 +85,54 @@ export default {
       console.log(this.cartTotal);
     },
     remove(id) {
-        const item = Object.values(this.cart).find(item => item.id === id);
-        if (item !== undefined) {
-          item.quantity -= 1;
-          if (item.quantity <= 0) {
-            const index = this.cart.indexOf(item);
-            this.cart.splice(index, 1);
-            /* if (this.cart.length == 0) { */
-              if (this.cart.length == 0) {
-                localStorage.removeItem('cart');
-                localStorage.removeItem('total');
-                localStorage.removeItem('deliveryPrice');
-              }
-            /* } */
+      const item = Object.values(this.cart).find(item => item.id === id);
+      if (item !== undefined) {
+        item.quantity -= 1;
+        if (item.quantity <= 0) {
+          const index = this.cart.indexOf(item);
+          this.cart.splice(index, 1);
+          /* if (this.cart.length == 0) { */
+          if (this.cart.length == 0) {
+            localStorage.removeItem('cart');
+            localStorage.removeItem('total');
+            localStorage.removeItem('deliveryPrice');
           }
-          if (this.cart.length !== 0) {
-            this.saveCats();
-          }
+          /* } */
         }
+        if (this.cart.length !== 0) {
+          this.saveCats();
+        }
+      }
       this.getTotal();
       /* console.log(this.cartTotal); */
     },
     getTotal() {
-        if (this.cart) {
-          let cart = this.cart;
-          let sum = 0;
-          let i = 0;
-          while (i < cart.length) {
-            let item = cart[i];
-            sum += item.quantity * parseFloat(item.price);
-            i++;
-          }
-          if (this.cart.length > 0 && this.selResId == this.cartResId) {
-            localStorage.setItem('deliveryPrice', this.restaurants[this.$route.params.id - 1].delivery_price);
-          }
-          store.deliveryPrice = this.deliveryPrice;
-          this.deliveryPrice = localStorage.getItem('deliveryPrice');
-          sum += parseFloat(this.deliveryPrice); 
-          this.cartTotal = sum;
+      if (this.cart) {
+        let cart = this.cart;
+        let sum = 0;
+        let i = 0;
+        while (i < cart.length) {
+          let item = cart[i];
+          sum += item.quantity * parseFloat(item.price);
+          i++;
         }
-        store.total = this.cartTotal;
-        localStorage.setItem('total', this.cartTotal); 
+        if (this.cart.length > 0 && this.selResId == this.cartResId) {
+          localStorage.setItem('deliveryPrice', this.restaurants[this.$route.params.id - 1].delivery_price);
+        }
+        store.deliveryPrice = this.deliveryPrice;
+        this.deliveryPrice = localStorage.getItem('deliveryPrice');
+        sum += parseFloat(this.deliveryPrice);
+        this.cartTotal = sum;
+      }
+      store.total = this.cartTotal;
+      localStorage.setItem('total', this.cartTotal);
     },
     // metodo per salvare i gatti: aiutooooo
     saveCats() {
       // per salvare nel local storage:
       let parsed = JSON.stringify(this.cart);
       localStorage.setItem("cart", parsed);
-      this.viewCart(); 
+      this.viewCart();
     },
     filterRestaurants() {
       this.selResId = parseInt(this.$route.params.id);
@@ -147,7 +147,7 @@ export default {
       else {
         this.cartResId = this.selResId;
       }
-    }, 
+    },
     emptyCart() {
       this.cart = [];
       localStorage.clear();
@@ -162,7 +162,21 @@ export default {
     scrollToTop() {
       window.history.back();
       window.scrollBy(0, -1000);
-    }
+    },
+    getRestaurantImage(restaurant) {
+      if (restaurant.image.includes("restaurants-image")) {
+        return 'http://[::1]:5173/storage/app/public/' + restaurant.image;
+      } else {
+        return restaurant.image;
+      }
+    },
+    getDishImage(dish) {
+      if (dish.image.includes("uploads")) {
+        return 'http://[::1]:5173/storage/app/public/' + dish.image;
+      } else {
+        return dish.image;
+      }
+    },
   },
   computed: {
     filteredRestaurants() {
@@ -200,7 +214,7 @@ export default {
         </div>
 
         <div class="restaurant_image">
-          <img :src="restaurant.image" :alt="restaurant.business_name">
+          <img :src="getRestaurantImage(restaurant)" :alt="restaurant.business_name">
         </div>
 
         <ul class="restaurant_informations">
@@ -244,7 +258,7 @@ export default {
               <div class="info-top">
 
                 <div class="my_bigBox-img">
-                  <img :src="dish.image" :alt="dish.name">
+                  <img :src="getDishImage(dish)" :alt="dish.name">
                 </div>
 
                 <!-- info dish -->
@@ -269,7 +283,7 @@ export default {
                   <span class="Pricebuble"> {{ dish.price }} &euro;</span>
                 </div>
 
-                <button id="add" class="addToCart_btn" @click="added(dish,this)">
+                <button id="add" class="addToCart_btn" @click="added(dish, this)">
                   <i class="fa-solid fa-cart-shopping"></i>Aggiungi al carrello
                 </button>
               </div>
@@ -279,7 +293,7 @@ export default {
                 <div class="tag-order"></div>
                 <div class="tag-not-available">Non disponibile</div>
               </div>
-              
+
             </div>
 
           </div>
@@ -290,7 +304,8 @@ export default {
         <div class="cart" v-if="showCart">
 
           <!-- carrello con items -->
-          <div class="modify-cart" v-if="this.cart.length !== 0 && this.requestChangeCart == false && this.cart.length !== 0">
+          <div class="modify-cart"
+            v-if="this.cart.length !== 0 && this.requestChangeCart == false && this.cart.length !== 0">
             <h3>Il tuo ordine</h3>
 
             <!-- ciclo per stampare items con bottoni per modifica quantità -->
@@ -299,24 +314,24 @@ export default {
               <!-- items -->
               <div class="d-flex justify-content-between align-items-center">
 
-                <div>{{item.name}}</div>
+                <div>{{ item.name }}</div>
 
                 <!-- totale -->
-                <div >{{ parseFloat(item.price * item.quantity).toFixed(2) }}€</div>
+                <div>{{ parseFloat(item.price * item.quantity).toFixed(2) }}€</div>
               </div>
 
               <!-- bottoni per modifica -->
               <div class="modify-order">
-                <div class="btn-order" >
+                <div class="btn-order">
                   <div @click="remove(item.id)">
                     <i class="sign-order fa-solid fa-circle-minus"></i>
-                  </div> 
-                    {{item.quantity}} 
+                  </div>
+                  {{ item.quantity }}
                   <div id="ok" @click="added(item, this)">
                     <i class="sign-order fa-solid fa-circle-plus"></i>
                   </div>
                 </div>
-              </div> 
+              </div>
             </div>
 
             <!-- consegna -->
@@ -359,9 +374,9 @@ export default {
             <h3>Vuoi creare un nuovo carrello&quest;</h3>
             <p>In questo modo cancelli il carrello esistente e ne crei uno nuovo.</p>
             <button class="keep-cart-btn" @click="this.requestChangeCart = false">Annulla</button>
-            <button class="empty-cart-btn" @click="emptyCart()">Nuovo carrello</button> 
+            <button class="empty-cart-btn" @click="emptyCart()">Nuovo carrello</button>
           </div>
-          
+
         </div>
 
       </div>
@@ -390,11 +405,11 @@ export default {
       color: $text_black;
       font-size: 18px;
 
-      .fa-utensils{
+      .fa-utensils {
         margin-right: 10px;
       }
 
-      &:hover{
+      &:hover {
         color: $btn_red;
       }
     }
@@ -488,14 +503,15 @@ export default {
       position: relative;
 
       // layover per dish not available
-      .dish-not-available{
+      .dish-not-available {
         position: absolute;
         @include flex(both-center);
         width: 100%;
         height: 100%;
         border-radius: 10px;
         background-color: #0000004d;
-        .tag-not-available{
+
+        .tag-not-available {
           font-size: 30px;
           background-color: #eeeeee;
           border: 3px solid $btn_red;
@@ -504,7 +520,7 @@ export default {
           padding: 5px 7px;
         }
       }
-      
+
       .info-top {
         flex-grow: 1;
       }
@@ -587,7 +603,7 @@ export default {
   .cart {
     width: 29%;
     background-color: #F9FAFA;
-    border: 1px solid  #eaeaea;
+    border: 1px solid #eaeaea;
     box-shadow: 0px 5px 5px 0px #ececec;
     border-radius: 10px;
     margin: 20px 0;
@@ -598,17 +614,17 @@ export default {
     top: 120px;
 
     // modifica quantità
-    .modify-cart{
-      h3{
+    .modify-cart {
+      h3 {
         font-weight: bold;
         margin-bottom: 10px;
       }
 
-      .row-order{
-        margin-bottom: 10px ;
+      .row-order {
+        margin-bottom: 10px;
       }
 
-      button{
+      button {
         margin-top: 20px;
         width: 100%;
         border: 3px solid $btn_red;
@@ -617,43 +633,44 @@ export default {
         color: $btn_red;
         padding: 3px 0;
 
-        &:hover{
+        &:hover {
           background-color: $btn_red;
           color: #fff;
         }
       }
 
       // modifica ordini
-    .modify-order{
-      font-size: 18px;
-      display: flex;
-      height: 100%;
-      align-items: center;
-
-      
-      .btn-order{
+      .modify-order {
+        font-size: 18px;
         display: flex;
+        height: 100%;
         align-items: center;
-        width: 70px;
-        text-align: left;
-        .sign-order{
-          color: $btn_red;
-          margin: 0 5px;
+
+
+        .btn-order {
+          display: flex;
+          align-items: center;
+          width: 70px;
+          text-align: left;
+
+          .sign-order {
+            color: $btn_red;
+            margin: 0 5px;
+          }
         }
       }
     }
-    }
 
     // carrello vuoto
-    .empty_cart{
+    .empty_cart {
       text-align: center;
 
-      h3{
+      h3 {
         font-weight: bold;
         opacity: 0.8;
       }
 
-      img{
+      img {
         width: 200px;
         height: 200px;
         margin: 50px 0;
@@ -664,52 +681,54 @@ export default {
         border-radius: 50%;
       }
 
-      p{
+      p {
         font-size: 18px;
         opacity: 0.8;
       }
     }
 
     // carrello già pieno
-    .cart-notification{
-      h3{
+    .cart-notification {
+      h3 {
         font-weight: bold;
         text-align: center;
       }
 
-      p{
+      p {
         margin: 30px 0;
       }
-      .keep-cart-btn, .empty-cart-btn{
+
+      .keep-cart-btn,
+      .empty-cart-btn {
         width: calc(100% / 2 - 4px);
         margin-inline: 2px;
         border-radius: 10px;
         padding: 5px 0;
       }
 
-      .keep-cart-btn{
+      .keep-cart-btn {
         background-color: #F9FAFA;
         color: $btn_red;
         border: 1px solid $btn_red;
 
-        &:hover{
+        &:hover {
           border: 2px solid $btn_red;
         }
       }
 
-      .empty-cart-btn{
+      .empty-cart-btn {
         background-color: $btn_red ;
-        color: #F9FAFA ;
+        color: #F9FAFA;
         border: 2px solid $btn_red;
 
-        &:hover{
+        &:hover {
           background-color: #e96d5d;
         }
       }
     }
   }
 
-  .piatto-esaurito{
+  .piatto-esaurito {
     width: 100%;
     height: 100%;
     background-color: black;
