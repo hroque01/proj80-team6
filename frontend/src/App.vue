@@ -27,7 +27,6 @@ export default {
     <AppMain />
   </main>
 
-  <AppFaq/>
   <AppFooter />
 </template>
 
