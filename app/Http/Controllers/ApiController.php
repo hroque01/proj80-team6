@@ -102,8 +102,8 @@ class ApiController extends Controller
             'completed' => 'filled|boolean',
 
             // Info carta pagamento
-            'card_number' => 'required|string',
-            'expiration_date' => 'required|string'
+            //'card_number' => 'required|string',
+            //'expiration_date' => 'required|string'
         ]);
 
         $order_number = rand(1, 1000);
@@ -115,14 +115,14 @@ class ApiController extends Controller
         $create_date = Carbon::now();
         $data['create_date'] = $create_date;
 
-        $completed = (bool) rand(0, 1);
-        $data['completed'] = $completed;
+        // $completed = (bool) rand(0, 1);
+        // $data['completed'] = $completed;
 
-        $card_number = rand(100000, 999999);
-        $data['card_number'] = $card_number;
+        // $card_number = rand(100000, 999999);
+        // $data['card_number'] = $card_number;
 
-        $expiration_date = rand(1000, 9999);
-        $data['expiration_date'] = $expiration_date;
+        // $expiration_date = rand(1000, 9999);
+        // $data['expiration_date'] = $expiration_date;
 
         $order = Order::make($data);
 

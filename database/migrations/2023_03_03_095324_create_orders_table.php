@@ -26,8 +26,8 @@ return new class extends Migration
             $table->string('phone_number');
             $table->boolean('completed');
 
-            $table->string('card_number');
-            $table->string('expiration_date');
+            //$table->string('card_number');
+            //$table->string('expiration_date');
 
             $table->timestamps();
         });

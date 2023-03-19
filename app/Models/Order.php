@@ -21,8 +21,8 @@ class Order extends Model
         'phone_number',
         'completed',
 
-        'card_number',
-        'expiration_date'
+        //'card_number',
+        //'expiration_date'
 
     ];
 
