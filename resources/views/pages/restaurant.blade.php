@@ -13,7 +13,7 @@
     </h4>
 
     <h5>
-      <a class="create-crud" href="{{ route('dishCreate') }}"> &plus; Aggiungi un nuovo piatto al tuo men&ugrave; e attira sempre pi&ugrave; clienti! Cosa aspetti?</a>
+      <a class="create-crud" href="{{ route('dishCreate') }}">Aggiungi un piatto</a>
     </h5>
     
     <div class="cards-res-hub">

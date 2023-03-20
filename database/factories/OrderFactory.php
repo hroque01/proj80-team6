@@ -17,7 +17,7 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            'create_date' => fake()->dateTimeBetween( '-2 years', 'now'),
+            'create_date' => fake()->dateTimeBetween( '-2 years', '-2 days'),
             'create_time' => fake()->time(),
             'order_number' => fake()->unique()->numberBetween(100000, 999999),
             'total' => fake()->randomFloat(2, 10, 100),
