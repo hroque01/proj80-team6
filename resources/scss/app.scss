@@ -12,9 +12,10 @@ body {
     height: 100vh;
 }
 
-img{
+img {
     max-width: 100%;
 }
+
 a {
     text-decoration: none;
 }
@@ -151,59 +152,59 @@ ul li {
         color: $btn_red;
     }
 
-    p{
+    p {
         font-size: 20px;
         line-height: 15px;
     }
-    
-    .dash-flex{
+
+    .dash-flex {
         display: flex;
 
-        .card{
+        .card {
             width: calc(50% - 50px);
             margin-inline: 25px;
 
-            .header-dash{
+            .header-dash {
                 text-align: center;
                 padding: 20px 0;
                 font-size: 30px;
             }
 
-            .card-body{
+            .card-body {
                 padding: 0 40px 40px 40px;
 
-                img{
+                img {
                     border-radius: 10px;
                 }
 
                 ul {
                     margin: 30px 0;
                     padding-left: 0;
-            
+
                     span {
                         color: $btn_red;
                         margin-right: 10px;
                         font-weight: bold;
                     }
                 }
-            
+
                 .dashboard-link {
                     display: flex;
                     justify-content: center;
-            
+
                     .btn {
                         border: 2px solid $btn_red;
                     }
-            
+
                     a {
                         @include button;
                     }
-            
+
                 }
             }
         }
     }
-    
+
 }
 
 // REGOLE NAVBAR:
@@ -333,16 +334,20 @@ nav {
 }
 
 // REGOLE ORDINI ELENCO:
-.orders{
+.orders {
     display: flex;
     margin: 10px 0;
-    
-    .sx-order{
+
+    .sx-order {
         width: 200px;
     }
 
-    .total-order{
+    .total-order {
         padding: 2px 5px;
         border-radius: 5px;
     }
+}
+
+#myChart {
+    padding-top: 40px;
 }
