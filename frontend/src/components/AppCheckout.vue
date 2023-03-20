@@ -178,25 +178,27 @@ export default {
         this.getCompleted();
 
         const button = document.getElementById('submit-button');
+
         braintree.dropin.create({
             authorization: 'sandbox_zjjssg84_pwdgvf89z8k3wgdg',
             selector: '#dropin-container',
             locale: 'it_IT',
         }, function (err, instance) {
-            if (button) {
-                button.addEventListener('click', function () {
-                    instance.requestPaymentMethod(function (err, payload) {
-                        if (payload) {
-                            console.log(localStorage.getItem('paid'));
-                            localStorage.setItem('paid', true);
-                            console.log(localStorage.getItem('paid'));
-                        } else {
-                            console.log("Dentro errore paymenent", err, payload);
-                            console.log(localStorage.getItem('paid'));
-                        }
-                    });
-                })
-            }
+            button.addEventListener('click', function () {
+
+                document.getElementById("input").style.display = "block";
+
+                instance.requestPaymentMethod(function (err, payload) {
+                    if (payload) {
+                        console.log(localStorage.getItem('paid'));
+                        localStorage.setItem('paid', true);
+                        console.log(localStorage.getItem('paid'));
+                    } else {
+                        console.log("Dentro errore paymenent", err, payload);
+                        console.log(localStorage.getItem('paid'));
+                    }
+                });
+            })
         });
     }
 }
@@ -217,7 +219,7 @@ export default {
         <div class="form-cart">
             <form v-show="showForm1" @submit.prevent="submitForm1">
 
-                <div>
+                <div v-if="!showForm2">
                     <div class="flex-form">
                         <label for="customer_name">Inserisci il tuo nome e cognome<span>*</span></label>
                         <input type="text" placeholder="Mario Rossi" name="customer_name" v-model="newOrder.customer_name"
@@ -240,16 +242,16 @@ export default {
                             required>
                     </div>
                 </div>
-                <button @click.prevent="showForm2 = true">Prosegui</button>
+                <button @click.prevent="showForm2 = true" v-if="showForm1 && !showForm2">Vai al pagamento</button>
 
                 <!-- Deve apparire solamente quando  il secondo form esce "pagamento eseguitp" -->
-                <input @click="orderSubmit()" type="submit" value="Invia">
+                <input id="input" @click="orderSubmit()" type="submit" value="Procedi all'ordine" v-if="!showForm1">
             </form>
 
             <div v-show="showForm2">
                 <div id="dropin-container">
                 </div>
-                <button id="submit-button">Prosegui</button>
+                <button id="submit-button" @click="showForm1 = false">Conferma pagamento</button>
             </div>
 
 
