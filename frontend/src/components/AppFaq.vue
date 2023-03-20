@@ -91,7 +91,7 @@ section {
         }
 
         .accordion {
-            width: 900px;
+            width: 100%;
             --bs-accordion-btn-focus-box-shadow: 0 0 0 2px #ee5743;
             --bs-accordion-active-color: #ee5743;
             --bs-accordion-active-bg: #fff;
