@@ -31,4 +31,15 @@ header {
   background-size: cover;
   background-position: center;
 }
+
+@media only screen and (max-width: 650px) {
+
+  header {
+    background-position: -250px;
+  }
+
+}
+
+
+
 </style>

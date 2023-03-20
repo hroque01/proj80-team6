@@ -97,4 +97,36 @@ export default {
         }
     }
 }
+
+@media only screen and (max-width: 670px) {
+
+    .jumbotron {
+        color: #fff;
+        width: 130%;
+        height: 350px;
+        border-radius: 0;
+        position: relative;
+        overflow: hidden;
+
+        .ms_content {
+            text-align: center;
+            position: absolute;
+            left: 38%;
+            top: 30%;
+            transform: translate(-50%, -50%);
+        }
+        .ms_slider {
+
+            .ms_card {
+                display: inline-block;
+                margin-inline: 5px;
+                border-radius: 15px;
+                width: 130px;
+                height: 50px;
+            }
+
+        }
+    }
+
+}
 </style>

@@ -167,4 +167,59 @@ footer {
         }
     }
 }
+
+@media only screen and (max-width: 750px) {
+
+    footer{
+        .logo-footer{
+            p{
+                width: 100%;
+            }
+        }
+    }
+
+}
+
+@media only screen and (max-width: 540px) {
+
+    .raghiFooter{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+
+        .ciaoRaghi{
+            width: calc(90% / 2 - 20px);
+
+            .card_Rag {
+                
+            }
+        }
+    }
+
+} 
+
+@media only screen and (max-width: 470px) {
+
+    .raghiFooter{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+
+        .ciaoRaghi{
+            width: 90%;
+
+            .card_Rag {
+
+                img{
+                    object-position: 0px -40px;
+                }
+                
+            }
+        }
+    }
+
+}
+
 </style>
