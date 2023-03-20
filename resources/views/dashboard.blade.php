@@ -26,10 +26,10 @@
                     </div>
                     <div class="modal-body">
                         <img src="{{Auth::user()-> restaurant->image}}" alt="">
-                        <p>{{Auth::user()-> restaurant->address}}</p> 
-                        <p><em>{{Auth::user()-> restaurant->description}}</em> </p> 
-                        <p>{{Auth::user()-> restaurant->opening_time}} - {{Auth::user()-> restaurant->closure_time}}</p>
-                        <p>{{Auth::user()-> restaurant->delivery_price}}&euro;</p>
+                        <p><span><i class="fa-solid fa-location-dot"></i></span>{{Auth::user()-> restaurant->address}}</p> 
+                        <p><span><i class="fa-solid fa-align-left"></i></span><em>{{Auth::user()-> restaurant->description}}</em> </p> 
+                        <p><span><i class="fa-regular fa-clock"></i></span>{{Auth::user()-> restaurant->opening_time}} - {{Auth::user()-> restaurant->closure_time}}</p>
+                        <p><span><i class="fa-solid fa-motorcycle"></i></span>{{Auth::user()-> restaurant->delivery_price}}&euro;</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-modal-dash" data-dismiss="modal">Close</button>
