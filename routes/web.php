@@ -15,6 +15,8 @@ use App\Http\Controllers\MainController;
 |
 */
 
+Route::get('/', [MainController::class, 'home'])->name('home');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

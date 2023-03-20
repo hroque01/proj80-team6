@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Storage;
 class MainController extends Controller
 {
 
+    public function home() {
+        return redirect('login');
+    }
+
     // Metodo per stampare in home lista restaurants, dishes:
     public function restaurant(Restaurant $restaurant) {
         $restaurants = Restaurant::all();

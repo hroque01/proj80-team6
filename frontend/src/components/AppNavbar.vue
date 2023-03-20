@@ -52,19 +52,19 @@ export default {
 
       <ul>
         <!-- v-for array print in DOM -->
-        <li v-for="(link, index) in links" :key="index">
+        <li v-for="(link, index) in links" :key="index" class="navCentred_resp">
           <!-- V-bind and v-for for icons -->
           <!-- v-for for text -->
           <span v-if="link.href">
             <a :href="link.url">
               <i v-if="link.icon === 'fa-solid fa-utensils'" :class="link.icon" class="icon-nav"></i>
-              {{ link.text }}</a>
+              <span class="navBtn_txt">{{ link.text }}</span></a>
           </span>
 
           <span v-else>
             <router-link :to="{ name: 'checkout' }">
               <i v-if="link.icon === 'fa-solid fa-cart-shopping'" :class="link.icon" class="icon-nav"></i>
-              {{ link.text }}
+              <span class="navBtn_txt">{{ link.text }}</span>
               <span v-if="index === 1 && store.total > 0">{{ parseFloat(store.total).toFixed(2) }} &euro;</span>
             </router-link>
           </span>
@@ -134,4 +134,15 @@ nav {
 // .general-btn {
 //   @include button;
 // }
+
+@media only screen and (max-width: 460px) {
+
+  .navCentred_resp{
+    padding-left: 20px;
+  }
+  .navBtn_txt{
+    display: none;
+  }
+
+}
 </style>
