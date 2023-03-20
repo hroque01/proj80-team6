@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 use App\Models\Typology;
 use App\Models\Dish;
 use App\Models\Restaurant;
 use App\Models\Order;
+use App\Mail\NewOrder;
+
 
 use Carbon\Carbon;
 
@@ -115,6 +118,8 @@ class ApiController extends Controller
         $create_date = Carbon::now();
         $data['create_date'] = $create_date;
 
+        $email = $data['email'];
+
         // $completed = (bool) rand(0, 1);
         // $data['completed'] = $completed;
 
@@ -131,6 +136,9 @@ class ApiController extends Controller
 
         $order -> restaurant() -> associate($restaurant);
         $order -> save();
+
+        Mail::to($email)
+            -> send(new NewOrder($order));
 
         return response() -> json([
             'success' => true,
