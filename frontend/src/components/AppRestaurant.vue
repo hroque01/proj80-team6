@@ -478,6 +478,10 @@ section {
 
 @media only screen and (max-width: 470px) {
 
+    .restaurantWrapper{
+        height: 625px;
+    }
+
     .mainTitle-container{
         padding-left: 10px;
     }
@@ -491,12 +495,19 @@ section {
 
         .nav-filter-container{
             width: 95%;
-            height: 150px;
+            height: 120px;
             margin: 0 auto;
+
+            .mb-3{
+                margin-bottom: 10px;
+            }
             .typologies-list{
                 display: flex;
+                gap: 25px;
+                margin-inline: -15px;
                 overflow-x: scroll;
                 scrollbar-width: none;
+                margin-top: -22px;
             }
 
             .icon-cat {

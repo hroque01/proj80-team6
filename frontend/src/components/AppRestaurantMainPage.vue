@@ -404,7 +404,7 @@ export default {
     margin-bottom: 40px;
 
     button {
-      padding: 5px 10px;
+      padding: 50px 10px;
       border: none;
       border-radius: 10px;
       background-color: #ffffff;

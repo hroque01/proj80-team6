@@ -77,7 +77,7 @@ export default {
 @use '../src/styles/partials/variables' as *;
 
 section {
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 
     .my_container {
         display: flex;
