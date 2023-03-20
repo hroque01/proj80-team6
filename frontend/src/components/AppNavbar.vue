@@ -44,7 +44,8 @@ export default {
 </script>
 
 <template>
-  <nav :class="{ 'navbar-black': $route.name !== 'home', 'fixed': $route.name === 'restaurant-detail' }">
+  <nav
+    :class="{ 'navbar-black': $route.name !== 'home', 'fixed': $route.name === 'restaurant-detail', 'margin-bottom': $route.name === 'checkout' }">
     <div class="my_container">
       <router-link to="/" class="navbar-brand">
         <img src="/public/img/logo.png" alt="logo deliveboo">
@@ -65,7 +66,8 @@ export default {
             <router-link :to="{ name: 'checkout' }">
               <i v-if="link.icon === 'fa-solid fa-cart-shopping'" :class="link.icon" class="icon-nav"></i>
               <span class="navBtn_txt">{{ link.text }}</span>
-              <span class="ps-1" v-if="index === 1 && store.total > 0">{{ parseFloat(store.total).toFixed(2) }} &euro;</span>
+              <span class="ps-1" v-if="index === 1 && store.total > 0">{{ parseFloat(store.total).toFixed(2) }}
+                &euro;</span>
             </router-link>
           </span>
         </li>
@@ -81,7 +83,7 @@ export default {
 
 nav {
   padding: 15px 0;
-  
+
   .my_container {
     display: flex;
     justify-content: space-between;
@@ -106,6 +108,10 @@ nav {
 
 .navbar-black {
   background-color: #000;
+}
+
+.margin-bottom {
+  margin-bottom: 50px;
 }
 
 .fixed {
@@ -137,10 +143,11 @@ nav {
 
 @media only screen and (max-width: 460px) {
 
-  .navCentred_resp{
+  .navCentred_resp {
     padding-left: 20px;
   }
-  .navBtn_txt{
+
+  .navBtn_txt {
     display: none;
   }
 

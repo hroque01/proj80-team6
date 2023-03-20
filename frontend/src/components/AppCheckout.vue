@@ -14,7 +14,7 @@ export default {
             // neanche noi sappiamo come faccia a funzionare tutto. PS: SAVE CATS ALWAYS!
             hideCart: false,
             showPayment: false,
-            showForm : false,
+            showForm: false,
             prova: true,
             store,
             cart: [],
@@ -201,8 +201,11 @@ export default {
         },
         onOrderSubmitted() {
             store.total = 0; // Svuotiamo il carrello
+        },
+        proceed() {
+            this.showForm = true;
+            document.querySelector(".form-cart").classList.remove("clickedBtnPay");
         }
-
 
     },
     computed: {
@@ -261,7 +264,7 @@ export default {
                         // this.$router.push('/order');
                         console.log(localStorage.getItem('paid'));
                         localStorage.setItem('paid', true);
-                        
+
                         console.log(localStorage.getItem('paid'));
 
                         button.classList.add('clickedBtnPay');
@@ -284,9 +287,9 @@ export default {
 </script>
 
 <template>
-    <div class="my_container" v-if="$route.name === 'checkout'" :class="this.prova === false ? 'flex' : ''">
+    <div class="my_container" v-if="$route.name === 'checkout'">
         <div class="cart" v-if="this.cart.length !== 0 && !hideCart">
-            <h3>Il tuo ordine</h3>
+            <h4>Il tuo ordine da: {{ cart[0].restaurant_name }}</h4>
 
             <!-- carrello modificabile -->
             <div v-for="item in this.cart">
@@ -330,10 +333,14 @@ export default {
                     <b v-if="store.total">{{ parseFloat(store.total).toFixed(2) }} €</b>
                 </div>
             </div>
-            <!-- <button @click="emptyCart">Svuota carrello</button> -->
-            <button @click="showForm = true" v-if="!showForm">Prosegui</button>
+
+            <div class="cart-notification" v-if="!showForm">
+                <button class="empty-cart-btn" @click="emptyCart">Svuota carrello</button>
+                <button class="keep-cart-btn" @click="proceed">Prosegui</button>
+            </div>
+
         </div>
-        
+
         <!-- carrello vuoto -->
         <div class="empty_cart" v-else>
             <h3><i class="fa-solid fa-cart-shopping"></i> Il tuo deliveboo</h3>
@@ -343,7 +350,7 @@ export default {
         <!-- fine carrello vuoto -->
 
         <!-- form -->
-        <div class="form-cart" >
+        <div class="form-cart clickedBtnPay">
             <form v-if="showForm && !showPayment">
 
                 <div>
@@ -383,8 +390,8 @@ export default {
             <div class="clickedBtnPay" id="confirmEmail">
                 <img src="../../public/img/logo-white.png" alt="">
                 <p>
-                    Ciao <span>{{newOrder.customer_name }}</span>! 
-                    Il tuo ordine &eacute; andato a buon fine. 
+                    Ciao <span>{{ newOrder.customer_name }}</span>!
+                    Il tuo ordine &egrave; andato a buon fine.
                 </p>
                 <p><i class="fa-regular fa-envelope"></i> Controlla la tua email</p>
             </div>
@@ -400,24 +407,56 @@ export default {
 @use '../src/styles/general.scss' as *;
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
-.flex{
-    display: flex;
-    justify-content: center;
-}
 
-.clickedBtnPay{
+.clickedBtnPay {
     display: none;
 }
+
 .my_container {
     display: flex;
 
-    h3{
+    h4 {
         font-weight: bold;
         margin-bottom: 20px;
     }
+
+    // carrello vuoto
+    .empty_cart {
+        text-align: center;
+        width: 32%;
+        background-color: #F9FAFA;
+        border: 1px solid #eaeaea;
+        box-shadow: 0px 5px 5px 0px #ececec;
+        border-radius: 10px;
+        padding: 20px 15px;
+        margin: 0 auto;
+
+        h3 {
+            font-weight: bold;
+            opacity: 0.8;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            margin: 50px 0;
+            padding: 5px;
+            filter: grayscale(100%);
+            opacity: 0.5;
+            border: 1px solid $btn_red;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+        p {
+            font-size: 18px;
+            opacity: 0.8;
+        }
+    }
+
     // carrello
     .cart {
-        width: 29%;
+        width: 32%;
         background-color: #F9FAFA;
         border: 1px solid #eaeaea;
         box-shadow: 0px 5px 5px 0px #ececec;
@@ -426,6 +465,7 @@ export default {
         height: 400px;
         overflow-y: auto;
         top: 120px;
+        margin: 0 auto;
 
         // bottoni modifica quantità
         .modify-order {
@@ -445,35 +485,54 @@ export default {
                     margin: 0 5px;
                     cursor: pointer;
                 }
-            } 
+            }
         }
 
-        // bottone pagamento
-        button {
-            margin-top: 20px;
-            width: 100%;
-            border: 3px solid $btn_red;
-            background-color: #F9FAFA;
-            border-radius: 10px;
-            color: $btn_red;
-            padding: 3px 0;
 
-            &:hover {
+        .cart-notification {
+            display: flex;
+            margin-top: 20px;
+
+            .keep-cart-btn,
+            .empty-cart-btn {
+                width: calc(100% / 2 - 4px);
+                margin-inline: 2px;
+                border-radius: 10px;
+                padding: 5px 0;
+            }
+
+            .empty-cart-btn {
+                background-color: #F9FAFA;
+                color: $btn_red;
+                border: 1px solid $btn_red;
+
+                &:hover {
+                    border: 2px solid $btn_red;
+                }
+            }
+
+            .keep-cart-btn {
                 background-color: $btn_red;
-                color: #fff;
+                color: #F9FAFA;
+                border: 2px solid $btn_red;
+
+                &:hover {
+                    background-color: #e96d5d;
+                }
             }
         }
     }
 
     // form
     .form-cart {
-        width: 70%;
-        margin-left: 1%;
+        width: 67%;
+        margin-left: 2%;
         background-color: #F9FAFA;
         border: 1px solid #eaeaea;
         box-shadow: 0px 5px 5px 0px #ececec;
         border-radius: 10px;
         padding: 20px 15px;
+        margin: 0 auto;
 
         //  form dati utente
         .flex-form {
@@ -485,8 +544,11 @@ export default {
             }
 
             input {
-                padding: 5px;
+                padding: 6px;
                 width: 55%;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                outline: none;
             }
         }
 
@@ -503,18 +565,18 @@ export default {
             }
         }
 
-        .form-data{
+        .form-data {
             display: block;
             margin: 0 auto;
         }
     }
 
     // braintree
-    .width-braintree{
-        width: 500px;   
+    .width-braintree {
+        width: 500px;
     }
 
-    .cervelloAlbero button{
+    .cervelloAlbero button {
         margin-top: 20px;
         border: 3px solid $btn_red;
         background-color: #F9FAFA;
@@ -529,7 +591,7 @@ export default {
     }
 
     // messaggio conferma ordine:
-    #confirmEmail{
+    #confirmEmail {
         text-align: center;
         font-size: 20px;
         padding: 20px 0;
@@ -543,20 +605,21 @@ export default {
             border: 2px solid $btn_red;
         }
 
-        .logo{
+        .logo {
             margin-left: 10px;
             color: $btn_red;
             font-weight: bold;
         }
 
-        p{
+        p {
             margin: 10px 0;
         }
-        .fa-envelope, span{
+
+        .fa-envelope,
+        span {
             color: $btn_red;
         }
     }
-    
-}
 
+}
 </style>

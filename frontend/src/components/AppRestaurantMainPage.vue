@@ -24,6 +24,7 @@ export default {
         price: "",
         image: "",
         restaurant_id: "",
+        restaurant_name: ""
       },
     }
   },
@@ -73,6 +74,14 @@ export default {
         this.cartadd.image = dish.image;
         this.cartadd.quantity = 1;
         this.cartadd.restaurant_id = dish.restaurant_id;
+
+        this.restaurants.forEach(restaurant => {
+          if (restaurant.id === dish.restaurant_id) {
+            this.cartadd.restaurant_name = restaurant.business_name;
+
+          }
+        });
+
         this.cart.push(this.cartadd);
         this.cartadd = {};
 
@@ -258,7 +267,7 @@ export default {
               <div class="info-top">
 
                 <div class="my_bigBox-img">
-                  <img :src="getDishImage(dish)" :alt="dish.name" :class="!dish.visible ? 'not-available-img' : ''" >
+                  <img :src="getDishImage(dish)" :alt="dish.name" :class="!dish.visible ? 'not-available-img' : ''">
                 </div>
 
                 <!-- info dish -->
@@ -284,13 +293,13 @@ export default {
                 </div>
 
                 <button id="add" class="addToCart_btn" @click="added(dish, this)">
-                  <i class="fa-solid fa-cart-shopping"></i><span class="addToCart_txt">Aggiungi al carrello</span> 
+                  <i class="fa-solid fa-cart-shopping"></i><span class="addToCart_txt">Aggiungi al carrello</span>
                 </button>
               </div>
 
               <!-- div che compare se piatto è esaurito -->
               <div v-if="!dish.visible" class="dish-not-available">
-                
+
                 <div class="tag-not-available">Non disponibile</div>
               </div>
 
@@ -390,9 +399,9 @@ export default {
 @use '../src/styles/partials/variables' as *;
 
 // filtro b/n per piatti non disponibili
-.not-available-img{
+.not-available-img {
   filter: grayscale(100%);
-  opacity: 0,8;
+  opacity: 0, 8;
 }
 
 .my_container {
@@ -664,7 +673,8 @@ export default {
             margin: 0 5px;
           }
 
-          .fa-circle-minus, .fa-circle-plus{
+          .fa-circle-minus,
+          .fa-circle-plus {
             cursor: pointer;
           }
         }
@@ -767,15 +777,16 @@ export default {
 
 @media only screen and (max-width: 1284px) {
 
-  .addToCart_btn{
+  .addToCart_btn {
     display: flex;
     width: 35px;
     height: 30px;
-    .addToCart_txt{
+
+    .addToCart_txt {
       display: none;
     }
   }
-  
+
 
 }
 
@@ -784,17 +795,17 @@ export default {
   .restaurant_header {
 
     .restaurant_image {
-    width: 40%;
-    height: 80%;
-    border: 1px solid #eaeaea;
-    box-shadow: 0px 5px 5px 0px #ececec;
-    border-radius: 10px;
+      width: 40%;
+      height: 80%;
+      border: 1px solid #eaeaea;
+      box-shadow: 0px 5px 5px 0px #ececec;
+      border-radius: 10px;
 
       img {
         width: 100%;
         display: block;
         border-radius: 10px;
-        
+
       }
 
     }
@@ -803,407 +814,407 @@ export default {
       padding-left: 50px;
       line-height: 30px;
 
-    svg {
-      width: 20px;
-      padding-right: 10px;
-    }
+      svg {
+        width: 20px;
+        padding-right: 10px;
+      }
 
-    .restaurantName {
-      font-size: 40px;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
+      .restaurantName {
+        font-size: 40px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
 
-    .delivery {
-      background-color: $btn_red;
-      padding: 5px 10px;
-      color: #fff;
-      border-radius: 10px;
+      .delivery {
+        background-color: $btn_red;
+        padding: 5px 10px;
+        color: #fff;
+        border-radius: 10px;
+      }
     }
-  }
 
   }
 }
 
 @media only screen and (max-width: 900px) {
 
-  .dish_cart{
+  .dish_cart {
     .menu_list {
-    width: 70%;
-    margin-right: 1%;
+      width: 70%;
+      margin-right: 1%;
 
-    .my_Boxes-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      margin-inline: -10px;
+      .my_Boxes-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        margin-inline: -10px;
 
-      .box-properties {
-        user-select: none;
+        .box-properties {
+          user-select: none;
+        }
       }
-    }
 
-    .my_bigBox {
-      width: 45%;
-      margin: 20px 10px;
-      background-color: #fff;
-      border: 1px solid #eaeaea;
-      box-shadow: 0px 10px 5px 0px #ececec;
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-
-      // layover per dish not available
-      .dish-not-available {
-        position: absolute;
-        @include flex(both-center);
-        width: 100%;
-        height: 100%;
+      .my_bigBox {
+        width: 45%;
+        margin: 20px 10px;
+        background-color: #fff;
+        border: 1px solid #eaeaea;
+        box-shadow: 0px 10px 5px 0px #ececec;
         border-radius: 10px;
-        background-color: #0000004d;
-
-        .tag-not-available {
-          font-size: 30px;
-          background-color: #eeeeeeaf;
-          border: 3px solid $btn_red;
-          border-radius: 10px;
-          color: $btn_red;
-          padding: 5px 7px;
-        }
-      }
-
-      .info-top {
-        flex-grow: 1;
-      }
-
-      .my_bigBox-img {
-        width: 100%;
-        object-fit: cover;
-        background-color: white;
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
-
-        img {
-          display: block;
-          width: 100%;
-          height: 180px;
-          object-fit: cover;
-          border-top-right-radius: 10px;
-          border-top-left-radius: 10px;
-        }
-      }
-
-      .my_bigBox-info-wrapper {
-        padding: 10px;
-        line-height: 25px;
-        color: #5a5a5a;
         display: flex;
         flex-direction: column;
+        position: relative;
 
-        .my_bigBox-info-DishName {
-          color: $text_black;
-          font-size: 14px;
-          font-weight: 600;
-        }
+        // layover per dish not available
+        .dish-not-available {
+          position: absolute;
+          @include flex(both-center);
+          width: 100%;
+          height: 100%;
+          border-radius: 10px;
+          background-color: #0000004d;
 
-        .my_bigBox-info-restaurantRating {
-          font-size: 12px;
-        }
-
-        .my_bigBox-info-OtherDishInfo {
-          display: flex;
-          flex-direction: column;
-          font-size: 12px;
-        }
-      }
-
-      .pay {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 50px 10px 10px 10px;
-
-        .dishPrice {
-          font-size: 15px;
-        }
-
-        .addToCart_btn {
-          background-color: $btn_red;
-          border: 2px solid $btn_red;
-          color: #fff;
-          padding: 5px;
-          border-radius: 8px;
-
-          &:hover {
-            background-color: #fff;
-            border: 2px solid $btn_red;
+          .tag-not-available {
+            font-size: 30px;
+            background-color: #eeeeeeaf;
+            border: 3px solid $btn_red;
+            border-radius: 10px;
             color: $btn_red;
+            padding: 5px 7px;
           }
         }
 
-        .fa-cart-shopping {
-          margin-right: 10px;
+        .info-top {
+          flex-grow: 1;
         }
+
+        .my_bigBox-img {
+          width: 100%;
+          object-fit: cover;
+          background-color: white;
+          border-top-right-radius: 10px;
+          border-top-left-radius: 10px;
+
+          img {
+            display: block;
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+          }
+        }
+
+        .my_bigBox-info-wrapper {
+          padding: 10px;
+          line-height: 25px;
+          color: #5a5a5a;
+          display: flex;
+          flex-direction: column;
+
+          .my_bigBox-info-DishName {
+            color: $text_black;
+            font-size: 14px;
+            font-weight: 600;
+          }
+
+          .my_bigBox-info-restaurantRating {
+            font-size: 12px;
+          }
+
+          .my_bigBox-info-OtherDishInfo {
+            display: flex;
+            flex-direction: column;
+            font-size: 12px;
+          }
+        }
+
+        .pay {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 50px 10px 10px 10px;
+
+          .dishPrice {
+            font-size: 15px;
+          }
+
+          .addToCart_btn {
+            background-color: $btn_red;
+            border: 2px solid $btn_red;
+            color: #fff;
+            padding: 5px;
+            border-radius: 8px;
+
+            &:hover {
+              background-color: #fff;
+              border: 2px solid $btn_red;
+              color: $btn_red;
+            }
+          }
+
+          .fa-cart-shopping {
+            margin-right: 10px;
+          }
+        }
+
       }
 
     }
-
-  }
   }
 
 }
 
 @media only screen and (max-width: 700px) {
-  .dish_cart{
+  .dish_cart {
     .menu_list {
       width: 49%;
       margin-right: 1%;
 
-    .my_Boxes-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      margin-inline: -10px;
+      .my_Boxes-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        margin-inline: -10px;
 
-      .box-properties {
-        user-select: none;
+        .box-properties {
+          user-select: none;
+        }
       }
-    }
 
-    .my_bigBox {
-      width: 100%;
-      margin: 20px 10px;
-      background-color: #fff;
-      border: 1px solid #eaeaea;
-      box-shadow: 0px 10px 5px 0px #ececec;
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-
-      // layover per dish not available
-      .dish-not-available {
-        position: absolute;
-        @include flex(both-center);
+      .my_bigBox {
         width: 100%;
-        height: 100%;
+        margin: 20px 10px;
+        background-color: #fff;
+        border: 1px solid #eaeaea;
+        box-shadow: 0px 10px 5px 0px #ececec;
         border-radius: 10px;
-        background-color: #0000004d;
-
-        .tag-not-available {
-          font-size: 30px;
-          background-color: #eeeeeeaf;
-          border: 3px solid $btn_red;
-          border-radius: 10px;
-          color: $btn_red;
-          padding: 5px 7px;
-        }
-      }
-
-      .info-top {
-        flex-grow: 1;
-      }
-
-      .my_bigBox-img {
-        width: 95%;
-        object-fit: cover;
-        background-color: white;
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
-
-        img {
-          display: block;
-          width: 100%;
-          height: 180px;
-          object-fit: cover;
-          border-top-right-radius: 10px;
-          border-top-left-radius: 10px;
-        }
-      }
-
-      .my_bigBox-info-wrapper {
-        padding: 10px;
-        line-height: 25px;
-        color: #5a5a5a;
         display: flex;
         flex-direction: column;
+        position: relative;
 
-        .my_bigBox-info-DishName {
-          color: $text_black;
-          font-size: 14px;
-          font-weight: 600;
+        // layover per dish not available
+        .dish-not-available {
+          position: absolute;
+          @include flex(both-center);
+          width: 100%;
+          height: 100%;
+          border-radius: 10px;
+          background-color: #0000004d;
+
+          .tag-not-available {
+            font-size: 30px;
+            background-color: #eeeeeeaf;
+            border: 3px solid $btn_red;
+            border-radius: 10px;
+            color: $btn_red;
+            padding: 5px 7px;
+          }
         }
 
-        .my_bigBox-info-restaurantRating {
-          font-size: 12px;
+        .info-top {
+          flex-grow: 1;
         }
 
-        .my_bigBox-info-OtherDishInfo {
+        .my_bigBox-img {
+          width: 95%;
+          object-fit: cover;
+          background-color: white;
+          border-top-right-radius: 10px;
+          border-top-left-radius: 10px;
+
+          img {
+            display: block;
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+          }
+        }
+
+        .my_bigBox-info-wrapper {
+          padding: 10px;
+          line-height: 25px;
+          color: #5a5a5a;
           display: flex;
           flex-direction: column;
-          font-size: 12px;
+
+          .my_bigBox-info-DishName {
+            color: $text_black;
+            font-size: 14px;
+            font-weight: 600;
+          }
+
+          .my_bigBox-info-restaurantRating {
+            font-size: 12px;
+          }
+
+          .my_bigBox-info-OtherDishInfo {
+            display: flex;
+            flex-direction: column;
+            font-size: 12px;
+          }
         }
+
+        .pay {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 50px 10px 10px 10px;
+
+          .dishPrice {
+            font-size: 15px;
+          }
+
+          .addToCart_btn {
+            background-color: $btn_red;
+            border: 2px solid $btn_red;
+            color: #fff;
+            padding: 5px;
+            border-radius: 8px;
+
+            &:hover {
+              background-color: #fff;
+              border: 2px solid $btn_red;
+              color: $btn_red;
+            }
+          }
+
+          .fa-cart-shopping {
+            margin-right: 10px;
+          }
+        }
+
       }
 
-      .pay {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 50px 10px 10px 10px;
+    }
 
-        .dishPrice {
-          font-size: 15px;
+    .cart {
+      width: 49%;
+      background-color: #F9FAFA;
+      border: 1px solid #eaeaea;
+      box-shadow: 0px 5px 5px 0px #ececec;
+      border-radius: 10px;
+      margin: 20px 0;
+      padding: 20px 15px;
+      height: 500px;
+      overflow-y: auto;
+      position: sticky;
+      top: 120px;
+
+      // modifica quantità
+      .modify-cart {
+        h3 {
+          font-weight: bold;
+          margin-bottom: 10px;
         }
 
-        .addToCart_btn {
-          background-color: $btn_red;
-          border: 2px solid $btn_red;
-          color: #fff;
-          padding: 5px;
-          border-radius: 8px;
+        .row-order {
+          margin-bottom: 10px;
+        }
+
+        button {
+          margin-top: 20px;
+          width: 100%;
+          border: 3px solid $btn_red;
+          background-color: #F9FAFA;
+          border-radius: 10px;
+          color: $btn_red;
+          padding: 3px 0;
 
           &:hover {
-            background-color: #fff;
-            border: 2px solid $btn_red;
-            color: $btn_red;
+            background-color: $btn_red;
+            color: #fff;
           }
         }
 
-        .fa-cart-shopping {
-          margin-right: 10px;
-        }
-      }
-
-    }
-
-  }
-
-  .cart {
-    width: 49%;
-    background-color: #F9FAFA;
-    border: 1px solid #eaeaea;
-    box-shadow: 0px 5px 5px 0px #ececec;
-    border-radius: 10px;
-    margin: 20px 0;
-    padding: 20px 15px;
-    height: 500px;
-    overflow-y: auto;
-    position: sticky;
-    top: 120px;
-
-    // modifica quantità
-    .modify-cart {
-      h3 {
-        font-weight: bold;
-        margin-bottom: 10px;
-      }
-
-      .row-order {
-        margin-bottom: 10px;
-      }
-
-      button {
-        margin-top: 20px;
-        width: 100%;
-        border: 3px solid $btn_red;
-        background-color: #F9FAFA;
-        border-radius: 10px;
-        color: $btn_red;
-        padding: 3px 0;
-
-        &:hover {
-          background-color: $btn_red;
-          color: #fff;
-        }
-      }
-
-      // modifica ordini
-      .modify-order {
-        font-size: 18px;
-        display: flex;
-        height: 100%;
-        align-items: center;
-
-
-        .btn-order {
+        // modifica ordini
+        .modify-order {
+          font-size: 18px;
           display: flex;
+          height: 100%;
           align-items: center;
-          width: 70px;
-          text-align: left;
-          
-          .sign-order {
-            color: $btn_red;
-            margin: 0 5px;
+
+
+          .btn-order {
+            display: flex;
+            align-items: center;
+            width: 70px;
+            text-align: left;
+
+            .sign-order {
+              color: $btn_red;
+              margin: 0 5px;
+            }
+          }
+        }
+      }
+
+      // carrello vuoto
+      .empty_cart {
+        text-align: center;
+
+        h3 {
+          font-weight: bold;
+          opacity: 0.8;
+        }
+
+        img {
+          width: 200px;
+          height: 200px;
+          margin: 50px 0;
+          padding: 5px;
+          filter: grayscale(100%);
+          opacity: 0.5;
+          border: 1px solid $btn_red;
+          border-radius: 50%;
+        }
+
+        p {
+          font-size: 18px;
+          opacity: 0.8;
+        }
+      }
+
+      // carrello già pieno
+      .cart-notification {
+        h3 {
+          font-weight: bold;
+          text-align: center;
+        }
+
+        p {
+          margin: 30px 0;
+        }
+
+        .keep-cart-btn,
+        .empty-cart-btn {
+          width: calc(100% / 2 - 4px);
+          margin-inline: 2px;
+          border-radius: 10px;
+          padding: 5px 0;
+        }
+
+        .keep-cart-btn {
+          background-color: #F9FAFA;
+          color: $btn_red;
+          border: 1px solid $btn_red;
+
+          &:hover {
+            border: 2px solid $btn_red;
+          }
+        }
+
+        .empty-cart-btn {
+          background-color: $btn_red ;
+          color: #F9FAFA;
+          border: 2px solid $btn_red;
+
+          &:hover {
+            background-color: #e96d5d;
           }
         }
       }
     }
-
-    // carrello vuoto
-    .empty_cart {
-      text-align: center;
-
-      h3 {
-        font-weight: bold;
-        opacity: 0.8;
-      }
-
-      img {
-        width: 200px;
-        height: 200px;
-        margin: 50px 0;
-        padding: 5px;
-        filter: grayscale(100%);
-        opacity: 0.5;
-        border: 1px solid $btn_red;
-        border-radius: 50%;
-      }
-
-      p {
-        font-size: 18px;
-        opacity: 0.8;
-      }
-    }
-
-    // carrello già pieno
-    .cart-notification {
-      h3 {
-        font-weight: bold;
-        text-align: center;
-      }
-
-      p {
-        margin: 30px 0;
-      }
-
-      .keep-cart-btn,
-      .empty-cart-btn {
-        width: calc(100% / 2 - 4px);
-        margin-inline: 2px;
-        border-radius: 10px;
-        padding: 5px 0;
-      }
-
-      .keep-cart-btn {
-        background-color: #F9FAFA;
-        color: $btn_red;
-        border: 1px solid $btn_red;
-
-        &:hover {
-          border: 2px solid $btn_red;
-        }
-      }
-
-      .empty-cart-btn {
-        background-color: $btn_red ;
-        color: #F9FAFA;
-        border: 2px solid $btn_red;
-
-        &:hover {
-          background-color: #e96d5d;
-        }
-      }
-    }
-  }
   }
 
 }
@@ -1213,16 +1224,16 @@ export default {
   .restaurant_header {
 
     .restaurant_image {
-    width: 100%;
-    border: 1px solid #eaeaea;
-    box-shadow: 0px 5px 5px 0px #ececec;
-    border-radius: 10px;
+      width: 100%;
+      border: 1px solid #eaeaea;
+      box-shadow: 0px 5px 5px 0px #ececec;
+      border-radius: 10px;
 
       img {
         width: 100%;
         display: block;
         border-radius: 10px;
-        
+
       }
 
     }
@@ -1234,6 +1245,7 @@ export default {
       margin: 0 auto;
       padding-left: 0px;
       padding-top: 30px;
+
       svg {
         width: 20px;
         padding-right: 10px;
@@ -1259,260 +1271,260 @@ export default {
 
 @media only screen and (max-width: 420px) {
 
-  .dish_cart{
+  .dish_cart {
     display: flex;
     justify-content: center;
+
     .menu_list {
       width: 95%;
       margin-right: 1%;
 
-    .my_Boxes-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      margin-inline: -10px;
+      .my_Boxes-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        margin-inline: -10px;
 
-      .box-properties {
-        user-select: none;
+        .box-properties {
+          user-select: none;
+        }
       }
-    }
 
-    .my_bigBox {
-      width: 100%;
-      margin: 20px 10px;
-      background-color: #fff;
-      border: 1px solid #eaeaea;
-      box-shadow: 0px 10px 5px 0px #ececec;
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-
-      // layover per dish not available
-      .dish-not-available {
-        position: absolute;
-        @include flex(both-center);
+      .my_bigBox {
         width: 100%;
-        height: 100%;
+        margin: 20px 10px;
+        background-color: #fff;
+        border: 1px solid #eaeaea;
+        box-shadow: 0px 10px 5px 0px #ececec;
         border-radius: 10px;
-        background-color: #0000004d;
-
-        .tag-not-available {
-          font-size: 30px;
-          background-color: #eeeeeeaf;
-          border: 3px solid $btn_red;
-          border-radius: 10px;
-          color: $btn_red;
-          padding: 5px 7px;
-        }
-      }
-
-      .info-top {
-        flex-grow: 1;
-      }
-
-      .my_bigBox-img {
-        width: 95%;
-        object-fit: cover;
-        background-color: white;
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
-
-        img {
-          display: block;
-          width: 100%;
-          height: 180px;
-          object-fit: cover;
-          border-top-right-radius: 10px;
-          border-top-left-radius: 10px;
-        }
-      }
-
-      .my_bigBox-info-wrapper {
-        padding: 10px;
-        line-height: 25px;
-        color: #5a5a5a;
         display: flex;
         flex-direction: column;
+        position: relative;
 
-        .my_bigBox-info-DishName {
-          color: $text_black;
-          font-size: 14px;
-          font-weight: 600;
+        // layover per dish not available
+        .dish-not-available {
+          position: absolute;
+          @include flex(both-center);
+          width: 100%;
+          height: 100%;
+          border-radius: 10px;
+          background-color: #0000004d;
+
+          .tag-not-available {
+            font-size: 30px;
+            background-color: #eeeeeeaf;
+            border: 3px solid $btn_red;
+            border-radius: 10px;
+            color: $btn_red;
+            padding: 5px 7px;
+          }
         }
 
-        .my_bigBox-info-restaurantRating {
-          font-size: 12px;
+        .info-top {
+          flex-grow: 1;
         }
 
-        .my_bigBox-info-OtherDishInfo {
+        .my_bigBox-img {
+          width: 95%;
+          object-fit: cover;
+          background-color: white;
+          border-top-right-radius: 10px;
+          border-top-left-radius: 10px;
+
+          img {
+            display: block;
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+          }
+        }
+
+        .my_bigBox-info-wrapper {
+          padding: 10px;
+          line-height: 25px;
+          color: #5a5a5a;
           display: flex;
           flex-direction: column;
-          font-size: 12px;
+
+          .my_bigBox-info-DishName {
+            color: $text_black;
+            font-size: 14px;
+            font-weight: 600;
+          }
+
+          .my_bigBox-info-restaurantRating {
+            font-size: 12px;
+          }
+
+          .my_bigBox-info-OtherDishInfo {
+            display: flex;
+            flex-direction: column;
+            font-size: 12px;
+          }
         }
+
+        .pay {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 50px 10px 10px 10px;
+
+          .dishPrice {
+            font-size: 15px;
+          }
+
+          .addToCart_btn {
+            background-color: $btn_red;
+            border: 2px solid $btn_red;
+            color: #fff;
+            padding: 5px;
+            border-radius: 8px;
+
+            &:hover {
+              background-color: #fff;
+              border: 2px solid $btn_red;
+              color: $btn_red;
+            }
+          }
+
+          .fa-cart-shopping {
+            margin-right: 10px;
+          }
+        }
+
       }
 
-      .pay {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 50px 10px 10px 10px;
+    }
 
-        .dishPrice {
-          font-size: 15px;
+    .cart {
+      width: 95%;
+      background-color: #F9FAFA;
+      border: 1px solid #eaeaea;
+      box-shadow: 0px 5px 5px 0px #ececec;
+      border-radius: 10px;
+      margin: 20px 0;
+      padding: 20px 15px;
+      height: 500px;
+      overflow-y: auto;
+      position: sticky;
+      top: 120px;
+
+      // modifica quantità
+      .modify-cart {
+        h3 {
+          font-weight: bold;
+          margin-bottom: 10px;
         }
 
-        .addToCart_btn {
-          background-color: $btn_red;
-          border: 2px solid $btn_red;
-          color: #fff;
-          padding: 5px;
-          border-radius: 8px;
+        .row-order {
+          margin-bottom: 10px;
+        }
+
+        button {
+          margin-top: 20px;
+          width: 100%;
+          border: 3px solid $btn_red;
+          background-color: #F9FAFA;
+          border-radius: 10px;
+          color: $btn_red;
+          padding: 3px 0;
 
           &:hover {
-            background-color: #fff;
-            border: 2px solid $btn_red;
-            color: $btn_red;
+            background-color: $btn_red;
+            color: #fff;
           }
         }
 
-        .fa-cart-shopping {
-          margin-right: 10px;
-        }
-      }
-
-    }
-
-  }
-
-  .cart {
-    width: 95%;
-    background-color: #F9FAFA;
-    border: 1px solid #eaeaea;
-    box-shadow: 0px 5px 5px 0px #ececec;
-    border-radius: 10px;
-    margin: 20px 0;
-    padding: 20px 15px;
-    height: 500px;
-    overflow-y: auto;
-    position: sticky;
-    top: 120px;
-
-    // modifica quantità
-    .modify-cart {
-      h3 {
-        font-weight: bold;
-        margin-bottom: 10px;
-      }
-
-      .row-order {
-        margin-bottom: 10px;
-      }
-
-      button {
-        margin-top: 20px;
-        width: 100%;
-        border: 3px solid $btn_red;
-        background-color: #F9FAFA;
-        border-radius: 10px;
-        color: $btn_red;
-        padding: 3px 0;
-
-        &:hover {
-          background-color: $btn_red;
-          color: #fff;
-        }
-      }
-
-      // modifica ordini
-      .modify-order {
-        font-size: 18px;
-        display: flex;
-        height: 100%;
-        align-items: center;
-
-
-        .btn-order {
+        // modifica ordini
+        .modify-order {
+          font-size: 18px;
           display: flex;
+          height: 100%;
           align-items: center;
-          width: 70px;
-          text-align: left;
 
-          .sign-order {
-            color: $btn_red;
-            margin: 0 5px;
+
+          .btn-order {
+            display: flex;
+            align-items: center;
+            width: 70px;
+            text-align: left;
+
+            .sign-order {
+              color: $btn_red;
+              margin: 0 5px;
+            }
+          }
+        }
+      }
+
+      // carrello vuoto
+      .empty_cart {
+        text-align: center;
+
+        h3 {
+          font-weight: bold;
+          opacity: 0.8;
+        }
+
+        img {
+          width: 200px;
+          height: 200px;
+          margin: 50px 0;
+          padding: 5px;
+          filter: grayscale(100%);
+          opacity: 0.5;
+          border: 1px solid $btn_red;
+          border-radius: 50%;
+        }
+
+        p {
+          font-size: 18px;
+          opacity: 0.8;
+        }
+      }
+
+      // carrello già pieno
+      .cart-notification {
+        h3 {
+          font-weight: bold;
+          text-align: center;
+        }
+
+        p {
+          margin: 30px 0;
+        }
+
+        .keep-cart-btn,
+        .empty-cart-btn {
+          width: calc(100% / 2 - 4px);
+          margin-inline: 2px;
+          border-radius: 10px;
+          padding: 5px 0;
+        }
+
+        .keep-cart-btn {
+          background-color: #F9FAFA;
+          color: $btn_red;
+          border: 1px solid $btn_red;
+
+          &:hover {
+            border: 2px solid $btn_red;
+          }
+        }
+
+        .empty-cart-btn {
+          background-color: $btn_red ;
+          color: #F9FAFA;
+          border: 2px solid $btn_red;
+
+          &:hover {
+            background-color: #e96d5d;
           }
         }
       }
     }
-
-    // carrello vuoto
-    .empty_cart {
-      text-align: center;
-
-      h3 {
-        font-weight: bold;
-        opacity: 0.8;
-      }
-
-      img {
-        width: 200px;
-        height: 200px;
-        margin: 50px 0;
-        padding: 5px;
-        filter: grayscale(100%);
-        opacity: 0.5;
-        border: 1px solid $btn_red;
-        border-radius: 50%;
-      }
-
-      p {
-        font-size: 18px;
-        opacity: 0.8;
-      }
-    }
-
-    // carrello già pieno
-    .cart-notification {
-      h3 {
-        font-weight: bold;
-        text-align: center;
-      }
-
-      p {
-        margin: 30px 0;
-      }
-
-      .keep-cart-btn,
-      .empty-cart-btn {
-        width: calc(100% / 2 - 4px);
-        margin-inline: 2px;
-        border-radius: 10px;
-        padding: 5px 0;
-      }
-
-      .keep-cart-btn {
-        background-color: #F9FAFA;
-        color: $btn_red;
-        border: 1px solid $btn_red;
-
-        &:hover {
-          border: 2px solid $btn_red;
-        }
-      }
-
-      .empty-cart-btn {
-        background-color: $btn_red ;
-        color: #F9FAFA;
-        border: 2px solid $btn_red;
-
-        &:hover {
-          background-color: #e96d5d;
-        }
-      }
-    }
-  }
   }
 
 }
-
 </style>
