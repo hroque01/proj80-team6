@@ -11,7 +11,16 @@ export default {
     data() {
         return {
             store,
-            cartTotalValue: 0,
+            cart: [],
+            deliveryPrice: null,
+            cartTotal: 0,
+            cartadd: {
+                id: "",
+                name: "",
+                price: "",
+                image: "",
+                restaurant_id: "",
+            },
             orders: [],
             newOrder: {
                 customer_name: '',
@@ -25,26 +34,86 @@ export default {
                 create_date: '',
                 completed: '',
             },
-            showForm1: true,
             restaurantId: null,
-            showForm2: false,
         };
     },
+    created() {
+        this.getCartData();
+    },
     methods: {
-        emptyCart() {
-            localStorage.clear();
-            store.length = 0;
-            store.total = 0;
-        },
-        getCartTotal() {
-            if (localStorage.total) {
-                this.cartTotalValue = localStorage.total;
-                store.total = this.cartTotalValue;
-            } else {
-                this.cartTotalValue = 0;
-                store.total = this.cartTotalValue;
+        getCartData() {
+            this.deliveryPrice = store.deliveryPrice;
+            this.cartTotal = store.total;
+            if (localStorage.getItem("cart")) {
+                this.cart = JSON.parse(localStorage.getItem("cart"));
             }
-            localStorage.total = this.cartTotalValue;
+        },
+        emptyCart() {
+            this.cart = [];
+            localStorage.clear();
+        },
+        added(dish) {
+            // when user choose a buy, this function add that in cart
+            const item = Object.values(this.cart).find(item => item.id === dish.id);
+            if (item) {
+                item.quantity += 1;
+                this.saveCats();
+            } else {
+                // cartadd is here to get all things that click or chosen by user
+                this.cartadd.id = dish.id;
+                this.cartadd.name = dish.name;
+                this.cartadd.price = dish.price;
+                this.cartadd.image = dish.image;
+                this.cartadd.quantity = 1;
+                this.cartadd.restaurant_id = dish.restaurant_id;
+                this.cart.push(this.cartadd);
+                this.cartadd = {};
+
+                this.saveCats(); // this function most important to save all inform of products
+            }
+            this.updateTotal();
+            console.log(this.cartTotal);
+        },
+        remove(id) {
+            const item = Object.values(this.cart).find(item => item.id === id);
+            if (item !== undefined) {
+                item.quantity -= 1;
+                if (item.quantity <= 0) {
+                    const index = this.cart.indexOf(item);
+                    this.cart.splice(index, 1);
+                    if (this.cart.length == 0) {
+                        localStorage.removeItem('cart');
+                        localStorage.removeItem('total');
+                        localStorage.removeItem('deliveryPrice');
+                    }
+                }
+                if (this.cart.length !== 0) {
+                    this.saveCats();
+                }
+            }
+            this.getCartData();
+        },
+        updateTotal() {
+            let cart = this.cart;
+            let sum = 0;
+            let i = 0;
+            while (i < cart.length) {
+                let item = cart[i];
+                sum += item.quantity * parseFloat(item.price);
+                i++;
+            }
+            store.deliveryPrice = this.deliveryPrice;
+            this.deliveryPrice = localStorage.getItem('deliveryPrice');
+            sum += parseFloat(this.deliveryPrice);
+            this.cartTotal = sum;
+            store.total = this.cartTotal;
+            localStorage.setItem('total', this.cartTotal);
+        },
+        saveCats() {
+            // per salvare nel local storage:
+            let parsed = JSON.stringify(this.cart);
+            localStorage.setItem("cart", parsed);
+            this.getCartData();
         },
         updateOrders() {
             axios.get(API_URL + 'order')
@@ -60,26 +129,22 @@ export default {
                 })
                 .catch(err => console.log(err));
         },
-        //butta tutto in database
-        orderSubmit() {
+        orderSubmit(e) {
+            e.preventDefault();
             console.log(this.newOrder);
 
-            if (localStorage.getItem('paid') == 'true') {
-                axios.post(API_URL + 'order/store', this.newOrder)
-                    .then(res => {
-                        const data = res.data;
-                        const success = data.success;
-                        if (success) {
-                            this.updateOrders();
-                            localStorage.clear();
-                            store.total = 0;
-                            this.$router.push('/order');
-                        }
-                    })
-                    .catch(err => console.log(err));
-            } else {
-                console.log('Il pagamento non è stato effettuato con successo.');
-            }
+            axios.post(API_URL + 'order/store', this.newOrder)
+                .then(res => {
+                    const data = res.data;
+                    const success = data.success;
+                    if (success) {
+                        this.updateOrders();
+                        localStorage.clear();
+                        store.total = 0;
+                        this.$router.push('/order');
+                    }
+                })
+                .catch(err => console.log(err));
         },
         findRestaurant() {
             const cartItem = localStorage.getItem('cart');
@@ -123,18 +188,11 @@ export default {
             this.newOrder.create_date = create_date;
         },
         getCompleted() {
-            let bool = Math.floor(Math.random() * 0) + 1;
-
-            this.newOrder.completed = bool;
+            this.newOrder.completed = true;
         },
-        prosegui() {
+        onOrderSubmitted() {
+            store.total = 0; // Svuotiamo il carrello
         },
-        submitForm1() {
-            this.showForm1 = false;
-        },
-        submitForm2() {
-            this.showForm1 = true;
-        }
 
     },
     computed: {
@@ -166,9 +224,9 @@ export default {
             store.total = total;
             return items;
         },
+
     },
     mounted() {
-        this.getCartTotal();
         this.updateOrders();
         this.findRestaurant();
         this.getCurrentTime();
@@ -186,8 +244,6 @@ export default {
         }, function (err, instance) {
             button.addEventListener('click', function () {
 
-                document.getElementById("input").style.display = "block";
-
                 instance.requestPaymentMethod(function (err, payload) {
                     if (payload) {
                         console.log(localStorage.getItem('paid'));
@@ -200,6 +256,9 @@ export default {
                 });
             })
         });
+    },
+    updated() {
+        this.updateTotal();
     }
 }
 
@@ -207,19 +266,59 @@ export default {
 
 <template>
     <div class="my_container" v-if="$route.name === 'checkout'">
-        <div class="cart">
-            <h3>
-                Carrello bello
-            </h3>
-            <div v-if="store.total > 0">
-                Totale: {{ parseFloat(store.total).toFixed(2) }}
+        <div class="cart" v-if="this.cart.length !== 0">
+            <h3>Il tuo ordine</h3>
+            <div v-for="item in this.cart">
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div>{{ item.name }}</div>
+
+                    <div>{{ parseFloat(item.price * item.quantity).toFixed(2) }}€</div>
+                </div>
+                <div class="modify-order">
+                    <div class="btn-order">
+                        <div @click="remove(item.id)">
+                            <i class="sign-order fa-solid fa-circle-minus"></i>
+                        </div>
+                        {{ item.quantity }}
+                        <div @click="added(item)">
+                            <i class="sign-order fa-solid fa-circle-plus"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <hr class="mt-3">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <b>Consegna</b>
+                </div>
+                <div>
+                    {{ store.deliveryPrice }} €
+                </div>
+            </div>
+            <hr class="mt-4">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <b>Totale</b>
+                </div>
+                <div>
+                    <b v-if="store.total">{{ parseFloat(store.total).toFixed(2) }} €</b>
+                </div>
+            </div>
+            <button @click="emptyCart">Svuota carrello</button>
         </div>
+        <!-- carrello vuoto -->
+        <div class="empty_cart" v-else>
+            <h3><i class="fa-solid fa-cart-shopping"></i> Il tuo deliveboo</h3>
+            <img src="/public/img/logo-white.png" alt="logo deliveboo">
+            <p>Non hai ancora aggiunto alcun prodotto. Quando lo farai, compariranno qui!</p>
+        </div>
+        <!-- fine carrello vuoto -->
 
         <div class="form-cart">
-            <form v-show="showForm1" @submit.prevent="submitForm1">
+            <form>
 
-                <div v-if="!showForm2">
+                <div>
                     <div class="flex-form">
                         <label for="customer_name">Inserisci il tuo nome e cognome<span>*</span></label>
                         <input type="text" placeholder="Mario Rossi" name="customer_name" v-model="newOrder.customer_name"
@@ -242,27 +341,25 @@ export default {
                             required>
                     </div>
                 </div>
-                <button @click.prevent="showForm2 = true" v-if="showForm1 && !showForm2">Vai al pagamento</button>
 
                 <!-- Deve apparire solamente quando  il secondo form esce "pagamento eseguitp" -->
-                <input id="input" @click="orderSubmit()" type="submit" value="Procedi all'ordine" v-if="!showForm1">
+                <input @click="orderSubmit" type="submit" value="Procedi all'ordine">
             </form>
 
-            <div v-show="showForm2">
+            <div>
                 <div id="dropin-container">
                 </div>
-                <button id="submit-button" @click="showForm1 = false">Conferma pagamento</button>
+                <button id="submit-button">Conferma pagamento</button>
             </div>
 
-
-            <!-- <button @click="prosegui" v-if="!showSubmit" class="prosegui">Prosegui</button> -->
+            <button>Vai al pagamento</button>
         </div>
 
-    </div>
 
-    <router-view v-if="$route.name === 'order'"></router-view>
+    </div>
 </template>
 
+<router-view v-if="$route.name === 'order'"></router-view>
 <style lang="scss" scoped>
 @use '../src/styles/general.scss' as *;
 @use '../src/styles/partials/mixins' as *;
@@ -289,6 +386,27 @@ export default {
         border: 1px solid #000;
         height: 307px;
         width: 20%;
+
+        .modify-order {
+            font-size: 18px;
+            display: flex;
+            height: 100%;
+            align-items: center;
+
+
+            .btn-order {
+                display: flex;
+                align-items: center;
+                width: 70px;
+                text-align: left;
+
+                .sign-order {
+                    color: $btn_red;
+                    margin: 0 5px;
+                    cursor: pointer;
+                }
+            }
+        }
     }
 
     form {
