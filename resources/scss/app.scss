@@ -249,6 +249,12 @@ ul li {
 }
 
 // REGOLE DASHBOARD:
+
+.modal-content{
+    width: 95%;
+    margin: 0 10%;
+}
+
 .dashboard-card {
 
     .dashboard-title{
@@ -259,7 +265,7 @@ ul li {
 
         p{
             font-size: 20px;
-            line-height: 15px;
+            line-height: 20px;
         }
     }
     
@@ -356,7 +362,7 @@ ul li {
         }
 
         p {
-            font-size: 20px;
+            font-size: 14px;
             line-height: 20px;
         }
 
