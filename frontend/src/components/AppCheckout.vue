@@ -295,7 +295,7 @@ export default {
             <div v-for="item in this.cart">
                 <div class="d-flex justify-content-between align-items-center">
 
-                    <div>{{ item.name }}</div>
+                    <div><span v-if="showForm">{{ item.quantity }}x</span> {{ item.name }}</div>
 
                     <div>{{ parseFloat(item.price * item.quantity).toFixed(2) }}€</div>
                 </div>
@@ -388,7 +388,7 @@ export default {
             </div>
 
             <div class="clickedBtnPay" id="confirmEmail">
-                <img src="../../public/img/logo-white.png" alt="">
+                <img src="../../public/img/logo-white.png" alt="logo deliveboo">
                 <p>
                     Ciao <span>{{ newOrder.customer_name }}</span>!
                     Il tuo ordine &egrave; andato a buon fine.
