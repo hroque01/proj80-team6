@@ -9,7 +9,7 @@
 
         <div class="orders">
             <div class="sx-order"> Data e ora ordine:</div>
-            <div>{{$order-> create_date}} - {{$order-> create_time}}</div>
+            <div>{{$order-> create_date}} - {{substr($order-> create_time, 0, -3)}}</div> 
         </div>
         <div class="orders">
             <div class="sx-order">Nome cliente:</div>
