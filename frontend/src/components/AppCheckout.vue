@@ -297,7 +297,7 @@ export default {
 
                     <div><span v-if="showForm">{{ item.quantity }}x</span> {{ item.name }}</div>
 
-                    <div>{{ parseFloat(item.price * item.quantity).toFixed(2) }}€</div>
+                    <div>{{ parseFloat(item.price * item.quantity).toFixed(2) }}&euro;</div>
                 </div>
 
                 <!-- bottoni da nascondere quando carrello non più modificabile -->
@@ -321,7 +321,7 @@ export default {
                     <b>Consegna</b>
                 </div>
                 <div>
-                    {{ store.deliveryPrice }} €
+                    {{ store.deliveryPrice }}&euro;
                 </div>
             </div>
             <hr class="mt-4">
@@ -330,7 +330,7 @@ export default {
                     <b>Totale</b>
                 </div>
                 <div>
-                    <b v-if="store.total">{{ parseFloat(store.total).toFixed(2) }} €</b>
+                    <b v-if="store.total">{{ parseFloat(store.total).toFixed(2) }}&euro;</b>
                 </div>
             </div>
 
@@ -419,7 +419,7 @@ export default {
         font-weight: bold;
         margin-bottom: 20px;
 
-        span{
+        span {
             color: $btn_red;
         }
     }

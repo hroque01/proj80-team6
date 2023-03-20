@@ -289,7 +289,7 @@ export default {
 
               <div class="pay">
                 <div class="dishPrice" v-if="dish">
-                  <span class="Pricebuble"> {{ dish.price }} &euro;</span>
+                  <span class="Pricebuble"> {{ dish.price }}&euro;</span>
                 </div>
 
                 <button id="add" class="addToCart_btn" @click="added(dish, this)">
@@ -326,7 +326,7 @@ export default {
                 <div>{{ item.name }}</div>
 
                 <!-- totale -->
-                <div>{{ parseFloat(item.price * item.quantity).toFixed(2) }}€</div>
+                <div>{{ parseFloat(item.price * item.quantity).toFixed(2) }}&euro;</div>
               </div>
 
               <!-- bottoni per modifica -->
@@ -350,7 +350,7 @@ export default {
                 <b>Consegna</b>
               </div>
               <div>
-                {{ store.deliveryPrice }} €
+                {{ store.deliveryPrice }}&euro;
               </div>
             </div>
             <hr class="mt-4">
@@ -361,7 +361,7 @@ export default {
                 <b>Totale</b>
               </div>
               <div>
-                <b v-if="store.total">{{ parseFloat(store.total).toFixed(2) }} €</b>
+                <b v-if="store.total">{{ parseFloat(store.total).toFixed(2) }}&euro;</b>
               </div>
             </div>
 
