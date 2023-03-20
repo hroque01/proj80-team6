@@ -472,7 +472,7 @@ export default {
         box-shadow: 0px 5px 5px 0px #ececec;
         border-radius: 10px;
         padding: 20px 15px;
-        height: 400px;
+        min-height: 400px;
         overflow-y: auto;
         top: 120px;
         margin: 0 auto;
@@ -539,7 +539,7 @@ export default {
         background-color: #F9FAFA;
         border: 1px solid #eaeaea;
         box-shadow: 0px 5px 5px 0px #ececec;
-        height: 400px;
+        min-height: 400px;
         border-radius: 10px;
         padding: 20px 15px;
         margin: 0 auto;
