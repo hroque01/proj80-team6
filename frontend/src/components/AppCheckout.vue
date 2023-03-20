@@ -10,11 +10,11 @@ export default {
     name: 'AppCheckout',
     data() {
         return {
+            // a te che stai leggendo questo codice, buona fortuna e sai perchè? perchè non capirete nulla perchè  
+            // neanche noi sappiamo come faccia a funzionare tutto. PS: SAVE CATS ALWAYS!
             hideCart: false,
             showPayment: false,
-            showBrainTree: false,
             showForm : false,
-            showForm2: false,
             store,
             cart: [],
             deliveryPrice: null,
@@ -144,7 +144,6 @@ export default {
                     const success = data.success;
                     if (success) {
                         this.updateOrders();
-                        this.showForm2 = true;
                         this.showPayment = true;
                         document.getElementById('submit-button').classList.remove("clickedBtnPay");
                         // localStorage.clear();
@@ -201,13 +200,7 @@ export default {
         },
         onOrderSubmitted() {
             store.total = 0; // Svuotiamo il carrello
-        },
-        saveDogs(){
-            // document.getElementById('dropin-container').classList.remove("clickedBtnPay");
-            this.showBrainTree = true; 
-            this.hideBtn = false;
-            this.showForm2 = false;
-        },
+        }
 
 
     },
