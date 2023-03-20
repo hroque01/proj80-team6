@@ -41,12 +41,31 @@ export default {
                 completed: '',
             },
             restaurantId: null,
+            errors: {},
         };
     },
     created() {
         this.getCartData();
     },
     methods: {
+        validateForm() {
+        this.errors = {};
+        if (!this.newOrder.customer_name) {
+            this.errors.customer_name = 'Il nome del cliente è obbligatorio.';
+        }
+        if (!this.newOrder.address) {
+            this.errors.address = 'L\'indirizzo è obbligatorio.';
+        }
+        if (!this.newOrder.email) {
+            this.errors.email = 'L\'email è obbligatoria.';
+        }
+        if (!this.newOrder.phone_number) {
+            this.errors.phone_number = 'Il numero di telefono è obbligatorio.';
+        }
+        if (Object.keys(this.errors).length === 0) {
+            this.orderSubmit();
+        }
+        },
         getCartData() {
             this.deliveryPrice = store.deliveryPrice;
             this.cartTotal = store.total;
@@ -138,6 +157,21 @@ export default {
         orderSubmit(e) {
             e.preventDefault();
             console.log(this.newOrder);
+            if (!this.newOrder.customer_name) {
+                this.errors.customer_name = 'Inserisci il campo!';
+            }
+            if (!this.newOrder.address) {
+                this.errors.address = 'Inserisci il campo!';
+            }
+            if (!this.newOrder.email) {
+                this.errors.email = 'Inserisci il campo!';
+            }
+            if (!this.newOrder.phone_number) {
+                this.errors.phone_number = 'Inserisci il campo!';
+            }
+            if (Object.keys(this.errors).length === 0) {
+                this.orderSubmit();
+            }
 
             axios.post(API_URL + 'order/store', this.newOrder)
                 .then(res => {
@@ -356,30 +390,51 @@ export default {
 
         <!-- form -->
         <div class="form-cart clickedBtnPay">
-            <form v-if="showForm && !showPayment">
+            <form v-if="showForm && !showPayment" v-on:submit.prevent>
 
                 <div>
                     <h3>Dettagli cliente</h3>
                     <div class="flex-form">
-                        <label for="customer_name">Nome e cognome<span>*</span></label>
-                        <input type="text" placeholder="Mario Rossi" name="customer_name" v-model="newOrder.customer_name"
-                            required class="input-form">
+                        <div class="items d-flex flex-column align-items-center">
+                            <div class="items d-flex justify-content-between align-items-center">
+                                <label for="customer_name">Nome e cognome<span>*</span></label>
+                                <input type="text" placeholder="Mario Rossi" name="customer_name" v-model="newOrder.customer_name"
+                                required class="input-form">
+                            </div>
+                            <span v-if="errors.customer_name" class="error d-flex marginino">{{ errors.customer_name }}</span>
+                        </div>
                     </div>
 
                     <div class="flex-form">
-                        <label for="address">Indirizzo<span>*</span></label>
-                        <input type="text" placeholder="Via Roma, 10" name="address" v-model="newOrder.address" required>
+                        <div class="items d-flex flex-column align-items-center">
+                            <div class="items d-flex justify-content-between align-items-center">
+                                <label for="address">Indirizzo<span>*</span></label>
+                                <input type="text" placeholder="Via Roma, 10" name="address" v-model="newOrder.address" required>
+                            </div>
+                            <span v-if="errors.address" class="error d-flex marginino">{{ errors.address }}</span>
+                        </div>
                     </div>
 
                     <div class="flex-form">
-                        <label for="email">Email<span>*</span></label>
-                        <input type="email" placeholder="email@prova.it" name="email" v-model="newOrder.email" required>
+                        <div class="items d-flex flex-column align-items-center">
+                            <div class="items d-flex justify-content-between align-items-center">
+                                 <label for="email">Email<span>*</span></label>
+                                <input type="email" placeholder="email@prova.it" name="email" v-model="newOrder.email" required>
+                            </div>
+                            <span v-if="errors.email" class="error d-flex marginino">{{ errors.email }}</span>
+                        </div>
                     </div>
 
                     <div class="flex-form">
-                        <label for="phone_number">Recapito telefonico<span>*</span></label>
-                        <input type="text" placeholder="3468888888" name="phone_number" v-model="newOrder.phone_number"
-                            required>
+                        <div class="items d-flex flex-column align-items-center">
+                            <div class="items d-flex justify-content-between align-items-center">
+                                <label for="phone_number">Recapito telefonico<span>*</span></label>
+                                <input type="text" placeholder="3468888888" name="phone_number" v-model="newOrder.phone_number" required>
+                            </div>
+                            <span v-if="errors.phone_number" class="error d-flex marginino">{{ errors.phone_number }}</span>
+                        </div>
+                      
+                        
                     </div>
                 </div>
 
@@ -649,6 +704,15 @@ export default {
     }
 
 }
+
+.items{
+    width: 100%;
+}
+
+.marginino {
+    margin-left: 5%;
+}
+
 
 @media only screen and (max-width: 650px) {
 
