@@ -271,6 +271,7 @@ export default {
                         document.getElementById('dropin-container').classList.add('clickedBtnPay');
                         document.querySelector('.cart').classList.add('clickedBtnPay');
                         document.getElementById('confirmEmail').classList.remove('clickedBtnPay');
+                        document.getElementById('confirmEmail').classList.add('flex-style');
                     } else {
                         console.log("Dentro errore paymenent", err, payload);
                         console.log(localStorage.getItem('paid'));
@@ -410,6 +411,10 @@ export default {
 
 .clickedBtnPay {
     display: none;
+}
+
+.flex-style {
+    display: flex;
 }
 
 .my_container {
@@ -605,7 +610,6 @@ export default {
         text-align: center;
         font-size: 20px;
         padding: 20px 0;
-        display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: center;
