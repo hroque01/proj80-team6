@@ -289,7 +289,7 @@ export default {
 <template>
     <div class="my_container" v-if="$route.name === 'checkout'">
         <div class="cart" v-if="this.cart.length !== 0 && !hideCart">
-            <h4>Il tuo ordine da: {{ cart[0].restaurant_name }}</h4>
+            <h4>Il tuo ordine da <span>{{ cart[0].restaurant_name }}</span></h4>
 
             <!-- carrello modificabile -->
             <div v-for="item in this.cart">
@@ -418,6 +418,10 @@ export default {
     h4 {
         font-weight: bold;
         margin-bottom: 20px;
+
+        span{
+            color: $btn_red;
+        }
     }
 
     // carrello vuoto
@@ -525,8 +529,8 @@ export default {
 
     // form
     .form-cart {
-        width: 67%;
-        margin-left: 2%;
+        width: 65%;
+        margin-left: 3%;
         background-color: #F9FAFA;
         border: 1px solid #eaeaea;
         box-shadow: 0px 5px 5px 0px #ececec;
