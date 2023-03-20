@@ -522,6 +522,33 @@ section {
         
     }
 
+    .nav-filter-container{
+        width: 100%;
+    }
+    .my_container{
+        margin-inline: 0;
+        width: 100%;
+    }
+
+    .restaurants_box {
+        .restaurantWrapper {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 0px;
+            height: 600px;
+            overflow-y: auto;
+            justify-content: center;
+        }
+    }
+
+    nav{
+        ul{
+            li{
+                border-bottom: 0px solid #eaeaea;
+            }
+        }
+    }
+
 }
 
 
