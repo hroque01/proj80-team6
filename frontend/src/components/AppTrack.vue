@@ -93,6 +93,12 @@ section {
             padding: 5px;
             @include flex(flex);
 
+            &:nth-child(2) {
+                svg {
+                    transform: scale(0.75);
+                }
+            }
+
             .ms_icon {
                 width: 30px;
                 font-size: 30px;
@@ -147,8 +153,8 @@ section {
 
 @media only screen and (max-width: 1250px) {
 
-    .my_container{
-        img{
+    .my_container {
+        img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -165,30 +171,32 @@ section {
         position: relative;
         overflow: hidden;
 
-        .my_container{
+        .my_container {
             display: block;
-            .txt{
+
+            .txt {
                 width: 100%;
                 text-align: center;
-                .trackNoShow-resp{
+
+                .trackNoShow-resp {
                     display: none;
                 }
             }
 
-            .my_buttons{
+            .my_buttons {
                 gap: 15px;
             }
 
-            .my_button{
-                .smaller{
+            .my_button {
+                .smaller {
                     font-size: 0;
                 }
 
-                .bigger{
+                .bigger {
                     font-size: 11px;
                 }
 
-                .ms_icon{
+                .ms_icon {
                     font-size: 25px;
                 }
 
@@ -199,7 +207,7 @@ section {
                 justify-content: center;
                 padding: 10px 0;
                 margin-top: 20px;
-                
+
             }
         }
     }
@@ -214,9 +222,7 @@ section {
             height: 50px;
         }
 
-    }   
+    }
 
 }
-
-
 </style>
