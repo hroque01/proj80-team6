@@ -1,15 +1,7 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>Deliveboo - Team 6</title>
-
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,9 +10,8 @@
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>
-
+    
 <body>
-    <div id="app">
 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
 
@@ -83,6 +74,11 @@
                                     <a class="dropdown-item" href="{{ url('dashboard') }}">{{__('Dashboard')}}</a>
                                     <a class="dropdown-item" href="{{ url('restaurant') }}">{{__('Il tuo ristorante')}}</a>
                                     <a class="dropdown-item" href="{{ url('order') }}">{{__('I tuoi ordini')}}</a>
+                                @elseif (Request::is('chart'))
+                                    <a class="dropdown-item" href="{{ url('dashboard') }}">{{__('Dashboard')}}</a>
+                                    <a class="dropdown-item" href="{{ url('restaurant') }}">{{__('Il tuo ristorante')}}</a>
+                                    <a class="dropdown-item" href="{{ url('order') }}">{{__('I tuoi ordini')}}</a>
+                                    <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profilo')}}</a>
                                 @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
@@ -99,14 +95,41 @@
                 </div>
             </div>
         </nav>
-
-        <main class="bg">
-            @yield('content')
-        </main>
         
-
-        
+    <div class="my_container">
+        <canvas id="myChart" height="100px"></canvas>
     </div>
-</body>
 
+</body>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+<script type="text/javascript">
+  
+      var labels =  {{ Js::from($labels) }};
+      var orders =  {{ Js::from($data) }};
+  
+      const data = {
+        labels: labels,
+        datasets: [{
+          label: 'Le statistiche dei tuoi ordini',
+          backgroundColor: '#ee5743',
+          borderColor: 'rgb(255, 99, 132)',
+          data: orders,
+        }]
+      };
+  
+      const config = {
+        type: 'bar',
+        data: data,
+        options: {}
+      };
+  
+      const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+      );
+  
+</script>
 </html>
