@@ -4,8 +4,14 @@
 
 
 // REGOLE GENERALI:
+
+
 body {
     color: $text_black;
+}
+
+main{
+    background-color: #fff;
 }
 
 #app {
@@ -710,6 +716,10 @@ nav {
 
 @media screen and (max-width: 450px) {
 
+    main{
+        background-color: #fff;
+    }
+
     .show-dish {
         display: flex;
         flex-direction: column;
@@ -718,6 +728,7 @@ nav {
         box-shadow: 0px 5px 5px 0px #ececec;
         border-radius: 10px;
         padding: 20px;
+        background-color: #fff;
     
     
         .text-card {
@@ -905,7 +916,7 @@ nav {
         background-image: url('../img/rotate_device.jpg');
         background-repeat: no-repeat;
         background-position-x: center;
-        background-position-y: 50%;
+        background-position-y: 65%;
         background-size: 200px;
     }
 
