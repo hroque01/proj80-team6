@@ -10,6 +10,11 @@ export default {
     name: 'AppCheckout',
     data() {
         return {
+            // a te che stai leggendo questo codice, buona fortuna e sai perchè? perchè non capirete nulla perchè  
+            // neanche noi sappiamo come faccia a funzionare tutto. PS: SAVE CATS ALWAYS!
+            hideCart: false,
+            showPayment: false,
+            showForm : false,
             store,
             cart: [],
             deliveryPrice: null,
@@ -139,9 +144,12 @@ export default {
                     const success = data.success;
                     if (success) {
                         this.updateOrders();
-                        localStorage.clear();
-                        store.total = 0;
-                        this.$router.push('/order');
+                        this.showPayment = true;
+                        document.getElementById('submit-button').classList.remove("clickedBtnPay");
+                        // localStorage.clear();
+                        // store.total = 0;
+                        // this.$router.push('/order');
+                        document.getElementById('dropin-container').classList.remove("clickedBtnPay");
                     }
                 })
                 .catch(err => console.log(err));
@@ -192,7 +200,8 @@ export default {
         },
         onOrderSubmitted() {
             store.total = 0; // Svuotiamo il carrello
-        },
+        }
+
 
     },
     computed: {
@@ -246,9 +255,18 @@ export default {
 
                 instance.requestPaymentMethod(function (err, payload) {
                     if (payload) {
+                        localStorage.clear();
+                        store.total = 0;
+                        // this.$router.push('/order');
                         console.log(localStorage.getItem('paid'));
                         localStorage.setItem('paid', true);
+                        
                         console.log(localStorage.getItem('paid'));
+
+                        button.classList.add('clickedBtnPay');
+                        document.getElementById('dropin-container').classList.add('clickedBtnPay');
+                        document.querySelector('.cart').classList.add('clickedBtnPay');
+                        document.getElementById('confirmEmail').classList.remove('clickedBtnPay');
                     } else {
                         console.log("Dentro errore paymenent", err, payload);
                         console.log(localStorage.getItem('paid'));
@@ -266,8 +284,10 @@ export default {
 
 <template>
     <div class="my_container" v-if="$route.name === 'checkout'">
-        <div class="cart" v-if="this.cart.length !== 0">
+        <div class="cart" v-if="this.cart.length !== 0 && !hideCart">
             <h3>Il tuo ordine</h3>
+
+            <!-- carrello modificabile -->
             <div v-for="item in this.cart">
                 <div class="d-flex justify-content-between align-items-center">
 
@@ -275,7 +295,9 @@ export default {
 
                     <div>{{ parseFloat(item.price * item.quantity).toFixed(2) }}€</div>
                 </div>
-                <div class="modify-order">
+
+                <!-- bottoni da nascondere quando carrello non più modificabile -->
+                <div class="modify-order" v-if="!showForm">
                     <div class="btn-order">
                         <div @click="remove(item.id)">
                             <i class="sign-order fa-solid fa-circle-minus"></i>
@@ -287,6 +309,10 @@ export default {
                     </div>
                 </div>
             </div>
+            <!-- chiusura carrello modificabile -->
+
+
+
             <hr class="mt-3">
             <div class="d-flex justify-content-between">
                 <div>
@@ -305,8 +331,10 @@ export default {
                     <b v-if="store.total">{{ parseFloat(store.total).toFixed(2) }} €</b>
                 </div>
             </div>
-            <button @click="emptyCart">Svuota carrello</button>
+            <!-- <button @click="emptyCart">Svuota carrello</button> -->
+            <button @click="showForm = true" v-if="!showForm">Vai al pagamento</button>
         </div>
+        
         <!-- carrello vuoto -->
         <div class="empty_cart" v-else>
             <h3><i class="fa-solid fa-cart-shopping"></i> Il tuo deliveboo</h3>
@@ -315,8 +343,9 @@ export default {
         </div>
         <!-- fine carrello vuoto -->
 
-        <div class="form-cart">
-            <form>
+        <!-- form -->
+        <div class="form-cart" >
+            <form v-if="showForm && !showPayment">
 
                 <div>
                     <div class="flex-form">
@@ -343,16 +372,16 @@ export default {
                 </div>
 
                 <!-- Deve apparire solamente quando  il secondo form esce "pagamento eseguitp" -->
-                <input @click="orderSubmit" type="submit" value="Procedi all'ordine">
+                <input @click="orderSubmit" type="submit" value="Procedi all'ordine" v-if="!showPayment">
             </form>
 
             <div>
-                <div id="dropin-container">
+                <div id="dropin-container" class="clickedBtnPay">
                 </div>
-                <button id="submit-button">Conferma pagamento</button>
+                <button id="submit-button" class="clickedBtnPay">Conferma pagamento</button>
             </div>
 
-            <button>Vai al pagamento</button>
+            <div class="clickedBtnPay" id="confirmEmail">CIAOOOOOOOOO</div>
         </div>
 
 
@@ -365,6 +394,9 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
+.clickedBtnPay{
+    display: none;
+}
 .my_container {
     display: flex;
     justify-content: space-between;
@@ -384,7 +416,6 @@ export default {
 
     .cart {
         border: 1px solid #000;
-        height: 307px;
         width: 20%;
 
         .modify-order {
