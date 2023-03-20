@@ -466,7 +466,7 @@ export default {
 
     // carrello
     .cart {
-        width: 28%;
+        width: 300px;
         background-color: #F9FAFA;
         border: 1px solid #eaeaea;
         box-shadow: 0px 5px 5px 0px #ececec;
