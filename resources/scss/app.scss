@@ -301,6 +301,137 @@ ul li {
     
 }
 
+@media screen and (max-width: 767px) {
+
+    .dashboard-card {
+        max-width: 760px;
+        .dashboard-title span {
+            color: $btn_red;
+        }
+    
+        p{
+            font-size: 20px;
+            line-height: 20px;
+        }
+        
+        .dash-flex{
+            display: flex;
+    
+            .card{
+                width: calc(50% - 20px);
+                margin-inline: 15px;
+    
+                .header-dash{
+                    text-align: center;
+                    padding: 20px 0;
+                    font-size: 30px;
+                }
+    
+                .card-body{
+                    padding: 0 40px 40px 40px;
+    
+                    img{
+                        border-radius: 10px;
+                    }
+    
+                    ul {
+                        margin: 30px 0;
+                        padding-left: 0;
+                
+                        span {
+                            color: $btn_red;
+                            margin-right: 10px;
+                            font-weight: bold;
+                        }
+                    }
+                
+                    .dashboard-link {
+                        display: flex;
+                        justify-content: center;
+                
+                        .btn {
+                            border: 2px solid $btn_red;
+                        }
+                
+                        a {
+                            @include button;
+                        }
+                
+                    }
+                }
+            }
+        }
+        
+    }
+
+}
+
+@media screen and (max-width: 540px) {
+
+    .pt-5{
+        padding-top: 1.5rem !important;
+    }
+
+    .dashboard-card {
+        
+        .dashboard-title span {
+           
+        }
+        
+        .dash-flex{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+    
+            .card{
+                width: 95%;
+    
+                .header-dash{
+                    text-align: center;
+                    padding: 20px 0;
+                    font-size: 30px;
+                }
+    
+                .card-body{
+                    padding: 0 40px 40px 40px;
+    
+                    img{
+                        border-radius: 10px;
+                    }
+    
+                    ul {
+                        margin: 30px 0;
+                        padding-left: 0;
+                
+                        span {
+                            color: $btn_red;
+                            margin-right: 10px;
+                            font-weight: bold;
+                        }
+                    }
+                
+                    .dashboard-link {
+                        display: flex;
+                        justify-content: center;
+                
+                        .btn {
+                            border: 2px solid $btn_red;
+                        }
+                
+                        a {
+                            @include button;
+                        }
+                
+                    }
+                }
+            }
+        }
+        
+    }
+
+}
+
 // REGOLE NAVBAR:
 nav {
     .logo-form {
