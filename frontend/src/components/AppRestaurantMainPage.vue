@@ -663,6 +663,10 @@ export default {
             color: $btn_red;
             margin: 0 5px;
           }
+
+          .fa-circle-minus, .fa-circle-plus{
+            cursor: pointer;
+          }
         }
       }
     }
@@ -1125,7 +1129,7 @@ export default {
           align-items: center;
           width: 70px;
           text-align: left;
-
+          
           .sign-order {
             color: $btn_red;
             margin: 0 5px;
