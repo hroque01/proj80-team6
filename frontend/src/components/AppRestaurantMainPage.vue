@@ -292,7 +292,7 @@ export default {
                   <span class="Pricebuble"> {{ dish.price }}&euro;</span>
                 </div>
 
-                <button id="add" class="addToCart_btn" @click="added(dish, this)">
+                <button id="add" class="addToCart_btn" @click="added(dish, this)" v-if="dish.visible">
                   <i class="fa-solid fa-cart-shopping"></i><span class="addToCart_txt">Aggiungi al carrello</span>
                 </button>
               </div>
