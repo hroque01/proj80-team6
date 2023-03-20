@@ -427,7 +427,7 @@ export default {
     // carrello vuoto
     .empty_cart {
         text-align: center;
-        width: 32%;
+        width: 300px;
         background-color: #F9FAFA;
         border: 1px solid #eaeaea;
         box-shadow: 0px 5px 5px 0px #ececec;
@@ -460,7 +460,7 @@ export default {
 
     // carrello
     .cart {
-        width: 32%;
+        width: 300px;
         background-color: #F9FAFA;
         border: 1px solid #eaeaea;
         box-shadow: 0px 5px 5px 0px #ececec;
@@ -536,7 +536,7 @@ export default {
         box-shadow: 0px 5px 5px 0px #ececec;
         border-radius: 10px;
         padding: 20px 15px;
-        margin: 0 auto;
+        margin-left: 30px auto;
 
         //  form dati utente
         .flex-form {
@@ -622,6 +622,47 @@ export default {
         .fa-envelope,
         span {
             color: $btn_red;
+        }
+    }
+
+}
+
+@media only screen and (max-width: 650px) {
+
+    .my_container{
+        .form-cart{
+            .flex-form{
+                input{
+                    width: 150px;
+                }
+            }
+            
+        }
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    .my_container{
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .cart{
+            width: 95%;
+        }
+
+        .form-cart{
+            margin-top: 15px;
+            margin-left: 0px;
+            width: 95%;
+        }
+
+        .width-braintree{
+            width: 95%;
         }
     }
 
