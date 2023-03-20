@@ -1,6 +1,7 @@
 @import '~bootstrap/scss/bootstrap'; //  bootstrap
 @import './partials/mixins'; // mixins
 @import './partials/variables'; // variables
+@import "@fortawesome/fontawesome-free/css/all.css"; // fontawesome
 
 
 // REGOLE GENERALI:
@@ -463,7 +464,7 @@ nav {
         border-radius: 10px;
         color: $btn_red;
 
-        &:hover{
+        &:hover {
             background-color: $btn_red;
             border: 1px solid $btn_red;
             color: #fff;
