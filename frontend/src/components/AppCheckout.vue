@@ -10,7 +10,7 @@ export default {
     name: 'AppCheckout',
     data() {
         return {
-            hideBtn: true,
+            hideCart: false,
             showPayment: false,
             showBrainTree: false,
             showForm : false,
@@ -264,10 +264,16 @@ export default {
                     if (payload) {
                         localStorage.clear();
                         store.total = 0;
-                        this.$router.push('/order');
+                        // this.$router.push('/order');
                         console.log(localStorage.getItem('paid'));
                         localStorage.setItem('paid', true);
+                        
                         console.log(localStorage.getItem('paid'));
+
+                        button.classList.add('clickedBtnPay');
+                        document.getElementById('dropin-container').classList.add('clickedBtnPay');
+                        document.querySelector('.cart').classList.add('clickedBtnPay');
+                        document.getElementById('confirmEmail').classList.remove('clickedBtnPay');
                     } else {
                         console.log("Dentro errore paymenent", err, payload);
                         console.log(localStorage.getItem('paid'));
@@ -285,7 +291,7 @@ export default {
 
 <template>
     <div class="my_container" v-if="$route.name === 'checkout'">
-        <div class="cart" v-if="this.cart.length !== 0">
+        <div class="cart" v-if="this.cart.length !== 0 && !hideCart">
             <h3>Il tuo ordine</h3>
 
             <!-- carrello modificabile -->
@@ -381,8 +387,8 @@ export default {
                 </div>
                 <button id="submit-button" class="clickedBtnPay">Conferma pagamento</button>
             </div>
-<!-- 
-            <button @click="saveDogs" v-if="showForm && !showForm2 && hideBtn">INVIA DATI</button> -->
+
+            <div class="clickedBtnPay" id="confirmEmail">CIAOOOOOOOOO</div>
         </div>
 
 
