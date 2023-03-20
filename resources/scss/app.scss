@@ -260,7 +260,8 @@ ul li {
 
     .dash-flex {
         display: flex;
-
+        margin-inline: -25px;
+        
         .card {
             width: calc(50% - 50px);
             margin-inline: 25px;
@@ -454,17 +455,28 @@ nav {
 .res-hub-txt {
 
     h4 {
-        margin: 20px 0;
+        margin: 30px 0 40px 0;
     }
 
     .create-crud {
-        color: $text_black;
+        background-color: #fff;
+        padding: 5px 10px;
+        border: 2px solid $btn_red;
+        border-radius: 10px;
+        color: $btn_red;
+
+        &:hover{
+            background-color: $btn_red;
+            border: 1px solid $btn_red;
+            color: #fff;
+        }
     }
 
     .cards-res-hub {
         display: flex;
         flex-wrap: wrap;
         margin-top: 30px;
+        margin-inline: -20px;
 
         .card_crud {
             width: calc(100% / 3 - 40px);
