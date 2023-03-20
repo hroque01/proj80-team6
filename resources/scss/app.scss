@@ -766,6 +766,7 @@ nav {
 }
 
 // REGOLE ORDINI ELENCO:
+
 .orders{
     display: flex;
     margin: 10px 0;
@@ -779,3 +780,135 @@ nav {
         border-radius: 5px;
     }
 }
+
+@media screen and (max-width: 624px) {
+
+    .my_container{
+        max-width: 100%;
+        width: 95%;
+
+    }
+
+    .orders{
+        display: flex;
+        margin: 5px 0;
+        
+        .sx-order{
+            width: 200px;
+        }
+    
+        .total-order{
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+    }
+
+}
+
+@media screen and (max-width: 560px) {
+
+    .my_container{
+        max-width: 100%;
+        width: 95%;
+
+    }
+
+    .orders{
+        display: flex;
+        margin: 5px 0;
+        
+        .sx-order{
+            width: 200px;
+        }
+    
+        .total-order{
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+    }
+
+}
+
+@media screen and (max-width: 530px) {
+
+    .my_container{
+        width: 95%;
+    }
+
+    .table{
+        font-size: 12px;
+    }
+
+}
+
+@media only screen and (max-device-width: 440px) and (orientation: portrait) {
+
+    body{
+        background-image: url('../img/rotate_device.jpg');
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: 70%;
+        background-size: 200px;
+    }
+
+    .my_container{
+        width: 95%;
+    }
+
+    .table{
+        display: none;
+    }
+
+    .landscape-message {
+        width: 95%;
+        height: 500px;
+        text-align: center;
+    }
+  }
+
+  @media only screen and (max-device-width: 440px) and (orientation: landscape) {
+
+    .my_container{
+        width: 95%;
+    }
+
+    .container{
+        max-width: 640px;
+    }
+
+    body {
+      display: block;
+    }
+  }
+
+// REGOLE ORDINI SHOW;
+
+@media screen and (max-width: 767px) {
+
+    .address_user{
+        width: 200px;
+    }
+
+    .p-5{
+        padding: 1rem !important;
+    }
+
+}
+
+@media only screen and (max-width: 560px) and (orientation: portrait) {
+
+    .orderWrapper{
+        display: none;
+    }
+
+    body{
+        background-image: url('../img/rotate_device.jpg');
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: 50%;
+        background-size: 200px;
+    }
+
+}
+
+
