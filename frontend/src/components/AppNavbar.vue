@@ -12,7 +12,7 @@ export default {
         {
           icon: "fa-solid fa-utensils",
           text: "Collabora con noi",
-          url: "http://localhost:8000/restaurant",
+          url: "http://localhost:8000/dashboard",
           href: true,
         },
         {

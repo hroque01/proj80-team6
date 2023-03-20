@@ -3,19 +3,12 @@
 import AppHeader from './components/AppHeader.vue';
 import AppFooter from './components/AppFooter.vue';
 import AppMain from './components/AppMain.vue';
-// APP RESTAURANT
-// APP RESTAURANT (MAIN RESTAURANT PAGE)
-// APP CHECKOUT
 
 export default {
   components: {
     AppHeader,
     AppFooter,
     AppMain,
-    // APP RESTAURANT (MAIN RESTAURANT PAGE)
-    //AppRestaurantMainPage,
-    // APP CHECKOUT
-    //AppCheckout,
   }
 }
 </script>

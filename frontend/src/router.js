@@ -4,8 +4,6 @@ import AppRestaurantMainPage from './components/AppRestaurantMainPage.vue';
 
 import AppCheckout from './components/AppCheckout.vue';
 
-import AppOrder from './components/AppOrder.vue';
-
 import App from './App.vue';
 
 
@@ -26,12 +24,6 @@ const router = createRouter({
             path: '/checkout',
             name: 'checkout',
             component: AppCheckout
-        },
-
-        {
-            path: '/order',
-            name: 'order',
-            component: AppOrder
         },
     ]
 });

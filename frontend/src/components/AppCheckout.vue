@@ -414,6 +414,7 @@ export default {
 
 .my_container {
     display: flex;
+    gap: 25px;
 
     h4 {
         font-weight: bold;
@@ -427,7 +428,7 @@ export default {
     // carrello vuoto
     .empty_cart {
         text-align: center;
-        width: 300px;
+        width: 28%;
         background-color: #F9FAFA;
         border: 1px solid #eaeaea;
         box-shadow: 0px 5px 5px 0px #ececec;
@@ -460,7 +461,7 @@ export default {
 
     // carrello
     .cart {
-        width: 300px;
+        width: 28%;
         background-color: #F9FAFA;
         border: 1px solid #eaeaea;
         box-shadow: 0px 5px 5px 0px #ececec;
@@ -529,14 +530,14 @@ export default {
 
     // form
     .form-cart {
-        width: 65%;
-        margin-left: 3%;
+        width: 70%;
         background-color: #F9FAFA;
         border: 1px solid #eaeaea;
         box-shadow: 0px 5px 5px 0px #ececec;
+        height: 400px;
         border-radius: 10px;
         padding: 20px 15px;
-        margin-left: 30px auto;
+        margin: 0 auto;
 
         //  form dati utente
         .flex-form {
@@ -580,18 +581,23 @@ export default {
         width: 500px;
     }
 
-    .cervelloAlbero button {
-        margin-top: 20px;
-        border: 3px solid $btn_red;
-        background-color: #F9FAFA;
-        border-radius: 10px;
-        color: $btn_red;
-        padding: 3px 10px;
+    .cervelloAlbero {
 
-        &:hover {
-            background-color: $btn_red;
-            color: #fff;
+        button {
+            margin-top: 20px;
+            border: 3px solid $btn_red;
+            background-color: #F9FAFA;
+            border-radius: 10px;
+            color: $btn_red;
+            padding: 3px 10px;
+
+
+            &:hover {
+                background-color: $btn_red;
+                color: #fff;
+            }
         }
+
     }
 
     // messaggio conferma ordine:
@@ -599,6 +605,11 @@ export default {
         text-align: center;
         font-size: 20px;
         padding: 20px 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
 
         img {
             width: 70px;
@@ -629,14 +640,14 @@ export default {
 
 @media only screen and (max-width: 650px) {
 
-    .my_container{
-        .form-cart{
-            .flex-form{
-                input{
+    .my_container {
+        .form-cart {
+            .flex-form {
+                input {
                     width: 150px;
                 }
             }
-            
+
         }
     }
 
@@ -644,24 +655,24 @@ export default {
 
 @media only screen and (max-width: 600px) {
 
-    .my_container{
-        
+    .my_container {
+
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
 
-        .cart{
+        .cart {
             width: 95%;
         }
 
-        .form-cart{
+        .form-cart {
             margin-top: 15px;
             margin-left: 0px;
             width: 95%;
         }
 
-        .width-braintree{
+        .width-braintree {
             width: 95%;
         }
     }
