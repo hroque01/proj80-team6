@@ -766,6 +766,7 @@ export default {
   .addToCart_btn{
     display: flex;
     width: 35px;
+    height: 30px;
     .addToCart_txt{
       display: none;
     }
