@@ -249,13 +249,44 @@ ul li {
 
 // REGOLE DASHBOARD:
 .dashboard-card {
-    .dashboard-title span {
-        color: $btn_red;
+
+    .dashboard-title{
+
+        span{
+            color: $btn_red;
+        }
+
+        p{
+            font-size: 20px;
+            line-height: 15px;
+        }
+    }
+    
+
+    .btn-modal-dash{
+        background-color: $btn_red;
+        color: #fff;
+    }
+    .modal-title{
+        font-weight: bold;
+        padding: 10px 25px;
     }
 
-    p {
-        font-size: 20px;
-        line-height: 15px;
+    .modal-header{
+        border-bottom: none;
+    }
+    .modal-body{
+        padding: 10px 30px;
+
+        img{
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+    }
+
+    .modal-footer{
+        border-top: none;
+        padding-right: 30px;
     }
 
     .dash-flex {
@@ -382,7 +413,6 @@ ul li {
     }
 
     .dashboard-card {
-
         .dash-flex {
             display: flex;
             flex-direction: column;
