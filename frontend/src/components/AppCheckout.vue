@@ -15,6 +15,7 @@ export default {
             hideCart: false,
             showPayment: false,
             showForm : false,
+            prova: true,
             store,
             cart: [],
             deliveryPrice: null,
@@ -283,7 +284,7 @@ export default {
 </script>
 
 <template>
-    <div class="my_container" v-if="$route.name === 'checkout'">
+    <div class="my_container" v-if="$route.name === 'checkout'" :class="this.prova === false ? 'flex' : ''">
         <div class="cart" v-if="this.cart.length !== 0 && !hideCart">
             <h3>Il tuo ordine</h3>
 
@@ -311,8 +312,6 @@ export default {
             </div>
             <!-- chiusura carrello modificabile -->
 
-
-
             <hr class="mt-3">
             <div class="d-flex justify-content-between">
                 <div>
@@ -332,7 +331,7 @@ export default {
                 </div>
             </div>
             <!-- <button @click="emptyCart">Svuota carrello</button> -->
-            <button @click="showForm = true" v-if="!showForm">Vai al pagamento</button>
+            <button @click="showForm = true" v-if="!showForm">Prosegui</button>
         </div>
         
         <!-- carrello vuoto -->
@@ -348,40 +347,48 @@ export default {
             <form v-if="showForm && !showPayment">
 
                 <div>
+                    <h3>Dettagli cliente</h3>
                     <div class="flex-form">
-                        <label for="customer_name">Inserisci il tuo nome e cognome<span>*</span></label>
+                        <label for="customer_name">Nome e cognome<span>*</span></label>
                         <input type="text" placeholder="Mario Rossi" name="customer_name" v-model="newOrder.customer_name"
                             required class="input-form">
                     </div>
 
                     <div class="flex-form">
-                        <label for="address">Inserisci il tuo indirizzo<span>*</span></label>
+                        <label for="address">Indirizzo<span>*</span></label>
                         <input type="text" placeholder="Via Roma, 10" name="address" v-model="newOrder.address" required>
                     </div>
 
                     <div class="flex-form">
-                        <label for="email">Inserisci la tua email<span>*</span></label>
+                        <label for="email">Email<span>*</span></label>
                         <input type="email" placeholder="email@prova.it" name="email" v-model="newOrder.email" required>
                     </div>
 
                     <div class="flex-form">
-                        <label for="phone_number">Inserisci il tuo telefono<span>*</span></label>
+                        <label for="phone_number">Recapito telefonico<span>*</span></label>
                         <input type="text" placeholder="3468888888" name="phone_number" v-model="newOrder.phone_number"
                             required>
                     </div>
                 </div>
 
                 <!-- Deve apparire solamente quando  il secondo form esce "pagamento eseguitp" -->
-                <input @click="orderSubmit" type="submit" value="Procedi all'ordine" v-if="!showPayment">
+                <input @click="orderSubmit" type="submit" value="Vai al pagamento" v-if="!showPayment" class="form-data">
             </form>
 
-            <div>
-                <div id="dropin-container" class="clickedBtnPay">
-                </div>
+            <div class="d-flex flex-column align-items-center cervelloAlbero">
+                <div id="dropin-container" class="clickedBtnPay width-braintree"></div>
                 <button id="submit-button" class="clickedBtnPay">Conferma pagamento</button>
             </div>
 
-            <div class="clickedBtnPay" id="confirmEmail">CIAOOOOOOOOO</div>
+            <div class="clickedBtnPay" id="confirmEmail">
+                <img src="../../public/img/logo-white.png" alt="">
+                <p>
+                    Ciao <span>{{newOrder.customer_name }}</span>! 
+                    Il tuo ordine &eacute; andato a buon fine. 
+                </p>
+                <p><i class="fa-regular fa-envelope"></i> Controlla la tua email</p>
+            </div>
+
         </div>
 
 
@@ -393,37 +400,39 @@ export default {
 @use '../src/styles/general.scss' as *;
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
+.flex{
+    display: flex;
+    justify-content: center;
+}
 
 .clickedBtnPay{
     display: none;
 }
 .my_container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
 
-    .form-cart {
-        width: 80%;
-        border: 1px solid black;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        padding: 10px;
-
+    h3{
+        font-weight: bold;
+        margin-bottom: 20px;
     }
-
+    // carrello
     .cart {
-        border: 1px solid #000;
-        width: 20%;
+        width: 29%;
+        background-color: #F9FAFA;
+        border: 1px solid #eaeaea;
+        box-shadow: 0px 5px 5px 0px #ececec;
+        border-radius: 10px;
+        padding: 20px 15px;
+        height: 400px;
+        overflow-y: auto;
+        top: 120px;
 
+        // bottoni modifica quantità
         .modify-order {
             font-size: 18px;
             display: flex;
             height: 100%;
             align-items: center;
-
 
             .btn-order {
                 display: flex;
@@ -436,19 +445,40 @@ export default {
                     margin: 0 5px;
                     cursor: pointer;
                 }
+            } 
+        }
+
+        // bottone pagamento
+        button {
+            margin-top: 20px;
+            width: 100%;
+            border: 3px solid $btn_red;
+            background-color: #F9FAFA;
+            border-radius: 10px;
+            color: $btn_red;
+            padding: 3px 0;
+
+            &:hover {
+                background-color: $btn_red;
+                color: #fff;
             }
         }
     }
 
-    form {
-        width: 100%;
-        height: 90%;
-        padding: 20px;
-        // debug
+    // form
+    .form-cart {
+        width: 70%;
+        margin-left: 1%;
+        background-color: #F9FAFA;
+        border: 1px solid #eaeaea;
+        box-shadow: 0px 5px 5px 0px #ececec;
+        border-radius: 10px;
+        padding: 20px 15px;
 
+        //  form dati utente
         .flex-form {
             @include flex(between);
-            margin: 10px 0;
+            margin: 20px 0;
 
             span {
                 color: $btn_red;
@@ -461,10 +491,72 @@ export default {
         }
 
         input[type="submit"] {
-            margin-top: 10px;
-            padding: 0 15px;
+            border: 3px solid $btn_red;
+            background-color: #F9FAFA;
+            border-radius: 10px;
+            color: $btn_red;
+            padding: 3px 10px;
+
+            &:hover {
+                background-color: $btn_red;
+                color: #fff;
+            }
         }
 
+        .form-data{
+            display: block;
+            margin: 0 auto;
+        }
     }
+
+    // braintree
+    .width-braintree{
+        width: 500px;   
+    }
+
+    .cervelloAlbero button{
+        margin-top: 20px;
+        border: 3px solid $btn_red;
+        background-color: #F9FAFA;
+        border-radius: 10px;
+        color: $btn_red;
+        padding: 3px 10px;
+
+        &:hover {
+            background-color: $btn_red;
+            color: #fff;
+        }
+    }
+
+    // messaggio conferma ordine:
+    #confirmEmail{
+        text-align: center;
+        font-size: 20px;
+        padding: 20px 0;
+
+        img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            border-radius: 50%;
+            padding: 2px;
+            border: 2px solid $btn_red;
+        }
+
+        .logo{
+            margin-left: 10px;
+            color: $btn_red;
+            font-weight: bold;
+        }
+
+        p{
+            margin: 10px 0;
+        }
+        .fa-envelope, span{
+            color: $btn_red;
+        }
+    }
+    
 }
+
 </style>
