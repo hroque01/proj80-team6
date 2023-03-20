@@ -293,28 +293,31 @@ export default {
             <h4>Il tuo ordine da <span>{{ cart[0].restaurant_name }}</span></h4>
 
             <!-- carrello modificabile -->
-            <div v-for="item in this.cart">
-                <div class="d-flex justify-content-between align-items-center">
+            <div class="overflow">
+                <div v-for="item in this.cart">
+                    <div class="d-flex justify-content-between align-items-center">
 
-                    <div><span v-if="showForm">{{ item.quantity }}x</span> {{ item.name }}</div>
+                        <div><span v-if="showForm">{{ item.quantity }}x</span> {{ item.name }}</div>
 
-                    <div>{{ parseFloat(item.price * item.quantity).toFixed(2) }}&euro;</div>
-                </div>
+                        <div>{{ parseFloat(item.price * item.quantity).toFixed(2) }}&euro;</div>
+                    </div>
 
-                <!-- bottoni da nascondere quando carrello non più modificabile -->
-                <div class="modify-order" v-if="!showForm">
-                    <div class="btn-order">
-                        <div @click="remove(item.id)">
-                            <i class="sign-order fa-solid fa-circle-minus"></i>
-                        </div>
-                        {{ item.quantity }}
-                        <div @click="added(item)">
-                            <i class="sign-order fa-solid fa-circle-plus"></i>
+                    <!-- bottoni da nascondere quando carrello non più modificabile -->
+                    <div class="modify-order" v-if="!showForm">
+                        <div class="btn-order">
+                            <div @click="remove(item.id)">
+                                <i class="sign-order fa-solid fa-circle-minus"></i>
+                            </div>
+                            {{ item.quantity }}
+                            <div @click="added(item)">
+                                <i class="sign-order fa-solid fa-circle-plus"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- chiusura carrello modificabile -->
             </div>
-            <!-- chiusura carrello modificabile -->
+
 
             <hr class="mt-3">
             <div class="d-flex justify-content-between">
@@ -334,6 +337,7 @@ export default {
                     <b v-if="store.total">{{ parseFloat(store.total).toFixed(2) }}&euro;</b>
                 </div>
             </div>
+
 
             <div class="cart-notification" v-if="!showForm">
                 <button class="empty-cart-btn" @click="emptyCart">Svuota carrello</button>
@@ -466,16 +470,20 @@ export default {
 
     // carrello
     .cart {
-        width: 300px;
+        width: 28%;
         background-color: #F9FAFA;
         border: 1px solid #eaeaea;
         box-shadow: 0px 5px 5px 0px #ececec;
         border-radius: 10px;
         padding: 20px 15px;
         min-height: 400px;
-        overflow-y: auto;
         top: 120px;
         margin: 0 auto;
+
+        .overflow {
+            overflow-y: auto;
+            max-height: 280px;
+        }
 
         // bottoni modifica quantità
         .modify-order {
