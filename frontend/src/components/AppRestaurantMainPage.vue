@@ -164,22 +164,18 @@ export default {
       window.scrollBy(0, -1000);
     },
     getRestaurantImage(restaurant) {
-      let restaurantImage;
       if (restaurant.image.includes("restaurants-image")) {
-        restaurantImage = 'http://[::1]:5173/storage/app/public/' + restaurant.image;
+        return 'http://[::1]:5173/storage/app/public/' + restaurant.image;
       } else {
-        restaurantImage = restaurant.image;
+        return restaurant.image;
       }
-      return restaurantImage;
     },
     getDishImage(dish) {
-      let dishImage;
       if (dish.image.includes("dishes-image")) {
-        dishImage = 'http://[::1]:5173/storage/app/public/' + dish.image;
+        return 'http://[::1]:5173/storage/app/public/' + dish.image;
       } else {
-        dishImage = dish.image;
+        return dish.image;
       }
-      return dishImage;
     },
   },
   computed: {
@@ -288,7 +284,7 @@ export default {
                 </div>
 
                 <button id="add" class="addToCart_btn" @click="added(dish, this)">
-                  <i class="fa-solid fa-cart-shopping"></i>Aggiungi al carrello
+                  <i class="fa-solid fa-cart-shopping"></i><span class="addToCart_txt">Aggiungi al carrello</span> 
                 </button>
               </div>
 
@@ -747,8 +743,6 @@ export default {
   }
 }
 
-
-
 @media all and (max-width: 480px) {
   .my_container {
     width: 100%;
@@ -766,4 +760,755 @@ export default {
     }
   }
 }
+
+@media only screen and (max-width: 1284px) {
+
+  .addToCart_btn{
+    display: flex;
+    width: 35px;
+    height: 30px;
+    .addToCart_txt{
+      display: none;
+    }
+  }
+  
+
+}
+
+@media only screen and (max-width: 972px) {
+
+  .restaurant_header {
+
+    .restaurant_image {
+    width: 40%;
+    height: 80%;
+    border: 1px solid #eaeaea;
+    box-shadow: 0px 5px 5px 0px #ececec;
+    border-radius: 10px;
+
+      img {
+        width: 100%;
+        display: block;
+        border-radius: 10px;
+        
+      }
+
+    }
+
+    .restaurant_informations {
+      padding-left: 50px;
+      line-height: 30px;
+
+    svg {
+      width: 20px;
+      padding-right: 10px;
+    }
+
+    .restaurantName {
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .delivery {
+      background-color: $btn_red;
+      padding: 5px 10px;
+      color: #fff;
+      border-radius: 10px;
+    }
+  }
+
+  }
+}
+
+@media only screen and (max-width: 900px) {
+
+  .dish_cart{
+    .menu_list {
+    width: 70%;
+    margin-right: 1%;
+
+    .my_Boxes-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      margin-inline: -10px;
+
+      .box-properties {
+        user-select: none;
+      }
+    }
+
+    .my_bigBox {
+      width: 45%;
+      margin: 20px 10px;
+      background-color: #fff;
+      border: 1px solid #eaeaea;
+      box-shadow: 0px 10px 5px 0px #ececec;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+
+      // layover per dish not available
+      .dish-not-available {
+        position: absolute;
+        @include flex(both-center);
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        background-color: #0000004d;
+
+        .tag-not-available {
+          font-size: 30px;
+          background-color: #eeeeeeaf;
+          border: 3px solid $btn_red;
+          border-radius: 10px;
+          color: $btn_red;
+          padding: 5px 7px;
+        }
+      }
+
+      .info-top {
+        flex-grow: 1;
+      }
+
+      .my_bigBox-img {
+        width: 100%;
+        object-fit: cover;
+        background-color: white;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+
+        img {
+          display: block;
+          width: 100%;
+          height: 180px;
+          object-fit: cover;
+          border-top-right-radius: 10px;
+          border-top-left-radius: 10px;
+        }
+      }
+
+      .my_bigBox-info-wrapper {
+        padding: 10px;
+        line-height: 25px;
+        color: #5a5a5a;
+        display: flex;
+        flex-direction: column;
+
+        .my_bigBox-info-DishName {
+          color: $text_black;
+          font-size: 14px;
+          font-weight: 600;
+        }
+
+        .my_bigBox-info-restaurantRating {
+          font-size: 12px;
+        }
+
+        .my_bigBox-info-OtherDishInfo {
+          display: flex;
+          flex-direction: column;
+          font-size: 12px;
+        }
+      }
+
+      .pay {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 50px 10px 10px 10px;
+
+        .dishPrice {
+          font-size: 15px;
+        }
+
+        .addToCart_btn {
+          background-color: $btn_red;
+          border: 2px solid $btn_red;
+          color: #fff;
+          padding: 5px;
+          border-radius: 8px;
+
+          &:hover {
+            background-color: #fff;
+            border: 2px solid $btn_red;
+            color: $btn_red;
+          }
+        }
+
+        .fa-cart-shopping {
+          margin-right: 10px;
+        }
+      }
+
+    }
+
+  }
+  }
+
+}
+
+@media only screen and (max-width: 700px) {
+  .dish_cart{
+    .menu_list {
+      width: 49%;
+      margin-right: 1%;
+
+    .my_Boxes-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      margin-inline: -10px;
+
+      .box-properties {
+        user-select: none;
+      }
+    }
+
+    .my_bigBox {
+      width: 100%;
+      margin: 20px 10px;
+      background-color: #fff;
+      border: 1px solid #eaeaea;
+      box-shadow: 0px 10px 5px 0px #ececec;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+
+      // layover per dish not available
+      .dish-not-available {
+        position: absolute;
+        @include flex(both-center);
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        background-color: #0000004d;
+
+        .tag-not-available {
+          font-size: 30px;
+          background-color: #eeeeeeaf;
+          border: 3px solid $btn_red;
+          border-radius: 10px;
+          color: $btn_red;
+          padding: 5px 7px;
+        }
+      }
+
+      .info-top {
+        flex-grow: 1;
+      }
+
+      .my_bigBox-img {
+        width: 95%;
+        object-fit: cover;
+        background-color: white;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+
+        img {
+          display: block;
+          width: 100%;
+          height: 180px;
+          object-fit: cover;
+          border-top-right-radius: 10px;
+          border-top-left-radius: 10px;
+        }
+      }
+
+      .my_bigBox-info-wrapper {
+        padding: 10px;
+        line-height: 25px;
+        color: #5a5a5a;
+        display: flex;
+        flex-direction: column;
+
+        .my_bigBox-info-DishName {
+          color: $text_black;
+          font-size: 14px;
+          font-weight: 600;
+        }
+
+        .my_bigBox-info-restaurantRating {
+          font-size: 12px;
+        }
+
+        .my_bigBox-info-OtherDishInfo {
+          display: flex;
+          flex-direction: column;
+          font-size: 12px;
+        }
+      }
+
+      .pay {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 50px 10px 10px 10px;
+
+        .dishPrice {
+          font-size: 15px;
+        }
+
+        .addToCart_btn {
+          background-color: $btn_red;
+          border: 2px solid $btn_red;
+          color: #fff;
+          padding: 5px;
+          border-radius: 8px;
+
+          &:hover {
+            background-color: #fff;
+            border: 2px solid $btn_red;
+            color: $btn_red;
+          }
+        }
+
+        .fa-cart-shopping {
+          margin-right: 10px;
+        }
+      }
+
+    }
+
+  }
+
+  .cart {
+    width: 49%;
+    background-color: #F9FAFA;
+    border: 1px solid #eaeaea;
+    box-shadow: 0px 5px 5px 0px #ececec;
+    border-radius: 10px;
+    margin: 20px 0;
+    padding: 20px 15px;
+    height: 500px;
+    overflow-y: auto;
+    position: sticky;
+    top: 120px;
+
+    // modifica quantità
+    .modify-cart {
+      h3 {
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .row-order {
+        margin-bottom: 10px;
+      }
+
+      button {
+        margin-top: 20px;
+        width: 100%;
+        border: 3px solid $btn_red;
+        background-color: #F9FAFA;
+        border-radius: 10px;
+        color: $btn_red;
+        padding: 3px 0;
+
+        &:hover {
+          background-color: $btn_red;
+          color: #fff;
+        }
+      }
+
+      // modifica ordini
+      .modify-order {
+        font-size: 18px;
+        display: flex;
+        height: 100%;
+        align-items: center;
+
+
+        .btn-order {
+          display: flex;
+          align-items: center;
+          width: 70px;
+          text-align: left;
+
+          .sign-order {
+            color: $btn_red;
+            margin: 0 5px;
+          }
+        }
+      }
+    }
+
+    // carrello vuoto
+    .empty_cart {
+      text-align: center;
+
+      h3 {
+        font-weight: bold;
+        opacity: 0.8;
+      }
+
+      img {
+        width: 200px;
+        height: 200px;
+        margin: 50px 0;
+        padding: 5px;
+        filter: grayscale(100%);
+        opacity: 0.5;
+        border: 1px solid $btn_red;
+        border-radius: 50%;
+      }
+
+      p {
+        font-size: 18px;
+        opacity: 0.8;
+      }
+    }
+
+    // carrello già pieno
+    .cart-notification {
+      h3 {
+        font-weight: bold;
+        text-align: center;
+      }
+
+      p {
+        margin: 30px 0;
+      }
+
+      .keep-cart-btn,
+      .empty-cart-btn {
+        width: calc(100% / 2 - 4px);
+        margin-inline: 2px;
+        border-radius: 10px;
+        padding: 5px 0;
+      }
+
+      .keep-cart-btn {
+        background-color: #F9FAFA;
+        color: $btn_red;
+        border: 1px solid $btn_red;
+
+        &:hover {
+          border: 2px solid $btn_red;
+        }
+      }
+
+      .empty-cart-btn {
+        background-color: $btn_red ;
+        color: #F9FAFA;
+        border: 2px solid $btn_red;
+
+        &:hover {
+          background-color: #e96d5d;
+        }
+      }
+    }
+  }
+  }
+
+}
+
+@media only screen and (max-width: 639px) {
+
+  .restaurant_header {
+
+    .restaurant_image {
+    width: 100%;
+    border: 1px solid #eaeaea;
+    box-shadow: 0px 5px 5px 0px #ececec;
+    border-radius: 10px;
+
+      img {
+        width: 100%;
+        display: block;
+        border-radius: 10px;
+        
+      }
+
+    }
+
+    .restaurant_informations {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 auto;
+      padding-left: 0px;
+      padding-top: 30px;
+      svg {
+        width: 20px;
+        padding-right: 10px;
+      }
+
+      .restaurantName {
+        font-size: 40px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .delivery {
+        background-color: $btn_red;
+        padding: 5px 10px;
+        color: #fff;
+        border-radius: 10px;
+      }
+    }
+
+  }
+
+}
+
+@media only screen and (max-width: 420px) {
+
+  .dish_cart{
+    display: flex;
+    justify-content: center;
+    .menu_list {
+      width: 95%;
+      margin-right: 1%;
+
+    .my_Boxes-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      margin-inline: -10px;
+
+      .box-properties {
+        user-select: none;
+      }
+    }
+
+    .my_bigBox {
+      width: 100%;
+      margin: 20px 10px;
+      background-color: #fff;
+      border: 1px solid #eaeaea;
+      box-shadow: 0px 10px 5px 0px #ececec;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+
+      // layover per dish not available
+      .dish-not-available {
+        position: absolute;
+        @include flex(both-center);
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        background-color: #0000004d;
+
+        .tag-not-available {
+          font-size: 30px;
+          background-color: #eeeeeeaf;
+          border: 3px solid $btn_red;
+          border-radius: 10px;
+          color: $btn_red;
+          padding: 5px 7px;
+        }
+      }
+
+      .info-top {
+        flex-grow: 1;
+      }
+
+      .my_bigBox-img {
+        width: 95%;
+        object-fit: cover;
+        background-color: white;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+
+        img {
+          display: block;
+          width: 100%;
+          height: 180px;
+          object-fit: cover;
+          border-top-right-radius: 10px;
+          border-top-left-radius: 10px;
+        }
+      }
+
+      .my_bigBox-info-wrapper {
+        padding: 10px;
+        line-height: 25px;
+        color: #5a5a5a;
+        display: flex;
+        flex-direction: column;
+
+        .my_bigBox-info-DishName {
+          color: $text_black;
+          font-size: 14px;
+          font-weight: 600;
+        }
+
+        .my_bigBox-info-restaurantRating {
+          font-size: 12px;
+        }
+
+        .my_bigBox-info-OtherDishInfo {
+          display: flex;
+          flex-direction: column;
+          font-size: 12px;
+        }
+      }
+
+      .pay {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 50px 10px 10px 10px;
+
+        .dishPrice {
+          font-size: 15px;
+        }
+
+        .addToCart_btn {
+          background-color: $btn_red;
+          border: 2px solid $btn_red;
+          color: #fff;
+          padding: 5px;
+          border-radius: 8px;
+
+          &:hover {
+            background-color: #fff;
+            border: 2px solid $btn_red;
+            color: $btn_red;
+          }
+        }
+
+        .fa-cart-shopping {
+          margin-right: 10px;
+        }
+      }
+
+    }
+
+  }
+
+  .cart {
+    width: 95%;
+    background-color: #F9FAFA;
+    border: 1px solid #eaeaea;
+    box-shadow: 0px 5px 5px 0px #ececec;
+    border-radius: 10px;
+    margin: 20px 0;
+    padding: 20px 15px;
+    height: 500px;
+    overflow-y: auto;
+    position: sticky;
+    top: 120px;
+
+    // modifica quantità
+    .modify-cart {
+      h3 {
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .row-order {
+        margin-bottom: 10px;
+      }
+
+      button {
+        margin-top: 20px;
+        width: 100%;
+        border: 3px solid $btn_red;
+        background-color: #F9FAFA;
+        border-radius: 10px;
+        color: $btn_red;
+        padding: 3px 0;
+
+        &:hover {
+          background-color: $btn_red;
+          color: #fff;
+        }
+      }
+
+      // modifica ordini
+      .modify-order {
+        font-size: 18px;
+        display: flex;
+        height: 100%;
+        align-items: center;
+
+
+        .btn-order {
+          display: flex;
+          align-items: center;
+          width: 70px;
+          text-align: left;
+
+          .sign-order {
+            color: $btn_red;
+            margin: 0 5px;
+          }
+        }
+      }
+    }
+
+    // carrello vuoto
+    .empty_cart {
+      text-align: center;
+
+      h3 {
+        font-weight: bold;
+        opacity: 0.8;
+      }
+
+      img {
+        width: 200px;
+        height: 200px;
+        margin: 50px 0;
+        padding: 5px;
+        filter: grayscale(100%);
+        opacity: 0.5;
+        border: 1px solid $btn_red;
+        border-radius: 50%;
+      }
+
+      p {
+        font-size: 18px;
+        opacity: 0.8;
+      }
+    }
+
+    // carrello già pieno
+    .cart-notification {
+      h3 {
+        font-weight: bold;
+        text-align: center;
+      }
+
+      p {
+        margin: 30px 0;
+      }
+
+      .keep-cart-btn,
+      .empty-cart-btn {
+        width: calc(100% / 2 - 4px);
+        margin-inline: 2px;
+        border-radius: 10px;
+        padding: 5px 0;
+      }
+
+      .keep-cart-btn {
+        background-color: #F9FAFA;
+        color: $btn_red;
+        border: 1px solid $btn_red;
+
+        &:hover {
+          border: 2px solid $btn_red;
+        }
+      }
+
+      .empty-cart-btn {
+        background-color: $btn_red ;
+        color: #F9FAFA;
+        border: 2px solid $btn_red;
+
+        &:hover {
+          background-color: #e96d5d;
+        }
+      }
+    }
+  }
+  }
+
+}
+
 </style>
