@@ -28,7 +28,7 @@
                         <img src="{{Auth::user()-> restaurant->image}}" alt="">
                         <p><span><i class="fa-solid fa-location-dot"></i></span>{{Auth::user()-> restaurant->address}}</p> 
                         <p><span><i class="fa-solid fa-align-left"></i></span><em>{{Auth::user()-> restaurant->description}}</em> </p> 
-                        <p><span><i class="fa-regular fa-clock"></i></span>{{Auth::user()-> restaurant->opening_time}} - {{Auth::user()-> restaurant->closure_time}}</p>
+                        <p><span><i class="fa-regular fa-clock"></i></span>{{substr(Auth::user()-> restaurant->opening_time, 0, -3)}} - {{substr(Auth::user()-> restaurant->closure_time, 0, -3)}}</p>
                         <p><span><i class="fa-solid fa-motorcycle"></i></span>{{Auth::user()-> restaurant->delivery_price}}&euro;</p>
                     </div>
                     <div class="modal-footer">
