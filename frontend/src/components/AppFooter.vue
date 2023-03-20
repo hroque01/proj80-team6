@@ -208,7 +208,7 @@ footer {
     .raghiFooter{
         display: flex;
         flex-wrap: wrap;
-        gap: 20px;
+        gap: 30px;
         justify-content: center;
 
         .ciaoRaghi{

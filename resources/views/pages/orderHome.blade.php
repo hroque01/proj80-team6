@@ -30,7 +30,7 @@
               <td>{{$order ->customer_name}}</td>
               <td>{{$order ->total}}&euro;</td>
               <td class="">
-                <span class="d-block text-center rounded p-2 text-light {{ $order->completed === 1 ? 'bg-success' : 'bg-danger' }}">
+                <span class="orderCompletion d-block text-center rounded p-2 text-light {{ $order->completed === 1 ? 'bg-success' : 'bg-danger' }}">
                   {{ $order->completed == 0 ? 'Rifiutato' : 'Completato' }}
                 </span>
               </td>
