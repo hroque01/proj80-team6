@@ -70,14 +70,20 @@
                                 @if (Request::is('dashboard'))
                                     <a class="dropdown-item" href="{{ url('restaurant') }}">{{__('Il tuo ristorante')}}</a>
                                     <a class="dropdown-item" href="{{ url('order') }}">{{__('I tuoi ordini')}}</a>
+                                    <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profilo')}}</a>
                                 @elseif (Request::is('restaurant'))
                                     <a class="dropdown-item" href="{{ url('dashboard') }}">{{__('Dashboard')}}</a>
                                     <a class="dropdown-item" href="{{ url('order') }}">{{__('I tuoi ordini')}}</a>
+                                    <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profilo')}}</a>
                                 @elseif (Request::is('order'))
                                     <a class="dropdown-item" href="{{ url('dashboard') }}">{{__('Dashboard')}}</a>
                                     <a class="dropdown-item" href="{{ url('restaurant') }}">{{__('Il tuo ristorante')}}</a>
+                                    <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profilo')}}</a>
+                                @elseif (Request::is('profile'))
+                                    <a class="dropdown-item" href="{{ url('dashboard') }}">{{__('Dashboard')}}</a>
+                                    <a class="dropdown-item" href="{{ url('restaurant') }}">{{__('Il tuo ristorante')}}</a>
+                                    <a class="dropdown-item" href="{{ url('order') }}">{{__('I tuoi ordini')}}</a>
                                 @endif
-                                <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profilo')}}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
