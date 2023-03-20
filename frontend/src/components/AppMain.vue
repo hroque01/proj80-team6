@@ -43,6 +43,8 @@ export default {
 @use '../src/styles/partials/variables' as *;
 
 .cerotto {
-  padding-top: 100px;
+  padding-top: 0px;
 }
+
+
 </style>

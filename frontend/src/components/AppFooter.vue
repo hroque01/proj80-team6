@@ -40,7 +40,7 @@ export default {
 
 <template>
     <!-- Footer -->
-    <footer>
+    <footer :class="{ 'margin-bottom': $route.name === 'checkout'} ">
         <div class="my_container">
 
             <!-- logo -->
@@ -78,6 +78,10 @@ export default {
 @use '../src/styles/general.scss' as *;
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
+
+.margin-bottom{
+    margin-top: 50px;
+}
 
 footer {
     background-color: #2E3333;
@@ -204,7 +208,7 @@ footer {
     .raghiFooter{
         display: flex;
         flex-wrap: wrap;
-        gap: 20px;
+        gap: 30px;
         justify-content: center;
 
         .ciaoRaghi{

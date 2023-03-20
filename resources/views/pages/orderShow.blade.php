@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <div class="my_container pt-5">
+  <div class="orderWrapper my_container pt-5">
     
     <div class="card p-5">
         <h1>Ordine #{{$order-> order_number}}</h1>
@@ -17,11 +17,11 @@
         </div>
         <div class="orders">
             <div class="sx-order">Indirizzo cliente:</div>
-            <div>{{$order-> address}}</div>
+            <div class="address_user">{{$order-> address}}</div>
         </div>
         <div class="orders">
             <div class="sx-order">Indirizzo email cliente:</div>
-            <div>{{$order-> email}}</div>
+            <div class="email_user">{{$order-> email}}</div>
         </div>
         <div class="orders">
             <div class="sx-order">Telefono cliente:</div>
