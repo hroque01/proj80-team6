@@ -478,6 +478,10 @@ section {
 
 @media only screen and (max-width: 470px) {
 
+    .mainTitle-container{
+        padding-left: 10px;
+    }
+
     section {
         margin: 50px 0;
 
