@@ -235,8 +235,11 @@ footer {
         gap: 30px;
         justify-content: center;
 
-        // .ciaoRaghi {
-        //     width: 90%;
+         .ciaoRaghi {
+            span{
+                margin-top: 0px;
+            }
+         }
 
         //     .card_Rag {
 
