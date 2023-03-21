@@ -241,24 +241,21 @@ footer {
             }
          }
 
-        //     .card_Rag {
-
-        //         // img {
-        //         //     object-position: 0px -40px;
-        //         // }
-
-        //     }
-        // }
     }
 
 }
 
-// @media all and (min-width: 540px) and (max-width: 900px) {
+@media only screen and (max-width: 352px) {
 
-//     .raghiFooter {
-//         .ciaoRaghi {
-//             width: calc(100% / 2) !important;
-//         }
-//     }
-// }
+.raghiFooter {
+
+
+     .ciaoRaghi {
+        width: 100%;
+     }
+
+}
+
+}
+
 </style>
