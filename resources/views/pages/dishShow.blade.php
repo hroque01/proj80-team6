@@ -15,11 +15,11 @@
           <div class="card-body body-crud">
               <h1 class="card-title">{{ $dish->name }}</h1>
 
-              <div class="show-text">
+              <div class="show-text pt-3">
                 <p>Descrizione: {{$dish-> description}}</p>
-                <p>Ingredienti: {{$dish-> ingredients}}</p>
+                <p><i class="fa-solid fa-leaf icon-leaf"></i> Ingredienti: {{$dish-> ingredients}}</p>
               </div>
-              <span>Prezzo: {{$dish-> price}} &euro;</p>
+              <span><i class="fa-solid fa-coins icon-coins"></i> Prezzo: {{$dish-> price}} &euro;</p>
           </div>
 
           <a class="link-back" href="/restaurant">Torna al men&ugrave;</a>

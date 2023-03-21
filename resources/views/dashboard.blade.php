@@ -21,13 +21,15 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">{{Auth::user()-> restaurant->business_name}}</h5>
+                    <h2 class="modal-title" id="exampleModalLongTitle">{{Auth::user()-> restaurant->business_name}}</h2>
             
                     </div>
                     <div class="modal-body">
-                        <img src="{{Auth::user()-> restaurant->image}}" alt="">
+                        <img src="{{ Vite::asset('storage/app/public/' . Auth::user()-> restaurant->image) }}" alt="{{Auth::user()->restaurant->business_name}}">
                         <p><span><i class="fa-solid fa-location-dot"></i></span>{{Auth::user()-> restaurant->address}}</p> 
-                        <p><span><i class="fa-solid fa-align-left"></i></span><em>{{Auth::user()-> restaurant->description}}</em> </p> 
+                        @if (Auth::user()-> restaurant->description)
+                            <p><span><i class="fa-solid fa-align-left"></i></span><em>{{Auth::user()-> restaurant->description}}</em> </p>
+                        @endif 
                         <p><span><i class="fa-regular fa-clock"></i></span>{{substr(Auth::user()-> restaurant->opening_time, 0, -3)}} - {{substr(Auth::user()-> restaurant->closure_time, 0, -3)}}</p>
                         <p><span><i class="fa-solid fa-motorcycle"></i></span>{{Auth::user()-> restaurant->delivery_price}}&euro;</p>
                     </div>

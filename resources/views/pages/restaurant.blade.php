@@ -35,8 +35,8 @@
 
             {{-- delete / edit --}}
             <div>
-              <a class="btn-crud" href="{{ route('dish.delete', $dish) }}">Elimina</a>
-              <a class="btn-crud" href="{{ route('dishEdit', $dish) }}">Modifica</a>
+              <a class="btn-crud" href="{{ route('dish.delete', $dish) }}"><i class="fa-solid fa-trash"></i> Elimina</a>
+              <a class="btn-crud" href="{{ route('dishEdit', $dish) }}"><i class="fa-solid fa-pen"></i> Modifica</a>
             </div>
       
           </div>

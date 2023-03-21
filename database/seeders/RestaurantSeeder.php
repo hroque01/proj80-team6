@@ -276,7 +276,7 @@ class RestaurantSeeder extends Seeder
             ],
             [   'business_name' => 'La Classe 80',
                 'description' => 'Lo vediamo il giro?',
-                'address' => 'Via Booleaners 80',    'opening_time' => '11:00:00',
+                'address' => 'Via Booleaners 80',    'opening_time' => '09:30:00',
                 'closure_time' => '23:00:00',
                 'delivery_price' => 1.2,
                 'image' => 'https://www.youparti.com/nightlife_2016/nightlife/wp-content/uploads/2018/11/Coppa-Club.jpg',

@@ -46,7 +46,7 @@
                             <div class="mb-4 row">
                                 <label for="price" class="star col-md-3 col-form-label text-md-right">Prezzo</label>
                                 <div class="col-md-6">
-                                    <input type="number" step=".01" name="price" class="form-control" required>
+                                    <input type="number" step=".01" name="price" class="form-control" placeholder="0.00" required>
                                 </div>
                             </div>
 

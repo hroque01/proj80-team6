@@ -725,12 +725,16 @@ nav {
     border-radius: 10px;
     padding: 50px;
 
+    .icon-leaf,
+    .icon-coins {
+        color: $btn_red;
+    }
 
     .text-card {
         margin-left: 50px;
 
         .link-back {
-            color: $text_black;
+            color: $btn_red;
 
             &:hover {
                 text-decoration: underline;
@@ -859,7 +863,7 @@ nav {
     align-items: center;
     justify-content: space-between;
 
-    a{
+    a {
         background-color: #fff;
         border: 2px solid $btn_red;
         padding: 5px 10px;
@@ -867,13 +871,13 @@ nav {
         border-radius: 10px;
         font-size: 18px;
 
-        &:hover{
+        &:hover {
             border: 3px solid $btn_red;
             font-weight: 600;
         }
     }
 }
-  
+
 .orders {
     display: flex;
     margin: 10px 0;
@@ -961,10 +965,10 @@ nav {
     .my_container {
         width: 95%;
 
-        .chart-flex-order{
+        .chart-flex-order {
             display: block;
 
-            .link_chart{
+            .link_chart {
                 display: none;
             }
         }
@@ -1025,4 +1029,3 @@ nav {
     }
 
 }
-

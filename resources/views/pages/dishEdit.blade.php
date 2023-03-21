@@ -22,7 +22,7 @@
                             @csrf
                 
                             <div class="mb-4 row">
-                                <label for="name" class="col-md-3 col-form-label text-md-right">Nome del piatto</label>
+                                <label for="name" class="col-md-3 col-form-label text-md-right star">Nome del piatto</label>
                                 <div class="col-md-6">
                                     <input type="text" name="name" class="form-control" value="{{$dish -> name}}" required>
                                 </div>
@@ -36,21 +36,21 @@
                             </div>
                 
                             <div class="mb-4 row">
-                                <label for="ingredients" class="col-md-3 col-form-label text-md-right">Ingredienti</label>
+                                <label for="ingredients" class="col-md-3 col-form-label text-md-right star">Ingredienti</label>
                                 <div class="col-md-6">
                                     <input type="text" name="ingredients" class="form-control" value="{{$dish -> ingredients}}" required>
                                 </div>
                             </div>
                             
                             <div class="mb-4 row">
-                                <label for="price" class="col-md-3 col-form-label text-md-right">Prezzo</label>
+                                <label for="price" class="col-md-3 col-form-label text-md-right star">Prezzo</label>
                                 <div class="col-md-6">
                                     <input type="number" step=".01" name="price" class="form-control" value="{{$dish -> price}}" required>
                                 </div>
                             </div>
                 
                             <div class="mb-4 row">
-                                <label for="image" class="col-md-3 col-form-label text-md-right">Immagine</label>
+                                <label for="image" class="col-md-3 col-form-label text-md-right star">Immagine</label>
                                 <div class="col-md-6">
                                     <input type="file" name="image" class="form-control" value="{{$dish -> image}}" required>
                                 </div>
@@ -59,7 +59,7 @@
                             <div class="mb-5 row">
                                 <div class="col-md-6">
                                     <p>
-                                        Vuoi che il piatto sia visibile nel men&uacute;&quest;
+                                        Vuoi che il piatto sia visibile nel men&ugrave;&quest;
                                     </p>
                                     <input type="radio" id="scelta1" name="visible" value="1" 
                                     @if ($dish->visible)
