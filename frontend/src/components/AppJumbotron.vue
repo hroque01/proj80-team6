@@ -16,9 +16,9 @@ export default {
     <!-- jumbotron-->
     <div class="jumbotron">
         <div class="ms_content">
-            <h1 >La scelta migliore per un pasto facile e veloce.
+            <h1>La scelta migliore per un pasto facile e veloce.
                 <br>
-                <strong><span class="pt-2">DELIVEBOO</span></strong> 
+                <strong><span class="pt-2">DELIVEBOO</span></strong>
             </h1>
         </div>
 
@@ -102,19 +102,20 @@ export default {
 
     .jumbotron {
         color: #fff;
-        width: 130%;
+        //width: 130%;
         height: 350px;
         border-radius: 0;
         position: relative;
         overflow: hidden;
 
-        .ms_content {
-            text-align: center;
-            position: absolute;
-            left: 38%;
-            top: 30%;
-            transform: translate(-50%, -50%);
-        }
+        // .ms_content {
+        //     text-align: center;
+        //     position: absolute;
+        //     left: 38%;
+        //     top: 30%;
+        //     transform: translate(-50%, -50%);
+        // }
+
         .ms_slider {
 
             .ms_card {
