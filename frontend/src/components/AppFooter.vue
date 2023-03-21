@@ -40,7 +40,7 @@ export default {
 
 <template>
     <!-- Footer -->
-    <footer :class="{ 'margin-bottom': $route.name === 'checkout'} ">
+    <footer :class="{ 'margin-bottom': $route.name === 'checkout' }">
         <div class="my_container">
 
             <!-- logo -->
@@ -79,7 +79,7 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
-.margin-bottom{
+.margin-bottom {
     margin-top: 50px;
 }
 
@@ -174,9 +174,9 @@ footer {
 
 @media only screen and (max-width: 750px) {
 
-    footer{
-        .logo-footer{
-            p{
+    footer {
+        .logo-footer {
+            p {
                 width: 100%;
             }
         }
@@ -184,46 +184,67 @@ footer {
 
 }
 
-@media only screen and (max-width: 540px) {
+@media only screen and (min-width: 480px) and (max-width: 759px) {
 
-    .raghiFooter{
+    .raghiFooter {
         display: flex;
         flex-wrap: wrap;
         gap: 20px;
         justify-content: center;
 
-        .ciaoRaghi{
+        .ciaoRaghi {
             width: calc(90% / 2 - 20px);
 
-            .card_Rag {
-                
-            }
-        }
-    }
-
-} 
-
-@media only screen and (max-width: 470px) {
-
-    .raghiFooter{
-        display: flex;
-        flex-wrap: wrap;
-        gap: 30px;
-        justify-content: center;
-
-        .ciaoRaghi{
-            width: 90%;
-
-            .card_Rag {
-
-                img{
-                    object-position: 0px -40px;
-                }
-                
-            }
         }
     }
 
 }
 
+@media only screen and (min-width: 760px) and (max-width: 850px) {
+
+    .raghiFooter {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+
+        .ciaoRaghi {
+            width: calc(90% / 3 - 20px);
+
+        }
+    }
+
+}
+
+@media only screen and (max-width: 470px) {
+
+    .raghiFooter {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+
+        // .ciaoRaghi {
+        //     width: 90%;
+
+        //     .card_Rag {
+
+        //         // img {
+        //         //     object-position: 0px -40px;
+        //         // }
+
+        //     }
+        // }
+    }
+
+}
+
+// @media all and (min-width: 540px) and (max-width: 900px) {
+
+//     .raghiFooter {
+//         .ciaoRaghi {
+//             width: calc(100% / 2) !important;
+//         }
+//     }
+// }
 </style>
