@@ -273,6 +273,14 @@ class RestaurantSeeder extends Seeder
                 'delivery_price' => 1.5,
                 'image' => 'https://blog.amigofoods.com/wp-content/uploads/2020/09/mexican-food.jpg',
                 'user_id' =>26,
+            ],
+            [   'business_name' => 'La Classe 80',
+                'description' => 'Lo vediamo il giro?',
+                'address' => 'Via Booleaners 80',    'opening_time' => '11:00:00',
+                'closure_time' => '23:00:00',
+                'delivery_price' => 1.2,
+                'image' => 'https://www.youparti.com/nightlife_2016/nightlife/wp-content/uploads/2018/11/Coppa-Club.jpg',
+                'user_id' =>27,
             ]
         ];
 
@@ -495,5 +503,15 @@ class RestaurantSeeder extends Seeder
             $typology_26 = Typology::find([6]);
             $restaurant_26->typologies()->attach($typology_26);
             
+            // Classe 80
+            $restaurant_27 = Restaurant::find(27);
+            $typology_27 = Typology::find([5]);
+            $restaurant_27->typologies()->attach($typology_27);
+            $restaurant_second27 = Restaurant::find(27);
+            $typology_second27 = Typology::find([7]);
+            $restaurant_second27->typologies()->attach($typology_second27);
+            $restaurant_third27 = Restaurant::find(27);
+            $typology_third27 = Typology::find([9]);
+            $restaurant_third27->typologies()->attach($typology_third27);
         }
 }

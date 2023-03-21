@@ -177,6 +177,12 @@ class UserSeeder extends Seeder
             'password' => Hash::make('@mexicanpuertorico'),
             'vat_number' => '4733344226'
         ],
+        [
+            'email' => 'classe80@gmail.com',
+            'email_verified_at' => '23:00',
+            'password' => Hash::make('@classe80gnomes'),
+            'vat_number' => '4733344229'
+        ],
     ];
     
     foreach ($users as $user) {
