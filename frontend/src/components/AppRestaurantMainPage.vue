@@ -217,10 +217,10 @@ export default {
       <div v-if="restaurant" class="flex-info-res my_container">
 
         <!-- <div class="back-button">
-                                                                                                                                      <button @click="scrollToTop()">
-                                                                                                                                        <i class="fa-solid fa-utensils"></i> Torna alla nostra selezione di ristoranti
-                                                                                                                                      </button>
-                                                                                                                                    </div> -->
+                                                                                                                                            <button @click="scrollToTop()">
+                                                                                                                                              <i class="fa-solid fa-utensils"></i> Torna alla nostra selezione di ristoranti
+                                                                                                                                            </button>
+                                                                                                                                          </div> -->
 
         <div class="restaurant_image">
           <img :src="getRestaurantImage(restaurant)" :alt="restaurant.business_name">
@@ -315,7 +315,7 @@ export default {
           <!-- carrello con items -->
           <div class="modify-cart"
             v-if="this.cart.length !== 0 && this.requestChangeCart == false && this.cart.length !== 0">
-            <h3>Il tuo ordine</h3>
+            <h3>Il tuo ordine da <span>{{ cart[0].restaurant_name }}</span></h3>
 
             <!-- ciclo per stampare items con bottoni per modifica quantità -->
             <div class="row-order" v-for="item in cart" :key="item.id">
@@ -648,6 +648,10 @@ section {
       h3 {
         font-weight: bold;
         margin-bottom: 10px;
+
+        span {
+          color: $btn_red;
+        }
       }
 
       .row-order {
