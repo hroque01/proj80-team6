@@ -282,6 +282,13 @@ export default {
                             // this.$router.push('/order');
                             console.log(localStorage.getItem('paid'));
                             localStorage.setItem('paid', true);
+                                axios.post(API_URL + 'invia-email')
+                                .then(response => {
+                                    console.log(response.data);
+                                })
+                                .catch(error => {
+                                    console.log(error);
+                                });
 
                             console.log(localStorage.getItem('paid'));
 
@@ -289,10 +296,8 @@ export default {
                             document.getElementById('dropin-container').classList.add('clickedBtnPay');
                             document.querySelector('.cart').classList.add('clickedBtnPay');
 
-                            // Esegui la rimozione della classe dopo 3 secondi
-                            setTimeout(function () {
-                                document.getElementById('confirmEmail').classList.remove('clickedBtnPay');
-                            }, 3000);
+                            document.getElementById('confirmEmail').classList.remove('clickedBtnPay');
+                            
 
                             document.getElementById('confirmEmail').classList.add('flex-style');
                         } else {

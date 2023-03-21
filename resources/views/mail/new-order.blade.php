@@ -15,7 +15,7 @@
             Ordine confermato!
         </h1>
         <p>Ciao <strong>{{ $order -> customer_name }}</strong>!</p>
-        <p>Abbiamo ricevuto il tuo deliveboo <strong>#{{ $order -> order_number }}</strong> effettuato in data {{substr($order-> create_date, 0, -8)}} alle {{$order-> create_time}}</p>
+        <p>Abbiamo ricevuto il tuo deliveboo <strong>#{{ $order -> order_number }}</strong> effettuato in data {{$order-> create_date}} alle {{substr($order-> create_time, 0, -3)}}</p>
         <p>
             Totale ordine {{ $order -> total }}€ 
         </p>
