@@ -83,6 +83,7 @@ section {
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 700px;
 
         .main-title {
             margin-bottom: 50px;
@@ -109,6 +110,17 @@ section {
         .accordion-button:not(.collapsed)::after {
             color: none;
         }
+    }
+
+}
+
+@media only screen and (max-width: 740px) {
+
+    section{
+        .my_container{
+            width: 95%;
+        }
+
     }
 
 }
