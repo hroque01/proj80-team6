@@ -141,7 +141,7 @@ nav {
 //   @include button;
 // }
 
-@media only screen and (max-width: 460px) {
+@media only screen and (max-width: 500px) {
 
   .navCentred_resp {
     padding-left: 20px;
