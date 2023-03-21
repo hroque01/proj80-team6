@@ -19,12 +19,12 @@ class RestaurantMail extends Mailable
      * @return void
      */
     public $order;
-
     public function __construct($order)
     {
         $this -> order = $order;
     }
 
+    
     /**
      * Get the message envelope.
      *

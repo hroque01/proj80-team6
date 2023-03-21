@@ -7,8 +7,18 @@
     <title>Deliveboo - Team 6</title>
 </head>
 <body>
-    <h3>
-        Il cliente {{ $order -> customer_name }} ha effettuato un ordine  in data {{ $order -> create_date }} {{ $order -> create_time }} presso il tuo ristorante per un totale di {{ $order -> total }} €
-    </h3>
+
+    <div class="mail-trap">
+        <div class="text-center">
+            <img src="{{Vite::asset('resources/img/logo-white.png')}}" alt="logo" class="logo-form">
+        </div>
+        <h1>
+            Hai un nuovo ordine!
+        </h1>
+        <p>Il cliente {{ $order -> customer_name }} ha effettuato un ordine  in data {{ $order -> create_date }} {{ $order -> create_time }} presso il tuo ristorante per un totale di {{ $order -> total }} €</p>
+        <h3>
+            Grazie!
+        </h3>
+    </div>
 </body>
 </html>
