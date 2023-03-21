@@ -960,6 +960,14 @@ nav {
 
     .my_container {
         width: 95%;
+
+        .chart-flex-order{
+            display: block;
+
+            .link_chart{
+                display: none;
+            }
+        }
     }
 
     .table {

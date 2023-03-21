@@ -24,7 +24,7 @@ export default {
 
 section{
     position: relative;
-
+    margin-bottom: 100px;
     .ms_txt{
         position: absolute;
         text-align: center;

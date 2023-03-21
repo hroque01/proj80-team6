@@ -399,7 +399,7 @@ export default {
 @use '../src/styles/partials/variables' as *;
 
 section {
-  padding-top: 110px;
+  padding: 100px 0;
 }
 
 // filtro b/n per piatti non disponibili
@@ -439,6 +439,7 @@ section {
 .restaurant_header {
   background-color: #fff;
   border: 1px solid #eaeaea;
+  border-top: none;
   box-shadow: 0px 5px 5px 0px #ececec;
   margin-bottom: 50px;
 
