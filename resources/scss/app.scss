@@ -4,6 +4,28 @@
 @import "@fortawesome/fontawesome-free/css/all.css"; // fontawesome
 
 
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 // REGOLE GENERALI:
 
 
@@ -250,53 +272,55 @@ ul li {
 
 // REGOLE DASHBOARD:
 
-.modal-content{
+.modal-content {
     width: 95%;
     margin: 0 10%;
 }
 
 .dashboard-card {
 
-    .dashboard-title{
+    .dashboard-title {
 
-        span{
+        span {
             color: $btn_red;
         }
 
-        p{
+        p {
             font-size: 20px;
             line-height: 20px;
         }
     }
-    
 
-    .btn-modal-dash{
+
+    .btn-modal-dash {
         background-color: $btn_red;
         color: #fff;
     }
-    .modal-title{
+
+    .modal-title {
         font-weight: bold;
         padding: 10px 25px;
     }
 
-    .modal-header{
+    .modal-header {
         border-bottom: none;
     }
-    .modal-body{
+
+    .modal-body {
         padding: 10px 30px;
 
-        img{
+        img {
             border-radius: 10px;
             margin-bottom: 20px;
         }
 
-        i{
+        i {
             color: $btn_red;
             margin-right: 10px;
         }
     }
 
-    .modal-footer{
+    .modal-footer {
         border-top: none;
         padding-right: 30px;
     }

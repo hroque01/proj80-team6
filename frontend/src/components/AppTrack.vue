@@ -92,6 +92,7 @@ section {
             margin-right: 15px;
             padding: 5px;
             @include flex(flex);
+            border-radius: 5px;
 
             &:nth-child(2) {
                 svg {

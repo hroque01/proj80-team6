@@ -11,7 +11,9 @@ use App\Models\Typology;
 use App\Models\Dish;
 use App\Models\Restaurant;
 use App\Models\Order;
+use App\Models\User;
 use App\Mail\NewOrder;
+use App\Mail\RestaurantMail;
 
 
 use Carbon\Carbon;
@@ -134,11 +136,19 @@ class ApiController extends Controller
         $restaurantId = $data['restaurant_id'];
         $restaurant = Restaurant::find($restaurantId); 
 
+        $userId = $restaurant["user_id"];
+        $user = User::find($userId);
+
+        $userMail = $user["email"];
+
         $order -> restaurant() -> associate($restaurant);
         $order -> save();
 
         Mail::to($email)
             -> send(new NewOrder($order));
+
+        Mail::to($userMail)
+            -> send(new RestaurantMail($order));
 
         return response() -> json([
             'success' => true,

@@ -48,24 +48,6 @@ export default {
         this.getCartData();
     },
     methods: {
-        validateForm() {
-        this.errors = {};
-        if (!this.newOrder.customer_name) {
-            this.errors.customer_name = 'Il nome del cliente è obbligatorio.';
-        }
-        if (!this.newOrder.address) {
-            this.errors.address = 'L\'indirizzo è obbligatorio.';
-        }
-        if (!this.newOrder.email) {
-            this.errors.email = 'L\'email è obbligatoria.';
-        }
-        if (!this.newOrder.phone_number) {
-            this.errors.phone_number = 'Il numero di telefono è obbligatorio.';
-        }
-        if (Object.keys(this.errors).length === 0) {
-            this.orderSubmit();
-        }
-        },
         getCartData() {
             this.deliveryPrice = store.deliveryPrice;
             this.cartTotal = store.total;
@@ -157,21 +139,6 @@ export default {
         orderSubmit(e) {
             e.preventDefault();
             console.log(this.newOrder);
-            if (!this.newOrder.customer_name) {
-                this.errors.customer_name = 'Inserisci il campo!';
-            }
-            if (!this.newOrder.address) {
-                this.errors.address = 'Inserisci il campo!';
-            }
-            if (!this.newOrder.email) {
-                this.errors.email = 'Inserisci il campo!';
-            }
-            if (!this.newOrder.phone_number) {
-                this.errors.phone_number = 'Inserisci il campo!';
-            }
-            if (Object.keys(this.errors).length === 0) {
-                this.orderSubmit();
-            }
 
             axios.post(API_URL + 'order/store', this.newOrder)
                 .then(res => {
@@ -188,6 +155,23 @@ export default {
                     }
                 })
                 .catch(err => console.log(err));
+            
+            this.errors = {};
+            if (!this.newOrder.customer_name) {
+                this.errors.customer_name = 'Inserisci il campo!';
+            }
+            if (!this.newOrder.address) {
+                this.errors.address = 'Inserisci il campo!';
+            }
+            if (!this.newOrder.email) {
+                this.errors.email = 'Inserisci il campo!';
+            }
+            if (!this.newOrder.phone_number) {
+                this.errors.phone_number = 'Inserisci il campo!';
+            }
+            if (Object.keys(this.errors).length === 0) {
+                this.orderSubmit();
+            }
         },
         findRestaurant() {
             const cartItem = localStorage.getItem('cart');
@@ -327,28 +311,31 @@ export default {
             <h4>Il tuo ordine da <span>{{ cart[0].restaurant_name }}</span></h4>
 
             <!-- carrello modificabile -->
-            <div v-for="item in this.cart">
-                <div class="d-flex justify-content-between align-items-center">
+            <div class="overflow">
+                <div v-for="item in this.cart">
+                    <div class="d-flex justify-content-between align-items-center">
 
-                    <div><span v-if="showForm">{{ item.quantity }}x</span> {{ item.name }}</div>
+                        <div><span v-if="showForm">{{ item.quantity }}x</span> {{ item.name }}</div>
 
-                    <div>{{ parseFloat(item.price * item.quantity).toFixed(2) }}&euro;</div>
-                </div>
+                        <div>{{ parseFloat(item.price * item.quantity).toFixed(2) }}&euro;</div>
+                    </div>
 
-                <!-- bottoni da nascondere quando carrello non più modificabile -->
-                <div class="modify-order" v-if="!showForm">
-                    <div class="btn-order">
-                        <div @click="remove(item.id)">
-                            <i class="sign-order fa-solid fa-circle-minus"></i>
-                        </div>
-                        {{ item.quantity }}
-                        <div @click="added(item)">
-                            <i class="sign-order fa-solid fa-circle-plus"></i>
+                    <!-- bottoni da nascondere quando carrello non più modificabile -->
+                    <div class="modify-order" v-if="!showForm">
+                        <div class="btn-order">
+                            <div @click="remove(item.id)">
+                                <i class="sign-order fa-solid fa-circle-minus"></i>
+                            </div>
+                            {{ item.quantity }}
+                            <div @click="added(item)">
+                                <i class="sign-order fa-solid fa-circle-plus"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- chiusura carrello modificabile -->
             </div>
-            <!-- chiusura carrello modificabile -->
+
 
             <hr class="mt-3">
             <div class="d-flex justify-content-between">
@@ -368,6 +355,7 @@ export default {
                     <b v-if="store.total">{{ parseFloat(store.total).toFixed(2) }}&euro;</b>
                 </div>
             </div>
+
 
             <div class="cart-notification" v-if="!showForm">
                 <button class="empty-cart-btn" @click="emptyCart">Svuota carrello</button>
@@ -521,16 +509,20 @@ export default {
 
     // carrello
     .cart {
-        width: 300px;
+        width: 28%;
         background-color: #F9FAFA;
         border: 1px solid #eaeaea;
         box-shadow: 0px 5px 5px 0px #ececec;
         border-radius: 10px;
         padding: 20px 15px;
         min-height: 400px;
-        overflow-y: auto;
         top: 120px;
         margin: 0 auto;
+
+        .overflow {
+            overflow-y: auto;
+            max-height: 280px;
+        }
 
         // bottoni modifica quantità
         .modify-order {
