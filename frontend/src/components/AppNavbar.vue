@@ -104,20 +104,22 @@ nav {
     gap: 20px;
 
     li {
-      background-color: #fff;
-      border-radius: 8px;
-      padding: 10px;
-      border: 1px solid $btn_red;
 
       a {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 10px;
+        border: 1px solid $btn_red;
         color: #000;
       }
 
       &:hover {
-        border: 1px solid $btn_red;
-        background-color: #ee5743be;
+        a {
+          border: 1px solid $btn_red;
+          background-color: #ee5743be;
+          color: #fff;
+        }
 
-        a,
         svg {
           color: #fff;
         }
