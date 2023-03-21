@@ -6,6 +6,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="icon" href="{{Vite::asset('resources/img/favicon.ico.png')}}" type="image/x-icon">
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
@@ -123,7 +124,12 @@
       const config = {
         type: 'bar',
         data: data,
-        options: {}
+        options: {
+            y: {
+                min: 0,
+                max: 100
+            }
+        }
       };
   
       const myChart = new Chart(
