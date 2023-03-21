@@ -107,7 +107,7 @@ class MainController extends Controller
             'visible' => 'required|boolean',
         ]);
 
-        $img_path  = Storage::put('uploads', $data['image']);
+        $img_path  = Storage::put('edit-image', $data['image']);
         $data['image'] = $img_path;
 
         $dish->update($data);

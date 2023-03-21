@@ -180,7 +180,7 @@ export default {
       }
     },
     getDishImage(dish) {
-      if (dish.image.includes("dishes-image")) {
+      if (dish.image.includes("dishes-image") || dish.image.includes("edit-image")) {
         return 'http://[::1]:5173/storage/app/public/' + dish.image;
       } else {
         return dish.image;
@@ -217,10 +217,10 @@ export default {
       <div v-if="restaurant" class="flex-info-res my_container">
 
         <!-- <div class="back-button">
-                                                                                                                                            <button @click="scrollToTop()">
-                                                                                                                                              <i class="fa-solid fa-utensils"></i> Torna alla nostra selezione di ristoranti
-                                                                                                                                            </button>
-                                                                                                                                          </div> -->
+                                                                                                                                                  <button @click="scrollToTop()">
+                                                                                                                                                    <i class="fa-solid fa-utensils"></i> Torna alla nostra selezione di ristoranti
+                                                                                                                                                  </button>
+                                                                                                                                                </div> -->
 
         <div class="restaurant_image">
           <img :src="getRestaurantImage(restaurant)" :alt="restaurant.business_name">
@@ -446,7 +446,7 @@ section {
   .flex-info-res {
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 20px 0;
   }
 
   .restaurant_image {

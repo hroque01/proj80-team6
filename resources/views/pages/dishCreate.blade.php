@@ -15,7 +15,7 @@
                     </div>
 
                     <div class="card-body">
-                        <h5 class="mt-3 mb-5">Aggiungi un nuovo piatto al tuo men&uacute;</h5>
+                        <h5 class="mt-3 mb-5">Aggiungi un nuovo piatto al tuo men&ugrave;</h5>
 
                         {{-- form --}}
                         <form method="POST" action="{{ route('dishStore') }}" enctype="multipart/form-data">
@@ -24,21 +24,22 @@
                             <div class="mb-4 row">
                                 <label for="name" class="star col-md-3 col-form-label text-md-right">Nome del piatto</label>
                                 <div class="col-md-6">
-                                    <input type="text" name="name" class="form-control" placeholder="Spaghetti alle vongole" required>
+                                    <input type="text" name="name" class="form-control" placeholder="Fai un po' di prove" required>
                                 </div>
                             </div>
 
                             <div class="mb-4 row">
                                 <label for="description" class="col-md-3 col-form-label text-md-right">Descrizione</label>
                                 <div class="col-md-6">
-                                    <input type="text" name="description" class="form-control" placeholder="Descrizione">
+                                    <textarea name="description" class="form-control" required></textarea>
+                                    
                                 </div>
                             </div>
 
                             <div class="mb-4 row">
                                 <label for="ingredients" class="star col-md-3 col-form-label text-md-right">Ingredienti</label>
                                 <div class="col-md-6">
-                                    <textarea name="ingredients" class="form-control" required></textarea>
+                                    <input type="text" name="ingredients" class="form-control" placeholder="Ingredienti">
                                 </div>
                             </div>
                             

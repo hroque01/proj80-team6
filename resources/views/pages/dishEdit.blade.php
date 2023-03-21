@@ -31,7 +31,7 @@
                             <div class="mb-4 row">
                                 <label for="description" class="col-md-3 col-form-label text-md-right">Descrizione</label>
                                 <div class="col-md-6">
-                                    <input type="text" name="description" class="form-control" value="{{$dish -> description}}" required>
+                                    <textarea type="text" name="description" class="form-control" required></textarea>
                                 </div>
                             </div>
                 
