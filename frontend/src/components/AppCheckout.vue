@@ -155,7 +155,7 @@ export default {
                     }
                 })
                 .catch(err => console.log(err));
-            
+
             this.errors = {};
             if (!this.newOrder.customer_name) {
                 this.errors.customer_name = 'Inserisci il campo!';
@@ -273,29 +273,31 @@ export default {
             selector: '#dropin-container',
             locale: 'it_IT',
         }, function (err, instance) {
-            button.addEventListener('click', function () {
+            if (button) {
+                button.addEventListener('click', function () {
 
-                instance.requestPaymentMethod(function (err, payload) {
-                    if (payload) {
-                        localStorage.clear();
-                        store.total = 0;
-                        // this.$router.push('/order');
-                        console.log(localStorage.getItem('paid'));
-                        localStorage.setItem('paid', true);
+                    instance.requestPaymentMethod(function (err, payload) {
+                        if (payload) {
+                            localStorage.clear();
+                            store.total = 0;
+                            // this.$router.push('/order');
+                            console.log(localStorage.getItem('paid'));
+                            localStorage.setItem('paid', true);
 
-                        console.log(localStorage.getItem('paid'));
+                            console.log(localStorage.getItem('paid'));
 
-                        button.classList.add('clickedBtnPay');
-                        document.getElementById('dropin-container').classList.add('clickedBtnPay');
-                        document.querySelector('.cart').classList.add('clickedBtnPay');
-                        document.getElementById('confirmEmail').classList.remove('clickedBtnPay');
-                        document.getElementById('confirmEmail').classList.add('flex-style');
-                    } else {
-                        console.log("Dentro errore paymenent", err, payload);
-                        console.log(localStorage.getItem('paid'));
-                    }
-                });
-            })
+                            button.classList.add('clickedBtnPay');
+                            document.getElementById('dropin-container').classList.add('clickedBtnPay');
+                            document.querySelector('.cart').classList.add('clickedBtnPay');
+                            document.getElementById('confirmEmail').classList.remove('clickedBtnPay');
+                            document.getElementById('confirmEmail').classList.add('flex-style');
+                        } else {
+                            console.log("Dentro errore paymenent", err, payload);
+                            console.log(localStorage.getItem('paid'));
+                        }
+                    });
+                })
+            }
         });
     },
     updated() {
@@ -382,10 +384,11 @@ export default {
                         <div class="items d-flex flex-column align-items-center">
                             <div class="items d-flex justify-content-between align-items-center">
                                 <label for="customer_name">Nome e cognome<span>*</span></label>
-                                <input type="text" placeholder="Mario Rossi" name="customer_name" v-model="newOrder.customer_name"
-                                required class="input-form">
+                                <input type="text" placeholder="Mario Rossi" name="customer_name"
+                                    v-model="newOrder.customer_name" required class="input-form">
                             </div>
-                            <span v-if="errors.customer_name" class="error d-flex marginino">{{ errors.customer_name }}</span>
+                            <span v-if="errors.customer_name" class="error d-flex marginino">{{ errors.customer_name
+                            }}</span>
                         </div>
                     </div>
 
@@ -393,7 +396,8 @@ export default {
                         <div class="items d-flex flex-column align-items-center">
                             <div class="items d-flex justify-content-between align-items-center">
                                 <label for="address">Indirizzo<span>*</span></label>
-                                <input type="text" placeholder="Via Roma, 10" name="address" v-model="newOrder.address" required>
+                                <input type="text" placeholder="Via Roma, 10" name="address" v-model="newOrder.address"
+                                    required>
                             </div>
                             <span v-if="errors.address" class="error d-flex marginino">{{ errors.address }}</span>
                         </div>
@@ -402,8 +406,9 @@ export default {
                     <div class="flex-form">
                         <div class="items d-flex flex-column align-items-center">
                             <div class="items d-flex justify-content-between align-items-center">
-                                 <label for="email">Email<span>*</span></label>
-                                <input type="email" placeholder="email@prova.it" name="email" v-model="newOrder.email" required>
+                                <label for="email">Email<span>*</span></label>
+                                <input type="email" placeholder="email@prova.it" name="email" v-model="newOrder.email"
+                                    required>
                             </div>
                             <span v-if="errors.email" class="error d-flex marginino">{{ errors.email }}</span>
                         </div>
@@ -413,12 +418,13 @@ export default {
                         <div class="items d-flex flex-column align-items-center">
                             <div class="items d-flex justify-content-between align-items-center">
                                 <label for="phone_number">Recapito telefonico<span>*</span></label>
-                                <input type="text" placeholder="3468888888" name="phone_number" v-model="newOrder.phone_number" required>
+                                <input type="text" placeholder="3468888888" name="phone_number"
+                                    v-model="newOrder.phone_number" required>
                             </div>
                             <span v-if="errors.phone_number" class="error d-flex marginino">{{ errors.phone_number }}</span>
                         </div>
-                      
-                        
+
+
                     </div>
                 </div>
 
@@ -514,7 +520,7 @@ export default {
         border: 1px solid #eaeaea;
         box-shadow: 0px 5px 5px 0px #ececec;
         border-radius: 10px;
-        padding: 20px 15px;
+        padding: 20px 25px;
         min-height: 400px;
         top: 120px;
         margin: 0 auto;
@@ -689,7 +695,7 @@ export default {
 
 }
 
-.items{
+.items {
     width: 100%;
 }
 
