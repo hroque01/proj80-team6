@@ -89,6 +89,7 @@ section {
             margin-bottom: 50px;
             color: $btn_red;
             font-weight: bold;
+            text-align: center;
         }
 
         .accordion {
@@ -116,9 +117,11 @@ section {
 
 @media only screen and (max-width: 740px) {
 
-    section{
-        .my_container{
-            width: 95%;
+    section {
+        margin: 100px 0;
+
+        .my_container {
+            width: 93%;
         }
 
     }

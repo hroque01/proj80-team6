@@ -175,5 +175,30 @@ nav {
     display: none;
   }
 
+  .icon-nav {
+    padding: 0;
+  }
+
+  nav {
+    ul {
+      gap: 0;
+
+      li {
+
+        &:nth-child(1) {
+          a {
+            padding: 10px 17px;
+          }
+        }
+
+        &:nth-child(2) {
+          a {
+            padding: 10px 15px;
+          }
+        }
+      }
+    }
+  }
+
 }
 </style>

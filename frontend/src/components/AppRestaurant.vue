@@ -102,7 +102,7 @@ export default {
                     <h4 class="mb-3">Categorie</h4>
                     <ul class="typologies-list">
                         <!-- ciclo per stampare elenco categorie da dbs -->
-                        <div v-for="typology in typologies" :key="typology.id">
+                        <div v-for="typology in typologies" :key="typology.id" class="responsive-fix">
                             <li>
                                 <input type="checkbox" name="" :id="'typology_' + typology.id" v-model="selectedTypologies"
                                     :value="typology.id">
@@ -434,7 +434,7 @@ section {
     }
 }
 
-@media only screen and (max-width: 806px) {
+@media only screen and (max-width: 812px) {
 
     .restaurant {
         min-width: 210px;
@@ -464,7 +464,7 @@ section {
 
 }
 
-@media only screen and (max-width: 679px) {
+@media only screen and (max-width: 770px) {
 
     .restaurant {
         min-width: 90%;
@@ -479,6 +479,12 @@ section {
 
     nav {
         padding-left: 0;
+
+
+
+        h4 {
+            padding-left: 20px;
+        }
 
         ul {
 
@@ -575,6 +581,8 @@ section {
     }
 
     nav {
+        overflow: hidden;
+
         ul {
             li {
                 border-bottom: 0px solid #eaeaea;
@@ -582,5 +590,17 @@ section {
         }
     }
 
+    .typologies-list {
+        height: 96px;
+        overflow-y: hidden;
+    }
+
+}
+
+@media only screen and (max-width: 469px) {
+
+    .restaurantsContainer {
+        padding-top: 30px;
+    }
 }
 </style>
