@@ -216,6 +216,17 @@ footer {
 
 }
 
+@media only screen and (max-width: 469px) {
+
+    .raghiFooter {
+
+        .ciaoRaghi {
+            width: calc(90% / 2 - 20px);
+
+        }
+    }
+}
+
 @media only screen and (max-width: 470px) {
 
     .raghiFooter {

@@ -217,10 +217,10 @@ export default {
       <div v-if="restaurant" class="flex-info-res my_container">
 
         <!-- <div class="back-button">
-                <button @click="scrollToTop()">
-                  <i class="fa-solid fa-utensils"></i> Torna alla nostra selezione di ristoranti
-                </button>
-              </div> -->
+                                                                                                                                      <button @click="scrollToTop()">
+                                                                                                                                        <i class="fa-solid fa-utensils"></i> Torna alla nostra selezione di ristoranti
+                                                                                                                                      </button>
+                                                                                                                                    </div> -->
 
         <div class="restaurant_image">
           <img :src="getRestaurantImage(restaurant)" :alt="restaurant.business_name">
@@ -446,7 +446,7 @@ section {
   .flex-info-res {
     display: flex;
     align-items: center;
-    padding: 50px 0;
+    padding: 20px;
   }
 
   .restaurant_image {
@@ -772,23 +772,52 @@ section {
   }
 }
 
-@media all and (max-width: 480px) {
+@media all and (max-width: 600px) {
   .my_container {
     width: 100%;
-    padding: 0 30px;
+    margin: 50px 0;
+    padding: 20px 20px 0 20px;
 
-    .my_Boxes-wrapper {
+    // .flex-info-res {
+    //   margin: 30px 0;
+    // }
 
-      .my_bigBox {
-        width: 60%;
-      }
+    .restaurant_header {
+      padding-top: 20px;
+    }
 
-      .cart {
-        width: 40%;
-      }
+    // .my_Boxes-wrapper {
+
+    //   .my_bigBox {
+    //     width: 60%;
+    //   }
+
+    //   .cart {
+    //     width: 40%;
+    //   }
+    // }
+
+    .my_bigBox-img {
+      width: 90%;
     }
   }
 }
+
+// @media only screen and (max-width: 9001px) and (max-width: 100px) {
+//   .my_container {
+//     .restaurant_image {
+//       margin: 0 auto;
+//     }
+
+//     .menu_list {
+//       width: 100%;
+//     }
+
+//     .my_bigBox {
+//       width: calc(100% / 3 - 20px);
+//     }
+//   }
+// }
 
 @media only screen and (max-width: 1284px) {
 
@@ -805,12 +834,12 @@ section {
 
 }
 
-@media only screen and (max-width: 972px) {
+@media only screen and (max-width: 1019px) {
 
   .restaurant_header {
 
     .restaurant_image {
-      width: 40%;
+      margin: 0 auto;
       height: 80%;
       border: 1px solid #eaeaea;
       box-shadow: 0px 5px 5px 0px #ececec;
@@ -826,8 +855,8 @@ section {
     }
 
     .restaurant_informations {
-      padding-left: 50px;
-      line-height: 30px;
+      padding-top: 20px;
+      margin: 0 auto;
 
       svg {
         width: 20px;
@@ -855,8 +884,7 @@ section {
 
   .dish_cart {
     .menu_list {
-      width: 70%;
-      margin-right: 1%;
+      width: 100%;
 
       .my_Boxes-wrapper {
         display: flex;
@@ -869,7 +897,7 @@ section {
       }
 
       .my_bigBox {
-        width: 45%;
+        width: calc(50% - 20px);
         margin: 20px 10px;
         background-color: #fff;
         border: 1px solid #eaeaea;
@@ -977,13 +1005,24 @@ section {
     }
   }
 
+  .dish_cart {
+    .cart {
+      width: 100%;
+    }
+  }
+
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 760px) {
+
+  .restaurant_header {
+    width: 90%;
+    margin: 0 auto;
+  }
+
   .dish_cart {
     .menu_list {
-      width: 49%;
-      margin-right: 1%;
+      width: 100%;
 
       .my_Boxes-wrapper {
         display: flex;
@@ -1030,7 +1069,7 @@ section {
         }
 
         .my_bigBox-img {
-          width: 95%;
+          width: 100%;
           object-fit: cover;
           background-color: white;
           border-top-right-radius: 10px;
@@ -1104,7 +1143,7 @@ section {
     }
 
     .cart {
-      width: 49%;
+      width: 100%;
       background-color: #F9FAFA;
       border: 1px solid #eaeaea;
       box-shadow: 0px 5px 5px 0px #ececec;
@@ -1542,4 +1581,6 @@ section {
   }
 
 }
+
+@media only screen and (min-width: 350px) and (max-width: 600px) {}
 </style>

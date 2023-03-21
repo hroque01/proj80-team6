@@ -282,7 +282,7 @@ export default {
                             // this.$router.push('/order');
                             console.log(localStorage.getItem('paid'));
                             localStorage.setItem('paid', true);
-                                axios.post(API_URL + 'invia-email')
+                            axios.post(API_URL + 'invia-email')
                                 .then(response => {
                                     console.log(response.data);
                                 })
@@ -753,5 +753,29 @@ export default {
         }
     }
 
+}
+
+@media only screen and (min-width: 350px) and (max-width: 780px) {
+    .my_container {
+        .empty_cart {
+            width: 100%;
+        }
+    }
+}
+
+@media only screen and (min-width: 781px) and (max-width: 979px) {
+    .my_container {
+        .empty_cart {
+            width: 80%;
+        }
+    }
+}
+
+@media only screen and (max-width: 980px) {
+    .my_container {
+        .empty_cart {
+            width: 80%;
+        }
+    }
 }
 </style>
