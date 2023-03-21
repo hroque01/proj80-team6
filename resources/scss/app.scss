@@ -999,11 +999,13 @@ nav {
 }
 
 // REGOLE MAIL-TRAP:
-.mail-trap{
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    border-radius: 50%;
-    padding: 2px;
-    border: 2px solid $btn_red;
+.mail-trap {
+    img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        border-radius: 50%;
+        padding: 2px;
+        border: 2px solid $btn_red;
+    }
 }
