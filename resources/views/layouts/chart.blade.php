@@ -97,7 +97,7 @@
             </div>
         </nav>
         
-    <div class="my_container">
+    <div class="my_container mt-5">
         <canvas id="myChart" height="100px"></canvas>
     </div>
 
@@ -127,7 +127,7 @@
         options: {
             y: {
                 min: 0,
-                max: 100
+                
             }
         }
       };
