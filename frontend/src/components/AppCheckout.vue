@@ -297,7 +297,6 @@ export default {
                             document.querySelector('.cart').classList.add('clickedBtnPay');
 
                             document.getElementById('confirmEmail').classList.remove('clickedBtnPay');
-                            
 
                             document.getElementById('confirmEmail').classList.add('flex-style');
                         } else {
