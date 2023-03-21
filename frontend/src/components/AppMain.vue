@@ -28,9 +28,7 @@ export default {
 
   <AppRestaurant v-if="$route.name === 'home'" />
 
-  <div class="cerotto">
-    <AppRestaurantMainPage v-if="$route.name === 'restaurant-detail'" />
-  </div>
+  <AppRestaurantMainPage v-if="$route.name === 'restaurant-detail'" />
 
   <AppCheckout v-if="$route.name !== 'home' && $route.name !== 'restaurant-detail'" />
 
@@ -41,10 +39,4 @@ export default {
 @use '../src/styles/general.scss' as *;
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
-
-.cerotto {
-  padding-top: 0px;
-}
-
-
 </style>

@@ -48,7 +48,8 @@ export default {
     :class="{ 'navbar-black': $route.name !== 'home', 'fixed': $route.name === 'restaurant-detail', 'margin-bottom': $route.name === 'checkout' }">
     <div class="my_container">
       <router-link to="/" class="navbar-brand">
-        <img src="/public/img/logo-white.png" alt="logo deliveboo">
+        <img src="/public/img/logo-white.png" alt="logo deliveboo" :class="{ 'logo-black': $route.name === 'home' }">
+        <img src="/public/img/logo.png" alt="logo deliveboo" :class="{ 'logo-white': $route.name !== 'home' }">
       </router-link>
 
       <ul>
@@ -84,6 +85,14 @@ export default {
 nav {
   padding: 15px 0;
 
+  .logo-white {
+    display: none;
+  }
+
+  .logo-black {
+    display: none;
+  }
+
   .my_container {
     display: flex;
     justify-content: space-between;
@@ -104,13 +113,15 @@ nav {
         color: #000;
       }
 
-      &:hover{
+      &:hover {
         border: 1px solid $btn_red;
         background-color: #ee5743be;
-        a, svg{
+
+        a,
+        svg {
           color: #fff;
         }
-        
+
       }
     }
   }
@@ -118,7 +129,7 @@ nav {
 
 .navbar-black {
   background-color: #fafafa;
-  border-bottom:3px solid $btn_red;
+  border-bottom: 3px solid $btn_red;
 }
 
 .margin-bottom {
