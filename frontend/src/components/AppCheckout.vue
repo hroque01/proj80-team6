@@ -528,6 +528,7 @@ export default {
         .overflow {
             overflow-y: auto;
             max-height: 280px;
+            padding: 0 10px;
         }
 
         // bottoni modifica quantità
