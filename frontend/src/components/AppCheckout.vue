@@ -156,22 +156,22 @@ export default {
                 })
                 .catch(err => console.log(err));
 
-            this.errors = {};
-            if (!this.newOrder.customer_name) {
-                this.errors.customer_name = 'Inserisci il campo!';
-            }
-            if (!this.newOrder.address) {
-                this.errors.address = 'Inserisci il campo!';
-            }
-            if (!this.newOrder.email) {
-                this.errors.email = 'Inserisci il campo!';
-            }
-            if (!this.newOrder.phone_number) {
-                this.errors.phone_number = 'Inserisci il campo!';
-            }
-            if (Object.keys(this.errors).length === 0) {
-                this.orderSubmit();
-            }
+            // this.errors = {};
+            // if (!this.newOrder.customer_name) {
+            //     this.errors.customer_name = 'Inserisci il campo!';
+            // }
+            // if (!this.newOrder.address) {
+            //     this.errors.address = 'Inserisci il campo!';
+            // }
+            // if (!this.newOrder.email) {
+            //     this.errors.email = 'Inserisci il campo!';
+            // }
+            // if (!this.newOrder.phone_number) {
+            //     this.errors.phone_number = 'Inserisci il campo!';
+            // }
+            // if (Object.keys(this.errors).length === 0) {
+            //     this.orderSubmit();
+            // }
         },
         findRestaurant() {
             const cartItem = localStorage.getItem('cart');
@@ -275,7 +275,6 @@ export default {
         }, function (err, instance) {
             if (button) {
                 button.addEventListener('click', function () {
-
                     instance.requestPaymentMethod(function (err, payload) {
                         if (payload) {
                             localStorage.clear();
@@ -289,7 +288,12 @@ export default {
                             button.classList.add('clickedBtnPay');
                             document.getElementById('dropin-container').classList.add('clickedBtnPay');
                             document.querySelector('.cart').classList.add('clickedBtnPay');
-                            document.getElementById('confirmEmail').classList.remove('clickedBtnPay');
+
+                            // Esegui la rimozione della classe dopo 3 secondi
+                            setTimeout(function () {
+                                document.getElementById('confirmEmail').classList.remove('clickedBtnPay');
+                            }, 3000);
+
                             document.getElementById('confirmEmail').classList.add('flex-style');
                         } else {
                             console.log("Dentro errore paymenent", err, payload);
@@ -299,6 +303,7 @@ export default {
                 })
             }
         });
+
     },
     updated() {
         this.updateTotal();
@@ -376,7 +381,7 @@ export default {
 
         <!-- form -->
         <div class="form-cart clickedBtnPay">
-            <form v-if="showForm && !showPayment" v-on:submit.prevent>
+            <form v-if="showForm && !showPayment">
 
                 <div>
                     <h3>Dettagli cliente</h3>

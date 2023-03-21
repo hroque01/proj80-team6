@@ -25,12 +25,16 @@ const router = createRouter({
             name: 'checkout',
             component: AppCheckout
         },
-    ]
+    ],
+    scrollBehavior(to, from, savedPosition) {
+        // always scroll to top
+        return { top: 0 }
+    },
 });
 
-router.beforeEach((to, from, next) => {
-    window.scrollTo(0, 0);
-    next();
-});
+// router.beforeEach((to, from, next) => {
+//     window.scrollTo(0, 0);
+//     next();
+// });
 
 export default router;
