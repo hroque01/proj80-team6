@@ -710,22 +710,23 @@ export default {
 }
 
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 1210px) {
 
     .my_container {
-        .form-cart {
-            .flex-form {
-                input {
-                    width: 150px;
-                }
-            }
 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .cart {
+            width: 70%;
         }
     }
 
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 950px) {
 
     .my_container {
 
@@ -740,7 +741,6 @@ export default {
 
         .form-cart {
             margin-top: 15px;
-            margin-left: 0px;
             width: 95%;
         }
 
