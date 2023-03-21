@@ -48,24 +48,6 @@ export default {
         this.getCartData();
     },
     methods: {
-        validateForm() {
-        this.errors = {};
-        if (!this.newOrder.customer_name) {
-            this.errors.customer_name = 'Il nome del cliente è obbligatorio.';
-        }
-        if (!this.newOrder.address) {
-            this.errors.address = 'L\'indirizzo è obbligatorio.';
-        }
-        if (!this.newOrder.email) {
-            this.errors.email = 'L\'email è obbligatoria.';
-        }
-        if (!this.newOrder.phone_number) {
-            this.errors.phone_number = 'Il numero di telefono è obbligatorio.';
-        }
-        if (Object.keys(this.errors).length === 0) {
-            this.orderSubmit();
-        }
-        },
         getCartData() {
             this.deliveryPrice = store.deliveryPrice;
             this.cartTotal = store.total;
@@ -157,21 +139,6 @@ export default {
         orderSubmit(e) {
             e.preventDefault();
             console.log(this.newOrder);
-            if (!this.newOrder.customer_name) {
-                this.errors.customer_name = 'Inserisci il campo!';
-            }
-            if (!this.newOrder.address) {
-                this.errors.address = 'Inserisci il campo!';
-            }
-            if (!this.newOrder.email) {
-                this.errors.email = 'Inserisci il campo!';
-            }
-            if (!this.newOrder.phone_number) {
-                this.errors.phone_number = 'Inserisci il campo!';
-            }
-            if (Object.keys(this.errors).length === 0) {
-                this.orderSubmit();
-            }
 
             axios.post(API_URL + 'order/store', this.newOrder)
                 .then(res => {
@@ -188,6 +155,23 @@ export default {
                     }
                 })
                 .catch(err => console.log(err));
+            
+            this.errors = {};
+            if (!this.newOrder.customer_name) {
+                this.errors.customer_name = 'Inserisci il campo!';
+            }
+            if (!this.newOrder.address) {
+                this.errors.address = 'Inserisci il campo!';
+            }
+            if (!this.newOrder.email) {
+                this.errors.email = 'Inserisci il campo!';
+            }
+            if (!this.newOrder.phone_number) {
+                this.errors.phone_number = 'Inserisci il campo!';
+            }
+            if (Object.keys(this.errors).length === 0) {
+                this.orderSubmit();
+            }
         },
         findRestaurant() {
             const cartItem = localStorage.getItem('cart');
