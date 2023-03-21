@@ -289,10 +289,7 @@ export default {
                             document.getElementById('dropin-container').classList.add('clickedBtnPay');
                             document.querySelector('.cart').classList.add('clickedBtnPay');
 
-                            // Esegui la rimozione della classe dopo 3 secondi
-                            setTimeout(function () {
-                                document.getElementById('confirmEmail').classList.remove('clickedBtnPay');
-                            }, 3000);
+                            document.getElementById('confirmEmail').classList.remove('clickedBtnPay');
 
                             document.getElementById('confirmEmail').classList.add('flex-style');
                         } else {
