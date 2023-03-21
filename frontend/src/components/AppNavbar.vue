@@ -48,7 +48,7 @@ export default {
     :class="{ 'navbar-black': $route.name !== 'home', 'fixed': $route.name === 'restaurant-detail', 'margin-bottom': $route.name === 'checkout' }">
     <div class="my_container">
       <router-link to="/" class="navbar-brand">
-        <img src="/public/img/logo.png" alt="logo deliveboo">
+        <img src="/public/img/logo-white.png" alt="logo deliveboo">
       </router-link>
 
       <ul>
@@ -98,16 +98,27 @@ nav {
       background-color: #fff;
       border-radius: 8px;
       padding: 10px;
+      border: 1px solid $btn_red;
 
       a {
         color: #000;
+      }
+
+      &:hover{
+        border: 1px solid $btn_red;
+        background-color: #ee5743be;
+        a, svg{
+          color: #fff;
+        }
+        
       }
     }
   }
 }
 
 .navbar-black {
-  background-color: #000;
+  background-color: #fafafa;
+  border-bottom:3px solid $btn_red;
 }
 
 .margin-bottom {

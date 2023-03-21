@@ -276,11 +276,11 @@ export default {
                   <div class="my_bigBox-info-OtherDishInfo">
 
                     <div class="DishDescr">
-                      <em>{{ dish.description }}</em>
+                      "<em>{{ dish.description }}</em>"
                     </div>
 
                     <div class="DishIngredients">
-                      Ingredienti: {{ dish.ingredients }}
+                      <i class="fa-solid fa-leaf"></i>Ingredienti: {{ dish.ingredients }}
                     </div>
                   </div>
                 </div>
@@ -559,7 +559,7 @@ export default {
 
       .my_bigBox-info-wrapper {
         padding: 10px;
-        line-height: 25px;
+        // line-height: 25px;
         color: #5a5a5a;
         display: flex;
         flex-direction: column;
@@ -567,9 +567,13 @@ export default {
         .my_bigBox-info-DishName {
           color: $text_black;
           font-size: 14px;
-          font-weight: 600;
+          font-weight: bold;
         }
 
+        .DishDescr{
+          color: #4a4a4a;
+          margin-bottom: 10px;
+        }
         .my_bigBox-info-restaurantRating {
           font-size: 12px;
         }
@@ -578,6 +582,11 @@ export default {
           display: flex;
           flex-direction: column;
           font-size: 12px;
+        }
+
+        .fa-leaf{
+          margin-right: 5px;
+          color: $btn_red;
         }
       }
 

@@ -15,7 +15,7 @@
         <h1>
             Hai un nuovo ordine!
         </h1>
-        <p>Il cliente {{ $order -> customer_name }} ha effettuato un ordine  in data {{ $order -> create_date }} {{ $order -> create_time }} presso il tuo ristorante per un totale di {{ $order -> total }} €</p>
+        <p>Il cliente {{ $order -> customer_name }} ha effettuato un ordine  in data {{ $order -> create_date }} {{substr($order-> create_time, 0, -3)}} presso il tuo ristorante per un totale di {{ $order -> total }} €</p>
         <h3>
             Grazie!
         </h3>

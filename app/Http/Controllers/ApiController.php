@@ -144,15 +144,41 @@ class ApiController extends Controller
         $order -> restaurant() -> associate($restaurant);
         $order -> save();
 
-        Mail::to($email)
-            -> send(new NewOrder($order));
+        // Mail::to($email)
+        //     -> send(new NewOrder($order));
 
-        Mail::to($userMail)
-            -> send(new RestaurantMail($order));
+        // Mail::to($userMail)
+        //     -> send(new RestaurantMail($order));
 
         return response() -> json([
             'success' => true,
             'response' => $order
         ]);
+    }
+
+    public function inviaEmail() {
+        // Codice per inviare l'email
+
+        $order = Order::latest()->first();
+
+        /* echo $lastOrder; */
+
+        $email = $order['email'];
+
+        Mail::to($email)
+            -> send(new NewOrder($order));
+
+
+        $restaurantId = $order['restaurant_id'];
+        $restaurant = Restaurant::find($restaurantId); 
+
+        $userId = $restaurant["user_id"];
+        $user = User::find($userId);
+
+        $userMail = $user["email"];
+
+        Mail::to($userMail)
+            -> send(new RestaurantMail($order));
+
     }
 }

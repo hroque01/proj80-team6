@@ -12,3 +12,5 @@ Route::get('/v1/restaurant/{restaurant}', [ApiController::class, 'getDishesAndRe
 Route::post('/v1/order/store', [ApiController::class, 'orderStore']);
 
 Route::get('/v1/order', [ApiController::class, 'getOrders']);
+
+Route::post('/v1/invia-email', [ApiController::class, 'inviaEmail']);
