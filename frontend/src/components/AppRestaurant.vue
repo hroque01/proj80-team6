@@ -503,7 +503,7 @@ section {
     }
 
     .mainTitle-container {
-        padding-left: 10px;
+        padding-left: 18px;
     }
 
     section {
@@ -514,7 +514,7 @@ section {
         }
 
         .nav-filter-container {
-            width: 95%;
+            width: 90%;
             height: 120px;
             margin: 0 auto;
 
