@@ -173,6 +173,7 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
+
 .mainTitle-container {
     width: 100%;
     padding-bottom: 20px;
