@@ -360,11 +360,14 @@ section {
     }
 }
 
-@media only screen and (max-width: 1270px) { // screen width 1200px
+@media only screen and (max-width: 1270px) {
+
+    // screen width 1200px
     .my_container {
         width: 95%;
         margin: 0 auto;
     }
+
     .restaurant {
         min-width: 150px;
         height: 230px;
@@ -372,26 +375,26 @@ section {
         overflow: hidden;
         position: relative;
 
-        .restaurant-img{
+        .restaurant-img {
             width: 200%;
         }
     }
-    
+
 }
 
 @media only screen and (max-width: 1100px) {
-    
+
     .restaurant-info-wrapper {
 
-        .restaurant-info-restaurantName{
+        .restaurant-info-restaurantName {
 
-            .name_res{
+            .name_res {
                 font-size: 13px;
             }
 
-        }   
+        }
 
-        .restaurant-info-address{
+        .restaurant-info-address {
             font-size: 12px;
         }
 
@@ -408,9 +411,9 @@ section {
 
         .restaurant-info-wrapper {
 
-            .restaurant-info-restaurantName{
+            .restaurant-info-restaurantName {
 
-                .name_res{
+                .name_res {
                     font-size: 13px;
                     font-weight: 700;
                 }
@@ -420,14 +423,13 @@ section {
         }
 
         .deliveryPrice {
-            font-size: 12px;
+            font-size: 11px;
             width: 80px;
             right: 10px;
-            bottom: 50px;
             background-color: $btn_red;
             color: white;
-            padding: 5px 10px;
-        }   
+            padding: 3px 8px;
+        }
 
     }
 }
@@ -440,7 +442,7 @@ section {
         overflow: hidden;
         position: relative;
 
-        .restaurant-img{
+        .restaurant-img {
             width: 200%;
         }
     }
@@ -455,7 +457,7 @@ section {
         overflow: hidden;
         position: relative;
 
-        .restaurant-img{
+        .restaurant-img {
             width: 200%;
         }
     }
@@ -470,8 +472,19 @@ section {
         overflow: hidden;
         position: relative;
 
-        .restaurant-img{
+        .restaurant-img {
             width: 100%;
+        }
+    }
+
+    nav {
+        padding-left: 0;
+
+        ul {
+
+            .typologyTag {
+                font-size: 13px;
+            }
         }
     }
 
@@ -479,11 +492,11 @@ section {
 
 @media only screen and (max-width: 470px) {
 
-    .restaurantWrapper{
+    .restaurantWrapper {
         height: 625px;
     }
 
-    .mainTitle-container{
+    .mainTitle-container {
         padding-left: 10px;
     }
 
@@ -491,18 +504,19 @@ section {
         margin: 50px 0;
 
         .restaurantFilter {
-                display: block;
-            }
+            display: block;
+        }
 
-        .nav-filter-container{
+        .nav-filter-container {
             width: 95%;
             height: 120px;
             margin: 0 auto;
 
-            .mb-3{
+            .mb-3 {
                 margin-bottom: 10px;
             }
-            .typologies-list{
+
+            .typologies-list {
                 display: flex;
                 gap: 25px;
                 margin-inline: -15px;
@@ -537,13 +551,14 @@ section {
 
         }
 
-        
+
     }
 
-    .nav-filter-container{
+    .nav-filter-container {
         width: 100%;
     }
-    .my_container{
+
+    .my_container {
         margin-inline: 0;
         width: 100%;
     }
@@ -559,15 +574,13 @@ section {
         }
     }
 
-    nav{
-        ul{
-            li{
+    nav {
+        ul {
+            li {
                 border-bottom: 0px solid #eaeaea;
             }
         }
     }
 
 }
-
-
 </style>

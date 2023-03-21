@@ -10,7 +10,7 @@
       <h4 class="my-4">
         Qui puoi visualizzare il riepilogo dei tuoi ordini, elencati in modo decrescente per data.
       </h4>
-      <a href="{{route('chart')}}">Vedi le statistiche</a>
+      <a class="link_chart" href="{{route('chart')}}">Vedi le statistiche</a>
     </div>
     <table class="table">
 
