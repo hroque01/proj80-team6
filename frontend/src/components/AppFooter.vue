@@ -8,7 +8,7 @@ export default {
         return {
             cards: [
                 {
-                    img: "marco.jpg",
+                    img: "marco.png",
                     name: "MARCO CELEGATO",
                     gitHub: "https://github.com/codingcele",
                 },
