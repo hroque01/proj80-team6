@@ -168,10 +168,10 @@ export default {
       this.getTotal();
       store.total = this.cartTotal;
     },
-    scrollToTop() {
-      window.history.back();
-      window.scrollBy(0, -1000);
-    },
+    // scrollToTop() {
+    //   window.history.back();
+    //   window.scrollBy(0, -1000);
+    // },
     getRestaurantImage(restaurant) {
       if (restaurant.image.includes("restaurants-image")) {
         return 'http://[::1]:5173/storage/app/public/' + restaurant.image;
@@ -216,11 +216,11 @@ export default {
     <div class="restaurant_header" v-for="(restaurant, index) in filteredRestaurants" :key="index">
       <div v-if="restaurant" class="flex-info-res my_container">
 
-        <div class="back-button">
-          <button @click="scrollToTop()">
-            <i class="fa-solid fa-utensils"></i> Torna alla nostra selezione di ristoranti
-          </button>
-        </div>
+        <!-- <div class="back-button">
+                <button @click="scrollToTop()">
+                  <i class="fa-solid fa-utensils"></i> Torna alla nostra selezione di ristoranti
+                </button>
+              </div> -->
 
         <div class="restaurant_image">
           <img :src="getRestaurantImage(restaurant)" :alt="restaurant.business_name">
@@ -398,6 +398,10 @@ export default {
 @use '../src/styles/partials/mixins' as *;
 @use '../src/styles/partials/variables' as *;
 
+section {
+  padding-top: 110px;
+}
+
 // filtro b/n per piatti non disponibili
 .not-available-img {
   filter: grayscale(100%);
@@ -570,10 +574,11 @@ export default {
           font-weight: bold;
         }
 
-        .DishDescr{
+        .DishDescr {
           color: #4a4a4a;
           margin-bottom: 10px;
         }
+
         .my_bigBox-info-restaurantRating {
           font-size: 12px;
         }
@@ -584,7 +589,7 @@ export default {
           font-size: 12px;
         }
 
-        .fa-leaf{
+        .fa-leaf {
           margin-right: 5px;
           color: $btn_red;
         }
