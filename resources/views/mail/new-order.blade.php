@@ -7,14 +7,22 @@
     <title>Deliveboo - Team 6</title>
 </head>
 <body>
-    <h1>
-        Ordine numero <b>{{ $order -> order_number }}</b> ricevuto!
-    </h1>
-    <h3>
-        Hai effettuato un ordine in data {{ $order -> create_date }} {{ $order -> create_time }} per un totale di {{ $order -> total }} €
-    </h3>
-    <h3>
-        Grazie per il tuo ordine {{ $order -> customer_name }}!
-    </h3>
+    <div class="mail-trap">
+        <div class="text-center">
+            <img src="{{Vite::asset('resources/img/logo-white.png')}}" alt="logo" class="logo-form">
+        </div>
+        <h1>
+            Ordine confermato!
+        </h1>
+        <p>Ciao <strong>{{ $order -> customer_name }}</strong>!</p>
+        <p>Abbiamo ricevuto il tuo deliveboo <strong>#{{ $order -> order_number }}</strong> effettuato in data {{ $order -> create_date }}</p>
+        <p>
+            Totale ordine {{ $order -> total }}€ 
+        </p>
+        <h3>
+            Grazie per il tuo ordine e buon appetito!
+        </h3>
+    </div>
+   
 </body>
 </html>
