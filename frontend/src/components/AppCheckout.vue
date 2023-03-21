@@ -156,22 +156,22 @@ export default {
                 })
                 .catch(err => console.log(err));
 
-            // this.errors = {};
-            // if (!this.newOrder.customer_name) {
-            //     this.errors.customer_name = 'Inserisci il campo!';
-            // }
-            // if (!this.newOrder.address) {
-            //     this.errors.address = 'Inserisci il campo!';
-            // }
-            // if (!this.newOrder.email) {
-            //     this.errors.email = 'Inserisci il campo!';
-            // }
-            // if (!this.newOrder.phone_number) {
-            //     this.errors.phone_number = 'Inserisci il campo!';
-            // }
-            // if (Object.keys(this.errors).length === 0) {
-            //     this.orderSubmit();
-            // }
+            this.errors = {};
+            if (!this.newOrder.customer_name) {
+                this.errors.customer_name = 'Inserisci il campo!';
+            }
+            if (!this.newOrder.address) {
+                this.errors.address = 'Inserisci il campo!';
+            }
+            if (!this.newOrder.email) {
+                this.errors.email = 'Inserisci il campo!';
+            }
+            if (!this.newOrder.phone_number) {
+                this.errors.phone_number = 'Inserisci il campo!';
+            }
+            if (Object.keys(this.errors).length === 0) {
+                this.orderSubmit();
+            }
         },
         findRestaurant() {
             const cartItem = localStorage.getItem('cart');
@@ -376,7 +376,7 @@ export default {
 
         <!-- form -->
         <div class="form-cart clickedBtnPay">
-            <form v-if="showForm && !showPayment">
+            <form v-if="showForm && !showPayment" v-on:submit.prevent>
 
                 <div>
                     <h3>Dettagli cliente</h3>
