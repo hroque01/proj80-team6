@@ -6,9 +6,12 @@
     <h1>
       Ciao, <span class="res-hub-welcome">{{$restaurant->business_name }}</span>!
     </h1>
-    <h4 class="my-4">
-      Qui puoi visualizzare il riepilogo dei tuoi ordini, elencati in modo decrescente per data.
-    </h4>
+    <div class="chart-flex-order">
+      <h4 class="my-4">
+        Qui puoi visualizzare il riepilogo dei tuoi ordini, elencati in modo decrescente per data.
+      </h4>
+      <a href="{{route('chart')}}">Vedi le statistiche</a>
+    </div>
     <table class="table">
 
       <thead>

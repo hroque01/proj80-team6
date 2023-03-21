@@ -854,6 +854,26 @@ nav {
 
 // REGOLE ORDINI ELENCO:
 
+.chart-flex-order {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a{
+        background-color: #fff;
+        border: 2px solid $btn_red;
+        padding: 5px 10px;
+        color: $btn_red;
+        border-radius: 10px;
+        font-size: 18px;
+
+        &:hover{
+            border: 3px solid $btn_red;
+            font-weight: 600;
+        }
+    }
+}
+  
 .orders {
     display: flex;
     margin: 10px 0;
@@ -997,3 +1017,4 @@ nav {
     }
 
 }
+
