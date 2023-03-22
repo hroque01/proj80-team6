@@ -25,7 +25,7 @@
             
                     </div>
                     <div class="modal-body">
-                        <img src="{{ Vite::asset('storage/app/public/' . Auth::user()-> restaurant->image) }}" alt="{{Auth::user()->restaurant->business_name}}">
+                        <img src="{{ Auth::user()-> restaurant->image }}" alt="{{Auth::user()->restaurant->business_name}}">
                         <p><span><i class="fa-solid fa-location-dot"></i></span>{{Auth::user()-> restaurant->address}}</p> 
                         @if (Auth::user()-> restaurant->description)
                             <p><span><i class="fa-solid fa-align-left"></i></span><em>{{Auth::user()-> restaurant->description}}</em> </p>
