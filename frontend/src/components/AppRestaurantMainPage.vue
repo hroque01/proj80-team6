@@ -294,7 +294,7 @@ export default {
               <!-- div che compare se piatto è esaurito -->
               <div v-if="!dish.visible" class="dish-not-available">
 
-                <div class="tag-not-available">Non disponibile</div>
+                <div class="tag-not-available">Esaurito</div>
               </div>
 
             </div>
@@ -398,8 +398,8 @@ section {
 
 // filtro b/n per piatti non disponibili
 .not-available-img {
-  filter: grayscale(100%);
-  opacity: 0, 8;
+  // filter: grayscale(100%);
+  opacity: 0.6;
 }
 
 .my_container {
@@ -526,12 +526,11 @@ section {
         background-color: #0000004d;
 
         .tag-not-available {
-          font-size: 30px;
-          background-color: #eeeeeeaf;
+          font-size: 20px;
+          background-color: $btn_red;
           border: 3px solid $btn_red;
-          border-radius: 10px;
-          color: $btn_red;
-          padding: 5px 7px;
+          color: #fff;
+          padding: 1px 5px;
         }
       }
 
