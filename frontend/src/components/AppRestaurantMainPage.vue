@@ -216,12 +216,6 @@ export default {
     <div class="restaurant_header" v-for="(restaurant, index) in filteredRestaurants" :key="index">
       <div v-if="restaurant" class="flex-info-res my_container">
 
-        <!-- <div class="back-button">
-                                                                                                                                                  <button @click="scrollToTop()">
-                                                                                                                                                    <i class="fa-solid fa-utensils"></i> Torna alla nostra selezione di ristoranti
-                                                                                                                                                  </button>
-                                                                                                                                                </div> -->
-
         <div class="restaurant_image">
           <img :src="getRestaurantImage(restaurant)" :alt="restaurant.business_name">
         </div>

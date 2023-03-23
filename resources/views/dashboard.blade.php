@@ -25,7 +25,12 @@
             
                     </div>
                     <div class="modal-body">
-                        <img src="{{ Auth::user()-> restaurant->image }}" alt="{{Auth::user()->restaurant->business_name}}">
+                        
+                        @if ((strpos(Auth::user()-> restaurant->image, "restaurants-image") !== false))
+                            <img src="{{ Vite::asset('storage/app/public/') . Auth::user()-> restaurant->image}}" alt="{{Auth::user()->restaurant->business_name}}">
+                        @else
+                            <img src="{{Auth::user()-> restaurant->image}}" alt="{{Auth::user()->restaurant->business_name}}">
+                        @endif
                         <p><span><i class="fa-solid fa-location-dot"></i></span>{{Auth::user()-> restaurant->address}}</p> 
                         @if (Auth::user()-> restaurant->description)
                             <p><span><i class="fa-solid fa-align-left"></i></span><em>{{Auth::user()-> restaurant->description}}</em> </p>
