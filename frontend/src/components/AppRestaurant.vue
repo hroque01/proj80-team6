@@ -264,10 +264,6 @@ section {
         .name_res {
             color: $text_black;
             font-size: 18px;
-
-            &:hover {
-                text-decoration: underline;
-            }
         }
 
         .wrapperProperties {
