@@ -108,34 +108,33 @@
   
 <script type="text/javascript">
   
-      var labels =  {{ Js::from($labels) }};
-      var orders =  {{ Js::from($data) }};
-  
-      const data = {
+    var labels =  {{ Js::from($labels) }};
+    var orders =  {{ Js::from($data) }};
+
+    const data = {
         labels: labels,
         datasets: [{
-          label: 'Le statistiche dei tuoi ordini',
-          backgroundColor: '#ee5743',
-          borderColor: 'rgb(255, 99, 132)',
-          data: orders,
+            label: 'Totale guadagni mensili in €',
+            backgroundColor: '#ee5743',
+            borderColor: 'rgb(255, 99, 132)',
+            data: orders,
         }]
-      };
-  
-      const config = {
+    };
+
+    const config = {
         type: 'bar',
         data: data,
         options: {
             y: {
                 min: 0,
-                
             }
         }
-      };
-  
-      const myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-      );
+    };
+
+    const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+    );
   
 </script>
 </html>
