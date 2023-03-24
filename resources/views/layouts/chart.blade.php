@@ -8,12 +8,58 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="icon" href="{{Vite::asset('resources/img/favicon.ico.png')}}" type="image/x-icon">
 
+    <style>
+        html, body {
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            margin: 0 auto;
+            z-index: 999;
+            background-color: white;
+        }
+        .cont {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        .center-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 200px;
+            height: auto;
+        }
+        #app {
+            overflow-x: auto;
+            overflow-y: auto;
+        }
+    </style>
+
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>
     
 <body>
-
+    <div class="loader">
+        <div class="cont">
+            <img class="center-image" src="{{Vite::asset('resources/img/logo-white.png')}}" alt="">
+        </div>
+    </div>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
 
             <div class="container">
@@ -101,9 +147,20 @@
         <canvas id="myChart" height="100px"></canvas>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
+    <script>
+        $(function() {
+            setTimeout(()=>{
+                $(".loader").fadeOut(400);
+            }, 400)
+        });
+    </script>
+
 </body>
   
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
 <script type="text/javascript">
