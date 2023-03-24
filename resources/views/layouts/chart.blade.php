@@ -154,8 +154,8 @@
     <script>
         $(function() {
             setTimeout(()=>{
-                $(".loader").fadeOut(400);
-            }, 400)
+                $(".loader").fadeOut(300);
+            }, 300)
         });
     </script>
 
